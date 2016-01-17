@@ -1,0 +1,16 @@
+#signupModal{
+	margin-top: 50px;
+	z-index: 10000;
+	position: absolute;
+	top: 50px;
+	margin: auto;
+}
+/* teste */
+
+#forgot {
+	margin-top: 50px;
+	z-index: 10000;
+	position: absolute;
+	top: 50px;
+	margin: auto;
+}
