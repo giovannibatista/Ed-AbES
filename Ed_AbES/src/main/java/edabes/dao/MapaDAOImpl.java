@@ -646,6 +646,7 @@ public class MapaDAOImpl implements MapaDAO {
 			}
 			
 		} catch (Exception e) {
+			System.out.println("----> " + e.getMessage());
 			e.printStackTrace();
 		}
 

@@ -63,7 +63,7 @@
 										<div class="col-md-9 col-md-offset-4">
 											<div class="btn-group" data-toggle="buttons">
 												<label class="btn btn-primary active">
-													<input type="radio" name="tipoMapa" autocomplete="off" value="3" checked> Navegação Livre
+													<input type="radio" name="tipoMapa" autocomplete="off" value="1" checked> Navegação Livre
 												</label>
 												<label class="btn btn-primary">
 													<input type="radio" name="tipoMapa" autocomplete="off" value="2"> Desafio

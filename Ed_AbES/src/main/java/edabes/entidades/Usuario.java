@@ -28,7 +28,7 @@ public class Usuario {
     private String email;
     
     @Column(name="ANO_NASCIMENTO")
-    private String anoNascimento;
+    private Integer anoNascimento;
     
     @Column(name="CIDADE")
     private String cidade;
@@ -77,11 +77,11 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getAnoNascimento() {
+	public Integer getAnoNascimento() {
 		return anoNascimento;
 	}
 
-	public void setAnoNascimento(String anoNascimento) {
+	public void setAnoNascimento(Integer anoNascimento) {
 		this.anoNascimento = anoNascimento;
 	}
 
