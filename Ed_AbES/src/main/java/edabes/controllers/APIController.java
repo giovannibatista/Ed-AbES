@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edabes.utils.SpeechUtil;
+import edabes.utils.Synthesiser;
 
 @Controller
 public class APIController {	
@@ -31,13 +32,17 @@ public class APIController {
 		
 		InputStream inputStream = null;
 		SpeechUtil speech = null;
+		Synthesiser synthesiser = null;
 		
 		try {
 			//Initiate the Speech object
 			speech = new SpeechUtil(SpeechUtil.LANG_PT_BRAZILIAN);
+			synthesiser = new Synthesiser(Synthesiser.LANG_PT_BRAZILIAN);
 			
 			//Get input stream from Google
-			inputStream = speech.getMP3Data(text);
+			//inputStream = speech.getMP3Data(text);
+			inputStream = synthesiser.getMP3Data(text);
+			
 			
 			//Copy the stream
 			IOUtils.copy(inputStream, response.getOutputStream());
