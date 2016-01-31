@@ -290,3 +290,14 @@ CREATE SEQUENCE MAPA_OBJETO_EXPORTADO_SEQ
 	MINVALUE 1
 	MAXVALUE 99999
 	NO CYCLE;
+
+/*
+Alterações para o Módulo de Navegação
+*/
+
+
+ALTER TABLE OBJETO
+ADD COLUMN arquivo_audio character varying(90) null;
+
+
+

@@ -115,8 +115,7 @@
 						  <li>Minimizar a introdução de elementos de formatação e cor, pois estes contribuem para dispersão no entendimento.</li>
 						  <li>Empregar verbos para descrever a ação e advérbio para. </li>
 						  <li>Preferencialmente, criar mapas com rotas retas. Assim, facilitando a navegação do usuário através das setas do teclado. </li>
-						  
-						</ul>
+ 						</ul>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" onclick="hideModal('modalSobre');" data-dismiss="modal"><img src="/resources/img/icon_cancel.png" /> &nbsp Fechar</button>

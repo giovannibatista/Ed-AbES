@@ -13,38 +13,41 @@ import javax.persistence.Table;
 public class MapaObjetoExportado {
 
 	@Id
-    @Column(name="ID_MAPA_OBJETO")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MAPA_OBJETO_EXPORTADO_SEQ")
-    @SequenceGenerator(name = "MAPA_OBJETO_EXPORTADO_SEQ", sequenceName = "MAPA_OBJETO_EXPORTADO_SEQ", allocationSize = 1)
+	@Column(name="ID_MAPA_OBJETO")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MAPA_OBJETO_EXPORTADO_SEQ")
+	@SequenceGenerator(name = "MAPA_OBJETO_EXPORTADO_SEQ", sequenceName = "MAPA_OBJETO_EXPORTADO_SEQ", allocationSize = 1)
 	private int id;
-	
+
 	@Column(name="ID_MAPA")
 	private int idMapa;
-	
+
 	@Column(name="ID_OBJETO")
 	private int idObjeto;
-	
+
 	@Column(name="PROFUNDIDADE")
 	private int profundidade;
-	
+
 	@Column(name="AUDIO_DESCRICAO")
 	private String audioDescricao;
-	
+
 	@Column(name="COORDENADA_X")
 	private int coordenadaX;
-	
+
 	@Column(name="COORDENADA_Y")
 	private int coordenadaY;
-	
+
 	@Column(name="ALTURA")
 	private int altura;
-	
+
 	@Column(name="LARGURA")
 	private int largura;
 
+	@Column(name="ARQUIVO_AUDIO")
+	private String arquivoAudio;
+
 	public MapaObjetoExportado() {
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -116,6 +119,12 @@ public class MapaObjetoExportado {
 	public void setLargura(int largura) {
 		this.largura = largura;
 	}
-	
-	
+
+	public String getArquivoAudio() {
+		return arquivoAudio;
+	}
+
+	public void setArquivoAudio(String arquivoAudio) {
+		this.arquivoAudio = arquivoAudio;
+	}
 }

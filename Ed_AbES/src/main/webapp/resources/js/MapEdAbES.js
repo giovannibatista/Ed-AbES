@@ -12,6 +12,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	var $editObj = {
 		modal: $("#editModal"),
 		input: $("#titleEditModal"),
+		file: $("#audioFile"),
 		action: $("#btnEditModal")
 	};
 	
@@ -81,7 +82,8 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 				"audioDescricao": $obj.data("title"),
 				"operacao": $obj.data("status"),
 				"nome": $obj.data("nome"),
-				"angulo": $obj.data("rotate")
+				"angulo": $obj.data("rotate"),
+				"arquivoAudio": $obj.data("file")
 			});
 		});
 		
@@ -113,7 +115,8 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 			title: objectProperties.title,
 			nome: objectProperties.nome,
 			rotate: objectProperties.rotate,
-			profundidade: objectProperties.z
+			profundidade: objectProperties.z,
+			file: objectProperties.file
 		});
 		
 		var offset = {
@@ -210,6 +213,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 		var nome = $obj.data("nome");
 		var rotate = $obj.data("rotate");
 		var profundidade = $obj.data("profundidade");
+		var file = $obj.data("file");
 		
 		//create the mob
 		var $mob = $("<div />");
@@ -235,7 +239,8 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 			title: title,
 			nome: nome,
 			rotate: rotate,
-			"coord-z": profundidade
+			"coord-z": profundidade,
+			file: file
 		});
 		
 		//bind events
@@ -476,7 +481,8 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 			idObject: $obj.data("idObjeto"),
 			title: $obj.data("title"),
 			nome: $obj.data("nome"),
-			rotate: $obj.data("rotate")
+			rotate: $obj.data("rotate"),
+			file: $obj.data("file")
 		};
 		
 		self.addMob(objectProperties);
@@ -547,9 +553,12 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	var _editObjectAction = function($btn, $obj) {
 		//get the most updated title
 		var title = $obj.data("title");
+		var file = $obj.data("file");
 		
 		//update the title
 		$editObj.input.val(title);
+		$editObj.file.val(file);
+
 		
 		//open the dialog
 		$editObj.modal.modal("show");
@@ -558,7 +567,8 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 		$editObj.action.unbind("click").bind("click", function() {
 			//Update the object title
 			$obj.data({
-				title: $editObj.input.val()
+				title: $editObj.input.val(),
+				file: $editObj.file.val()
 			});
 			
 			//hide the dialog

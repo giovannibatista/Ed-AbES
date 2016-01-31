@@ -44,6 +44,9 @@ public class MapaObjeto {
 	
 	@Column(name="ANGULO")
 	private int angulo;
+	
+	@Column(name="ARQUIVO_AUDIO")
+	private String arquivoAudio;
 
 	public MapaObjeto() {
 	}
@@ -127,4 +130,14 @@ public class MapaObjeto {
 	public int getAngulo() {
 		return angulo;
 	}
+
+	public String getArquivoAudio() {
+		return arquivoAudio;
+	}
+
+	public void setArquivoAudio(String arquivoAudio) {
+		this.arquivoAudio = arquivoAudio;
+	}
+	
+	
 }

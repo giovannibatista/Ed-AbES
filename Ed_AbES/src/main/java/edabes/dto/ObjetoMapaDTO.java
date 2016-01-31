@@ -16,6 +16,7 @@ public class ObjetoMapaDTO {
 	private int idMapaObjeto;
 	private int angulo;
 	private int idObjeto;
+	private String arquivoAudio;
 	
 	public ObjetoMapaDTO() {
 	}
@@ -106,5 +107,13 @@ public class ObjetoMapaDTO {
 	
 	public void setIdObjeto(int idObjeto) {
 		this.idObjeto = idObjeto;
+	}
+
+	public String getArquivoAudio() {
+		return arquivoAudio;
+	}
+
+	public void setArquivoAudio(String arquivoAudio) {
+		this.arquivoAudio = arquivoAudio;
 	}
 }
