@@ -1,6 +1,5 @@
 package edabes.dto;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;

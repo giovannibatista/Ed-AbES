@@ -66,6 +66,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	 * @return List of mobs
 	 */
 	self.exportMobs = function() {
+		debugger;
 		var mobs = new Array();
 		
 		$(".mobs").each(function() {
@@ -105,6 +106,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	 *  }
 	 */
 	self.addMob = function(objectProperties) {
+		debugger;
 		var $obj = $("<div />");
 		$obj.data({
 			width: objectProperties.width,
@@ -204,6 +206,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	}
 	
 	var _addMob = function($obj, offset, isNew) {
+		debugger;
 		var imageSrc = $obj.data("image");
 		var width = $obj.data("width");
 		var height = $obj.data("height");
@@ -551,13 +554,14 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	}
 	
 	var _editObjectAction = function($btn, $obj) {
+		debugger;
 		//get the most updated title
 		var title = $obj.data("title");
 		var file = $obj.data("file");
 		
 		//update the title
 		$editObj.input.val(title);
-		$editObj.file.val(file);
+		//$editObj.file.val(file);
 
 		
 		//open the dialog
@@ -566,6 +570,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 		//bind the action 
 		$editObj.action.unbind("click").bind("click", function() {
 			//Update the object title
+			debugger;
 			$obj.data({
 				title: $editObj.input.val(),
 				file: $editObj.file.val()

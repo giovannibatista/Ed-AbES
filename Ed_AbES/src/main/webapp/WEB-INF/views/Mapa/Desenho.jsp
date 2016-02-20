@@ -46,7 +46,8 @@
 					<div class="modal-body">
 						<input type="text" class="form-control" name="titleEditModal" id="titleEditModal" placeholder="Ex: Este é o armário da cozinha." required />
 						<label>Anexar arquivo de áudio: </label>
-						<input type="file" class="form-control" name="audioFile" id="audioFile" accept="audio/*"  /> 
+						<input type="file" class="form-control" name="audioFile" id="audioFile" accept="audio/*"  />
+							<input type="file" class="form-control" name="audioFile" id="audioFile" accept="audio/*"  /> 
 					</div>
 					<div class="modal-footer">
 						<div class="row text-right">
@@ -94,7 +95,8 @@
 					//In case you have confirmed that you accept saving the map without a description
 					if(!objetoSemAudioDescricao || 
 						confirm(noTitleAlert.format(nomeObjetoSemAudioDescricao))) {
-						
+						debugger;
+						console.log(mobs);						
 						$.ajax({
 							url: "/Mapa/Desenho/Salvar/${idMapa}",
 							type: "POST",

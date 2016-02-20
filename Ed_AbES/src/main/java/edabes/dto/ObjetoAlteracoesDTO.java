@@ -1,5 +1,7 @@
 package edabes.dto;
 
+import java.io.File;
+
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,6 +20,7 @@ public class ObjetoAlteracoesDTO {
 	private String audioDescricao;
 	private int operacao;
 	private int angulo;
+	private File arquivoAudio;
 	
 	public ObjetoAlteracoesDTO() {
 	}
@@ -121,5 +124,17 @@ public class ObjetoAlteracoesDTO {
 	public void setAngulo(int angulo) {
 		this.angulo = angulo;
 	}
+
+
+	public File getArquivoAudio() {
+		return arquivoAudio;
+	}
+
+
+	public void setArquivoAudio(File arquivoAudio) {
+		this.arquivoAudio = arquivoAudio;
+	}
+	
+	
 
 }

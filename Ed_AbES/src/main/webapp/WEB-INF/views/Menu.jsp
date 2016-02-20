@@ -20,6 +20,7 @@
 		<li role="presentation"><a href="/Mapa/Criar" title="Novo Mapa">Novo Mapa</a></li>
 		<li role="presentation"><a href="/Mapa/Listar" title="Listar Mapas">Listar Mapas</a></li>
 		<li role="presentation"><a href="/Mapa/Importar" title="Importar Mapas">Importar Mapas</a></li>
+		<li role="presentation"><a href="/Audio/Importar" title="Importar Áudios">Importar Áudios</a></li>
 		
 		<li role="presentation" class="pull-right dropdown clearfix">
 			<a href="javascript: void(0);" data-toggle="dropdown" class="dropdown-toggle"><%=usuario.getNome()%></a>
