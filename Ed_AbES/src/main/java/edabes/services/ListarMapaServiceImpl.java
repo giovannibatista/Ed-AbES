@@ -117,6 +117,8 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 					objetoImportado.setIdObjeto(objetoExportado.getIdObjeto());
 					objetoImportado.setLargura(objetoExportado.getLargura());
 					objetoImportado.setProfundidade(objetoExportado.getProfundidade());
+					objetoImportado.setProfundidade(objetoExportado.getProfundidade());
+					objetoImportado.setIdArquivoAudio(objetoExportado.getIdArquivoAudio());
 					mapaDAO.salvarMapaObjeto(objetoImportado);
 				}
 				

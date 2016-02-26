@@ -27,6 +27,7 @@ public class MapaObjetoMapperImpl implements MapaObjetoMapper {
 		obj.setAltura(dto.getAltura());
 		obj.setLargura(dto.getLargura());
 		obj.setAngulo(dto.getAngulo());
+		obj.setIdArquivoAudio(dto.getIdArquivoAudio() == 0 ? null : dto.getIdArquivoAudio());
 		
 		return (obj);
 	}

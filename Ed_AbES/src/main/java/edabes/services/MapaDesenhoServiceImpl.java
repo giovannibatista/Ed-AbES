@@ -30,6 +30,9 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 	@Autowired
     private MapaDAOExportado mapaDAOExportado;
 	
+	@Autowired
+	private AudioService audioService;
+	
 	/**
 	 * Metodo para exportar um mapa
 	 * @param int idMapa - Identificador do mapa
@@ -78,6 +81,7 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 					objetoExportado.setIdObjeto(objeto.getIdObjeto());
 					objetoExportado.setLargura(objeto.getLargura());
 					objetoExportado.setProfundidade(objeto.getProfundidade());
+					objetoExportado.setIdArquivoAudio(objeto.getIdArquivoAudio() == null ? null : objeto.getIdArquivoAudio());
 					mapaDAOExportado.salvarMapaObjeto(objetoExportado);
 				}
 				mapaDisponivel = true;
@@ -161,6 +165,8 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 			dto.setAudioDescricao(mapaObjeto.getAudioDescricao());
 			dto.setAngulo(mapaObjeto.getAngulo());
 			dto.setIdObjeto(mapaObjeto.getIdObjeto());
+			dto.setArquivoAudio(audioService.buscarAudio(mapaObjeto.getIdArquivoAudio()));
+			
 			
 			//get the current object we are dealing with
 			curentObj = listaObjetos.get(mapaObjeto.getIdObjeto());

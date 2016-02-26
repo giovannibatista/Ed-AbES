@@ -1,7 +1,5 @@
 package edabes.dto;
 
-import java.io.File;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,9 +16,10 @@ public class ObjetoMapaDTO {
 	private int idMapaObjeto;
 	private int angulo;
 	private int idObjeto;
-	private File arquivoAudio;
-	
+	private AudioDTO arquivoAudio;
+
 	public ObjetoMapaDTO() {
+		arquivoAudio = new AudioDTO();
 	}
 
 	public int getProfundidade() {
@@ -94,28 +93,29 @@ public class ObjetoMapaDTO {
 	public void setAudioDescricao(String audioDescricao) {
 		this.audioDescricao = audioDescricao;
 	}
-	
+
 	public int getAngulo() {
 		return angulo;
 	}
-	
+
 	public void setAngulo(int angulo) {
 		this.angulo = angulo;
 	}
-	
+
 	public int getIdObjeto() {
 		return idObjeto;
 	}
-	
+
 	public void setIdObjeto(int idObjeto) {
 		this.idObjeto = idObjeto;
 	}
 
-	public File getArquivoAudio() {
+	public AudioDTO getArquivoAudio() {
 		return arquivoAudio;
 	}
 
-	public void setArquivoAudio(File arquivoAudio) {
+	public void setArquivoAudio(AudioDTO arquivoAudio) {
 		this.arquivoAudio = arquivoAudio;
 	}
+
 }

@@ -1,6 +1,7 @@
 package edabes.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -25,7 +26,6 @@ public class AudioDAOImpl implements AudioDAO {
 		boolean audioCadastrado = false;
 		Session session;
 		try {
-			System.out.println("3");
 			session = sessionFactory.getCurrentSession();
 
 			session.save(audio);
@@ -46,7 +46,7 @@ public class AudioDAOImpl implements AudioDAO {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			query = session.createQuery("from UPLOAD_ARQUIVO_AUDIOS");
+			query = session.createQuery("from Audio");
 
 			listaAudios = (ArrayList<Audio>) query.list();
 		} catch (Exception e) {
@@ -55,4 +55,28 @@ public class AudioDAOImpl implements AudioDAO {
 
 		return listaAudios;
 	}
+	
+	public Audio buscarAudio(Integer idArquivoAudio) {
+		Audio audio = null;
+		Session session;
+		
+		try {
+			session = sessionFactory.getCurrentSession();
+			
+			Query query = session.createQuery("from Audio where ID_ARQUIVO_AUDIO = :idArquivoAudio");
+			query.setParameter("idArquivoAudio", idArquivoAudio);
+			
+			List<Audio> list = (ArrayList<Audio>) query.list();
+			
+			if(!list.isEmpty() && list != null) {
+				audio = (Audio) list.get(0);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return audio;
+	}
+
+	
 }

@@ -42,8 +42,8 @@ public class MapaObjetoExportado {
 	@Column(name="LARGURA")
 	private int largura;
 
-	@Column(name="ARQUIVO_AUDIO")
-	private String arquivoAudio;
+	@Column(name="ID_ARQUIVO_AUDIO")
+	private Integer idArquivoAudio;
 
 	public MapaObjetoExportado() {
 	}
@@ -120,11 +120,12 @@ public class MapaObjetoExportado {
 		this.largura = largura;
 	}
 
-	public String getArquivoAudio() {
-		return arquivoAudio;
+	public Integer getIdArquivoAudio() {
+		return idArquivoAudio;
 	}
 
-	public void setArquivoAudio(String arquivoAudio) {
-		this.arquivoAudio = arquivoAudio;
+	public void setIdArquivoAudio(Integer idArquivoAudio) {
+		this.idArquivoAudio = idArquivoAudio;
 	}
+
 }

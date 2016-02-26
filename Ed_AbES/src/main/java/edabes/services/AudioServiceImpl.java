@@ -50,6 +50,7 @@ public class AudioServiceImpl implements AudioService {
 	public Audio converteDTOParaEntidade(AudioDTO audioDTO) {
 		Audio audio = new Audio();
 
+		audio.setId(audioDTO.getId());
 		audio.setArquivo(FILESYSTEM + audioDTO.getArquivo().getName());
 		audio.setDescricao(audioDTO.getDescricao());
 
@@ -61,6 +62,7 @@ public class AudioServiceImpl implements AudioService {
 
 		File arquivo = new File(audio.getArquivo());
 
+		audioDTO.setId(audio.getId());
 		audioDTO.setArquivo(arquivo);
 		audioDTO.setDescricao(audio.getDescricao());
 
@@ -107,6 +109,19 @@ public class AudioServiceImpl implements AudioService {
 		}
 		
 		return listaAudioDTOs;
+	}
+
+	public AudioDTO buscarAudio(Integer idArquivoAudio) {
+		
+		if(idArquivoAudio == null){
+			return new AudioDTO();
+		}
+		
+		Audio audio = audioDAO.buscarAudio(idArquivoAudio);
+		
+		AudioDTO audioDTO = converteEntidadeParaDTO(audio);
+		
+		return audioDTO;
 	}
 
 }

@@ -9,5 +9,7 @@ public interface AudioService {
 	boolean importarArquivo(AudioDTO audioDTO);
 	
 	ArrayList<AudioDTO> listaAudios();
+	
+	AudioDTO buscarAudio(Integer idArquivoAudio);
 
 }

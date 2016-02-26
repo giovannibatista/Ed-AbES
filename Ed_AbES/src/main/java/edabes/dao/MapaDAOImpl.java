@@ -29,13 +29,13 @@ public class MapaDAOImpl implements MapaDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Autowired
 	private MapaObjetoMapper mapperService;
-	
+
 	public MapaDAOImpl() {
 	}
-	
+
 	/**
 	 * Metodo para buscar um mapa pelo nome
 	 * @param String nome - Nome do mapa
@@ -64,7 +64,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 		return mapa;
 	}
-	
+
 	/**
 	 * Metodo para excluir um mapa
 	 * @param int idMapa - Identificador do mapa
@@ -76,17 +76,17 @@ public class MapaDAOImpl implements MapaDAO {
 		Query query = null;
 		boolean mapaExcluido = false;
 		boolean objetosDoMapaExluidos = false;
-		
+
 		try {
 			excluirObjetosDoMapa(idMapa);
-			
+
 			session = sessionFactory.getCurrentSession();
 			query = session
 					.createQuery("delete Mapa where ID_MAPA = :idMapa");
 			query.setParameter("idMapa", idMapa);
-	
+
 			int result = query.executeUpdate();
-				if (result > 0) {
+			if (result > 0) {
 				mapaExcluido = true;
 			}
 
@@ -96,7 +96,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 		return mapaExcluido;
 	}
-	
+
 	/**
 	 * Metodo para excluir todos os objetos de um mapa
 	 * @param int idMapa - Identificador do mapa
@@ -104,7 +104,7 @@ public class MapaDAOImpl implements MapaDAO {
 	public void excluirObjetosDoMapa(int idMapa) {
 		Session session;
 		Query query = null;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
 			query = session
@@ -117,7 +117,7 @@ public class MapaDAOImpl implements MapaDAO {
 		}
 
 	}
-	
+
 	/**
 	 * Metodo para buscar uma lista de mapas pelo objetivo
 	 * @param String objetivo - Objetivo do mapa
@@ -142,7 +142,7 @@ public class MapaDAOImpl implements MapaDAO {
 		return listaMapas;
 
 	}
-	
+
 	/**
 	 * Metodo para buscar um mapa pelo id
 	 * @param int mapaId - Identificador do mapa
@@ -172,24 +172,24 @@ public class MapaDAOImpl implements MapaDAO {
 		return mapa;
 
 	}
-	
+
 	/**
-	 * Metodo para salvar um boejto em um mapa
+	 * Metodo para salvar um objeto em um mapa
 	 * @param MapaObjeto mapaObjeto - Objeto do mapa
 	 */
 	public void salvarMapaObjeto(MapaObjeto mapaObjeto) {
 		Session session;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
 			session.save(mapaObjeto);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	/**
 	 * Metodo para buscar uma lista de mapas pela data de criacao
 	 * @param Date dataCriacao - Data de criacado do mapa
@@ -202,7 +202,7 @@ public class MapaDAOImpl implements MapaDAO {
 		Calendar calendar = Calendar.getInstance(); 
 		java.sql.Date sqlDataCriacao = null;
 		Query query = null;
-		
+
 		try {
 			calendar.setTime(dataCriacao);
 			sqlDataCriacao = new java.sql.Date(calendar.getTime().getTime());
@@ -222,7 +222,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 		return mapa;
 	}
-	
+
 	/**
 	 * Metodo para salvar as caracteristicas do mapa e retornar o identificador
 	 * @param Mapa caracteristicasMapa - Objeto com as caracteristicas do mapa
@@ -232,17 +232,17 @@ public class MapaDAOImpl implements MapaDAO {
 		int mapaId = -1;
 		boolean mapaSalvo = false;
 		Mapa mapa = null;
-		
+
 		mapaSalvo = salvaCaracteristicasMapa(caracteristicasMapa);
-		
+
 		if(mapaSalvo) {
 			mapa = (Mapa) buscaMapaPorNome(caracteristicasMapa.getNomeMapa());
 			mapaId = mapa.getMapaId();
 		}
-		
+
 		return mapaId;
 	}
-	
+
 	/**
 	 * Metodo para salvar as caracteristicas do mapa
 	 * @param Mapa caracteristicasMapa - Objeto com as caracteristicas do mapa
@@ -268,7 +268,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 		return caracteristicasSalvas;
 	}
-	
+
 	/**
 	 * Metodo para salvar as edicoes nas caracteritiscas do mapa
 	 * @param Mapa caracteristicasMapa - Objeto com as alteracoes nas caracteristicas do mapa
@@ -280,14 +280,14 @@ public class MapaDAOImpl implements MapaDAO {
 		int idResult = -1;
 		Mapa mapaJaExistente = null;
 		int result;
-		
+
 		try {
-			
+
 			mapaJaExistente = (Mapa) buscaMapaPorNome(caracteristicasMapa.getNomeMapa());
-			
+
 			if (mapaJaExistente != null) {
 				session = sessionFactory.getCurrentSession();
-				
+
 				query = session.createQuery("update Mapa set DESCRICAO = :descricao, OBJETIVO = :objetivo, TIPO_MAPA = :tipoMapa, DT_ALTERACAO = :dataAlteracao, UNIDADE_MEDIDA = :unidadeMedida, ANDAR = :andar where ID_MAPA = :idMapa");
 				query.setParameter("idMapa", caracteristicasMapa.getMapaId());
 				query.setParameter("descricao", caracteristicasMapa.getDescricaoMapa());
@@ -298,8 +298,8 @@ public class MapaDAOImpl implements MapaDAO {
 				query.setParameter("andar", caracteristicasMapa.getAndar());
 
 				result = query.executeUpdate();
-				
-				
+
+
 				if(result > 0) {
 					idResult = caracteristicasMapa.getMapaId();
 				}
@@ -307,12 +307,12 @@ public class MapaDAOImpl implements MapaDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return idResult;
-		
+
 	}
-	
+
 	/**
 	 * Metodo para buscar informacoes de todos os mapas
 	 * @return ArrayList<ListarMapaDTO> listaMapas - Lista com ListarMapaDTO 
@@ -323,11 +323,11 @@ public class MapaDAOImpl implements MapaDAO {
 		ArrayList<ListarMapaDTO> listaMapas = new ArrayList<ListarMapaDTO>();
 		Session session;
 		Query query = null;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery("from Mapa");
-			
+
 			listaDeMapas = (ArrayList<Mapa>) query.list();
 
 			for(Mapa mapa : listaDeMapas) {
@@ -335,14 +335,14 @@ public class MapaDAOImpl implements MapaDAO {
 				dto.copiaMapa(mapa);
 				listaMapas.add(dto);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return listaMapas;
 	}
-	
+
 	/**
 	 * Metodo para buscar somente os mapas criados pelo usuario
 	 * @param int idUsuario - Identificador do usuario
@@ -354,30 +354,30 @@ public class MapaDAOImpl implements MapaDAO {
 		ArrayList<ListarMapaDTO> listaMapasDoUsuario = new ArrayList<ListarMapaDTO>();
 		Session session;
 		Query query = null;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery("from Mapa where Criador = :idCriador OR IMPORTADO = :idUsuario)");
 			query.setParameter("idCriador", idUsuario);
 			query.setParameter("idUsuario", idUsuario);
-			
+
 			listaDeMapas = (ArrayList<Mapa>) query.list();
-			
+
 			for(Mapa mapa : listaDeMapas) {
 				ListarMapaDTO dto = new ListarMapaDTO();
 				dto.copiaMapa(mapa);
 				listaMapasDoUsuario.add(dto);
 			}
-			
-			
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return listaMapasDoUsuario;
 	}
-	
+
 	/**
 	 * Metodo para buscar somente os mapas importados pelo usuario
 	 * @param int idUsuario - Identificador do usuario
@@ -389,29 +389,29 @@ public class MapaDAOImpl implements MapaDAO {
 		ArrayList<ListarMapaDTO> listaMapasImportadosDoUsuario = new ArrayList<ListarMapaDTO>();
 		Session session;
 		Query query = null;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery("from Mapa where IMPORTADO = :idUsuario)");
 			query.setParameter("idUsuario", idUsuario);
-			
+
 			listaDeMapas = (ArrayList<Mapa>) query.list();
-			
+
 			for(Mapa mapa : listaDeMapas) {
 				ListarMapaDTO dto = new ListarMapaDTO();
 				dto.copiaMapa(mapa);
 				listaMapasImportadosDoUsuario.add(dto);
 			}
-			
-			
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return listaMapasImportadosDoUsuario;
 	}
-	
+
 	/**
 	 * Metodo para buscar as categorias de objetos do mapa
 	 * @param int tipoMapa - Identificador do tipo do mapa (Desafio ou Navegacao Livre)
@@ -424,23 +424,23 @@ public class MapaDAOImpl implements MapaDAO {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			
+
 			if(tipoMapa > 1) { //Seleciona somente as categorias da navegação livre
 				query = session.createQuery("from Categoria");
 			} else { //Seleciona somente as categorias do desafio
 				query = session.createQuery("from Categoria where TITULO <> 'Desafio'");
 			}
-			
+
 			listaCategorias = (ArrayList<Categoria>) query.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return listaCategorias;
 	}
-	
+
 	/**
 	 * Metodo para buscar as subcategorias de uma categoria de objetos do mapa
 	 * @param int idCategoria - Identificador da categoria do mapa
@@ -456,17 +456,17 @@ public class MapaDAOImpl implements MapaDAO {
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery("from Subcategoria where ID_CATEGORIA = :idCategoria");
 			query.setParameter("idCategoria", idCategoria);
-			
+
 			listaSubcategorias = (ArrayList<Subcategoria>) query.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return listaSubcategorias;
 	} 
-	
+
 	/**
 	 * Metodo para buscar os objetos de uma subcategoria
 	 * @param int idSubcategoria - Identificador da subcategoria
@@ -481,17 +481,17 @@ public class MapaDAOImpl implements MapaDAO {
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery("from Objeto where SUBCATEGORIA = :idSubcategoria");
 			query.setParameter("idSubcategoria", idSubcategoria);
-			
+
 			listaObjetos = (ArrayList<Objeto>) query.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return listaObjetos;
 	} 
-	
+
 	/**
 	 * Metodo para buscar todos os MapaObjetos do mapa
 	 * @param int idMapa - Identificador do mapa
@@ -501,22 +501,22 @@ public class MapaDAOImpl implements MapaDAO {
 		ArrayList<MapaObjeto> listaMapaObjetos = new ArrayList<MapaObjeto>();
 		Session session;
 		Query query = null;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
-			
+
 			query = session.createQuery("from MapaObjeto where ID_MAPA = :idMapa");
 			query.setParameter("idMapa", idMapa);
-			
+
 			listaMapaObjetos = (ArrayList<MapaObjeto>) query.list();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return listaMapaObjetos;
 	}
-	
+
 	/**
 	 * Metodo para buscar todos os objetos do mapa
 	 * @param int idMapa - Identificador do mapa
@@ -531,17 +531,17 @@ public class MapaDAOImpl implements MapaDAO {
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery("from Objeto where ID_OBJETO IN (SELECT mapobj.idObjeto FROM MapaObjeto as mapobj WHERE mapobj.idMapa = :idMapa)");
 			query.setParameter("idMapa", idMapa);
-			
+
 			listaDeObjetosDoMapa = (ArrayList<Objeto>) query.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return listaDeObjetosDoMapa;
 	}
-	
+
 	/**
 	 * Metodo para retornar um hashmap contendo o id do objeto e as informacoes do objeto
 	 * @param int idMapa - Identificador do mapa
@@ -550,16 +550,16 @@ public class MapaDAOImpl implements MapaDAO {
 	public HashMap<Integer, Objeto> buscaObjetosDoMapa(int idMapa) {
 		ArrayList<Objeto> objetosDoMapa = new ArrayList<Objeto>();
 		HashMap<Integer, Objeto> returnObject = new HashMap<Integer, Objeto>();
-		
+
 		objetosDoMapa = buscaListaObjetosByMapa(idMapa);
-		
+
 		for (Objeto obj : objetosDoMapa) {
 			returnObject.put(obj.getId(), obj);
 		}
-		
+
 		return returnObject;
 	}
-	
+
 	/**
 	 * Metodo para salvar as mudancas no desenho do mapa
 	 * @param List<ObjetoAlteracoesDTO> listaDeObjetos - Alteracoes nos MapaObjeto do mapa
@@ -569,19 +569,19 @@ public class MapaDAOImpl implements MapaDAO {
 	public boolean salvarMudancasDoDesenhoMapa(List<ObjetoAlteracoesDTO> listaDeObjetos, int idMapa) {
 		boolean mudancasEfetuadas = true;
 		boolean mapaObjetoSalvo = false;
-		
+
 		for(ObjetoAlteracoesDTO objetoAlteracoesDTO : listaDeObjetos) {
 			mapaObjetoSalvo = salvarMapaObjeto(objetoAlteracoesDTO, idMapa);
-			
+
 			if(!mapaObjetoSalvo) {
 				mudancasEfetuadas = false;
 			}
-			
+
 		}
-		
+
 		return mudancasEfetuadas;
 	}
-	
+
 	/**
 	 * Metodo para salvar os objetos no mapa
 	 * @param ObjetoAlteracoesDTO objetosDoMapa - Objetos a serem salvos no mapa
@@ -595,30 +595,33 @@ public class MapaDAOImpl implements MapaDAO {
 		Query query = null;
 		int result = -1;
 		MapaObjeto mapaObj = null;
-		
+
 		//get the entity based on DTO
 		mapaObj = mapperService.toEntity(objetosDoMapa, idMapa);
-		
+
 		try {
-			
+
 			session = sessionFactory.getCurrentSession();
-			
+
 			if(objetosDoMapa.getOperacao() == 1) { //objeto novo
 				session.save(mapaObj);
 				operacaoRealizada = true;
-				
+
 			} else if(objetosDoMapa.getOperacao() == 2) { //objeto existente atualizado
 				query = session.createQuery(
-					" update MapaObjeto " +
-					" set AUDIO_DESCRICAO = :audioDescricao, " + 
-					" LARGURA = :largura, " +
-					" ALTURA = :altura, " + 
-					" PROFUNDIDADE = :profundidade, " + 
-					" COORDENADA_X = :coordenadaX, " + 
-					" COORDENADA_Y = :coordenadaY, " +
-					" ANGULO = :angulo " +
-					" where ID_MAPA_OBJETO = :idMapaObjeto"
-				);
+						" update MapaObjeto " +
+								" set AUDIO_DESCRICAO = :audioDescricao, " + 
+								" LARGURA = :largura, " +
+								" ALTURA = :altura, " + 
+								" PROFUNDIDADE = :profundidade, " + 
+								" COORDENADA_X = :coordenadaX, " + 
+								" COORDENADA_Y = :coordenadaY, " +
+								( mapaObj.getIdArquivoAudio() == null ? " ANGULO = :angulo"   : 
+																	 " ANGULO = :angulo, " +
+																	 " ID_ARQUIVO_AUDIO = :idArquivoAudio " ) +
+								" where ID_MAPA_OBJETO = :idMapaObjeto"
+
+						);
 				query.setParameter("profundidade", mapaObj.getProfundidade());
 				query.setParameter("coordenadaX", mapaObj.getCoordenadaX());
 				query.setParameter("coordenadaY", mapaObj.getCoordenadaY());
@@ -627,13 +630,16 @@ public class MapaDAOImpl implements MapaDAO {
 				query.setParameter("largura", mapaObj.getLargura());
 				query.setParameter("altura", mapaObj.getAltura());
 				query.setParameter("angulo", mapaObj.getAngulo());
-				
+				if(mapaObj.getIdArquivoAudio() != null){
+					query.setParameter("idArquivoAudio", mapaObj.getIdArquivoAudio());
+				}
+
 				result = query.executeUpdate();
-				
+
 				if (result > 0) {
 					operacaoRealizada = true;
 				}
-				
+
 			} else if(objetosDoMapa.getOperacao() == 3) {
 				query = session
 						.createQuery("delete MapaObjeto where ID_MAPA_OBJETO = :idMapaObjeto");
@@ -644,7 +650,7 @@ public class MapaDAOImpl implements MapaDAO {
 					operacaoRealizada = true;
 				}
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("----> " + e.getMessage());
 			e.printStackTrace();
@@ -652,7 +658,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 		return operacaoRealizada;
 	}
-	
+
 	/**
 	 * Metodo para verificar se o mapa ja foi importado pelo usuario
 	 * @param int idUsuario - Identificador do usuario
@@ -670,9 +676,9 @@ public class MapaDAOImpl implements MapaDAO {
 			query = session.createQuery("from Mapa where NOME_MAPA = :nomeMapa AND IMPORTADO = :idUsuario");
 			query.setParameter("nomeMapa", nomeMapa);
 			query.setParameter("idUsuario", idUsuario);
-			
+
 			listaMapas = (ArrayList<Mapa>) query.list();
-			
+
 			if(!listaMapas.isEmpty()) {
 				mapaImportado = true;
 			}
@@ -680,11 +686,11 @@ public class MapaDAOImpl implements MapaDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return mapaImportado;
 	}
-	
+
 	/**
 	 * Metodo para importar um mapa
 	 * @param Mapa mapa - Mapa que sera importado
@@ -693,21 +699,21 @@ public class MapaDAOImpl implements MapaDAO {
 	public int importarMapa(Mapa mapa) {
 		Session session;
 		int idMapaImportado = -1;
-		
+
 		try {
-					
+
 			session = sessionFactory.getCurrentSession();
 			session.save(mapa);
-			
+
 			idMapaImportado = buscaIdMapaImportadoPorNome(mapa.getNomeMapa());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return idMapaImportado;
 	}
-	
+
 	/**
 	 * Metodo para buscar o id do mapa importado pelo nome
 	 * @param String nome - Nome do mapa
@@ -736,7 +742,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 		return idMapaImportado;
 	}
-	
+
 	/**
 	 * Metodo para atualizar um mapa importado
 	 * @param Mapa mapaImportado - Mapa importado pelo usuario
@@ -748,10 +754,10 @@ public class MapaDAOImpl implements MapaDAO {
 		int idMapaImportado = -1;
 		Mapa mapaJaExistente = null;
 		int result;
-		
+
 		try {
 			session = sessionFactory.getCurrentSession();
-				
+
 			query = session.createQuery("update Mapa set DESCRICAO = :descricao, OBJETIVO = :objetivo, TIPO_MAPA = :tipoMapa, DT_ALTERACAO = :dataAlteracao, UNIDADE_MEDIDA = :unidadeMedida where ID_MAPA = :idMapa AND IMPORTADO = :=importado");
 			query.setParameter("idMapa", mapaImportado.getMapaId());
 			query.setParameter("descricao", mapaImportado.getDescricaoMapa());
@@ -762,18 +768,18 @@ public class MapaDAOImpl implements MapaDAO {
 			query.setParameter("importado", mapaImportado.getImportadoPor());
 
 			result = query.executeUpdate();
-				
+
 			if(result > 0) {
 				idMapaImportado = mapaImportado.getMapaId();
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return idMapaImportado;
-		
+
 	}
-	
+
 }

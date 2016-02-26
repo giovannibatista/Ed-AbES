@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -46,8 +49,13 @@
 					<div class="modal-body">
 						<input type="text" class="form-control" name="titleEditModal" id="titleEditModal" placeholder="Ex: Este é o armário da cozinha." required />
 						<label>Anexar arquivo de áudio: </label>
-						<input type="file" class="form-control" name="audioFile" id="audioFile" accept="audio/*"  />
-							<input type="file" class="form-control" name="audioFile" id="audioFile" accept="audio/*"  /> 
+						<input type="hidden" hidden="true" class="form-control" name="idArquivoAudio" id="idArquivoAudio" /> 
+						<select class="form-control" name="audios" id="audios">
+							<option value="">Selecione...</option>
+							<c:forEach items="${listaAudios}" var="audio">
+								<option value="${audio.id}">${audio.descricao}</option>
+						</c:forEach>
+						</select>
 					</div>
 					<div class="modal-footer">
 						<div class="row text-right">
@@ -85,7 +93,6 @@
 						if(!value.audioDescricao) {
 							objetoSemAudioDescricao = true;
 							nomeObjetoSemAudioDescricao = value.nome;
-							
 							//exit foreach statement
 							return;
 						} 
@@ -95,7 +102,6 @@
 					//In case you have confirmed that you accept saving the map without a description
 					if(!objetoSemAudioDescricao || 
 						confirm(noTitleAlert.format(nomeObjetoSemAudioDescricao))) {
-						debugger;
 						console.log(mobs);						
 						$.ajax({
 							url: "/Mapa/Desenho/Salvar/${idMapa}",
@@ -141,7 +147,8 @@
 									 title: value.audioDescricao,
 									 nome: value.nome,
 									 id: value.idMapaObjeto,
-									 rotate : value.angulo
+									 rotate : value.angulo,
+									 arquivoAudio : value.arquivoAudio
 								});
 							});
 						},

@@ -9,5 +9,8 @@ public interface AudioDAO {
 	boolean salvarAudio(Audio audio);
 	
 	ArrayList<Audio> listaAudios();
+	
+	Audio buscarAudio(Integer idArquivoAudio);
+
 
 }

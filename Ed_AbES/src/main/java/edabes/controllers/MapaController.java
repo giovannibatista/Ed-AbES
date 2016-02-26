@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edabes.dto.AudioDTO;
 import edabes.dto.CategoriaDTO;
 import edabes.dto.ListObjetoAlteracoesDTO;
 import edabes.dto.ListarMapaDTO;
@@ -28,6 +29,7 @@ import edabes.dto.MapaExportDTO;
 import edabes.dto.ObjetoMapaDTO;
 import edabes.entidades.Mapa;
 import edabes.entidades.Usuario;
+import edabes.services.AudioService;
 import edabes.services.ListarMapaService;
 import edabes.services.MapaDesenhoService;
 import edabes.services.MapaExclusaoService;
@@ -57,6 +59,9 @@ public class MapaController extends EdController {
 	
 	@Autowired
 	private MapaCaracteristicasDTO mapaCaracteristicasDTO;
+	
+	@Autowired
+	private AudioService audioService;
 	
 	@Autowired
 	private MapaDesenhoDTO mapaDesenhoDTO;
@@ -255,18 +260,21 @@ public class MapaController extends EdController {
 			@PathVariable("id") int id,
 			HttpSession session) {
 		ModelAndView mv = null;
-		ArrayList<CategoriaDTO> listaObjetosMenu = new ArrayList<CategoriaDTO>();		
+		ArrayList<CategoriaDTO> listaObjetosMenu = new ArrayList<CategoriaDTO>();
+		ArrayList<AudioDTO> listaAudios = new ArrayList<AudioDTO>();
 		Mapa mapa;
 		
 		if (isAuthenticated(session)) {
 			//Busca os objetos do menu
 			mapa = mapaDesenhoService.buscaMapaPorId(id);
 			listaObjetosMenu = mapaMenuDesenhoService.buscaInformacoesInciais(mapa.getTipoMapa());
+			listaAudios = audioService.listaAudios();
 			
 			mv = new ModelAndView("Mapa/Desenho");
 			mv.addObject("idMapa", id);
 			mv.addObject("listaObjetosMenu", listaObjetosMenu);
 			mv.addObject("nomeMapa", mapa.getNomeMapa());
+			mv.addObject("listaAudios", listaAudios);
 		}
 		else {
 			mv = redirectToLogin();

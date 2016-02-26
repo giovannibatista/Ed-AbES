@@ -64,7 +64,7 @@ public class AudioController extends EdController {
 	}
 
 	@RequestMapping(value = "/Audio/Listar", method = RequestMethod.GET)
-	public ModelAndView listarGet(HttpSession session) {
+	public ArrayList<AudioDTO> listarGet(HttpSession session) {
 		ModelAndView mv = null;
 		ArrayList<AudioDTO> listaAudioDTOs = null;
 
@@ -78,7 +78,7 @@ public class AudioController extends EdController {
 			mv = redirectToLogin();
 		}
 
-		return mv;
+		return listaAudioDTOs;
 	}
 
 	private AudioDTO criaAudioDTO(MultipartFile arquivo, String descricaoAudio)
