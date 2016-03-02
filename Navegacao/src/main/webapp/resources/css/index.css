@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+
+div.main{
+	margin: 0 auto;
+	width: 60%;
+	text-align: center;
+}
+
+div.main h1{
+	margin-bottom: 50px;
+}
