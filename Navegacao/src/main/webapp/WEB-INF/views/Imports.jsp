@@ -12,3 +12,12 @@
 	src="<c:url value="/resources/js/jquery-2.2.1.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/keyboard.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/teclasatalhomenu.js" />"></script>
+
+
+
+
+	

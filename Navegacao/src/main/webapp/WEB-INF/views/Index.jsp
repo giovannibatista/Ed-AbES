@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Módulo de Navegação do Ed-AbES - Tela Inicial</title>
-<jsp:include page="DefaultHead.jsp" />
+<jsp:include page="Imports.jsp" />
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/index.css" />">

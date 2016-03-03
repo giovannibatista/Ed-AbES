@@ -1,12 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Módulo de Navegação do Ed-AbES - Tela Inicial</title>
+<jsp:include page="../Imports.jsp" />
+
 </head>
 <body>
-
+	<header role="banner">
+		<jsp:include page="../Menu.jsp" />
+	</header>
+	<div role="main">
+		<h1>Iniciar Navegação...</h1>
+	</div>
 </body>
 </html>
