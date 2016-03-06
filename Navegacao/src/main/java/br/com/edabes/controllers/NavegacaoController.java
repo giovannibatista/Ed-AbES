@@ -11,10 +11,20 @@ public class NavegacaoController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value="Navegacao/Iniciar", method=RequestMethod.GET)
+	@RequestMapping(value="/Navegacao/Iniciar", method=RequestMethod.GET)
 	public String iniciarNavegacao(){
 		System.out.println("Executando a lógica com Spring MVC para outra view");
 		return "/Navegacao/Iniciar";
+	}
+	@RequestMapping(value="/Navegacao/Treinamento", method=RequestMethod.GET)
+	public String iniciarTreinamento(){
+		System.out.println("Executando a lógica com Spring MVC para outra view");
+		return "/Navegacao/Treinamento";
+	}
+	@RequestMapping(value="/Navegacao/Historico", method=RequestMethod.GET)
+	public String iniciarHistorico(){
+		System.out.println("Executando a lógica com Spring MVC para outra view");
+		return "/Navegacao/Historico";
 	}
 
 }
