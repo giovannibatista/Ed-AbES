@@ -48,8 +48,8 @@
 						<td>Primeiro</td>
 						<td>João</td>
 						<td>19/03/2016</td>
-						<td><button id="salvarMapaBotao"
-								onclick="javascript: salvarMapa(1);">Salvar Mapa 1</button></td>
+						<td><input type="button" id="salvarMapaBotao"
+								onclick="javascript: salvarMapa(1);" value="Salvar Mapa 1"/></td>
 					</tr>
 					<tr>
 						<th scope="row">Mapa 2
@@ -60,8 +60,8 @@
 						<td>Segundo</td>
 						<td>Maria</td>
 						<td>01/02/2016</td>
-						<td><button id="salvarMapaBotao"
-								onclick="javascript: salvarMapa(2);">Salvar Mapa 2</button></td>
+						<td><input type="button" id="salvarMapaBotao"
+								onclick="javascript: salvarMapa(2);" value="Salvar Mapa 2" /></td>
 					</tr>
 				</tbody>
 			</table>
