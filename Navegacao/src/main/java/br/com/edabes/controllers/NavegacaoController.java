@@ -36,7 +36,7 @@ public class NavegacaoController {
 	@RequestMapping(value="/Navegacao/Treinamento", method=RequestMethod.GET)
 	public String iniciarTreinamento(){
 		System.out.println("Iniciando o treinamento");
-		return "/Navegacao/Treinamento";
+		return "/Navegacao/Resumo";
 	}
 	
 	@RequestMapping(value="/Navegacao/Historico", method=RequestMethod.GET)

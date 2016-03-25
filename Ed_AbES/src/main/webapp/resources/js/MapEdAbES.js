@@ -1,4 +1,7 @@
 var MapEdAbES = function($mapaObject, $thumbnail) {
+	console.log($mapaObject);
+	console.log($thumbnail);
+	debugger;
 	var self = this;
 
 	var $mapRelative = $mapaObject;
@@ -40,6 +43,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	 */
 	self.init = function(params) {
 		//Extend options
+		debugger;
 		self.params = $.extend(self.params, params);
 
 		self.x = self.y = 0;
@@ -121,9 +125,6 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 			profundidade: objectProperties.z,
 			arquivoAudio : objectProperties.arquivoAudio
 		});
-		console.log("-");
-		console.log($obj.data("arquivoAudio"));
-		console.log("-");
 
 		var offset = {
 				left: objectProperties.x * self.scale,
