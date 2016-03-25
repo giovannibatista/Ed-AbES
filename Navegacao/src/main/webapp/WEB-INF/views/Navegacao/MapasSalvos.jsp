@@ -8,7 +8,7 @@
 <jsp:include page="../Imports.jsp" />
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/navegacao.js" />"></script>
+	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
 </head>
 <body>
 	<header role="banner">
@@ -16,7 +16,7 @@
 	</header>
 
 	<div role="main">
-		<h1>Iniciar Navegação</h1>
+		<h1>Iniciar navegação</h1>
 		<p>Para inicar uma navegação, escolha um dos mapas salvos. Para acessar utilize as teclas direcionais ou
 			tabulação para navegar na tabela de mapas salvos...</p>
 
@@ -31,14 +31,14 @@
 						<th scope="col">Tipo do Mapa</th>
 						<th scope="col">Andar</th>
 						<th scope="col">Autor</th>
-						<th scope="col">Data</th>
+						<th scope="col">Data de criação</th>
 						<th scope="col">Ações</th>
 
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row" onclick="javascript: salvarMapa(1);">Mapa 1
+					<tr onclick="javascript: abrirResumo(1);">
+						<th scope="row" onclick="javascript: abrirResumo(1);">Mapa 1
 						</td>
 						<td>Descrição do mapa 1</td>
 						<td>O Objetivo do mapa 1 é tal...</td>
@@ -47,9 +47,9 @@
 						<td>João</td>
 						<td>19/03/2016</td>
 						<td><input type="button" id="salvarMapaBotao"
-								onclick="javascript: iniciarNavegacao(1);" value="Iniciar Navegação do Mapa 1" /></td>
+								onclick="javascript: abrirResumo(1);" value="Iniciar Navegação do Mapa 1" /></td>
 					</tr>
-					<tr>
+					<tr onclick="javascript: abrirResumo(2);">
 						<th scope="row">Mapa 2
 						</td>
 						<td>Descrição do mapa 2 é tal...</td>
@@ -59,7 +59,7 @@
 						<td>Maria</td>
 						<td>01/02/2016</td>
 						<td><input type="button" id="salvarMapaBotao"
-								onclick="javascript: iniciarNavegacao(2);" value="Iniciar Navegação do Mapa 2" /></td>
+								onclick="javascript: abrirResumo(2);" value="Iniciar Navegação do Mapa 2" /></td>
 					</tr>
 				</tbody>
 			</table>

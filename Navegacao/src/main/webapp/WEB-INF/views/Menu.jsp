@@ -1,6 +1,6 @@
 <nav id="menu">
 	<ul class="nav nav-pills">
-		<li role="presentation"><a href="/Navegacao/Iniciar" 
+		<li role="presentation"><a href="/Navegacao/MapasSalvos" 
 			title="Iniciar Navegação - Atalho Alt + 1"
 			>Iniciar Navegação</a></li>
 

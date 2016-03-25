@@ -14,17 +14,23 @@ public class NavegacaoController {
 		// TODO Auto-generated constructor stub
 	}
 
-	@RequestMapping(value="/Navegacao/Iniciar", method=RequestMethod.GET)
-	public String iniciarNavegacao(){
-		System.out.println("Iniciando a Navegação...");
-		return "/Navegacao/Iniciar";
+	@RequestMapping(value="/Navegacao/MapasSalvos", method=RequestMethod.GET)
+	public String abrirMapasSalvos(){
+		System.out.println("Iniciando a Navegação. Abrindo lista de mapas salvos...");
+		return "/Navegacao/MapasSalvos";
 	}
 
 	@RequestMapping(value="/Navegacao/Resumo/{id}", method=RequestMethod.GET)
+	public String abrirResumo(@PathVariable("id") Integer id) {
+		System.out.println("Abrindo o Resumo do Mapa, Id: " + id);
+		return "/Navegacao/Resumo";
+	}
+	
+	@RequestMapping(value="/Navegacao/Mapa/{id}", method=RequestMethod.GET)
 	public String iniciarNavegacao(@PathVariable("id") Integer id,
 			HttpSession session) {
 		System.out.println("Iniciando a Navegação do Id: " + id);
-		return "/Navegacao/Resumo";
+		return "/Navegacao/Mapa";
 	}
 
 	@RequestMapping(value="/Navegacao/Treinamento", method=RequestMethod.GET)
