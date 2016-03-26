@@ -11,7 +11,7 @@
 	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/teclasatalhonavegacao.js" />"></script>
+	src="<c:url value="/resources/js/Navegacao/teclasatalhoresumo.js" />"></script>
 
 <link rel="stylesheet" href="<c:url value="/resources/css/Navegacao/resumo.css" />">
 </head>
