@@ -1,0 +1,7 @@
+form#usuarioForm{
+	width: 60%;
+}
+
+form#usuarioForm .inputFullWidth{
+	width: 100%;
+}

@@ -32,38 +32,38 @@
 				<p>
 					<label for="nomeMapa">Nome do mapa : </label> 
 					<input type="text"
-						name="nomeMapa" id="nomeMapa" value="Mapa 1"  readonly="readonly">
-						<input type="hidden" name="idMapa" id="idMapa" value="1">
+						name="nomeMapa" id="nomeMapa" value="Mapa 1"  readonly="readonly" />
+						<input type="hidden" name="idMapa" id="idMapa" value="1" />
 				</p>
 				<p>
 					<label for="descricao">Descrição : </label> 
 					<input type="text"
-						name="descricao" id="descricao" value="Descrição do mapa 1"  readonly="readonly">
+						name="descricao" id="descricao" value="Descrição do mapa 1"  readonly="readonly" />
 				</p>
 				<p>
 					<label for="objetivo">Objetivo : </label> 
 					<input type="text"
-						name="objetivo" id="objetivo" value="O Objetivo do mapa 1 é tal..."  readonly="readonly">
+						name="objetivo" id="objetivo" value="O Objetivo do mapa 1 é tal..."  readonly="readonly" />
 				</p>
 				<p>
 					<label for="unidadeMedida">Unidade de medida : </label> 
 					<input type="text"
-						name="unidadeMedida" id="unidadeMedida" value="Passos"  readonly="readonly">
+						name="unidadeMedida" id="unidadeMedida" value="Passos"  readonly="readonly" />
 				</p>
 				<p>
 					<label for="andar">Andar : </label> 
 					<input type="text"
-						name="andar" id="andar" value="Primeiro"  readonly="readonly">
+						name="andar" id="andar" value="Primeiro"  readonly="readonly" />
 				</p>
 				<p>
 					<label for="Autor">Autor : </label> 
 					<input type="text"
-						name="autor" id="autor" value="João"  readonly="readonly">
+						name="autor" id="autor" value="João"  readonly="readonly" />
 				</p>
 				<p>
 					<label for="dataCriacao">Data de criação : </label> 
 					<input type="text"
-						name="dataCriacao" id="dataCriacao" value="19/03/2016"  readonly="readonly">
+						name="dataCriacao" id="dataCriacao" value="19/03/2016"  readonly="readonly" />
 				</p>
 			</form>
 		</div>
