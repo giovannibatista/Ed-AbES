@@ -3,16 +3,64 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Módulo de Navegação do Ed-AbES - Tela Inicial</title>
+<title>Módulo de Navegação do Ed-AbES - Tela Histórico de navegações</title>
 <jsp:include page="../Imports.jsp" />
 
+<script type="text/javascript"
+	src="<c:url value="/resources/js/Navegacao/historico.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/Navegacao/teclasatalhohistorico.js" />"></script>
+	
 </head>
 <body>
 	<header role="banner">
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main">
-		<h1>Histórico de Navegação...</h1>
+		<h1>Histórico de Navegações</h1>
+		<p>Está tela apresenta os histórico das navegações realizadas pelo
+			usuário. Exibe informações de tempo de navegação, log da navegação e data de navegação. 
+			Para reproduzir o log dos movimentos realizados em uma
+			determinada navegação, navegue pela tabela abaixo e tecle enter no
+			registro desejado.</p>
+		
+		<div id="blocoControlesSom">
+			<h2>Controles de som</h2>
+			<input type="button" id="controleSomBotao" name="controleSomBotao" value="Para o áudio"
+				alt="Botão para o áudio. Para parar a reprodução do log de navegação, tecle Alt + P." onclick="javascript: pararAudio()"/>
+		</div>
+		
+		<div id="blocoListaHistoricoNavegacao">
+						
+			<table border="1" id="historicoNavegacoes">
+				<caption>Tabela de histórico das navegações realizadas.</caption>
+				<thead>
+					<tr>
+						<th scope="col">Nome do mapa</th>
+						<th scope="col">Data de navegação</th>
+						<th scope="col">Tempo de navegação</th>
+						<th scope="col">Log da navegação</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr onclick="javascript: reproduzirLogNavegacao(1);">
+						<th scope="row" >Mapa 1
+						<td>12/11/2015</td>
+						<td>00:35:54</td>
+						<td><input type="button" id="reproduzirLogNavegacaoBotao" alt="Botão reproduzir log da navegação. Tecle Enter para reproduzir o log dos movimentos realizados."
+								onclick="javascript: reproduzirLogNavegacao(1);" value="Reproduzir Log de Navegação"/></td>
+					</tr>
+					<tr onclick="javascript: reproduzirLogNavegacao(2);">
+						<th scope="row" >Mapa 2
+						<td>12/11/2014</td>
+						<td>00:14:34</td>
+						<td><input type="button" id="reproduzirLogNavegacaoBotao" alt="Botão reproduzir log da navegação. Tecle Enter para reproduzir o log dos movimentos realizados."
+								onclick="javascript: reproduzirLogNavegacao(2);" value="Reproduzir Log de Navegação"/></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</div>
 	</div>
 </body>
 </html>
