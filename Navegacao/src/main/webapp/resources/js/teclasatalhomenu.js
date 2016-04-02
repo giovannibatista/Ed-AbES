@@ -4,7 +4,7 @@
 
 keyboardJS.bind('alt + 1', function(e) {
 	alert('alt + 1 is pressed');
-	document.location = "/Navegacao/Iniciar/";
+	document.location = "/Navegacao/MapasSalvos/";
 });
 
 keyboardJS.bind('alt + 2', function(e) {

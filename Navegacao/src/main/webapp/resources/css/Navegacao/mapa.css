@@ -1,19 +1,8 @@
-div#blocoAcoesNavegacao{
-	width: 25%;
-}
-
 div#blocoMapa{
-	width: 75%;
+	width: 100%%;
 }
 
-input[type=button] {
-	margin: 5px;
+div#mapa{
+	width: 100%%;
 }
 
-input[type=button]#logNavegacaoBotao {
-	margin-bottom: 10px;
-}
-
-div#blocoAcoesNavegacao, div#blocoMapa{
-	float: left;
-}
