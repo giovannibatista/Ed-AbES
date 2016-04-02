@@ -9,6 +9,9 @@
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Mapa/mapalistar.js" />"></script>
+	
+<link rel="stylesheet" href="<c:url value="/resources/css/Mapa/listar.css" />">
+
 </head>
 <body>
 	<header role="banner">
@@ -29,11 +32,8 @@
 					<tr>
 						<th scope="col">Nome do mapa</th>
 						<th scope="col">Descrição</th>
-						<th scope="col">Objetivo</th>
 						<th scope="col">Tipo do mapa</th>
-						<th scope="col">Andar</th>
-						<th scope="col">Autor</th>
-						<th scope="col">Data de criação</th>
+						<th scope="col">Data de alteração</th>
 						<th scope="col">Ações</th>
 
 					</tr>
@@ -43,10 +43,7 @@
 						<th scope="row" >Mapa 1
 						</td>
 						<td>Descrição do mapa 1</td>
-						<td>O Objetivo do mapa 1 é tal...</td>
 						<td>Desafio</td>
-						<td>Primeiro</td>
-						<td>João</td>
 						<td>19/03/2016</td>
 						<td><input type="button" id="salvarMapaBotao" alt="Botão para salvar o Mapa. Tecle Enter para salvar"
 								onclick="javascript: salvarMapa(1);" value="Salvar Mapa 1"/></td>
@@ -55,10 +52,7 @@
 						<th scope="row" >Mapa 2
 						</td>
 						<td>Descrição do mapa 2 é tal...</td>
-						<td>O Objetivo do mapa 2 é tal...</td>
 						<td>Livre</td>
-						<td>Segundo</td>
-						<td>Maria</td>
 						<td>01/02/2016</td>
 						<td><input type="button" id="salvarMapaBotao" alt="Botão para salvar o Mapa. Tecle Enter para salvar"
 								onclick="javascript: salvarMapa(2);" value="Salvar Mapa 2" /></td>
