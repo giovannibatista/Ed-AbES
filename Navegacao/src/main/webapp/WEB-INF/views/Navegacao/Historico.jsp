@@ -27,7 +27,7 @@
 		<div id="blocoControlesSom">
 			<h2>Controles de som</h2>
 			<input type="button" id="controleSomBotao" name="controleSomBotao" value="Para o áudio"
-				alt="Botão para o áudio. Para parar a reprodução do log de navegação, tecle Alt + P." onclick="javascript: pararAudio()"/>
+				alt="Botão para o áudio. Para parar a reprodução do log de navegação, tecle Alt P." onclick="javascript: pararAudio()"/>
 		</div>
 		
 		<div id="blocoListaHistoricoNavegacao">

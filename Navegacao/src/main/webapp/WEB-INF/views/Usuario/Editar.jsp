@@ -65,11 +65,11 @@
 			<p>
 				<input type="button" id="salvarUsuarioBotao"
 					name="salvarUsuarioBotao" value="Salvar usuário"
-					alt="Botão para salvar as informações do usuário - Atalho Alt + S"
+					alt="Botão para salvar as informações do usuário - Atalho Alt S"
 					onclick="javascript: salvarUsuario(1)" /> 
 					
 				<input type="button" id="cancelarALteracoesBotao" name="cancelarAlteracoesBotao" value="Cancelar alterações"
-					alt="Botão para cancelar as informações alteradas do usuário - Atalho Alt + C"
+					alt="Botão para cancelar as informações alteradas do usuário - Atalho Alt C"
 					onclick="javascript: cancelarAlteracoesUsuario()" />
 			</p>
 		</form>

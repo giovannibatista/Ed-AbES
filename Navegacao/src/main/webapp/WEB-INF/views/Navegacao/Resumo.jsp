@@ -22,9 +22,9 @@
 
 	<div role="main">
 		<h1>Resumo no Mapa 1</h1>
-		<p>Para iniciar a navegação no Mapa 1, pressione a tecla "Alt +
+		<p>Para iniciar a navegação no Mapa 1, pressione a tecla "Alt
 			I". Caso queira retornar para a tela anterior,
-			pressione a tecla "Alt + V"...</p>
+			pressione a tecla "Alt V"...</p>
 
 		<div id="informacaoMapa">
 			<h2>Informações do Mapa</h2>
@@ -71,10 +71,10 @@
 		<div id="acoesNavegacao">
 			<h2>Ações da navegação do mapa</h2>
 			<input type="button"
-				alt="Botão Iniciar Navegação - Atalho Alt + I para Iniciar Navegação"
+				alt="Botão Iniciar Navegação - Atalho Alt I para Iniciar Navegação"
 				id="iniciarNavegacaoBotao" onclick="javascript: iniciarNavegacao(1)" value="Iniciar Navegação" />
 			<input type="button"
-				alt="Botão Voltar para tela de escolha dos mapas salvos - Atalho Alt + V para voltar."
+				alt="Botão Voltar para tela de escolha dos mapas salvos - Atalho Alt V para voltar."
 				id="voltarBotao" onclick="javascript: voltarMapasSalvos();" value="Voltar para tela anterior" />
 
 		</div>
