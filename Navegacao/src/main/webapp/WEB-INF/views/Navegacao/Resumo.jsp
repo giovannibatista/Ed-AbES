@@ -22,9 +22,15 @@
 
 	<div role="main" id="conteudo">
 		<h1>Resumo no Mapa 1</h1>
-		<p>Para iniciar a navegação no Mapa 1, pressione a tecla "Alt
-			I". Caso queira retornar para a tela anterior,
-			pressione a tecla "Alt V"...</p>
+		<p>A seguir serão lidas das informações sobre o mapa que você escolheu para navegar. 
+		</p>
+		<p>Para iniciar a navegação, você pode acessar o botão "Iniciar
+			Navegação" pela navegação pela tecla TAB ou as setas cima/baixo, após
+			ter ouvido as informações do mapa ou pela tecla de atalho "Alt I".
+			Para retornar a tela anterior, de seleção dos mapas salvos, o botão
+			poderá ser acessado pela tecla de atalho "Alt V" ou pelo atalho do
+			menu principal que é Alt 2 e lista os mapas públicos disponíveis para
+			escolha.</p>
 
 		<div id="informacaoMapa">
 			<h2>Informações do Mapa</h2>

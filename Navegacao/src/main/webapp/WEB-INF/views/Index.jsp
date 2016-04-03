@@ -18,11 +18,14 @@
 	<main class="main">
 	
 		<h1>Ed-AbES - Módulo de Navegação!</h1>
-		<p>
-			Bem vindo ao módulo de navegação do Ed-AbES. Esta aplicação é responsável pela navegação em ambientes virtuais. 
-			Para acessar o menu, utilize a navegação pelas teclas padrão de navegação ou utilize as teclas de atalho da aplicação. Para tal, pressione
-			a tecla Atl mais uma tecla numérica, de 1 até 7, para acessar um item do menu. 
-		</p>
+		<p>O Ed-AbES - Módulo de Navegação permite que você navegue em
+		ambientes reais, previamente construídos em um ambiente virtual, assim
+		conhecendo o ambiente antes de se deslocar até o espaço físico e com
+		isto, criando mapas mentais que deverão facilitar o deslocamento in
+		loco.</p>
+		<p>Para acessar o menu, os atalhos são Alt + tecla numérica de 1 a 7.</p>
+		<p>Por exemplo, para acessar a opção de Teclas de Atalho, digite "Alt 5". Para conhecer mais sobre o Ed-AbES, digite "Alt 4".</p>
+		<p>O uso do mouse permanece disponível para interação com o sistema.</p>
 	</main>
 </body>
 </html>
