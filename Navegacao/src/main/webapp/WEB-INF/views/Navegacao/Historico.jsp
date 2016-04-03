@@ -18,16 +18,21 @@
 	</header>
 	<div role="main" id="conteudo">
 		<h1>Histórico de Navegações</h1>
-		<p>Está tela apresenta os histórico das navegações realizadas pelo
-			usuário. Exibe informações de tempo de navegação, log da navegação e data de navegação. 
-			Para reproduzir o log dos movimentos realizados em uma
+		
+		<p>Esta tela apresenta os históricos das navegações realizadas
+			pelo usuário em determinado mapa, exibindo informações sobre o tempo
+			de navegação, log da navegação e data de navegação.</p>
+		<p>Para reproduzir o log dos movimentos realizados em uma
 			determinada navegação, navegue pela tabela abaixo e tecle enter no
 			registro desejado.</p>
-		
+		<p>O log da navegação consiste em mostrar os movimentos realizados
+			durante a navegação nos mapas. Por exemplo: jogador moveu-se para
+			cima/norte, jogador deu um passo a frente, jogador abriu um porta.</p>
+
 		<div id="blocoControlesSom">
 			<h2>Controles de som</h2>
-			<input type="button" id="controleSomBotao" name="controleSomBotao" value="Para o áudio"
-				alt="Botão para o áudio. Para parar a reprodução do log de navegação, tecle Alt P." onclick="javascript: pararAudio()"/>
+			<input type="button" id="controleSomBotao" name="controleSomBotao" value="Pausar o áudio"
+				alt="Botão pausar o áudio. Para parar a reprodução do log de navegação, tecle Alt P." onclick="javascript: pararAudio()"/>
 		</div>
 		
 		<div id="blocoListaHistoricoNavegacao">

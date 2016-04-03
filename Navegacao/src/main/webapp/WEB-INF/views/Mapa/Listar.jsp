@@ -20,9 +20,13 @@
 
 	<div role="main" id="conteudo">
 		<h1>Listar mapas públicos...</h1>
-		<p>Esta tela apresenta a lista dos mapas públicos disponibilizados
-			pelos usuários. Para acessar utilize as teclas direcionais ou
-			tabulação para navegar na tabela de mapas públicos...</p>
+		<p>Esta tela apresenta a lista dos mapas públicos
+			disponibilizados pelos usuários do Ed-AbES. Para navegar entre a
+			lista de mapas públicos, utilize as teclas de atalho de navegação em
+			tabelas. O uso do mouse também é permitido. Qualquer mapa listado
+			aqui pode ser salvo para navegação futura. Ao salvar um mapa, ele
+			aparecerá na tela "Iniciar navegação", que pode ser acessada pelo
+			menu principal.</p>
 
 		<div id="mapasPublicosArea">
 			<table border="1" id="mapasPublicos">

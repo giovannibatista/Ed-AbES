@@ -56,7 +56,7 @@
 						name="andar" id="andar" value="Primeiro"  readonly="readonly" />
 				</p>
 				<p>
-					<label for="Autor">Autor : </label> 
+					<label for="autor">Autor : </label> 
 					<input type="text"
 						name="autor" id="autor" value="João"  readonly="readonly" />
 				</p>

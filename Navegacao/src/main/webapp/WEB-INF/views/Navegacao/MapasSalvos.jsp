@@ -17,8 +17,17 @@
 
 	<div role="main" id="conteudo">
 		<h1>Iniciar navegação</h1>
-		<p>Para inicar uma navegação, escolha um dos mapas salvos. Para acessar utilize as teclas direcionais ou
-			tabulação para navegar na tabela de mapas salvos...</p>
+		<p>Para iniciar uma navegação, escolha um dos mapas salvos na
+			tabela abaixo.</p>
+		<p>Para navegar entre a lista de mapas salvos, utilize as teclas
+			de atalho de navegação em tabelas. O uso do mouse também é permitido.
+		</p>
+		<p>Caso você não tenha nenhum mapa salvo, acesse a opção de menu
+			"Mapas públicos", utilizando o atalho "Alt 2". Fazendo isto, você
+			poderá verificar os mapas disponíveis e escolher um ou ou mais mapas
+			para navegação. Para isto, selecione a opção "Salvar mapa" quando
+			estiver na linha do mapa que desejar salvar. A tabela apresenta o
+			Nome do Mapa, Descrição, Tipo do Mapa e Data de alteração.</p>
 
 		<div id="mapasSalvosArea">
 			<table border="1" id="mapasSalvos">
