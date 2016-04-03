@@ -5,8 +5,8 @@ body {
 		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-	background-color: #ffffff; /*branco*/
-	color: #000000; /*preto*/
+	background-color: #000000; 
+	color: #ffffff; 
 }
 
 body > div{
@@ -15,7 +15,7 @@ body > div{
 
 table {
 	width: 100%;
-	border-color: #000000;
+	border-color: #ffffff;
 }
 
 table > caption{
@@ -23,8 +23,8 @@ table > caption{
 }
 
 table > thead {
-	background-color: #000000;
-	color: #ffffff;
+	background-color: #ffffff; 
+	color: #000000; 
 }
 
 table > tbody > tr > td > input[type=button]{
@@ -33,21 +33,31 @@ table > tbody > tr > td > input[type=button]{
 }
 
 input[type=button] {
-	background: #ffffff;
-	color: #000000;
-	border: 2px solid #000000;
+	background: #000000;
+	color: #ffffff ;
+	border: 2px solid #ffffff;
 	border-radius: 5px;
-	box-shadow: 2px 2px 4px #000000;
-}
-
-caption {
-    color: #000000;
+	box-shadow: 2px 2px 4px #ffffff;
 }
 
 a {
-	color: #000000;
+	color: #ffffff ;
+}
+
+a:HOVER {
+	color: #e0e0e0 ;
+}
+
+caption {
+    color: #ffffff;
 }
 
 .oculto{
 	display: none;
 }
+
+input[type=text]{
+	color: #000000;
+}
+
+

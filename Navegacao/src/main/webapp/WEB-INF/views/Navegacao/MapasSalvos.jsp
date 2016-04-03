@@ -15,7 +15,7 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
-	<div role="main">
+	<div role="main" id="conteudo">
 		<h1>Iniciar navegação</h1>
 		<p>Para inicar uma navegação, escolha um dos mapas salvos. Para acessar utilize as teclas direcionais ou
 			tabulação para navegar na tabela de mapas salvos...</p>

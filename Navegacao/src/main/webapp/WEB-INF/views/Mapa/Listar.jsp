@@ -18,7 +18,7 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
-	<div role="main">
+	<div role="main" id="conteudo">
 		<h1>Listar mapas públicos...</h1>
 		<p>Esta tela apresenta a lista dos mapas públicos disponibilizados
 			pelos usuários. Para acessar utilize as teclas direcionais ou

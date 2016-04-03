@@ -5,9 +5,12 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/lib/bootstrap-theme.min.css" />">
 
-<link rel="stylesheet" href="<c:url value="/resources/css/menu.css" />">
+<link media="screen" title="padrao" rel="stylesheet" href="<c:url value="/resources/css/app.css" />" id="appContrasteNormal">
+<link media="screen" title="padrao" rel="stylesheet" href="<c:url value="/resources/css/menu.css" />" id="menuContrasteNormal">
 
-<link rel="stylesheet" href="<c:url value="/resources/css/app.css" />">
+<link media="screen" title="preto_branco" rel="stylesheet" href="<c:url value="/resources/css/app_alto_contraste.css" />" id="appAltoContraste" >
+<link media="screen" title="preto_branco" rel="stylesheet" href="<c:url value="/resources/css/menu_alto_contraste.css" />" id="menuAltoContraste">
+
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/lib/jquery-2.2.1.min.js" />"></script>
@@ -17,6 +20,8 @@
 	src="<c:url value="/resources/js/lib/keyboard.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/teclasatalhomenu.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/js/acessibilidade.js" />"></script>
 
 
 

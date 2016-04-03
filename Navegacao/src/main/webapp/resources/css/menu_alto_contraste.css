@@ -1,24 +1,35 @@
 
 nav {
-  background-color: #ffffff;
-  border: 2px solid #000000;
+  background-color: #000000;
+  border: 2px solid #ffffff;
   border-radius: 5px;
-  color: #000000;
+  color: #ffffff;
   display: block;
   margin: 20px;
-}	
+}
 
 nav > ul > li > a {
-	color: #000000 ;
+	color: #ffffff ;
 }
 
 nav > ul > li:hover > a {
-	background-color: #000000 !important;
-	color: #ffffff !important;
+	background-color: #ffffff ;
+	color: #000000 ;
 }
 
 li.menuItemRight{
 	float: right;
+}
+
+#controlesAcessibilidade {
+    width: 100%;
+    text-align: center;
+}
+
+#controlesAcessibilidade #acessibilidade {
+    text-align: right;
+    list-style: none;
+    display: block;
 }
 
 #controlesAcessibilidade {
@@ -35,5 +46,5 @@ li.menuItemRight{
 
 #acessibilidade li {
     display: inline;
-    margin: 10px;
+    margin: 5px;
 }

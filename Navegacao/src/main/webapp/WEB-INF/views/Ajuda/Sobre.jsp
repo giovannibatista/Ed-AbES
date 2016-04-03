@@ -11,7 +11,7 @@
 	<header role="banner">
 		<jsp:include page="../Menu.jsp" />
 	</header>
-	<div role="main">
+	<div role="main" id="conteudo">
 		<article>
 			<h1>Sobre Ed-AbES - Módulo de Navegação</h1>
 			<p>Este é o módulo de ajuda do Ed-AbES, onde será apresentado o

@@ -11,7 +11,7 @@
 	<header role="banner">
 		<jsp:include page="../Menu.jsp" />
 	</header>
-	<div role="main">
+	<div role="main" id="conteudo">
 		<article>
 			<h1>Teclas de Atalho do Ed_AbES - Módulo de Navegação</h1>
 			<p>Esta página apresenta as teclas de atalho que são utilizadas na

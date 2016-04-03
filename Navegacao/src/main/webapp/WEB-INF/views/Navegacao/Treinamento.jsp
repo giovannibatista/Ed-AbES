@@ -11,7 +11,7 @@
 	<header role="banner">
 		<jsp:include page="../Menu.jsp" />
 	</header>
-	<div role="main">
+	<div role="main" id="conteudo">
 		<h1>Iniciar Treinamento...</h1>
 	</div>
 </body>

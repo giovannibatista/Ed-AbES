@@ -23,7 +23,7 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
-	<div role="main">
+	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa 1</h1>
 		<p>...</p>
 

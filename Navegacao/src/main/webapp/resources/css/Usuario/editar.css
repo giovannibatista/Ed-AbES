@@ -2,6 +2,7 @@ form#usuarioForm{
 	width: 60%;
 }
 
-form#usuarioForm .inputFullWidth{
+form#usuarioForm .inputUsuario{
 	width: 100%;
+	color: #000000;
 }

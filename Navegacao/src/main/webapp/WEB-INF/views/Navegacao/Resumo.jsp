@@ -20,7 +20,7 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
-	<div role="main">
+	<div role="main" id="conteudo">
 		<h1>Resumo no Mapa 1</h1>
 		<p>Para iniciar a navegação no Mapa 1, pressione a tecla "Alt
 			I". Caso queira retornar para a tela anterior,

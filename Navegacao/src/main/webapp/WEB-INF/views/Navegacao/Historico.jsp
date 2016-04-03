@@ -16,7 +16,7 @@
 	<header role="banner">
 		<jsp:include page="../Menu.jsp" />
 	</header>
-	<div role="main">
+	<div role="main" id="conteudo">
 		<h1>Histórico de Navegações</h1>
 		<p>Está tela apresenta os histórico das navegações realizadas pelo
 			usuário. Exibe informações de tempo de navegação, log da navegação e data de navegação. 
