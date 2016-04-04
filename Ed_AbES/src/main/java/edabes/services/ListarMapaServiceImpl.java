@@ -13,6 +13,7 @@ import edabes.entidades.Mapa;
 import edabes.entidades.MapaExportado;
 import edabes.entidades.MapaObjeto;
 import edabes.entidades.MapaObjetoExportado;
+import edabes.utils.DateUtils;
 
 @Service
 @Transactional
@@ -85,7 +86,7 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 			mapaImportado = new Mapa();
 			
 			
-			mapaImportado.setNomeMapa(mapaExportado.getNomeMapa());
+			mapaImportado.setNomeMapa(mapaExportado.getNomeMapa() + DateUtils.getDateFormatString() );
 			mapaImportado.setDescricaoMapa(mapaExportado.getDescricaoMapa());
 			mapaImportado.setObjetivoMapa(mapaExportado.getObjetivoMapa());
 			mapaImportado.setTipoMapa(mapaExportado.getTipoMapa());
@@ -94,6 +95,7 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 			mapaImportado.setUnidadeDeMedida(mapaExportado.getUnidadeDeMedida());
 			mapaImportado.setDataAlteracao(mapaExportado.getDataAlteracao());
 			mapaImportado.setDataDeCriacao(mapaExportado.getDataDeCriacao());
+			//mapaImportado.setAndar(mapaExportado);
 			mapaImportado.setImportadoPor(idUsuario);
 			
 			if(!mapaJaImportado) {
