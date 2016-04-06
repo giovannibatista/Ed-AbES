@@ -35,6 +35,9 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 		ArrayList<ListarMapaDTO> listaMapasImportadosDoUsuario = null;
 		
 		listaMapasDoUsuario = mapaDAO.buscaListaDeMapasCriadosDoUsuario(idUsuario);
+		listaMapasImportadosDoUsuario = mapaDAO.buscaListaDeMapasImportadosDoUsuario(idUsuario);
+		
+		listaMapasDoUsuario.addAll(listaMapasImportadosDoUsuario);
 		
 		return listaMapasDoUsuario;
 	}

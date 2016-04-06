@@ -377,9 +377,8 @@ public class MapaDAOImpl implements MapaDAO {
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			query = session.createQuery("from Mapa where Criador = :idCriador OR IMPORTADO = :idUsuario)");
+			query = session.createQuery("from Mapa where Criador = :idCriador AND Importado = 0");
 			query.setParameter("idCriador", idUsuario);
-			query.setParameter("idUsuario", idUsuario);
 
 			listaDeMapas = (ArrayList<Mapa>) query.list();
 
