@@ -98,7 +98,7 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 			mapaImportado.setUnidadeDeMedida(mapaExportado.getUnidadeDeMedida());
 			mapaImportado.setDataAlteracao(mapaExportado.getDataAlteracao());
 			mapaImportado.setDataDeCriacao(mapaExportado.getDataDeCriacao());
-			//mapaImportado.setAndar(mapaExportado);
+			mapaImportado.setAndar(mapaExportado.getAndar());
 			mapaImportado.setImportadoPor(idUsuario);
 			
 			if(!mapaJaImportado) {

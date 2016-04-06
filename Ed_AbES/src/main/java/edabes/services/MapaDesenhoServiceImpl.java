@@ -51,7 +51,6 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 		mapaExport.setObjectList(buscaTodosOsObjetosDoMapa(idMapa));
 		mapa = mapaDAO.buscaMapaPorId(idMapa);
 		
-		
 		if(mapa != null) {
 			mapaJaExiste = mapaDAOExportado.verificaMapaExportado(mapa.getNomeMapa());
 			mapaExportado = copiaDadosMapa(mapa);
@@ -59,7 +58,6 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 		
 			if(!mapaJaExiste) {
 				idMapaExportado = mapaDAOExportado.disponibilizarMapa(mapaExportado);
-				
 				
 			} else {
 				mapaDisponivel = mapaDAOExportado.atualizaMapaExportado(mapaExportado);

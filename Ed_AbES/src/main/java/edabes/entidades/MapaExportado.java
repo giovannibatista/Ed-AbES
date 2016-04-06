@@ -47,6 +47,9 @@ public class MapaExportado {
 	@Column(name = "UNIDADE_MEDIDA")
 	private String unidadeDeMedida;
 	
+	@Column(name = "ANDAR")
+	private String andar;
+		
 	public MapaExportado() {
 	}
 
@@ -129,5 +132,15 @@ public class MapaExportado {
 	public void setUnidadeDeMedida(String unidadeDeMedida) {
 		this.unidadeDeMedida = unidadeDeMedida;
 	}
+
+	public String getAndar() {
+		return andar;
+	}
+
+	public void setAndar(String andar) {
+		this.andar = andar;
+	}
+	
+	
 	
 }

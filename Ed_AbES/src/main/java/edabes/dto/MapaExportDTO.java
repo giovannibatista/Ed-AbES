@@ -14,6 +14,7 @@ public class MapaExportDTO {
 	private String criadorDoMapa;
 	private String unidadeDeMedida;
 	private int tipoMapa;
+	private String andar;
 	private List<ObjetoMapaDTO> objectList;
 	
 	public MapaExportDTO() {
@@ -82,5 +83,12 @@ public class MapaExportDTO {
 	public void setCriadorDoMapa(String criadorDoMapa) {
 		this.criadorDoMapa = criadorDoMapa;
 	}
-	
+
+	public String getAndar() {
+		return andar;
+	}
+
+	public void setAndar(String andar) {
+		this.andar = andar;
+	}
 }

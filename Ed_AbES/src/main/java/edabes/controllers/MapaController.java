@@ -244,7 +244,6 @@ public class MapaController extends EdController {
 			mapaExport = mapaDesenhoService.buscaMapaExportDTO(id);
 			response.setHeader("Content-Disposition", "attachment;filename="+mapaExport.getNomeMapa()+".json");
 			response.flushBuffer();
-			
 		}
 		
 		return mapaExport;

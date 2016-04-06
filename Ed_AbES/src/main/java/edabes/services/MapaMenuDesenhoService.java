@@ -11,7 +11,7 @@ public interface MapaMenuDesenhoService {
 	
 	public ArrayList<CategoriaDTO> buscaInformacoesInciais(int tipoMapa);
 	
-	public ArrayList<SubcategoriaDTO> buscaListaSubcategoriaDTO(int categoriaId);
+	public ArrayList<SubcategoriaDTO> buscaListaSubcategoriaDTO(int categoriaId, int tipoMapa);
 	
 	public ArrayList<ObjetoDTO> buscaListaObjetos(int idSubcategoria);
 	

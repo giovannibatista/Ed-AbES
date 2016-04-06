@@ -433,10 +433,9 @@ public class MapaDAOImpl implements MapaDAO {
 
 	/**
 	 * Metodo para buscar as categorias de objetos do mapa
-	 * @param int tipoMapa - Identificador do tipo do mapa (Desafio ou Navegacao Livre)
 	 * @return ArrayList<Categoria> listaCategorias - Lista contendo as categorias de objetos do mapa
 	 */
-	public ArrayList<Categoria> buscaCategorias(int tipoMapa) {
+	public ArrayList<Categoria> buscaCategorias() {
 		ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 		Session session;
 		Query query = null;
@@ -444,12 +443,12 @@ public class MapaDAOImpl implements MapaDAO {
 		try {
 			session = sessionFactory.getCurrentSession();
 
-			if(tipoMapa > 1) { //Seleciona somente as categorias da navegação livre
+//			if(tipoMapa > 1) { //Seleciona somente as categorias da navegação livre
 				query = session.createQuery("from Categoria");
-			} else { //Seleciona somente as categorias do desafio
+	/*		} else { //Seleciona somente as categorias do desafio
 				query = session.createQuery("from Categoria where TITULO <> 'Desafio'");
 			}
-
+*/
 			listaCategorias = (ArrayList<Categoria>) query.list();
 
 		} catch (Exception e) {
@@ -463,17 +462,23 @@ public class MapaDAOImpl implements MapaDAO {
 	/**
 	 * Metodo para buscar as subcategorias de uma categoria de objetos do mapa
 	 * @param int idCategoria - Identificador da categoria do mapa
+	 * 	 * @param int tipoMapa - Tipo do Mapa
 	 * @return ArrayList<Subcategoria> listaSubcategorias - Lista contendo as subcategorias de uma
 	 * categoria de objetos do mapa
 	 */
-	public ArrayList<Subcategoria> buscaSubcategorias(int idCategoria) {
+	public ArrayList<Subcategoria> buscaSubcategorias(int idCategoria, int tipoMapa) {
 		ArrayList<Subcategoria> listaSubcategorias = new ArrayList<Subcategoria>();
 		Session session;
 		Query query = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			query = session.createQuery("from Subcategoria where ID_CATEGORIA = :idCategoria");
+			if(tipoMapa == 1){
+				query = session.createQuery("from Subcategoria where ID_CATEGORIA = :idCategoria AND TITULO LIKE 'Ponto'");
+			}else{
+				query = session.createQuery("from Subcategoria where ID_CATEGORIA = :idCategoria");
+			}
+			
 			query.setParameter("idCategoria", idCategoria);
 
 			listaSubcategorias = (ArrayList<Subcategoria>) query.list();
@@ -482,23 +487,27 @@ public class MapaDAOImpl implements MapaDAO {
 			e.printStackTrace();
 		}
 
-
 		return listaSubcategorias;
 	} 
 
 	/**
 	 * Metodo para buscar os objetos de uma subcategoria
 	 * @param int idSubcategoria - Identificador da subcategoria
+	 * @param int tipoMapa - Tipo do Mapa
 	 * @return ArrayList<Objeto> listaObjetos - Lista de objetos da subcategoria
 	 */
-	public ArrayList<Objeto> buscaObjetosPorSubcategoria(int idSubcategoria) {
+	public ArrayList<Objeto> buscaObjetosPorSubcategoria(int idSubcategoria, int tipoMapa) {
 		ArrayList<Objeto> listaObjetos = new ArrayList<Objeto>();
 		Session session;
 		Query query = null;
 
 		try {
 			session = sessionFactory.getCurrentSession();
-			query = session.createQuery("from Objeto where SUBCATEGORIA = :idSubcategoria");
+			if(tipoMapa == 1){
+				query = session.createQuery("from Objeto where SUBCATEGORIA = :idSubcategoria AND Descricao NOT LIKE 'Ponto Fim'");
+			}else{
+				query = session.createQuery("from Objeto where SUBCATEGORIA = :idSubcategoria");
+			}
 			query.setParameter("idSubcategoria", idSubcategoria);
 
 			listaObjetos = (ArrayList<Objeto>) query.list();

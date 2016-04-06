@@ -32,14 +32,14 @@ public class MapaMenuDesenhoServiceImpl implements MapaMenuDesenhoService {
 		ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 		CategoriaDTO categoriaDTO = null;
 		
-		listaCategorias = mapaDAO.buscaCategorias(tipoMapa);
+		listaCategorias = mapaDAO.buscaCategorias();
 		
 		for (Categoria categoria : listaCategorias) {
 			categoriaDTO = new CategoriaDTO();
 			
 			categoriaDTO.setIdCategoria(categoria.getId());
 			categoriaDTO.setTitulo(categoria.getTitulo());
-			categoriaDTO.setListaDeSubcategoria(buscaListaSubcategoriaDTO(categoria.getId()));
+			categoriaDTO.setListaDeSubcategoria(buscaListaSubcategoriaDTO(categoria.getId(), tipoMapa));
 			
 			listaCategoriaDTO.add(categoriaDTO);
 		}
@@ -50,23 +50,24 @@ public class MapaMenuDesenhoServiceImpl implements MapaMenuDesenhoService {
 	/**
 	 * Metodo para buscar as subcategorias dos objetos do menu
 	 * @param int cateforiaId - Identificador da categoria
+	 * @param int tipoMapa - Tipo do Mapa
 	 * @return ArrayList<SubcategoriaDTO> listaDeSubcategoriasDTO lista com as subcategorias e os
 	 * seus objetos
 	 */
-	public ArrayList<SubcategoriaDTO> buscaListaSubcategoriaDTO(int categoriaId) {
+	public ArrayList<SubcategoriaDTO> buscaListaSubcategoriaDTO(int categoriaId, int tipoMapa) {
 		ArrayList<SubcategoriaDTO> listaDeSubcategoriasDTO = new ArrayList<SubcategoriaDTO>();
 		ArrayList<Subcategoria> listaDeSubcategorias = new ArrayList<Subcategoria>();
 		SubcategoriaDTO subcategoriaDTO = null;
 		
 		
-		listaDeSubcategorias = mapaDAO.buscaSubcategorias(categoriaId);
+		listaDeSubcategorias = mapaDAO.buscaSubcategorias(categoriaId, tipoMapa);
 		
 		for (Subcategoria sub : listaDeSubcategorias) {
 			subcategoriaDTO = new SubcategoriaDTO();
 			
 			subcategoriaDTO.setIdSubcategoria(sub.getId());
 			subcategoriaDTO.setTitulo(sub.getTitulo());
-			subcategoriaDTO.setListaObjetos(buscaListaObjetos(sub.getId()));
+			subcategoriaDTO.setListaObjetos(buscaListaObjetos(sub.getId(), tipoMapa));
 			
 			listaDeSubcategoriasDTO.add(subcategoriaDTO);
 		}
@@ -77,14 +78,15 @@ public class MapaMenuDesenhoServiceImpl implements MapaMenuDesenhoService {
 	/**
 	 * Metodo para buscas os objetos de uma subcategoria
 	 * @param int idSubcategoria - Identificador da subcategoria
+	 * @param int tipoMapa - Tipo do Mapa
 	 * @return ArrayList<ObjetoDTO> listaDeObjetosDTO - Lista de objetos da subcategoria
 	 */
-	public ArrayList<ObjetoDTO> buscaListaObjetos(int idSubcategoria) {
+	public ArrayList<ObjetoDTO> buscaListaObjetos(int idSubcategoria, int tipoMapa) {
 		ArrayList<ObjetoDTO> listaDeObjetosDTO = new ArrayList<ObjetoDTO>();
 		ArrayList<Objeto> listaDeObjetos = new ArrayList<Objeto>();
 		ObjetoDTO objetoDTO = null;
 		
-		listaDeObjetos = mapaDAO.buscaObjetosPorSubcategoria(idSubcategoria);
+		listaDeObjetos = mapaDAO.buscaObjetosPorSubcategoria(idSubcategoria, tipoMapa);
 		
 		for(Objeto obj : listaDeObjetos) {
 			objetoDTO = new ObjetoDTO();
@@ -101,6 +103,11 @@ public class MapaMenuDesenhoServiceImpl implements MapaMenuDesenhoService {
 		
 		
 		return listaDeObjetosDTO;
+	}
+
+	public ArrayList<ObjetoDTO> buscaListaObjetos(int idSubcategoria) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
