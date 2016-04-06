@@ -31,7 +31,7 @@
 										<label for="nomeMapa" class="col-md-4 control-label">Nome do mapa:</label>
 										<div class="col-md-8">
 											<input id="nomeMapa" type="text" class="form-control" name="nomeMapa"
-												placeholder="Ex: Salão de festas" value="${caracteristicas.nomeMapa}" maxlength="20" readonly="readonly" />
+												placeholder="Ex: Salão de festas" value="${caracteristicas.nomeMapa}" maxlength="20" />
 										</div>
 									</div>
 									<div class="form-group">

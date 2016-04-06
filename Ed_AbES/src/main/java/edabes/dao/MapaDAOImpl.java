@@ -42,16 +42,35 @@ public class MapaDAOImpl implements MapaDAO {
 	 * @return Mapa mapa - Objeto com informacoes do mapa
 	 */
 	public Mapa buscaMapaPorNome(String nome) {
+		return buscaMapaPorNome(nome, 0);
+	}
+	
+	/**
+	 * Metodo para buscar um mapa pelo nome
+	 * @param String nome - Nome do mapa
+	 * @param Integer id - Id do mapa
+	 * @return Mapa mapa - Objeto com informacoes do mapa
+	 */
+	public Mapa buscaMapaPorNome(String nome, Integer id) {
 		Mapa mapa = null;
 		List<Mapa> listaMapas = null;
 		Session sessao;
 		Query query = null;
-
+		String sql = "";
 		try {
 			sessao = sessionFactory.getCurrentSession();
-			query = sessao
-					.createQuery("from Mapa where NOME_MAPA = :nome");
-			query.setParameter("nome", nome);
+			
+			if(id > 0){
+				query = sessao
+						.createQuery("from Mapa where NOME_MAPA = :nome and ID_MAPA <> :id");
+				query.setParameter("nome", nome);
+				query.setParameter("id", id);
+			}else{
+				query = sessao
+						.createQuery("from Mapa where NOME_MAPA = :nome");
+				query.setParameter("nome", nome);
+				
+			}
 			listaMapas = query.list();
 
 			if (!listaMapas.isEmpty() && listaMapas != null) {
@@ -283,13 +302,14 @@ public class MapaDAOImpl implements MapaDAO {
 
 		try {
 
-			mapaJaExistente = (Mapa) buscaMapaPorNome(caracteristicasMapa.getNomeMapa());
+			mapaJaExistente = (Mapa) buscaMapaPorNome(caracteristicasMapa.getNomeMapa(), caracteristicasMapa.getMapaId());
 
-			if (mapaJaExistente != null) {
+			if (mapaJaExistente == null) {
 				session = sessionFactory.getCurrentSession();
 
-				query = session.createQuery("update Mapa set DESCRICAO = :descricao, OBJETIVO = :objetivo, TIPO_MAPA = :tipoMapa, DT_ALTERACAO = :dataAlteracao, UNIDADE_MEDIDA = :unidadeMedida, ANDAR = :andar where ID_MAPA = :idMapa");
+				query = session.createQuery("update Mapa set NOME_MAPA = :nome, DESCRICAO = :descricao, OBJETIVO = :objetivo, TIPO_MAPA = :tipoMapa, DT_ALTERACAO = :dataAlteracao, UNIDADE_MEDIDA = :unidadeMedida, ANDAR = :andar where ID_MAPA = :idMapa");
 				query.setParameter("idMapa", caracteristicasMapa.getMapaId());
+				query.setParameter("nome", caracteristicasMapa.getNomeMapa());
 				query.setParameter("descricao", caracteristicasMapa.getDescricaoMapa());
 				query.setParameter("objetivo", caracteristicasMapa.getObjetivoMapa());
 				query.setParameter("tipoMapa", caracteristicasMapa.getTipoMapa());
@@ -704,14 +724,16 @@ public class MapaDAOImpl implements MapaDAO {
 
 			session = sessionFactory.getCurrentSession();
 			session.save(mapa);
+			
+			System.out.println("ID NOVO -> " + mapa.getMapaId());
 
-			idMapaImportado = buscaIdMapaImportadoPorNome(mapa.getNomeMapa());
+			//idMapaImportado = buscaIdMapaImportadoPorNome(mapa.getNomeMapa());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return idMapaImportado;
+		return mapa.getMapaId();
 	}
 
 	/**

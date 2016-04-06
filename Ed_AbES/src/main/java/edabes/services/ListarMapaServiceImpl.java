@@ -86,7 +86,7 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 			mapaImportado = new Mapa();
 			
 			
-			mapaImportado.setNomeMapa(mapaExportado.getNomeMapa() + DateUtils.getDateFormatString() );
+			mapaImportado.setNomeMapa(montaNomeMapaImportado(mapaExportado.getNomeMapa()));
 			mapaImportado.setDescricaoMapa(mapaExportado.getDescricaoMapa());
 			mapaImportado.setObjetivoMapa(mapaExportado.getObjetivoMapa());
 			mapaImportado.setTipoMapa(mapaExportado.getTipoMapa());
@@ -131,6 +131,18 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 		}
 		
 		return importado;
+	}
+	
+	private String montaNomeMapaImportado(String nomeMapa){
+		String nomeMapaImportado = "";
+		
+		if(nomeMapa.length() < 70){
+			nomeMapaImportado = nomeMapa + " importado em 123456798"; //+ DateUtils.getDateFormatString();
+		}else{
+			nomeMapaImportado = nomeMapa + DateUtils.getDateFormatString();
+		}
+		
+		return nomeMapaImportado;
 	}
 
 }
