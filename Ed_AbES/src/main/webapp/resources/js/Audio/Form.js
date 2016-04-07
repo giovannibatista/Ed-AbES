@@ -14,7 +14,6 @@ $(function() {
 	
 	
 	$formularioUploadAudio.unbind("submit").bind("submit", function() {
-		debugger;
 		var data = new FormData();
 		var arquivo = document.getElementById("arquivo");
 		var descricaoAudio = $("#descricaoAudio").val();

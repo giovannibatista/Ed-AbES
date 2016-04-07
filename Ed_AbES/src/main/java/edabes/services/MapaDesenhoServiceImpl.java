@@ -94,6 +94,7 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 				mapaExport.setTipoMapa(mapaExportado.getTipoMapa());
 				mapaExport.setUnidadeDeMedida(mapaExportado.getUnidadeDeMedida());
 				mapaExport.setCriadorDoMapa(mapaExportado.getNomeCriador());
+				mapaExport.setAndar(mapaExportado.getAndar());
 			}
 		}
 		
@@ -116,6 +117,7 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 		mapaExportado.setObjetivoMapa(mapa.getObjetivoMapa());
 		mapaExportado.setTipoMapa(mapa.getTipoMapa());
 		mapaExportado.setUnidadeDeMedida(mapa.getUnidadeDeMedida());
+		mapaExportado.setAndar(mapa.getAndar());
 		//mapaExportado.setMapaId(mapa.getMapaId());
 		
 		return mapaExportado;

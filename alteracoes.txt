@@ -8,3 +8,4 @@
 03/04 12:27 - Textos das telas atualizados...
 06/04 14:30 - Problema da importação de mapas e nomes repetidos corrigidos no módulo de construção
 06/04 15:40 - Lista de mapas não repete os mapas que foram importado por outros usuários
+07/04 15:22 - Retirada dos debuggers do js e gravação do andar ao exportar mapa

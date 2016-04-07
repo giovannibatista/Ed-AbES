@@ -134,7 +134,6 @@
 						type: "GET",
 						dataType: "json",
 						success: function(json) {
-							debugger;
 							//for each saved object, we should add individually in the map
 							$.each(json, function(key, value) {
 								$mapEdAbes.addMob({

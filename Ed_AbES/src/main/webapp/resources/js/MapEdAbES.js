@@ -1,7 +1,6 @@
 var MapEdAbES = function($mapaObject, $thumbnail) {
 	console.log($mapaObject);
 	console.log($thumbnail);
-	debugger;
 	var self = this;
 
 	var $mapRelative = $mapaObject;
@@ -43,7 +42,6 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	 */
 	self.init = function(params) {
 		//Extend options
-		debugger;
 		self.params = $.extend(self.params, params);
 
 		self.x = self.y = 0;
