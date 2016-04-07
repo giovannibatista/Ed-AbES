@@ -20,6 +20,7 @@
 				<div class="col-md-12">
 					<div class="col-md-12">
 						<h1>${nomeMapa}</h1>
+						<input type="hidden" id="tipoMapa" value="${tipoMapa}"/>
 					</div>
 					<div class="col-md-3">
 						<div class="clearfix">
@@ -102,14 +103,22 @@
 					//In case you have confirmed that you accept saving the map without a description
 					if(!objetoSemAudioDescricao || 
 						confirm(noTitleAlert.format(nomeObjetoSemAudioDescricao))) {
-						console.log(mobs);						
+						console.log(mobs);
+						var tipoMapa = $("#tipoMapa").val();
+						var salvarMapaLivre = "";
+						if(tipoMapa == 2){
+							if(confirm("Deseja salvar o mapa também do tipo LIVRE?")){
+								salvarMapaLivre = "sim";
+							}
+						}
 						$.ajax({
 							url: "/Mapa/Desenho/Salvar/${idMapa}",
 							type: "POST",
 							dataType: "json",
 							contentType: "application/json",
 							data : JSON.stringify({
-								dtoList: mobs
+								dtoList: mobs,
+								salvarMapaLivre: salvarMapaLivre
 							})
 							,
 							success: function(success) {

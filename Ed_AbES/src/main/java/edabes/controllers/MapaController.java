@@ -274,6 +274,7 @@ public class MapaController extends EdController {
 			mv.addObject("listaObjetosMenu", listaObjetosMenu);
 			mv.addObject("nomeMapa", mapa.getNomeMapa());
 			mv.addObject("listaAudios", listaAudios);
+			mv.addObject("tipoMapa", mapa.getTipoMapa());
 		}
 		else {
 			mv = redirectToLogin();
@@ -383,6 +384,7 @@ public class MapaController extends EdController {
 	public @ResponseBody boolean salvarDesenhoPost(
 			@PathVariable("id") int id,
 			@RequestBody ListObjetoAlteracoesDTO listaDeObjetos,
+			String salvarMapaLivre, 
 			HttpSession session) {
 		boolean atualizacoesSalvas = false;
 		
