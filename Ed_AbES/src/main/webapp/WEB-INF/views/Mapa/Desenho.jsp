@@ -117,8 +117,7 @@
 							dataType: "json",
 							contentType: "application/json",
 							data : JSON.stringify({
-								dtoList: mobs,
-								salvarMapaLivre: salvarMapaLivre
+								dtoList: mobs, teste: 'sim'
 							})
 							,
 							success: function(success) {

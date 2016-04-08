@@ -384,7 +384,7 @@ public class MapaController extends EdController {
 	public @ResponseBody boolean salvarDesenhoPost(
 			@PathVariable("id") int id,
 			@RequestBody ListObjetoAlteracoesDTO listaDeObjetos,
-			String salvarMapaLivre, 
+			String teste, 
 			HttpSession session) {
 		boolean atualizacoesSalvas = false;
 		
