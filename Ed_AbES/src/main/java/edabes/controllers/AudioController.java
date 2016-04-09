@@ -1,6 +1,7 @@
 package edabes.controllers;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,8 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import edabes.dto.AudioDTO;
-import edabes.dto.ListarMapaDTO;
-import edabes.entidades.Usuario;
 import edabes.services.AudioService;
 
 @Controller
@@ -85,7 +84,7 @@ public class AudioController extends EdController {
 			throws IllegalStateException, IOException {
 		AudioDTO audioDTO = new AudioDTO();
 
-		audioDTO.setArquivo(multipartFileParaFile(arquivo));
+		audioDTO.setArquivo(convert(arquivo));
 		audioDTO.setDescricao(descricaoAudio);
 
 		return audioDTO;
@@ -95,6 +94,16 @@ public class AudioController extends EdController {
 		File arquivo = new File(multipart.getOriginalFilename());
 		multipart.transferTo(arquivo);
 		return arquivo;
+	}
+	
+	private File convert(MultipartFile file) throws IOException
+	{    
+	    File convFile = new File(file.getOriginalFilename());
+	    convFile.createNewFile(); 
+	    FileOutputStream fos = new FileOutputStream(convFile); 
+	    fos.write(file.getBytes());
+	    fos.close(); 
+	    return convFile;
 	}
 
 }

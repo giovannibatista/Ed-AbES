@@ -3,7 +3,7 @@
 
 <html lang="en">
 <head>
-<title>Ed-AbES - Edição de mapa</title>
+<title>Ed-AbES - importar os arquivos de áudio</title>
 
 <jsp:include page="../Head.jsp" />
 
@@ -28,7 +28,7 @@
 								<div class="form-group">
 									<label for="nomeMapa" class="col-md-4 control-label">Arquivo:</label>
 									<div class="col-md-8">
-										<input id="arquivo" type="file" class="form-control"
+										<input id="arquivo" type="file" class=""
 											name="arquivo" accept="audio/*"/>
 									</div>
 								</div>
