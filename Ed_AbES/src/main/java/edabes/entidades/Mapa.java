@@ -13,157 +13,157 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "MAPA")
 public class Mapa {
-	
-	@Id
-	@Column(name = "ID_MAPA")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MAPA_SEQ")
+
+    @Id
+    @Column(name = "ID_MAPA")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MAPA_SEQ")
     @SequenceGenerator(name = "MAPA_SEQ", sequenceName = "MAPA_SEQ", allocationSize = 1)
-	private int mapaId;
-	
-	@Column(name = "NOME_MAPA")
-	private String nomeMapa;
+    private int mapaId;
 
-	@Column(name = "DESCRICAO")
-	private String descricaoMapa;
-	
-	@Column(name = "OBJETIVO")
-	private String objetivoMapa;
-	
-	@Column(name = "TIPO_MAPA")
-	private int tipoMapa;
-	
-	@Column(name = "CRIADOR")
-	private int criadorMapa;
-	
-	@Column(name = "NOME_CRIADOR")
-	private String nomeCriador;
-	
-	@Column(name = "DT_CRIACAO")
-	private Date dataDeCriacao;
-	
-	@Column(name = "DT_ALTERACAO")
-	private Date dataAlteracao;
-	
-	@Column(name = "UNIDADE_MEDIDA")
-	private String unidadeDeMedida;
-	
-	@Column(name = "IMPORTADO")
-	private int importadoPor;
-	
-	@Column(name = "ANDAR")
-	private String andar;
-	
-	public Mapa() {
-	}
+    @Column(name = "NOME_MAPA")
+    private String nomeMapa;
 
-	public Mapa(int mapaId, String nomeMapa,
-			String descricaoMapa, String objetivoMapa, int tipoMapa,
-			int criadorMapa, Date dataDeCriacao, Date dataAlteracao) {
-		super();
-		this.mapaId = mapaId;
-		this.nomeMapa = nomeMapa;
-		this.descricaoMapa = descricaoMapa;
-		this.objetivoMapa = objetivoMapa;
-		this.tipoMapa = tipoMapa;
-		this.criadorMapa = criadorMapa;
-		this.dataDeCriacao = dataDeCriacao;
-		this.dataAlteracao = dataAlteracao;
-	}
+    @Column(name = "DESCRICAO")
+    private String descricaoMapa;
 
-	public int getMapaId() {
-		return mapaId;
-	}
+    @Column(name = "OBJETIVO")
+    private String objetivoMapa;
 
-	public void setMapaId(int  mapaId) {
-		this.mapaId = mapaId;
-	}
-	
-	public String getNomeMapa() {
-		return nomeMapa;
-	}
+    @Column(name = "TIPO_MAPA")
+    private int tipoMapa;
 
-	public void setNomeMapa(String nomeMapa) {
-		this.nomeMapa = nomeMapa;
-	}
+    @Column(name = "CRIADOR")
+    private int criadorMapa;
 
-	public String getDescricaoMapa() {
-		return descricaoMapa;
-	}
+    @Column(name = "NOME_CRIADOR")
+    private String nomeCriador;
 
-	public void setDescricaoMapa(String descricaoMapa) {
-		this.descricaoMapa = descricaoMapa;
-	}
+    @Column(name = "DT_CRIACAO")
+    private Date dataDeCriacao;
 
-	public String getObjetivoMapa() {
-		return objetivoMapa;
-	}
+    @Column(name = "DT_ALTERACAO")
+    private Date dataAlteracao;
 
-	public void setObjetivoMapa(String objetivoMapa) {
-		this.objetivoMapa = objetivoMapa;
-	}
+    @Column(name = "UNIDADE_MEDIDA")
+    private String unidadeDeMedida;
 
-	public int getTipoMapa() {
-		return tipoMapa;
-	}
+    @Column(name = "IMPORTADO")
+    private int importadoPor;
 
-	public void setTipoMapa(int tipoMapa) {
-		this.tipoMapa = tipoMapa;
-	}
+    @Column(name = "ANDAR")
+    private String andar;
 
-	public int getCriadorMapa() {
-		return criadorMapa;
-	}
+    public Mapa() {
+    }
 
-	public void setCriadorMapa(int criadorMapa) {
-		this.criadorMapa = criadorMapa;
-	}
+    public Mapa(int mapaId, String nomeMapa,
+	    String descricaoMapa, String objetivoMapa, int tipoMapa,
+	    int criadorMapa, Date dataDeCriacao, Date dataAlteracao) {
+	super();
+	this.mapaId = mapaId;
+	this.nomeMapa = nomeMapa;
+	this.descricaoMapa = descricaoMapa;
+	this.objetivoMapa = objetivoMapa;
+	this.tipoMapa = tipoMapa;
+	this.criadorMapa = criadorMapa;
+	this.dataDeCriacao = dataDeCriacao;
+	this.dataAlteracao = dataAlteracao;
+    }
 
-	public String getUnidadeDeMedida() {
-		return unidadeDeMedida;
-	}
+    public int getMapaId() {
+	return mapaId;
+    }
 
-	public void setUnidadeDeMedida(String unidadeDeMedida) {
-		this.unidadeDeMedida = unidadeDeMedida;
-	}
+    public void setMapaId(int  mapaId) {
+	this.mapaId = mapaId;
+    }
 
-	public Date getDataDeCriacao() {
-		return dataDeCriacao;
-	}
+    public String getNomeMapa() {
+	return nomeMapa;
+    }
 
-	public void setDataDeCriacao(Date dataDeCriacao) {
-		this.dataDeCriacao = dataDeCriacao;
-	}
+    public void setNomeMapa(String nomeMapa) {
+	this.nomeMapa = nomeMapa;
+    }
 
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
+    public String getDescricaoMapa() {
+	return descricaoMapa;
+    }
 
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
+    public void setDescricaoMapa(String descricaoMapa) {
+	this.descricaoMapa = descricaoMapa;
+    }
 
-	public String getNomeCriador() {
-		return nomeCriador;
-	}
+    public String getObjetivoMapa() {
+	return objetivoMapa;
+    }
 
-	public void setNomeCriador(String nomeCriador) {
-		this.nomeCriador = nomeCriador;
-	}
+    public void setObjetivoMapa(String objetivoMapa) {
+	this.objetivoMapa = objetivoMapa;
+    }
 
-	public int getImportadoPor() {
-		return importadoPor;
-	}
+    public int getTipoMapa() {
+	return tipoMapa;
+    }
 
-	public void setImportadoPor(int importadoPor) {
-		this.importadoPor = importadoPor;
-	}
+    public void setTipoMapa(int tipoMapa) {
+	this.tipoMapa = tipoMapa;
+    }
 
-	public String getAndar() {
-		return andar;
-	}
+    public int getCriadorMapa() {
+	return criadorMapa;
+    }
 
-	public void setAndar(String andar) {
-		this.andar = andar;
-	}
-	
+    public void setCriadorMapa(int criadorMapa) {
+	this.criadorMapa = criadorMapa;
+    }
+
+    public String getUnidadeDeMedida() {
+	return unidadeDeMedida;
+    }
+
+    public void setUnidadeDeMedida(String unidadeDeMedida) {
+	this.unidadeDeMedida = unidadeDeMedida;
+    }
+
+    public Date getDataDeCriacao() {
+	return dataDeCriacao;
+    }
+
+    public void setDataDeCriacao(Date dataDeCriacao) {
+	this.dataDeCriacao = dataDeCriacao;
+    }
+
+    public Date getDataAlteracao() {
+	return dataAlteracao;
+    }
+
+    public void setDataAlteracao(Date dataAlteracao) {
+	this.dataAlteracao = dataAlteracao;
+    }
+
+    public String getNomeCriador() {
+	return nomeCriador;
+    }
+
+    public void setNomeCriador(String nomeCriador) {
+	this.nomeCriador = nomeCriador;
+    }
+
+    public int getImportadoPor() {
+	return importadoPor;
+    }
+
+    public void setImportadoPor(int importadoPor) {
+	this.importadoPor = importadoPor;
+    }
+
+    public String getAndar() {
+	return andar;
+    }
+
+    public void setAndar(String andar) {
+	this.andar = andar;
+    }
+
 }

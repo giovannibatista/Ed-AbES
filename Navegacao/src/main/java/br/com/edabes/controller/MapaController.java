@@ -1,4 +1,4 @@
-package br.com.edabes.controllers;
+package br.com.edabes.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.com.edabes.auxiliares.MakeSound;
+import br.com.edabes.utils.MakeSound;
 
 @Controller
 public class MapaController {

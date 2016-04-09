@@ -1,4 +1,4 @@
-package br.com.edabes.auxiliares;
+package br.com.edabes.utils;
 
 import java.io.File;
 import java.io.IOException;

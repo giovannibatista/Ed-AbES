@@ -1,4 +1,4 @@
-package br.com.edabes.controllers;
+package br.com.edabes.controller;
 
 import javax.servlet.http.HttpSession;
 
