@@ -54,7 +54,7 @@
 						<select class="form-control" name="audios" id="audios">
 							<option value="">Selecione...</option>
 							<c:forEach items="${listaAudios}" var="audio">
-								<option value="${audio.id}">${audio.descricao}</option>
+								<option value="${audio.id}">${audio.arquivo.name} - ${audio.descricao}</option>
 						</c:forEach>
 						</select>
 					</div>
