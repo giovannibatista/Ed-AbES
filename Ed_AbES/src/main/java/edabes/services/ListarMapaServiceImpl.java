@@ -140,7 +140,7 @@ public class ListarMapaServiceImpl implements ListarMapaService {
 		String nomeMapaImportado = "";
 		
 		if(nomeMapa.length() < 70){
-			nomeMapaImportado = nomeMapa + " importado em 123456798"; //+ DateUtils.getDateFormatString();
+			nomeMapaImportado = nomeMapa + " importado em " + DateUtils.getDateFormatString();
 		}else{
 			nomeMapaImportado = nomeMapa + DateUtils.getDateFormatString();
 		}
