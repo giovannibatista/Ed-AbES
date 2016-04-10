@@ -30,7 +30,7 @@
 
 		<div id="mapasPublicosArea">
 		
-			<table border="1" id="mapasPublicos">
+			<table border="1" id="mapasPublicos" class="listas">
 				<caption>Tabela dos mapas públicos construídos no módulo
 					de construção.</caption>
 				<thead>

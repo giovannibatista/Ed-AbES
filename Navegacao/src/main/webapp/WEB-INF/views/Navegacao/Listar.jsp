@@ -8,6 +8,8 @@
 	Públicos</title>
 <jsp:include page="../Imports.jsp" />
 
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/Navegacao/listar.css" />">
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
 </head>
@@ -34,7 +36,7 @@
 			 			<c:choose>
 				<c:when test="${not empty mapas}">
  
-			<table border="1" id="mapasSalvos">
+			<table border="1" id="mapasSalvos" class="listas">
 				<caption>Tabela dos mapas públicos salvos.</caption>
 				<thead>
 					<tr>
@@ -69,8 +71,8 @@
 			</table>
 			</c:when>
 				<c:otherwise>
-					<div id="blocoListaMapasVazio">
-						<p>Não possui nenhum mapa salvo para navegação...</p>
+					<div id="blocoListaMapasVazio" class="blocoListaVazio">
+						<p>Nenhum mapa salvo. Para iniciar uma navegação é necessário salvar um mapa público. Para acessar os Mpas Públicos, utilize a tecla de atalho Alt 2.</p>
 					</div>
 				</c:otherwise>
 			</c:choose>

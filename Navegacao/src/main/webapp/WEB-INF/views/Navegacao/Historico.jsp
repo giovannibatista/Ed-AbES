@@ -37,7 +37,7 @@
 		
 		<div id="blocoListaHistoricoNavegacao">
 						
-			<table border="1" id="historicoNavegacoes">
+			<table border="1" id="historicoNavegacoes" class="listas">
 				<caption>Tabela de histórico das navegações realizadas.</caption>
 				<thead>
 					<tr>
