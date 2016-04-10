@@ -39,7 +39,7 @@ public class Mapa {
     private String nomeCriador;
 
     @Column(name = "DT_CRIACAO")
-    private Date dataDeCriacao;
+    private Date dataCriacao;
 
     @Column(name = "DT_ALTERACAO")
     private Date dataAlteracao;
@@ -113,12 +113,12 @@ public class Mapa {
 	this.nomeCriador = nomeCriador;
     }
 
-    public Date getDataDeCriacao() {
-	return dataDeCriacao;
+    public Date getDataCriacao() {
+	return dataCriacao;
     }
 
-    public void setDataDeCriacao(Date dataDeCriacao) {
-	this.dataDeCriacao = dataDeCriacao;
+    public void setDataCriacao(Date dataCriacao) {
+	this.dataCriacao = dataCriacao;
     }
 
     public Date getDataAlteracao() {
@@ -157,7 +157,7 @@ public class Mapa {
     public String toString() {
 	return "Mapa [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", objetivo=" + objetivo
 		+ ", tipoMapa=" + tipoMapa + ", criador=" + criador + ", nomeCriador=" + nomeCriador
-		+ ", dataDeCriacao=" + dataDeCriacao + ", dataAlteracao=" + dataAlteracao + ", unidadeDeMedida="
+		+ ", dataDeCriacao=" + dataCriacao + ", dataAlteracao=" + dataAlteracao + ", unidadeDeMedida="
 		+ unidadeDeMedida + ", importadoPor=" + importadoPor + ", andar=" + andar + "]";
     }
 

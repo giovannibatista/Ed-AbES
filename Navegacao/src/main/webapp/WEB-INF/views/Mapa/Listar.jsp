@@ -29,6 +29,7 @@
 			menu principal.</p>
 
 		<div id="mapasPublicosArea">
+		
 			<table border="1" id="mapasPublicos">
 				<caption>Tabela dos mapas públicos construídos no módulo
 					de construção.</caption>

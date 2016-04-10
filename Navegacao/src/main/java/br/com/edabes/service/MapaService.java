@@ -5,7 +5,9 @@ import br.com.edabes.dto.MapaDTO;
 
 public interface MapaService {
     
-    public ArrayList<MapaDTO> listarMapas();
+    public ArrayList<MapaDTO> listarMapas() throws Exception;
+
+    public MapaDTO consultaMapa(MapaDTO consulta);
   
 
 }

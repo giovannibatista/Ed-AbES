@@ -6,5 +6,7 @@ import br.com.edabes.model.Mapa;
 
 public interface MapaDAO {
     
-    public ArrayList<Mapa> listarMapas();
+    public ArrayList<Mapa> listarMapas() throws Exception;
+
+    public Mapa consultaMapa(Mapa mapa);
 }

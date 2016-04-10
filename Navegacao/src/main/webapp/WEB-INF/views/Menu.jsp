@@ -17,7 +17,7 @@
 </div>
 <nav id="menu">
 	<ul class="nav nav-pills">
-		<li role="presentation"><a href="/Navegacao/MapasSalvos"
+		<li role="presentation"><a href="/Navegacao/Listar"
 			title="Iniciar Navegação - Atalho Alt 1">Iniciar Navegação</a></li>
 
 		<li role="presentation"><a href="/Mapa/Listar"

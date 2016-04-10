@@ -1,48 +1,87 @@
 package br.com.edabes.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.edabes.dto.MapaDTO;
+import br.com.edabes.service.MapaService;
 
 @Controller
 public class NavegacaoController {
 
-	public NavegacaoController() {
-		// TODO Auto-generated constructor stub
-	}
+    @Autowired
+    private MapaService mapaService;
+    
+    private ArrayList<MapaDTO> mapas;
 
-	@RequestMapping(value="/Navegacao/MapasSalvos", method=RequestMethod.GET)
-	public String abrirMapasSalvos(){
-		System.out.println("Iniciando a Navegação. Abrindo lista de mapas salvos...");
-		return "/Navegacao/MapasSalvos";
-	}
+    public NavegacaoController() {
+	super();
+	mapas = new ArrayList<MapaDTO>();
+    }
 
-	@RequestMapping(value="/Navegacao/Resumo/{id}", method=RequestMethod.GET)
-	public String abrirResumo(@PathVariable("id") Integer id) {
-		System.out.println("Abrindo o Resumo do Mapa, Id: " + id);
-		return "/Navegacao/Resumo";
+    @RequestMapping(value = "/Navegacao/Listar", method = RequestMethod.GET)
+    public ModelAndView abrirMapasSalvos() {
+	ModelAndView model = null;
+	try {
+	    model = new ModelAndView("/Navegacao/Listar");
+	    mapas = mapaService.listarMapas();
+	    model.addObject("mapas", mapas);
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
-	
-	@RequestMapping(value="/Navegacao/Mapa/{id}", method=RequestMethod.GET)
-	public String iniciarNavegacao(@PathVariable("id") Integer id,
-			HttpSession session) {
-		System.out.println("Iniciando a Navegação do Id: " + id);
-		return "/Navegacao/Mapa";
-	}
+	return model;
+    }
 
-	@RequestMapping(value="/Navegacao/Treinamento", method=RequestMethod.GET)
-	public String iniciarTreinamento(){
-		System.out.println("Iniciando o treinamento");
-		return "/Navegacao/Resumo";
+    @RequestMapping(value = "/Navegacao/Resumo/{id}", method = RequestMethod.GET)
+    public ModelAndView abrirResumo(@PathVariable("id") Integer id) {
+	ModelAndView model = null;
+	try {
+	    model = new ModelAndView("/Navegacao/Resumo");
+	    MapaDTO mapaConsulta = new MapaDTO();
+	    mapaConsulta.setId(id);
+	    MapaDTO mapaDTO = mapaService.consultaMapa(mapaConsulta);
+	    model.addObject("mapa", mapaDTO);
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
-	
-	@RequestMapping(value="/Navegacao/Historico", method=RequestMethod.GET)
-	public String iniciarHistorico(){
-		System.out.println("Iniciando o historico");
-		return "/Navegacao/Historico";
-	}
+	return model;
+    }
+
+    @RequestMapping(value = "/Navegacao/Mapa/{id}", method = RequestMethod.GET)
+    public String iniciarNavegacao(@PathVariable("id") Integer id, HttpSession session) {
+	System.out.println("Iniciando a Navegação do Id: " + id);
+	return "/Navegacao/Mapa";
+    }
+
+    @RequestMapping(value = "/Navegacao/Treinamento", method = RequestMethod.GET)
+    public String iniciarTreinamento() {
+	System.out.println("Iniciando o treinamento");
+	return "/Navegacao/Resumo";
+    }
+
+    @RequestMapping(value = "/Navegacao/Historico", method = RequestMethod.GET)
+    public String iniciarHistorico() {
+	System.out.println("Iniciando o historico");
+	return "/Navegacao/Historico";
+    }
+
+    public ArrayList<MapaDTO> getMapas() {
+        return mapas;
+    }
+
+    public void setMapas(ArrayList<MapaDTO> mapas) {
+        this.mapas = mapas;
+    }
+    
+    
+
 
 }

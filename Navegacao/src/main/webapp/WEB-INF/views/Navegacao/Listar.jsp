@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="br.com.edabes.dto.*"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -30,6 +31,9 @@
 			Nome do Mapa, Descrição, Tipo do Mapa e Data de alteração.</p>
 
 		<div id="mapasSalvosArea">
+			 			<c:choose>
+				<c:when test="${not empty mapas}">
+ 
 			<table border="1" id="mapasSalvos">
 				<caption>Tabela dos mapas públicos salvos.</caption>
 				<thead>
@@ -43,26 +47,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr onclick="javascript: abrirResumo(1);">
-						<th scope="row" onclick="javascript: abrirResumo(1);">Mapa 1
-						</th>
-						<td>Descrição do mapa 1</td>
-						<td>Desafio</td>
-						<td>19/03/2016</td>
-						<td><input type="button" id="salvarMapaBotao"
-								onclick="javascript: abrirResumo(1);" value="Iniciar Navegação do Mapa 1" /></td>
-					</tr>
-					<tr onclick="javascript: abrirResumo(2);">
-						<th scope="row">Mapa 2
-						</th>
-						<td>Descrição do mapa 2 é tal...</td>
-						<td>Livre</td>
-						<td>01/02/2016</td>
-						<td><input type="button" id="salvarMapaBotao"
-								onclick="javascript: abrirResumo(2);" value="Iniciar Navegação do Mapa 2" /></td>
-					</tr>
+					<c:forEach items="${mapas}" var="mapa">
+						<tr onclick="javascript: abrirResumo(${mapa.id});">
+							<th scope="row">${mapa.nome}</th>
+							<td>${mapa.descricao}</td>
+							<c:choose>
+								<c:when test="${mapa.tipoMapa == 1}">
+									<td>Navegação Livre</td>
+								</c:when>
+								<c:otherwise>
+									<td>Desafio</td>
+								</c:otherwise>
+							</c:choose>
+							<td>${mapa.dataAlteracao}</td>
+							<td><input type="button" id="salvarMapaBotao"
+								onclick="javascript: abrirResumo(${mapa.id});"
+								value="Iniciar Navegação do ${mapa.nome}" /></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
+			</c:when>
+				<c:otherwise>
+					<div id="blocoListaMapasVazio">
+						<p>Não possui nenhum mapa salvo para navegação...</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>
