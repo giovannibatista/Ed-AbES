@@ -10,3 +10,4 @@
 06/04 15:40 - Lista de mapas não repete os mapas que foram importado por outros usuários
 07/04 15:22 - Retirada dos debuggers do js e gravação do andar ao exportar mapa
 10/04 18:58 - Lista de mapas salvos e resumo consumindo o bd. Ajustes de css em todas as listas...
+10/04 21:53 - Contraste permanece em todas as páginas

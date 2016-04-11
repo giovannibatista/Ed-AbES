@@ -38,7 +38,7 @@
 			</p>
 			<p>
 				<label>Ano de Nascimento : </label>
-				<input type="" name="anoNascimento" id="anoNascimento" value="1990" class="inputUsuario"/> 
+				<input type="text" name="anoNascimento" id="anoNascimento" value="1990" class="inputUsuario"/> 
 			</p>
 			<p>
 				<label>Gênero : </label>

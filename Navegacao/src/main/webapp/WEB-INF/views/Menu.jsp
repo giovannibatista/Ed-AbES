@@ -7,10 +7,10 @@
 		<li><a href="" onclick="alteraTamanhoFonte(-1); return false;"
 			title="Diminuir tamanho das letras">Diminuir tamanho das letras</a></li>
 		<li><a id="altoContraste" href=""
-			onclick="setActiveStyleSheet('preto_branco'); ocultarElemento('coresOriginais','altoContraste'); return false; "
+			onclick="setActiveStyleSheet('preto_branco', true); ocultarElemento('coresOriginais','altoContraste'); return false; "
 			title="Ativar alto contraste">Alto contraste</a></li>
 		<li><a id="coresOriginais" class="oculto" title="Voltar para as cores originais"
-			onclick="setActiveStyleSheet('padrao'); ocultarElemento('altoContraste','coresOriginais'); return false; "
+			onclick="setActiveStyleSheet('padrao', true); ocultarElemento('altoContraste','coresOriginais'); return false; "
 			href="#topo-pg">Cores originais</a></li>
 
 	</ul>

@@ -5,11 +5,11 @@ body {
 		"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-	background-color: #000000; 
-	color: #ffffff; 
+	background-color: #000000;
+	color: #ffffff;
 }
 
-body > div{
+body>div {
 	margin-left: 10px;
 }
 
@@ -18,46 +18,46 @@ table {
 	border-color: #ffffff;
 }
 
-table > caption{
+table>caption {
 	text-align: center;
 }
 
-table > thead {
-	background-color: #ffffff; 
-	color: #000000; 
+table>thead {
+	background-color: #ffffff;
+	color: #000000;
 }
 
-table > tbody > tr > td > input[type=button]{
+table>tbody>tr>td>input[type=button] {
 	margin: 10px;
 	width: 80%;
 }
 
 input[type=button] {
 	background: #000000;
-	color: #ffffff ;
+	color: #ffffff;
 	border: 2px solid #ffffff;
 	border-radius: 5px;
 	box-shadow: 2px 2px 4px #ffffff;
 }
 
 a {
-	color: #ffffff ;
+	color: #ffffff;
 }
 
 a:HOVER {
-	color: #e0e0e0 ;
+	color: #e0e0e0;
 }
 
 caption {
-    color: #ffffff;
+	color: #ffffff;
 }
 
-.oculto{
+.oculto {
 	display: none;
 }
 
-input[type=text]{
-	color: #000000;
+input[type=text], input[type=email], input[type=password], input[type=number] {
+	color: #ffffff;
+	background: #000000;
+	border-color: #ffffff
 }
-
-
