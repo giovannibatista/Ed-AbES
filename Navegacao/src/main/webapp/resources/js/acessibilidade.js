@@ -7,6 +7,8 @@ $( document ).ready(function() {
 		setActiveStyleSheet("padrao", false);
 		ocultarElemento('altoContraste','coresOriginais');
 	}
+	
+	
 });
 
 /*
@@ -36,15 +38,21 @@ function salvarEstadoContraste(title){
 	
 }
 
+function salvarTamanhoFonte(multiplicador){
+		localStorage.setItem("multiplicador", multiplicador);
+}
+
 function ocultarElemento(retirar, ocultar){
 	$("#"+retirar).removeClass("oculto");
 	$("#"+ocultar).addClass("oculto");
 }
 
 
-function alteraTamanhoFonte(multiplier) {
+function alteraTamanhoFonte(multiplicador) {
 	  if (document.body.style.fontSize == "") {
 	    document.body.style.fontSize = "1.5em";
 	  }
-	  document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (multiplier * 0.2) + "em";
+	  var tamanhoTela = parseFloat(document.body.style.fontSize) + (multiplicador * 0.2)
+	  document.body.style.fontSize =  tamanhoTela + "em";
+	  salvarTamanhoFonte(multiplicador);
 	}

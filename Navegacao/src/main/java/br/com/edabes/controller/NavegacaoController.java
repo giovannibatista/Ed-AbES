@@ -33,6 +33,7 @@ public class NavegacaoController {
 	try {
 	    model = new ModelAndView("/Navegacao/Listar");
 	    mapas = mapaService.listarMapas();
+	    //mapas = new ArrayList<>(); PARA TESTE
 	    model.addObject("mapas", mapas);
 	} catch (Exception e) {
 	    e.printStackTrace();
