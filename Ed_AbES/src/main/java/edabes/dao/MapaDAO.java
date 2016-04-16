@@ -27,7 +27,7 @@ public interface MapaDAO {
 	
 	public ArrayList<ListarMapaDTO> buscaListaDeMapas();
 	
-	public ArrayList<Objeto> buscaObjetosPorSubcategoria(int idSubcategoria, int tipoMapa);
+	public ArrayList<Objeto> buscaObjetosPorSubcategoria(int idSubcategoria);
 	
 	public Mapa buscaMapaPorId(int mapaId);
 	
@@ -35,7 +35,7 @@ public interface MapaDAO {
 	
 	public ArrayList<MapaObjeto> buscaListaDeMapaObjetos(int idMapa);
 	
-	public ArrayList<Subcategoria> buscaSubcategorias(int idCategoria, int tipoMapa);
+	public ArrayList<Subcategoria> buscaSubcategorias(int idCategoria);
 	
 	public ArrayList<Categoria> buscaCategorias();
 	
