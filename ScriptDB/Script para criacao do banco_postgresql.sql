@@ -291,8 +291,12 @@ CREATE SEQUENCE MAPA_OBJETO_EXPORTADO_SEQ
 	MAXVALUE 99999
 	NO CYCLE;
 
+------------------------------------------------------------------------------------------------------------------------------------------------
+
 /*
-Alterações para o Módulo de Navegação
+
+ALTERAÇÕES FEITAS PARA O MÓDULO DE NAVEGAÇÃO
+
 */
 
 --SCRIPT DE CRIACAO DA TABELA UPLOAD_AUDIOS
@@ -312,33 +316,45 @@ CREATE SEQUENCE UPLOAD_ARQUIVO_AUDIOS_SEQ
 ALTER TABLE MAPA_OBJETO
  add COLUMN ID_ARQUIVO_AUDIO NUMERIC null;
 
+--Nova coluna ID_ARQUIVO_AUDIO. Irá armazenar id para a tabela UPLOAD_ARQUIVO_AUDIOS
 ALTER TABLE MAPA_OBJETO_EXPORTADO
 add COLUMN ID_ARQUIVO_AUDIO NUMERIC null;
 
-
+--Nova coluna ID_ARQUIVO_AUDIO. Irá armazenar id para a tabela UPLOAD_ARQUIVO_AUDIOS
 ALTER TABLE MAPA_OBJETO_IMPORTADO
 add COLUMN ID_ARQUIVO_AUDIO NUMERIC null;
 
 
+--Criando a referência da colunca ID_ARQUIVO_AUDIO com a tabela UPLOAD_ARQUIVO_AUDIOS
 ALTER TABLE MAPA_OBJETO ADD CONSTRAINT MAPA_OBJETO_ARQUIVO_AUDIO
     FOREIGN KEY (ID_ARQUIVO_AUDIO)
     REFERENCES UPLOAD_ARQUIVO_AUDIOS(ID_ARQUIVO_AUDIO);
 
+--Criando a referência da colunca ID_ARQUIVO_AUDIO com a tabela UPLOAD_ARQUIVO_AUDIOS
 ALTER TABLE MAPA_OBJETO_EXPORTADO ADD CONSTRAINT MAPA_OBJETO_EXPORTADO_ARQUIVO_AUDIO
     FOREIGN KEY (ID_ARQUIVO_AUDIO)
     REFERENCES UPLOAD_ARQUIVO_AUDIOS(ID_ARQUIVO_AUDIO);
 
+--Criando a referência da colunca ID_ARQUIVO_AUDIO com a tabela UPLOAD_ARQUIVO_AUDIOS
 ALTER TABLE MAPA_OBJETO_IMPORTADO ADD CONSTRAINT MAPA_OBJETO_IMPORTADO_ARQUIVO_AUDIO
     FOREIGN KEY (ID_ARQUIVO_AUDIO)
     REFERENCES UPLOAD_ARQUIVO_AUDIOS(ID_ARQUIVO_AUDIO);
 
+--Adicionado a colunca ANDAR, que não estava presente anteriormente
 ALTER TABLE MAPA_EXPORTADO ADD COLUMN andar character varying(255);
 
-
-
+--Aumentando o tamanho do coluna NOME_MAPA da tabela MAPA
 ALTER TABLE MAPA ALTER COLUMN NOME_MAPA TYPE VARCHAR(100);
 
+--Aumentando o tamanho do coluna NOME_MAPA da tabela MAPA
+ALTER TABLE MAPA_EXPORTADO ALTER COLUMN NOME_MAPA TYPE VARCHAR(100);
+
+--A coluna NOME_MAPA deve ser única
 ALTER TABLE MAPA ADD UNIQUE (nome_mapa);
 
-ALTER TABLE MAPA_EXPORTADO ALTER COLUMN NOME_MAPA TYPE VARCHAR(100);
+--Adicionando a coluna NIVEL na tabela OBJETO. Se nivel = 0, o objeto é do tipo piso. Se o nivel = 1, quer dizer que é um objeto bloqueante e  
+--caso o nive = -1, o objeto leva algum tipo de perigo ao jogador.
+ALTER TABLE OBJETO ADD COLUMN nivel TYPE NUMERIC(2);
+
+
 
