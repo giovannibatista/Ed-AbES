@@ -1,6 +1,4 @@
 var MapEdAbES = function($mapaObject, $thumbnail) {
-	console.log($mapaObject);
-	console.log($thumbnail);
 	var self = this;
 
 	var $mapRelative = $mapaObject;
@@ -74,8 +72,6 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 		$(".mobs").each(function() {
 			var $obj = $(this);
 			
-			console.log("->" + $obj.data("idArquivoAudio"));
-			
 			mobs.push({
 				"idMapaObjeto": $obj.data("id"),
 				"coordenadaX": $obj.data("coord-x"),
@@ -129,6 +125,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 				top: objectProperties.y * self.scale
 		};
 
+		
 		_addMob($obj, offset, (objectProperties.id == 0));
 	}
 
@@ -219,7 +216,6 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 		var rotate = $obj.data("rotate");
 		var profundidade = $obj.data("profundidade");
 		var arquivoAudio = $obj.data("arquivoAudio");
-		console.log(arquivoAudio);
 
 		//create the mob
 		var $mob = $("<div />");
@@ -258,7 +254,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 
 		//append into map body
 		$map.append($mob);
-
+		
 		//move to desired position
 		_moveObj($mob, offset, rotate);
 	}

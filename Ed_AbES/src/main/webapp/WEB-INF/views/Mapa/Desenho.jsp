@@ -26,6 +26,10 @@
 						<div class="clearfix">
 							<a href="/Mapa/Editar/${idMapa}" class="btn btn-warning col-md-5 col-xs-12">Voltar</a>
 							<button id="saveMap" class="btn btn-success col-md-6 col-md-offset-1 col-xs-12" type="button">Salvar o mapa</button>
+							<button id="andarBtn" type="button" onclick="criar();">Criar</button>
+							<button id="andarBtn" type="button" onclick="andar();">Andar</button>
+							<button id="andarBtn" type="button" onclick="andar2();">Andar 2</button>
+							
 						</div>
 						<br />
 						<jsp:include page="_IncDesenhoMenu.jsp" />
@@ -142,6 +146,7 @@
 						type: "GET",
 						dataType: "json",
 						success: function(json) {
+							 console.log('json->' + json);
 							//for each saved object, we should add individually in the map
 							$.each(json, function(key, value) {
 								$mapEdAbes.addMob({
@@ -168,7 +173,106 @@
 				
 				//initiate the map
 				$mapEdAbes.init();
+				
+				
+
 			});
+			
+			var $mob = $("<div />");
+			function criar() {
+				debugger;
+					
+					$mob.addClass("mobs");
+					$mob
+							.css({
+								"background-image" : "url(/resources/img/bg-64x64-red.jpg)",
+								"background-size" : "32px 32px",
+								width : 32,
+								height : 32
+							});
+
+					//Get the deserved z-index based on the object status (NEW or UPDATE)
+					profundidade = 20;
+
+					//append characteristics
+					$mob.data({
+						id : 99,
+						image : "/resources/img/bg-64x64-red.jpg",
+						idObjeto : 99,
+						width : 1,
+						height : 1,
+						status : 1,
+						title : "ANDAR",
+						nome : "ANDAR TESTE",
+						rotate : 0,
+						"coord-z" : 20,
+						arquivoAudio : undefined
+					});
+
+					var offset = {
+						left : 0,
+						top : 0
+					};
+					var $map = $("#mapa_mobs");
+					$map.append($mob);
+				
+					var rotate = 0;
+					
+					_moveObj($mob, offset, rotate);
+
+				}
+			
+			var _moveObj = function($obj, offset, rotate) {
+				var profundidade = $obj.data("coord-z");
+
+				//normalize positions
+				offset.top = ((offset.top > 0) ? offset.top : 0);
+				offset.left = ((offset.left > 0) ? offset.left : 0);
+
+				//calculate relative position
+				var pos = {
+						left: parseInt(offset.left/32),
+						top: parseInt(offset.top/32)
+				};
+
+				//move to absolute position
+				$obj.css({
+					transform: "translate3d("+ (pos.left * 32) +"px, "+ (pos.top * 32) +"px, 0) rotate("+rotate+"deg)",
+					left: 0,
+					top: 0,
+					zIndex: 20
+				});
+
+				//append characteristics
+				$obj.data({
+					"coord-x": pos.left,
+					"coord-y": pos.top
+				});
+			}
+			
+			function andar(){
+				var offset = {
+						top: $mob.data("coord-y") * 32 + 32,
+						left: $mob.data("coord-x") * 32
+				};
+				
+				var rotate = 0;
+				
+				_moveObj($mob, offset, rotate);
+			}
+			
+			function andar2(){
+				var offset = {
+						top: $mob.data("coord-y") * 32 ,
+						left: $mob.data("coord-x") * 32 + 32
+				};
+				
+				var rotate = 0;
+				
+				_moveObj($mob, offset, rotate);
+			}
+			
+
 		</script>
 	</body>
 </html>

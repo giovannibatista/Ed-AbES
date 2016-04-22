@@ -57,10 +57,29 @@ public class NavegacaoController {
     }
 
     @RequestMapping(value = "/Navegacao/Mapa/{id}", method = RequestMethod.GET)
-    public String iniciarNavegacao(@PathVariable("id") Integer id, HttpSession session) {
-	System.out.println("Iniciando a Navegação do Id: " + id);
-	return "/Navegacao/Mapa";
+    public ModelAndView iniciarNavegacao(@PathVariable("id") Integer id, HttpSession session) {
+	ModelAndView model = null;
+	try {
+	    model = new ModelAndView("/Navegacao/Mapa");
+	    model.addObject("idMapa", id);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return model;
     }
+    
+    @RequestMapping(value = "/Navegacao/Mapa/Objetos/{id}", method = RequestMethod.GET)
+    public ModelAndView carregarObjetosMapa (@PathVariable("id") Integer id, HttpSession session) {
+	ModelAndView model = null;
+	try {
+	    model = new ModelAndView("/Navegacao/Mapa");
+	    model.addObject("idMapa", id);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return model;
+    }
+
 
     @RequestMapping(value = "/Navegacao/Treinamento", method = RequestMethod.GET)
     public String iniciarTreinamento() {
