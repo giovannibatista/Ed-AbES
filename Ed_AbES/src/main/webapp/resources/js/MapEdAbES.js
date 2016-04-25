@@ -1,4 +1,5 @@
 var MapEdAbES = function($mapaObject, $thumbnail) {
+	console.log("oi1");
 	var self = this;
 
 	var $mapRelative = $mapaObject;
@@ -39,6 +40,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	 * Initiates the Map
 	 */
 	self.init = function(params) {
+		console.log("oi2");
 		//Extend options
 		self.params = $.extend(self.params, params);
 

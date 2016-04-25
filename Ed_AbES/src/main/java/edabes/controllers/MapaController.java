@@ -24,7 +24,6 @@ import edabes.dto.ListObjetoAlteracoesDTO;
 import edabes.dto.ListarMapaDTO;
 import edabes.dto.MapaCaracteristicasDTO;
 import edabes.dto.MapaDTO;
-import edabes.dto.MapaDesenhoDTO;
 import edabes.dto.MapaExportDTO;
 import edabes.dto.ObjetoMapaDTO;
 import edabes.entidades.Mapa;
@@ -62,9 +61,6 @@ public class MapaController extends EdController {
 	
 	@Autowired
 	private AudioService audioService;
-	
-	@Autowired
-	private MapaDesenhoDTO mapaDesenhoDTO;
 	
 	/**
 	 * Metodo para buscar as caracteristicas do mapa e redirecionar para pagina
@@ -238,7 +234,6 @@ public class MapaController extends EdController {
 			HttpSession session, 
 			HttpServletResponse response) throws IOException {
 			MapaExportDTO mapaExport = null;
-			ModelAndView mv = new ModelAndView();
 		
 		if (isAuthenticated(session)) {
 			mapaExport = mapaDesenhoService.buscaMapaExportDTO(id);

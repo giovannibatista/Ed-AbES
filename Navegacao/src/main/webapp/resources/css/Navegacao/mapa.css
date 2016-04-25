@@ -2,7 +2,27 @@ div#blocoMapa{
 	width: 100%%;
 }
 
-div#mapa{
-	width: 100%%;
+div#mapa {
+	position: relative;
+	width: 100%;
+	height: 5000px;
+	overflow: hidden;
 }
 
+#mapa_mobs {
+	position: absolute;
+	width: 1568px;
+	height: 4800px;;
+	background-size: 32px 32px;
+	background-image: url('/resources/img/bg-64x64.jpg');
+	background-repeat: repeat;
+}
+
+div.mobs {
+	position: absolute;
+	background-repeat: no-repeat;
+}
+
+div.mobs.floatingObject:not(.objSelected) {
+	border: 1px solid blue;
+}

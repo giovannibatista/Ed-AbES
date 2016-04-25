@@ -3,12 +3,11 @@ package br.com.edabes.converter;
 import br.com.edabes.dto.MapaDTO;
 import br.com.edabes.model.Mapa;
 
-public class MapaConverterImpl implements Converter<Mapa, MapaDTO> {
+public class MapaConverter implements Converter<Mapa, MapaDTO> {
     
     
-    public MapaConverterImpl() {
+    public MapaConverter() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     public MapaDTO converteModelParaDTO(Mapa mapa) {

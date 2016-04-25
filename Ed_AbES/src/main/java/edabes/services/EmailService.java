@@ -1,5 +1,6 @@
 package edabes.services;
 
+import java.security.Provider;
 import java.security.Security;
 import java.util.Properties;
 
@@ -33,7 +34,7 @@ public class EmailService {
 	public boolean sendMail(String recipients, String subject, String body) {
 
 		boolean emailEnviado = false;
-		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+		//Security.addProvider(new Provider());
 
 		String sender = "sistemaedabes@gmail.com";
 				

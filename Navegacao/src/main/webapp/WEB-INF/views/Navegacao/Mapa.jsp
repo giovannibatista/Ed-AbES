@@ -11,11 +11,17 @@
 	href="<c:url value="/resources/css/Navegacao/mapa.css" />">
 
 <script type="text/javascript"
+	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
+	
+<script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/mapa.js" />"></script>
-
-
+	
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />"></script>
+
+<script type="text/javascript">
+	
+</script>
 
 </head>
 <body>
@@ -31,9 +37,7 @@
 			<h2>Mapa 1</h2>
 
 			<div id="mapa">
-				<img alt="Esta é uma imagem de exemplo de um mapa de navegação"
-					id="mapaImg" name="mapaImg"
-					src="<c:url value="/resources/img/mapa.png" />">
+				<input type="hidden" id="idMapa" value="${idMapa}">
 			</div>
 		</div>
 	</div>

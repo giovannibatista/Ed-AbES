@@ -3,52 +3,57 @@
  */
 
 keyboardJS.bind('alt + e', function(e) {
-	alert('alt + E foi pressionado. Navegação encerrada');
+	console.log('alt + E foi pressionado. Navegação encerrada');
 });
 
 keyboardJS.bind('alt + s', function(e) {
-	alert('alt + S foi pressionado. Navegação parada/retomada');});
+	console.log('alt + S foi pressionado. Navegação parada/retomada');});
 
 keyboardJS.bind('alt + p', function(e) {
-	alert('alt + P foi pressionado. Audio parado/retomado');
+	console.log('alt + P foi pressionado. Audio parado/retomado');
 });
 
 keyboardJS.bind('alt + t', function(e) {
-	alert('alt + T foi pressionado. Porta Aberta');
+	console.log('alt + T foi pressionado. Porta Aberta');
 });
 
 keyboardJS.bind('alt + l', function(e) {
-	alert('alt + l foi pressionado. Reproduzir lod de navegação');
+	console.log('alt + l foi pressionado. Reproduzir lod de navegação');
 });
 
 keyboardJS.bind('alt + i', function(e) {
-	alert('alt + I foi pressionado. Jogador está em tal local do mapa, na direção tal!');
+	console.log('alt + I foi pressionado. Jogador está em tal local do mapa, na direção tal!');
 });
 
 keyboardJS.bind('alt + o', function(e) {
-	alert('alt + O foi pressionado. O objetivo do mapa é tal...');
+	console.log('alt + O foi pressionado. O objetivo do mapa é tal...');
 });
 
 keyboardJS.bind('alt + r', function(e) {
-	alert('alt + R foi pressionado. Os seguintes objetos estão ao meu redor...');
+	console.log('alt + R foi pressionado. Os seguintes objetos estão ao meu redor...');
 });
 
-keyboardJS.bind('space', function(e) {
-	alert('espaco foi pressionado. Jogador avançou um passo a frente');
+keyboardJS.bind('alt + w', function(e) {
+	console.log("walk");
+	navegacao.walk();
 });
 
 keyboardJS.bind('up', function(e) {
-	alert('up foi pressionado. Jogador mudou a direção para o norte');
+	console.log("up");
+	navegacao.up();
 });
 
 keyboardJS.bind('down', function(e) {
-	alert('down foi pressionado. Jogador mudou a direção para o sul');
+	console.log("down");
+	navegacao.down();
 });
 
 keyboardJS.bind('left', function(e) {
-	alert('left foi pressionado.  Jogador mudou a direção para o Oeste');
+	console.log("left");
+	navegacao.left();
 });
 
 keyboardJS.bind('right', function(e) {
-	alert('right foi pressionado.  Jogador mudou a direção para Leste');
+	console.log("right");
+	navegacao.right();
 });

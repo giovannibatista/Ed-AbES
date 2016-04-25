@@ -10,5 +10,5 @@ keyboardJS.bind('alt + i', function(e) {
 
 keyboardJS.bind('alt + r', function(e) {
 	alert('alt + V is pressed');
-	voltarMapasSalvos();
+	voltarListaMapas();
 });

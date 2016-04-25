@@ -1,17 +1,22 @@
 package br.com.edabes.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.edabes.dto.MapaDTO;
+import br.com.edabes.dto.MapaObjetoDTO;
+import br.com.edabes.service.MapaObjetoService;
 import br.com.edabes.service.MapaService;
 
 @Controller
@@ -19,7 +24,10 @@ public class NavegacaoController {
 
     @Autowired
     private MapaService mapaService;
-    
+
+    @Autowired
+    private MapaObjetoService mapaObjetoService;
+
     private ArrayList<MapaDTO> mapas;
 
     public NavegacaoController() {
@@ -33,7 +41,7 @@ public class NavegacaoController {
 	try {
 	    model = new ModelAndView("/Navegacao/Listar");
 	    mapas = mapaService.listarMapas();
-	    //mapas = new ArrayList<>(); PARA TESTE
+	    // mapas = new ArrayList<>(); PARA TESTE
 	    model.addObject("mapas", mapas);
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -67,19 +75,27 @@ public class NavegacaoController {
 	}
 	return model;
     }
-    
+
     @RequestMapping(value = "/Navegacao/Mapa/Objetos/{id}", method = RequestMethod.GET)
-    public ModelAndView carregarObjetosMapa (@PathVariable("id") Integer id, HttpSession session) {
-	ModelAndView model = null;
+    @ResponseBody
+    public String carregarObjetosMapa(@PathVariable("id") Integer idMapa, HttpSession session) {
+	List<MapaObjetoDTO> mapaObjetoDTOs = null;
+	String mapaObjetos = "";
 	try {
-	    model = new ModelAndView("/Navegacao/Mapa");
-	    model.addObject("idMapa", id);
+	    mapaObjetoDTOs = new ArrayList<MapaObjetoDTO>();
+
+	    MapaObjetoDTO mapaObjetoDTO = new MapaObjetoDTO();
+	    mapaObjetoDTO.setIdMapa(idMapa);
+
+	    mapaObjetoDTOs = mapaObjetoService.carregaObjetosMapa(mapaObjetoDTO);
+
+	    JSONArray array = new JSONArray(mapaObjetoDTOs);
+	    mapaObjetos = array.toString();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	return model;
+	return mapaObjetos;
     }
-
 
     @RequestMapping(value = "/Navegacao/Treinamento", method = RequestMethod.GET)
     public String iniciarTreinamento() {
@@ -94,14 +110,11 @@ public class NavegacaoController {
     }
 
     public ArrayList<MapaDTO> getMapas() {
-        return mapas;
+	return mapas;
     }
 
     public void setMapas(ArrayList<MapaDTO> mapas) {
-        this.mapas = mapas;
+	this.mapas = mapas;
     }
-    
-    
-
 
 }

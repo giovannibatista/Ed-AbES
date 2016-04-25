@@ -92,7 +92,7 @@ public class MapaMenuDesenhoServiceImpl implements MapaMenuDesenhoService {
 
 	for(Objeto obj : listaDeObjetos) {
 	    objetoDTO = new ObjetoDTO();
-	    
+
 	    if(tipoMapa == 1 && obj.getDescricao().equalsIgnoreCase("Ponto Fim")){
 		continue;
 	    }
@@ -112,7 +112,6 @@ public class MapaMenuDesenhoServiceImpl implements MapaMenuDesenhoService {
     }
 
     public ArrayList<ObjetoDTO> buscaListaObjetos(int idSubcategoria) {
-	// TODO Auto-generated method stub
 	return null;
     }
 

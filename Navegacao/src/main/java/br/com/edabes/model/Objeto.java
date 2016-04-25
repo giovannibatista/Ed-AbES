@@ -35,6 +35,9 @@ public class Objeto {
 
     @Column(name = "IMAGEM_MAPA")
     private String imagemMapa;
+    
+    @Column(name = "nivel")
+    private Integer nivel;
 
     public Objeto() {
     }
@@ -93,6 +96,14 @@ public class Objeto {
 
     public void setNome(String nome) {
 	this.nome = nome;
+    }
+    
+    public Integer getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(Integer nivel) {
+        this.nivel = nivel;
     }
 
     @Override

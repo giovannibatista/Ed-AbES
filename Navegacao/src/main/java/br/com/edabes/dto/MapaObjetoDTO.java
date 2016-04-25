@@ -1,57 +1,22 @@
-package br.com.edabes.model;
+package br.com.edabes.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+public class MapaObjetoDTO {
 
-@Entity
-@Table(name = "MAPA_OBJETO")
-public class MapaObjeto {
-
-    @Id
-    @Column(name = "ID_MAPA_OBJETO")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MAPA_OBJETO_SEQ")
-    @SequenceGenerator(name = "MAPA_OBJETO_SEQ", sequenceName = "MAPA_OBJETO_SEQ", allocationSize = 1)
     private Integer id;
-
-    @Column(name = "ID_MAPA")
     private Integer idMapa;
-
-    @OneToOne
-    @JoinColumn(name = "ID_OBJETO")
-    private Objeto objeto;
-
-    @Column(name = "PROFUNDIDADE")
+    private ObjetoDTO objeto;
     private Integer profundidade;
-
-    @Column(name = "AUDIO_DESCRICAO")
     private String audioDescricao;
-
-    @Column(name = "COORDENADA_X")
     private Integer coordenadaX;
-
-    @Column(name = "COORDENADA_Y")
     private Integer coordenadaY;
-
-    @Column(name = "ALTURA")
     private Integer altura;
-
-    @Column(name = "LARGURA")
     private Integer largura;
-
-    @Column(name = "ANGULO")
     private Integer angulo;
-
-    @Column(name = "ID_ARQUIVO_AUDIO")
     private Integer idArquivoAudio;
+    private boolean pontoInicial;
+    private boolean pontoFinal;
 
-    public MapaObjeto() {
+    public MapaObjetoDTO() {
     }
 
     public Integer getId() {
@@ -69,12 +34,12 @@ public class MapaObjeto {
     public void setIdMapa(Integer idMapa) {
 	this.idMapa = idMapa;
     }
-    
-    public Objeto getObjeto() {
+
+    public ObjetoDTO getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(Objeto objeto) {
+    public void setObjeto(ObjetoDTO objeto) {
         this.objeto = objeto;
     }
 
@@ -141,5 +106,33 @@ public class MapaObjeto {
     public void setIdArquivoAudio(Integer idArquivoAudio) {
 	this.idArquivoAudio = idArquivoAudio;
     }
+    
+    public boolean isPontoInicial() {
+        return pontoInicial;
+    }
+
+    public void setPontoInicial(boolean pontoInicial) {
+        this.pontoInicial = pontoInicial;
+    }
+
+    public boolean isPontoFinal() {
+        return pontoFinal;
+    }
+
+    public void setPontoFinal(boolean pontoFinal) {
+        this.pontoFinal = pontoFinal;
+    }
+
+    @Override
+    public String toString() {
+	return "MapaObjetoDTO [id=" + id + ", idMapa=" + idMapa + ", objeto=" + objeto.toString() + ", profundidade="
+		+ profundidade + ", audioDescricao=" + audioDescricao + ", coordenadaX=" + coordenadaX
+		+ ", coordenadaY=" + coordenadaY + ", altura=" + altura + ", largura=" + largura + ", angulo=" + angulo
+		+ ", idArquivoAudio=" + idArquivoAudio + "]";
+    }
+
+    
+    
+    
 
 }
