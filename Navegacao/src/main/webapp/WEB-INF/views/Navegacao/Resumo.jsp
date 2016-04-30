@@ -61,11 +61,6 @@
 						readonly="readonly" />
 				</p>
 				<p>
-					<label for="unidadeMedida">Unidade de medida : </label> <input
-						type="text" name="unidadeMedida" id="unidadeMedida"
-						value="${mapa.unidadeDeMedida}" readonly="readonly" />
-				</p>
-				<p>
 					<label for="andar">Andar : </label> <input type="text" name="andar"
 						id="andar" value="${mapa.andar}" readonly="readonly" />
 				</p>
