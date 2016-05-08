@@ -1,13 +1,13 @@
 navegacao = null;
 $(window).load(function() {
-	var idMapa = document.getElementById("idMapa").value;
+	var idMap = document.getElementById("idMapa").value;
 	var $mapa = $("#mapa");
 
 	//Instanciate the Map
-	var $mapaNavegacao = new Mapa($mapa);
+	var $mapaNavegacao = new Map($mapa);
 
 	$.ajax({
-		url: "/Navegacao/Mapa/Objetos/" + idMapa,
+		url: "/Navegacao/Mapa/Objetos/" + idMap,
 		type: "GET",
 		dataType: "json",
 		success: function(json) {
@@ -25,11 +25,13 @@ $(window).load(function() {
 					id: value.idMapaObjeto,
 					rotate : value.angulo,
 					arquivoAudio : value.idArquivoAudio,
-					pontoInicial : value.pontoInicial
+					pontoInicial : value.pontoInicial,
+					pontoFinal : value.pontoFinal,
+					nivel : value.objeto.nivel
 				});
 			});
 			//Instanciate the navigation
-			navegacao = new Navegacao($mapaNavegacao);
+			navigation = new Navigation($mapaNavegacao, json);
 		},
 		error: function() {
 			alert("Erro ao ler os objetos do mapa. Por favor, contate o administador!");
@@ -41,7 +43,7 @@ $(window).load(function() {
 });
 
 
-var Mapa = function($navigationMap){
+var Map = function($navigationMap){
 	var self = this;
 
 	var $mapRelative = $navigationMap;
@@ -55,9 +57,10 @@ var Mapa = function($navigationMap){
 			rotationDegrees: 90,
 			zindex: 8000
 	};
-	
-	self.objetoInicial = null;
 
+	self.startingPoint = null;
+	self.endPoint = null;
+	
 	self.init = function(params) {
 		//Extend options
 		self.params = $.extend(self.params, params);
@@ -74,6 +77,11 @@ var Mapa = function($navigationMap){
 		_createInnerMap();
 
 		return (self);
+	};
+
+	self.DirectionEnum = {
+			LEFT: 1,
+			RIGHT: 2
 	};
 
 	var _createInnerMap = function() {
@@ -102,21 +110,22 @@ var Mapa = function($navigationMap){
 			profundidade: objectProperties.z,
 			arquivoAudio : objectProperties.arquivoAudio,
 			pontoInicial: objectProperties.pontoInicial,
+			pontoFinal: objectProperties.pontoFinal,
 			x : objectProperties.x,
-			y : objectProperties.y
+			y : objectProperties.y,
+			nivel : objectProperties.nivel
 		});
-		
-		
+
+
 		var offset = {
 				left: objectProperties.x * self.scale,
 				top: objectProperties.y * self.scale
 		};
 
-
-		_addMob($obj, offset, (objectProperties.id == 0));
+		addMob($obj, offset, (objectProperties.id == 0));
 	}
 
-	var _addMob = function($obj, offset, isNew) {
+	var addMob = function($obj, offset, isNew) {
 		var imageSrc = $obj.data("image");
 		var width = $obj.data("width");
 		var height = $obj.data("height");
@@ -128,6 +137,7 @@ var Mapa = function($navigationMap){
 		var profundidade = $obj.data("profundidade");
 		var arquivoAudio = $obj.data("arquivoAudio");
 		var pontoInicial = $obj.data("pontoInicial");
+		var pontoFinal = $obj.data("pontoFinal");
 
 		//create the mob
 		var $mob = $("<div />");
@@ -155,8 +165,8 @@ var Mapa = function($navigationMap){
 			"coord-z": profundidade,
 			arquivoAudio: arquivoAudio
 		});
-		
-		
+
+
 
 		/*//bind events
 		$mob.bind("click", function() {
@@ -171,10 +181,15 @@ var Mapa = function($navigationMap){
 		//move to desired position
 		self.moveObj($mob, offset, rotate);
 
-		
+
 		if(pontoInicial == true){
-			console.log("x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
-			self.objetoInicial = $mob;
+			console.log("STARTING POINT: x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
+			self.startingPoint = $mob;
+		}
+		
+		if(pontoFinal == true){
+			console.log("END POINT: x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
+			self.endPoint = $mob;
 		}
 
 	}
@@ -342,5 +357,51 @@ var Mapa = function($navigationMap){
 		}
 
 		return (false);
+	}
+
+	self.rotateObjectAction = function(oject, directionEnum) {
+		//get current rotate
+		var rotate = oject.data("rotate");
+		var offset = {
+				top: oject.data("coord-y") * self.scale,
+				left: oject.data("coord-x") * self.scale
+		};
+
+		if(rotate == 0 && directionEnum == self.DirectionEnum.LEFT){
+			rotate = self.maxRotation;	
+		}
+
+		//sum the default degree
+		rotate = calculateRotateObject(directionEnum, rotate);
+
+		//check the greater value for Rotation
+		rotate = self.normalizeAngle(rotate);
+
+		//store the new value
+		oject.data("rotate", rotate);
+
+		//move the object
+		self.moveObj(oject, offset, rotate);
+	}
+
+	var calculateRotateObject = function(directionEnum, rotate){
+		switch (directionEnum) {
+			case self.DirectionEnum.LEFT:
+				rotate -= self.params.rotationDegrees;
+				break;
+			case self.DirectionEnum.RIGHT:
+				rotate += self.params.rotationDegrees;
+				break;
+			default:
+				break;
+		}
+		return rotate;
+	}
+	
+	self.normalizeAngle = function(angle) {
+		if (angle >= self.maxRotation) {
+			angle = 0;
+		}
+		return angle;
 	}
 };

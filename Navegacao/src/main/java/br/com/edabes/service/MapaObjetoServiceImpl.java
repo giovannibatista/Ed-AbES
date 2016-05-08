@@ -14,12 +14,12 @@ import br.com.edabes.model.MapaObjeto;
 
 @Service
 public class MapaObjetoServiceImpl implements MapaObjetoService {
-    
+
     @Autowired
     private MapaObjetoDAO mapaObjetoDAO;
-    
+
     private Converter<MapaObjeto, MapaObjetoDTO> converter;
-    
+
     public MapaObjetoServiceImpl() {
 	converter = new MapaObjetoConverter();
     }
@@ -28,25 +28,28 @@ public class MapaObjetoServiceImpl implements MapaObjetoService {
     public ArrayList<MapaObjetoDTO> carregaObjetosMapa(MapaObjetoDTO mapaObjetoDTO) {
 	ArrayList<MapaObjetoDTO> mapaObjetoDTOs = new ArrayList<MapaObjetoDTO>();
 	MapaObjeto mapaObjeto = null;
-	try{
+	try {
 	    mapaObjeto = converter.converteDTOParaModel(mapaObjetoDTO);
-	    
+
 	    List<MapaObjeto> mapaObjetos = mapaObjetoDAO.carregaObjetosMapa(mapaObjeto);
-	    
-	    //TODO: Refatorar para validar ponto inicial e final
-	    mapaObjetos.forEach(m -> mapaObjetoDTOs.add(validaPontoInicial(converter.converteModelParaDTO(m))));
-	    
-	}catch(Exception e){
+
+	    // TODO: Refatorar para validar ponto inicial e final
+	    mapaObjetos.forEach(m -> mapaObjetoDTOs.add(validaPontoInicialFinal(converter.converteModelParaDTO(m))));
+
+	} catch (Exception e) {
 	    throw e;
 	}
 	return mapaObjetoDTOs;
     }
-    
-    //TODO: Refatorar este método validaPontoInicial, levar em consideração a categoria do mesmo
-    public MapaObjetoDTO validaPontoInicial(MapaObjetoDTO mapaObjetoDTO){
-	if(mapaObjetoDTO.getObjeto().getDescricao().equalsIgnoreCase("ponto inicio")){
+
+    public MapaObjetoDTO validaPontoInicialFinal(MapaObjetoDTO mapaObjetoDTO) {
+	if (mapaObjetoDTO.getObjeto().getDescricao().equalsIgnoreCase("ponto inicio")) {
 	    mapaObjetoDTO.setPontoInicial(true);
 	}
+	if (mapaObjetoDTO.getObjeto().getDescricao().equalsIgnoreCase("ponto fim")) {
+	    mapaObjetoDTO.setPontoFinal(true);
+	}
+
 	return mapaObjetoDTO;
     }
 

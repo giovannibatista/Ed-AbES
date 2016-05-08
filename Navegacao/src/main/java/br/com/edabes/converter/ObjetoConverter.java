@@ -1,9 +1,13 @@
 package br.com.edabes.converter;
 
 import br.com.edabes.dto.ObjetoDTO;
+import br.com.edabes.dto.SubcategoriaDTO;
 import br.com.edabes.model.Objeto;
+import br.com.edabes.model.Subcategoria;
 
 public class ObjetoConverter implements Converter<Objeto, ObjetoDTO> {
+    
+    private Converter<Subcategoria, SubcategoriaDTO> subcategoriaConverter = new SubcategoriaConverter();
 
     @Override
     public ObjetoDTO converteModelParaDTO(Objeto model) {
@@ -15,7 +19,7 @@ public class ObjetoConverter implements Converter<Objeto, ObjetoDTO> {
 	objetoDTO.setLargura(model.getLargura());
 	objetoDTO.setImagemMapa(model.getImagemMapa());
 	objetoDTO.setNivel(model.getNivel());
-	objetoDTO.setSubcategoria(model.getSubcategoria());
+	objetoDTO.setSubcategoria(subcategoriaConverter.converteModelParaDTO(model.getSubcategoria()));
 	return objetoDTO;
     }
 
@@ -29,7 +33,7 @@ public class ObjetoConverter implements Converter<Objeto, ObjetoDTO> {
 	objeto.setLargura(dto.getLargura());
 	objeto.setImagemMapa(dto.getImagemMapa());
 	objeto.setNivel(dto.getNivel());
-	objeto.setSubcategoria(dto.getSubcategoria());
+	objeto.setSubcategoria(subcategoriaConverter.converteDTOParaModel(dto.getSubcategoria()));
 	return objeto;
     }
     

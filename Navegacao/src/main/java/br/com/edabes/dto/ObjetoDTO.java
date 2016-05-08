@@ -7,7 +7,7 @@ public class ObjetoDTO {
     private Integer largura;
     private String nome;
     private String descricao;
-    private Integer subcategoria;
+    private SubcategoriaDTO subcategoria;
     private String imagemMapa;
     private Integer nivel;
 
@@ -55,11 +55,11 @@ public class ObjetoDTO {
 	this.descricao = descricao;
     }
 
-    public Integer getSubcategoria() {
+    public SubcategoriaDTO getSubcategoria() {
 	return subcategoria;
     }
 
-    public void setSubcategoria(Integer subcategoria) {
+    public void setSubcategoria(SubcategoriaDTO subcategoria) {
 	this.subcategoria = subcategoria;
     }
 
@@ -82,7 +82,7 @@ public class ObjetoDTO {
     @Override
     public String toString() {
 	return "ObjetoDTO [id=" + id + ", altura=" + altura + ", largura=" + largura + ", nome=" + nome + ", descricao="
-		+ descricao + ", subcategoria=" + subcategoria + ", imagemMapa=" + imagemMapa + ", nivel=" + nivel
+		+ descricao + ", subcategoria=" + subcategoria.toString() + ", imagemMapa=" + imagemMapa + ", nivel=" + nivel
 		+ "]";
     }
 

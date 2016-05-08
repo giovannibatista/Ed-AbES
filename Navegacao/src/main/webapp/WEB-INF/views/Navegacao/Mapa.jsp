@@ -12,10 +12,10 @@
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
-	
+
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/mapa.js" />"></script>
-	
+
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />"></script>
 
@@ -30,14 +30,10 @@
 	</header>
 
 	<div role="main" id="conteudo">
-		<h1>Navegação no Mapa 1</h1>
-		<p>...</p>
-
+		<h1>Navegação no Mapa: ${mapa.nome}</h1>
 		<div id="blocoMapa">
-			<h2>Mapa 1</h2>
-
 			<div id="mapa">
-				<input type="hidden" id="idMapa" value="${idMapa}">
+				<input type="hidden" id="idMapa" value="${mapa.id}">
 			</div>
 		</div>
 	</div>

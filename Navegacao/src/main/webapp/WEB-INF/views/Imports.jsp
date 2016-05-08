@@ -17,7 +17,8 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/lib/bootstrap.min.js" />"></script>
 <script type="text/javascript"
-	src="<c:url value="/resources/js/lib/keyboard.min.js" />"></script>
+	src="<c:url value="/resources/js/lib/mousetrap.min.js" />"></script>
+
 <script type="text/javascript"
 	src="<c:url value="/resources/js/teclasatalhomenu.js" />"></script>
 <script type="text/javascript"

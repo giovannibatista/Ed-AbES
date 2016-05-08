@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,8 +32,9 @@ public class Objeto {
     @Column(name = "DESCRICAO")
     private String descricao;
 
-    @Column(name = "SUBCATEGORIA")
-    private Integer subcategoria;
+    @OneToOne
+    @JoinColumn(name = "SUBCATEGORIA")
+    private Subcategoria subcategoria;
 
     @Column(name = "IMAGEM_MAPA")
     private String imagemMapa;
@@ -74,11 +77,11 @@ public class Objeto {
 	this.descricao = descricao;
     }
 
-    public Integer getSubcategoria() {
+    public Subcategoria getSubcategoria() {
 	return subcategoria;
     }
 
-    public void setSubcategoria(Integer tipo) {
+    public void setSubcategoria(Subcategoria tipo) {
 	this.subcategoria = tipo;
     }
 

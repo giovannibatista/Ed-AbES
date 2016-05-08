@@ -69,7 +69,10 @@ public class NavegacaoController {
 	ModelAndView model = null;
 	try {
 	    model = new ModelAndView("/Navegacao/Mapa");
-	    model.addObject("idMapa", id);
+	    MapaDTO mapaConsulta = new MapaDTO();
+	    mapaConsulta.setId(id);
+	    MapaDTO mapaDTO = mapaService.consultaMapa(mapaConsulta);
+	    model.addObject("mapa", mapaDTO);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}

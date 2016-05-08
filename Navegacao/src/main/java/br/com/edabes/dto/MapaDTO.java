@@ -19,8 +19,6 @@ public class MapaDTO {
     private String nomeCriador;
     private String unidadeDeMedida;
     private Integer importadoPor;
-
-    @Column(name = "ANDAR")
     private String andar;
 
     public MapaDTO() {
