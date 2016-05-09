@@ -9,12 +9,16 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/Navegacao/mapa.css" />">
+	
+<script type="text/javascript"
+	src="<c:url value="/resources/js/Navegacao/audio.js" />"></script>
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/mapa.js" />"></script>
+
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />"></script>
@@ -31,6 +35,9 @@
 
 	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa: ${mapa.nome}</h1>
+		
+		<input type="button" id="playaudio" value="play" onclick="playAudio();" >
+		
 		<div id="blocoMapa">
 			<div id="mapa">
 				<input type="hidden" id="idMapa" value="${mapa.id}">

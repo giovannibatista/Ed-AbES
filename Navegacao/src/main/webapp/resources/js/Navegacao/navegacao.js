@@ -67,9 +67,13 @@ var Navigation = function(navigationMap, mapObjects) {
 		
 		if(!hasObject){
 			navigationMap.moveObj(player, offset, rotate);
+			var audio = new Audio('/resources/audio/footsteps-cut.mp3');
+			audio.play();
 			
 		}else{
-			alert("Tem objeto!");
+			var audio = new Audio('/resources/audio/collisions.mp3');
+			audio.play();
+			
 			hasObject = false;
 			player.attr("coord-x",nextOffset.left);
 			player.attr("coord-y",nextOffset.top);
