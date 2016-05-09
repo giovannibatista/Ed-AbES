@@ -1,6 +1,9 @@
 var Navigation = function(navigationMap, mapObjects) {
 	var self = this;
 	var player = navigationMap.startingPoint;
+	
+	var footstepAudio = '/resources/audio/footsteps-cut.mp3';
+	var collisionsAudio = '/resources/audio/collisions.mp3';
 
 	var mapObjects = mapObjects;
 
@@ -67,11 +70,11 @@ var Navigation = function(navigationMap, mapObjects) {
 		
 		if(!hasObject){
 			navigationMap.moveObj(player, offset, rotate);
-			var audio = new Audio('/resources/audio/footsteps-cut.mp3');
+			var audio = new Audio(footstepAudio);
 			audio.play();
 			
 		}else{
-			var audio = new Audio('/resources/audio/collisions.mp3');
+			var audio = new Audio(collisionsAudio);
 			audio.play();
 			
 			hasObject = false;
