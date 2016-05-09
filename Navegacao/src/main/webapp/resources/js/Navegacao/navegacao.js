@@ -121,6 +121,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		};
 		
 		
+		
 	}
 
 	self.getGoalMap = function(){
