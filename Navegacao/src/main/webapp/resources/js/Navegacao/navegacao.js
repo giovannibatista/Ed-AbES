@@ -7,29 +7,52 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	var mapObjects = mapObjects;
 
+	var lastBumpedObject = null;
+
 	var DirectionEnum = {
-			UP : 1,
-			DOWN : 2,
-			LEFT : 3,
-			RIGHT : 4
+		UP : 1,
+		DOWN : 2,
+		LEFT : 3,
+		RIGHT : 4,
+
+		getTextDirection : function(direction) {
+			var text = "";
+			switch (direction) {
+			case DirectionEnum.UP:
+				text = "Norte";
+				break;
+			case DirectionEnum.DOWN:
+				text = "Sul";
+				break;
+			case DirectionEnum.LEFT:
+				text = "Oeste";
+				break;
+			case DirectionEnum.RIGHT:
+				text = "Leste";
+				break;
+			default:
+				text = "Norte";
+			}
+			return text;
+		}
 	};
 
 	var offset = {
-			top : player.data("coord-y") * navigationMap.scale,
-			left : player.data("coord-x") * navigationMap.scale
+		top : player.data("coord-y") * navigationMap.scale,
+		left : player.data("coord-x") * navigationMap.scale
 	};
 
 	self.walk = function(forcedDirection) {
 		console.log("self.walk");
-		var rotate = player.data("rotate");
 		if (forcedDirection) {
 			self.direction = forcedDirection
 		} else {
+			var rotate = player.data("rotate");
 			self.direction = checkDirection(rotate);
 		}
 		var nextOffset = {
-				top : offset.top,
-				left : offset.left
+			top : offset.top,
+			left : offset.left
 		};
 
 		switch (self.direction) {
@@ -37,66 +60,67 @@ var Navigation = function(navigationMap, mapObjects) {
 			offset = {
 				top : offset.top - 32,
 				left : offset.left
-		};
+			};
 			break;
 		case DirectionEnum.DOWN:
 			offset = {
 				top : offset.top + 32,
 				left : offset.left
-		};
+			};
 			break;
 		case DirectionEnum.LEFT:
 			offset = {
 				top : offset.top,
 				left : offset.left - 32
-		};
+			};
 
 			break;
 		case DirectionEnum.RIGHT:
 			offset = {
 				top : offset.top,
 				left : offset.left + 32
-		};
+			};
 			break;
 		default:
 			offset = {
 				top : offset.top - 32,
 				left : offset.left
-		};
+			};
 
 		}
 		var hasObject = false;
 		hasObject = checkCollisions(offset);
 
-		if(!hasObject){
+		if (!hasObject) {
 			navigationMap.moveObj(player, offset, rotate);
 			var audio = new Audio(footstepAudio);
 			audio.play();
 
-		}else{
+		} else {
 			var audio = new Audio(collisionsAudio);
 			audio.play();
 
 			hasObject = false;
-			player.attr("coord-x",nextOffset.left);
-			player.attr("coord-y",nextOffset.top);
+			player.attr("coord-x", nextOffset.left);
+			player.attr("coord-y", nextOffset.top);
 
 			offset = {
-					top : nextOffset.top,
-					left : nextOffset.left
+				top : nextOffset.top,
+				left : nextOffset.left
 			};
 		}
 
-		/*		console.log("WALK OFFSET X "+  (offset.left/32));
-		console.log("WALK OFFSET Y "+  (offset.top/32));
-		console.log("PLAYER X "+  player.data("coord-x"));
-		console.log("PLAYER Y "+  player.data("coord-y"));
-
-
-		console.log("WALK NEXTOFFSET X "+  (nextOffset.left/32));
-		console.log("WALK NEXTOFFSET Y "+  (nextOffset.top/32));
-
-		 */		
+		/*
+		 * console.log("WALK OFFSET X "+ (offset.left/32)); console.log("WALK
+		 * OFFSET Y "+ (offset.top/32)); console.log("PLAYER X "+
+		 * player.data("coord-x")); console.log("PLAYER Y "+
+		 * player.data("coord-y"));
+		 * 
+		 * 
+		 * console.log("WALK NEXTOFFSET X "+ (nextOffset.left/32));
+		 * console.log("WALK NEXTOFFSET Y "+ (nextOffset.top/32));
+		 * 
+		 */
 	}
 
 	self.down = function() {
@@ -114,23 +138,50 @@ var Navigation = function(navigationMap, mapObjects) {
 				navigationMap.DirectionEnum.RIGHT);
 	}
 
-	self.getAroundObjects = function(){
+	self.getAroundObjects = function() {
 		var currentPos = {
-				top : player.data("coord-y"),
-				left : player.data("coord-x")
+			top : player.data("coord-y"),
+			left : player.data("coord-x")
 		};
-		
-		
-		
+
+		// TODO - Fazer a chamada para o Text to Speech
 	}
 
-	self.getGoalMap = function(){
-		
+	self.getGoalMap = function() {
+
+		// TODO - Fazer a chamada para o Text to Speech
 	}
 
-	self.getCurrentLocation = function(){
+	self.getCurrentLocation = function() {
+		var posX = player.data("coord-x");
+		var posY = player.data("coord-y");
+		var rotate = player.data("rotate");
+		var direction = checkDirection(rotate);
+		var textDirection = DirectionEnum.getTextDirection(direction);
+
+		console.log(
+				"Estou na direcao %s, coluna %s e linha %s.",
+				textDirection, posX, posY);
+
+		// TODO - Fazer a chamada para o Text to Speech
 	}
 
+	self.getLastBumpedObject = function() {
+		var name = lastBumpedObject.objeto.nome;
+		var description = lastBumpedObject.audioDescricao;
+		var posX = lastBumpedObject.coordenadaY;
+		var posY = lastBumpedObject.coordenadaX;
+		var height = lastBumpedObject.altura;
+		var width = lastBumpedObject.largura;
+
+		console
+				.log(
+						"Ultimo objeto colidido foi: Nome: %s Descricao: %s Posição X: %s Posicao Y: %s Altura: %s Largura: %s",
+						name, description, posX, posY, height, width);
+
+		// TODO - Fazer a chamada para o Text to Speech
+
+	}
 
 	function checkDirection(angle) {
 		angle = navigationMap.normalizeAngle(angle);
@@ -151,7 +202,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-		break;
+			break;
 		}
 		return direction;
 	}
@@ -175,7 +226,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-		break;
+			break;
 		}
 		return direction;
 	}
@@ -184,19 +235,26 @@ var Navigation = function(navigationMap, mapObjects) {
 		var hasObjectX = false;
 		var hasObjectY = false;
 		var hasObject = false;
-		//debugger;
+		// debugger;
 		var nextPosX = offset.left / 32;
 		var nextPosY = offset.top / 32;
 		$.each(mapObjects, function(key, value) {
-			//console.log("Nome: " + value.objeto.nome + " X" + value.coordenadaX + " Y" + value.coordenadaY + " nivel:" + value.objeto.nivel + "value.objeto.nivel == 0?" + value.objeto.nivel == 0 );
-			//TODO - Validar este ponto inicial e final em outro lugar...
-			if((value.pontoInicial == false && value.pontoFinal == false) && value.objeto.nivel != 0){
-				hasObjectY = validateCoordinate(nextPosY, value.coordenadaY, value.altura);
-				hasObjectX = validateCoordinate(nextPosX, value.coordenadaX, value.largura);
+			// console.log("Nome: " + value.objeto.nome + " X" +
+			// value.coordenadaX + " Y" + value.coordenadaY + " nivel:" +
+			// value.objeto.nivel + "value.objeto.nivel == 0?" +
+			// value.objeto.nivel == 0 );
+			// TODO - Validar este ponto inicial e final em outro lugar...
+			if ((value.pontoInicial == false && value.pontoFinal == false)
+					&& value.objeto.nivel != 0) {
+				hasObjectY = validateCoordinate(nextPosY, value.coordenadaY,
+						value.altura);
+				hasObjectX = validateCoordinate(nextPosX, value.coordenadaX,
+						value.largura);
 			}
 
-			if(hasObjectX && hasObjectY){
+			if (hasObjectX && hasObjectY) {
 				hasObject = true;
+				lastBumpedObject = value;
 				return false;
 			}
 		});
@@ -204,7 +262,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	function validateCoordinate(nextPos, objectPos, measurements) {
-		//debugger;
+		// debugger;
 		var hasObject = false;
 
 		if (nextPos == objectPos) {

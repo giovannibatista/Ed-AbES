@@ -27,7 +27,7 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/js/acessibilidade.js" />"></script>
 
-<script src='//vws.responsivevoice.com/v/e?key=RYUrYzDy'></script>
+<!-- <script src='//vws.responsivevoice.com/v/e?key=RYUrYzDy'></script> -->
 
 
 

@@ -2,8 +2,6 @@ package br.com.edabes.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 import org.springframework.stereotype.Component;
 
 @Component
