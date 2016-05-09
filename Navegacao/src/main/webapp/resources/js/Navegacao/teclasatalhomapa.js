@@ -13,24 +13,23 @@ Mousetrap.bind('alt+p', function(e) {
 	console.log('alt+P foi pressionado. Audio parado/retomado');
 });
 
-Mousetrap.bind('alt+t', function(e) {
-	console.log('alt+T foi pressionado. Porta Aberta');
-});
-
 Mousetrap.bind('alt+l', function(e) {
 	console.log('alt+l foi pressionado. Reproduzir lod de navegação');
 });
 
 Mousetrap.bind('alt+i', function(e) {
 	console.log('alt+I foi pressionado. Jogador está em tal local do mapa, na direção tal!');
+	navigation.getCurrentLocation();
 });
 
 Mousetrap.bind('alt+o', function(e) {
 	console.log('alt+O foi pressionado. O objetivo do mapa é tal...');
+	navigation.getGoalMap();
 });
 
 Mousetrap.bind('alt+r', function(e) {
 	console.log('alt+R foi pressionado. Os seguintes objetos estão ao meu redor...');
+	navigation.getAroundObjects();
 });
 
 Mousetrap.bind('up', function(e) {
