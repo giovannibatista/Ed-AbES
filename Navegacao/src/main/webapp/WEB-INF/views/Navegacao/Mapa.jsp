@@ -36,8 +36,6 @@
 	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa: ${mapa.nome}</h1>
 		
-		<input type="button" id="playaudio" value="play" onclick="playAudio();" >
-		
 		<div id="blocoMapa">
 			<div id="mapa">
 				<input type="hidden" id="idMapa" value="${mapa.id}">

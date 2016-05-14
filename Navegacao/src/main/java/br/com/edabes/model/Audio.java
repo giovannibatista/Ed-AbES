@@ -1,4 +1,4 @@
-package edabes.entidades;
+package br.com.edabes.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ public class Audio {
     @Column(name = "ID_ARQUIVO_AUDIO")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UPLOAD_ARQUIVO_AUDIOS_SEQ")
     @SequenceGenerator(name = "UPLOAD_ARQUIVO_AUDIOS_SEQ", sequenceName = "UPLOAD_ARQUIVO_AUDIOS_SEQ", allocationSize = 1)
-    private int id;
+    private Integer id;
 
     @Column(name = "arquivo")
     private String arquivo;
@@ -28,11 +28,11 @@ public class Audio {
 
     }
 
-    public int getId() {
+    public Integer getId() {
 	return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
 	this.id = id;
     }
 

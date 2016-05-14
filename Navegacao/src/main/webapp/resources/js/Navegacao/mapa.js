@@ -1,10 +1,8 @@
-navegacao = null;
+var navigation = null;
 $(window).load(function() {
-	var idMap = document.getElementById("idMapa").value;
-	var $mapa = $("#mapa");
-
-	//Instanciate the Map
-	var $mapaNavegacao = new Map($mapa);
+	var idMap = document.getElementById("idMapa").value,
+	$mapa = $("#mapa"),
+	$mapaNavegacao = new Map($mapa);//Instanciate the Map
 
 	$.ajax({
 		url: "/Navegacao/Mapa/Objetos/" + idMap,
@@ -40,14 +38,15 @@ $(window).load(function() {
 
 	//initiate the map
 	$mapaNavegacao.init();
+	//initiate the navigation
+	
+	
 });
 
-
 var Map = function($navigationMap){
-	var self = this;
-
-	var $mapRelative = $navigationMap;
-	var $map = null;
+	var self = this,
+	$mapRelative = $navigationMap,
+	$map = null
 
 	self.maxRotation = 360;
 
@@ -60,7 +59,11 @@ var Map = function($navigationMap){
 
 	self.startingPoint = null;
 	self.endPoint = null;
+	self.maxDepth = 0;
+	self.maxX = 0;
+	self.maxY = 0;
 	
+
 	self.init = function(params) {
 		//Extend options
 		self.params = $.extend(self.params, params);
@@ -75,7 +78,7 @@ var Map = function($navigationMap){
 
 		//Create inner map object
 		_createInnerMap();
-
+		
 		return (self);
 	};
 
@@ -124,23 +127,25 @@ var Map = function($navigationMap){
 
 		addMob($obj, offset, (objectProperties.id == 0));
 	}
-
+	
 	var addMob = function($obj, offset, isNew) {
+		console.log("oi");
 		var imageSrc = $obj.data("image");
-		var width = $obj.data("width");
-		var height = $obj.data("height");
-		var objeto = $obj.data("objeto");
-		var id = $obj.data("id");
-		var title = $obj.data("title");
-		var nome = $obj.data("nome");
-		var rotate = $obj.data("rotate");
-		var profundidade = $obj.data("profundidade");
-		var arquivoAudio = $obj.data("arquivoAudio");
-		var pontoInicial = $obj.data("pontoInicial");
-		var pontoFinal = $obj.data("pontoFinal");
-
-		//create the mob
-		var $mob = $("<div />");
+		width = $obj.data("width"),
+		height = $obj.data("height"),
+		objeto = $obj.data("objeto"),
+		id = $obj.data("id"),
+		title = $obj.data("title"),
+		nome = $obj.data("nome"),
+		rotate = $obj.data("rotate"),
+		profundidade = $obj.data("profundidade"),
+		arquivoAudio = $obj.data("arquivoAudio"),
+		pontoInicial = $obj.data("pontoInicial"),
+		pontoFinal = $obj.data("pontoFinal"),
+		x = $obj.data("x"),
+		y = $obj.data("y"),
+		$mob = $("<div />"); 		//create the mob
+		
 		$mob.addClass("mobs");
 		$mob.css({
 			"background-image": "url("+imageSrc+")",
@@ -163,36 +168,46 @@ var Map = function($navigationMap){
 			nome: nome,
 			rotate: rotate,
 			"coord-z": profundidade,
-			arquivoAudio: arquivoAudio
+			arquivoAudio: arquivoAudio,
+			x : x,
+			y : y
 		});
 
-
-
-		/*//bind events
-		$mob.bind("click", function() {
-			var $obj = $(this);
-
-			_selectObj($obj);
-		});
-		 */
 		//append into map body
 		$map.append($mob);
 
 		//move to desired position
 		self.moveObj($mob, offset, rotate);
-
+		
+		
+		self.maxDepth = getMaximumValue($mob, "profundidae", maxDepth);
+		//TODO : Refatorar para pegar o X+Largura e Y+Altura...
+		self.maxX = getMaximumValue($mob, "x", self.maxX);
+		self.maxY = getMaximumValue($mob, "y", self.maxY);
 
 		if(pontoInicial == true){
 			console.log("STARTING POINT: x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
 			self.startingPoint = $mob;
 		}
-		
+
 		if(pontoFinal == true){
 			console.log("END POINT: x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
 			self.endPoint = $mob;
 		}
 
 	}
+	
+
+	var getMaximumValue = function($mob, prop, maxValue) {
+		var value = $mob.data(prop);
+
+		if(maxValue < value){
+			maxValue = value;
+		}
+
+		return maxValue;
+	}	
+
 
 	var _getProperZIndex = function(objIndex) {
 		var index = objIndex;
@@ -209,43 +224,6 @@ var Map = function($navigationMap){
 
 		return (index);
 	}
-
-	/*var _selectObj = function($obj) {
-		if ($obj.is(self.objSelection)) {
-			return;
-		}
-
-		_unSelectObj();
-
-		//append reference for new selected one
-		self.objSelection = $obj;
-
-		//add opacity class
-		self.objSelection.addClass("objSelected");
-
-		//initiate the helper options
-		_createOptionHelpers($obj);
-
-		//make it draggable
-		self.objSelection.draggable({
-			zIndex: 10000,
-			start: function(event, ui) {
-				var $obj = $(this);
-
-				//clear the translate
-				$obj.css({
-					transform: "translate3d(0, 0, 0)"
-				});
-			},
-			stop: function(event, ui) {
-				//get left and top
-				var pos = ui.position;
-
-				//move the obj
-				self.moveObj(self.objSelection, pos, self.objSelection.data("rotate"));
-			}
-		});
-	}*/
 
 	self.moveObj = function($obj, offset, rotate) {
 		var profundidade = $obj.data("coord-z");
@@ -386,22 +364,24 @@ var Map = function($navigationMap){
 
 	var calculateRotateObject = function(directionEnum, rotate){
 		switch (directionEnum) {
-			case self.DirectionEnum.LEFT:
-				rotate -= self.params.rotationDegrees;
-				break;
-			case self.DirectionEnum.RIGHT:
-				rotate += self.params.rotationDegrees;
-				break;
-			default:
-				break;
+		case self.DirectionEnum.LEFT:
+			rotate -= self.params.rotationDegrees;
+			break;
+		case self.DirectionEnum.RIGHT:
+			rotate += self.params.rotationDegrees;
+			break;
+		default:
+			break;
 		}
 		return rotate;
 	}
-	
+
 	self.normalizeAngle = function(angle) {
 		if (angle >= self.maxRotation) {
 			angle = 0;
 		}
 		return angle;
 	}
+	
+	var getMax
 };

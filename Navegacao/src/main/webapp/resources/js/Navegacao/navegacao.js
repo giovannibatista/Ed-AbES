@@ -1,58 +1,55 @@
 var Navigation = function(navigationMap, mapObjects) {
-	var self = this;
-	var player = navigationMap.startingPoint;
+	var self = this,
+	player = navigationMap.startingPoint,
+	footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3',
+	mapObjects = mapObjects,
+	lastBumpedObject = null;
+	DirectionEnum = {
+			UP : 1,
+			DOWN : 2,
+			LEFT : 3,
+			RIGHT : 4,
 
-	var footstepAudio = '/resources/audio/footsteps-cut.mp3';
-	var collisionsAudio = '/resources/audio/collisions.mp3';
-
-	var mapObjects = mapObjects;
-
-	var lastBumpedObject = null;
-
-	var DirectionEnum = {
-		UP : 1,
-		DOWN : 2,
-		LEFT : 3,
-		RIGHT : 4,
-
-		getTextDirection : function(direction) {
-			var text = "";
-			switch (direction) {
-			case DirectionEnum.UP:
-				text = "Norte";
-				break;
-			case DirectionEnum.DOWN:
-				text = "Sul";
-				break;
-			case DirectionEnum.LEFT:
-				text = "Oeste";
-				break;
-			case DirectionEnum.RIGHT:
-				text = "Leste";
-				break;
-			default:
-				text = "Norte";
+			getTextDirection : function(direction) {
+				var text = "";
+				switch (direction) {
+				case DirectionEnum.UP:
+					text = "Norte";
+					break;
+				case DirectionEnum.DOWN:
+					text = "Sul";
+					break;
+				case DirectionEnum.LEFT:
+					text = "Oeste";
+					break;
+				case DirectionEnum.RIGHT:
+					text = "Leste";
+					break;
+				default:
+					text = "Norte";
+				}
+				return text;
 			}
-			return text;
-		}
+	},
+	offset = {
+			top : player.data("coord-y") * navigationMap.scale,
+			left : player.data("coord-x") * navigationMap.scale
 	};
-
-	var offset = {
-		top : player.data("coord-y") * navigationMap.scale,
-		left : player.data("coord-x") * navigationMap.scale
-	};
-
+	
+	debugger;
+	player.attr("profunidade",navigationMap.maxDepth + 1);
+	
 	self.walk = function(forcedDirection) {
 		console.log("self.walk");
 		if (forcedDirection) {
 			self.direction = forcedDirection
 		} else {
-			var rotate = player.data("rotate");
 			self.direction = checkDirection(rotate);
 		}
-		var nextOffset = {
-			top : offset.top,
-			left : offset.left
+		var rotate = player.data("rotate"),
+		nextOffset = {
+				top : offset.top,
+				left : offset.left
 		};
 
 		switch (self.direction) {
@@ -60,41 +57,41 @@ var Navigation = function(navigationMap, mapObjects) {
 			offset = {
 				top : offset.top - 32,
 				left : offset.left
-			};
+		};
 			break;
 		case DirectionEnum.DOWN:
 			offset = {
 				top : offset.top + 32,
 				left : offset.left
-			};
+		};
 			break;
 		case DirectionEnum.LEFT:
 			offset = {
 				top : offset.top,
 				left : offset.left - 32
-			};
+		};
 
 			break;
 		case DirectionEnum.RIGHT:
 			offset = {
 				top : offset.top,
 				left : offset.left + 32
-			};
+		};
 			break;
 		default:
 			offset = {
 				top : offset.top - 32,
 				left : offset.left
-			};
+		};
 
 		}
 		var hasObject = false;
 		hasObject = checkCollisions(offset);
 
 		if (!hasObject) {
-			navigationMap.moveObj(player, offset, rotate);
 			var audio = new Audio(footstepAudio);
 			audio.play();
+			navigationMap.moveObj(player, offset, rotate);
 
 		} else {
 			var audio = new Audio(collisionsAudio);
@@ -105,8 +102,8 @@ var Navigation = function(navigationMap, mapObjects) {
 			player.attr("coord-y", nextOffset.top);
 
 			offset = {
-				top : nextOffset.top,
-				left : nextOffset.left
+					top : nextOffset.top,
+					left : nextOffset.left
 			};
 		}
 
@@ -140,9 +137,12 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.getAroundObjects = function() {
 		var currentPos = {
-			top : player.data("coord-y"),
-			left : player.data("coord-x")
+				top : player.data("coord-y"),
+				left : player.data("coord-x")
 		};
+		
+		
+		
 
 		// TODO - Fazer a chamada para o Text to Speech
 	}
@@ -154,30 +154,23 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.getCurrentLocation = function() {
 		var posX = player.data("coord-x");
-		var posY = player.data("coord-y");
-		var rotate = player.data("rotate");
-		var direction = checkDirection(rotate);
-		var textDirection = DirectionEnum.getTextDirection(direction);
+		posY = player.data("coord-y"), rotate = player.data("rotate"),
+		direction = checkDirection(rotate),
+		textDirection = DirectionEnum.getTextDirection(direction);
 
-		console.log(
-				"Estou na direcao %s, coluna %s e linha %s.",
+		console.log("Estou na direcao %s, coluna %s e linha %s.",
 				textDirection, posX, posY);
 
 		// TODO - Fazer a chamada para o Text to Speech
 	}
 
 	self.getLastBumpedObject = function() {
-		var name = lastBumpedObject.objeto.nome;
-		var description = lastBumpedObject.audioDescricao;
-		var posX = lastBumpedObject.coordenadaY;
-		var posY = lastBumpedObject.coordenadaX;
-		var height = lastBumpedObject.altura;
-		var width = lastBumpedObject.largura;
+		var name = lastBumpedObject.objeto.nome, description = lastBumpedObject.audioDescricao, posX = lastBumpedObject.coordenadaY, posY = lastBumpedObject.coordenadaX, height = lastBumpedObject.altura, width = lastBumpedObject.largura;
 
 		console
-				.log(
-						"Ultimo objeto colidido foi: Nome: %s Descricao: %s Posição X: %s Posicao Y: %s Altura: %s Largura: %s",
-						name, description, posX, posY, height, width);
+		.log(
+				"Ultimo objeto colidido foi: Nome: %s Descricao: %s Posição X: %s Posicao Y: %s Altura: %s Largura: %s",
+				name, description, posX, posY, height, width);
 
 		// TODO - Fazer a chamada para o Text to Speech
 
@@ -202,7 +195,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-			break;
+		break;
 		}
 		return direction;
 	}
@@ -226,18 +219,15 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-			break;
+		break;
 		}
 		return direction;
 	}
 
 	function checkCollisions(offset) {
 		var hasObjectX = false;
-		var hasObjectY = false;
-		var hasObject = false;
-		// debugger;
-		var nextPosX = offset.left / 32;
-		var nextPosY = offset.top / 32;
+		hasObjectY = false, hasObject = false, nextPosX = offset.left / 32,
+		nextPosY = offset.top / 32;
 		$.each(mapObjects, function(key, value) {
 			// console.log("Nome: " + value.objeto.nome + " X" +
 			// value.coordenadaX + " Y" + value.coordenadaY + " nivel:" +
