@@ -41,16 +41,16 @@ var Navigation = function(navigationMap, mapObjects) {
 	
 	self.walk = function(forcedDirection) {
 		console.log("self.walk");
+		var rotate = player.data("rotate"),
+		nextOffset = {
+			top : offset.top,
+			left : offset.left
+		};
 		if (forcedDirection) {
 			self.direction = forcedDirection
 		} else {
 			self.direction = checkDirection(rotate);
 		}
-		var rotate = player.data("rotate"),
-		nextOffset = {
-				top : offset.top,
-				left : offset.left
-		};
 
 		switch (self.direction) {
 		case DirectionEnum.UP:

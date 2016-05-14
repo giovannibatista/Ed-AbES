@@ -169,6 +169,7 @@ var Map = function($navigationMap){
 			rotate: rotate,
 			"coord-z": profundidade,
 			arquivoAudio: arquivoAudio,
+			profundidade: profundidade,
 			x : x,
 			y : y
 		});
@@ -180,7 +181,7 @@ var Map = function($navigationMap){
 		self.moveObj($mob, offset, rotate);
 		
 		
-		self.maxDepth = getMaximumValue($mob, "profundidae", maxDepth);
+		self.maxDepth = getMaximumValue($mob, "profundidade", self.maxDepth);
 		//TODO : Refatorar para pegar o X+Largura e Y+Altura...
 		self.maxX = getMaximumValue($mob, "x", self.maxX);
 		self.maxY = getMaximumValue($mob, "y", self.maxY);
@@ -383,5 +384,4 @@ var Map = function($navigationMap){
 		return angle;
 	}
 	
-	var getMax
 };
