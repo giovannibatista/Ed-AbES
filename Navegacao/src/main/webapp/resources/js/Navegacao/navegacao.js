@@ -198,7 +198,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	function describeObject(objectMap) {
 
 		var textToSpeech = "Objeto " + objectMap.objeto.nome +", " + (objectMap.audioDescricao ? " Descricao: " + objectMap.audioDescricao : "Sem descricao") + 
-		". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". Como tamanho: Altura: " + objectMap.altura + " Largura: " + objectMap.largura ,
+		". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". O objeto possui " + objectMap.altura + " de altura e " + objectMap.largura + " de largura." ,
 		pathAudioFile = objectMap.idArquivoAudio;
 
 		console.log(textToSpeech);
