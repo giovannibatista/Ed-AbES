@@ -36,15 +36,17 @@ var Navigation = function(navigationMap, mapObjects) {
 			left : player.data("coord-x") * navigationMap.scale
 	};
 	
-	debugger;
-	player.attr("profunidade",navigationMap.maxDepth + 1);
-	
+	player.data({
+		"coord-z": navigationMap.maxZ + 1
+	});
+
 	self.walk = function(forcedDirection) {
 		console.log("self.walk");
 		var rotate = player.data("rotate"),
+		coordZ = navigationMap.maxZ + 1,
 		nextOffset = {
-			top : offset.top,
-			left : offset.left
+				top : offset.top,
+				left : offset.left
 		};
 		if (forcedDirection) {
 			self.direction = forcedDirection
@@ -98,26 +100,12 @@ var Navigation = function(navigationMap, mapObjects) {
 			audio.play();
 
 			hasObject = false;
-			player.attr("coord-x", nextOffset.left);
-			player.attr("coord-y", nextOffset.top);
 
 			offset = {
 					top : nextOffset.top,
 					left : nextOffset.left
 			};
 		}
-
-		/*
-		 * console.log("WALK OFFSET X "+ (offset.left/32)); console.log("WALK
-		 * OFFSET Y "+ (offset.top/32)); console.log("PLAYER X "+
-		 * player.data("coord-x")); console.log("PLAYER Y "+
-		 * player.data("coord-y"));
-		 * 
-		 * 
-		 * console.log("WALK NEXTOFFSET X "+ (nextOffset.left/32));
-		 * console.log("WALK NEXTOFFSET Y "+ (nextOffset.top/32));
-		 * 
-		 */
 	}
 
 	self.down = function() {
@@ -136,21 +124,36 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getAroundObjects = function() {
+		debugger;
 		var currentPos = {
-				top : player.data("coord-y"),
-				left : player.data("coord-x")
+				y : player.data("coord-y"),
+				x : player.data("coord-x")
 		};
-		
-		
-		
 
-		// TODO - Fazer a chamada para o Text to Speech
+		var objects = [];
+
+		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
+		objects.push(getObjectByCoordinated((currentPos.x + 1), currentPos.y)); // RIGHT
+		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y + 1))); // DOWN
+		objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
+
+		var i,
+		length = objects.length;
+		for ( i = 0	; i < length; i++ ) {
+			if ( objects[i] !== null && objects[i] !== undefined ){
+				describeObject(objects[i]);
+			}
+		}
+
 	}
+
 
 	self.getGoalMap = function() {
 
 		// TODO - Fazer a chamada para o Text to Speech
 	}
+
+
 
 	self.getCurrentLocation = function() {
 		var posX = player.data("coord-x");
@@ -158,23 +161,71 @@ var Navigation = function(navigationMap, mapObjects) {
 		direction = checkDirection(rotate),
 		textDirection = DirectionEnum.getTextDirection(direction);
 
-		console.log("Estou na direcao %s, coluna %s e linha %s.",
+		var textToSpeech = ("Estou na direcao %s, coluna %s e linha %s.",
 				textDirection, posX, posY);
+
+		console.log(textToSpeech);
 
 		// TODO - Fazer a chamada para o Text to Speech
 	}
 
 	self.getLastBumpedObject = function() {
-		var name = lastBumpedObject.objeto.nome, description = lastBumpedObject.audioDescricao, posX = lastBumpedObject.coordenadaY, posY = lastBumpedObject.coordenadaX, height = lastBumpedObject.altura, width = lastBumpedObject.largura;
 
-		console
-		.log(
-				"Ultimo objeto colidido foi: Nome: %s Descricao: %s Posição X: %s Posicao Y: %s Altura: %s Largura: %s",
-				name, description, posX, posY, height, width);
+		describeObject(lastBumpedObject);
+
+	}
+
+	function getObjectByCoordinated (x, y) {
+		var object = null;
+
+		$.each(mapObjects, function(key, value) {
+			if (value.pontoInicial == false && value.objeto.nivel != 0) {
+				hasObjectY = validateCoordinate(y, value.coordenadaY,
+						value.altura);
+				hasObjectX = validateCoordinate(x, value.coordenadaX,
+						value.largura);
+			}
+
+			if (hasObjectX && hasObjectY) {
+				object = value;
+				return false;
+			}
+		});
+
+		return object;
+	}
+
+	function describeObject(objectMap) {
+
+		var textToSpeech = "Objeto " + objectMap.objeto.nome +", " + (objectMap.audioDescricao ? " Descricao: " + objectMap.audioDescricao : "Sem descricao") + 
+		". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". Como tamanho: Altura: " + objectMap.altura + " Largura: " + objectMap.largura ,
+		pathAudioFile = objectMap.idArquivoAudio;
+
+		console.log(textToSpeech);
 
 		// TODO - Fazer a chamada para o Text to Speech
 
+		if(pathAudioFile){
+			var audio = new Audio(pathAudioFile);
+			audio.play();
+		}
 	}
+
+	/*height: value.altura,
+	width: value.largura,
+	idObject: value.objeto.id,
+	image: value.objeto.imagemMapa,
+	x: value.coordenadaX,
+	y: value.coordenadaY,
+	z: value.profundidade,
+	title: value.audioDescricao,
+	nome: value.objeto.nome,
+	id: value.idMapaObjeto,
+	rotate : value.angulo,
+	arquivoAudio : value.idArquivoAudio,
+	pontoInicial : value.pontoInicial,
+	pontoFinal : value.pontoFinal,
+	nivel : value.objeto.nivel*/
 
 	function checkDirection(angle) {
 		angle = navigationMap.normalizeAngle(angle);
