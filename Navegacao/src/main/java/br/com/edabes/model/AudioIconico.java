@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "UPLOAD_ARQUIVO_AUDIOS")
-public class Audio {
+public class AudioIconico {
 
     @Id
     @Column(name = "ID_ARQUIVO_AUDIO")
@@ -24,7 +24,7 @@ public class Audio {
     @Column(name = "descricao")
     private String descricao;
 
-    public Audio() {
+    public AudioIconico() {
 
     }
 

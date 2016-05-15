@@ -35,7 +35,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			top : player.data("coord-y") * navigationMap.scale,
 			left : player.data("coord-x") * navigationMap.scale
 	};
-	
+
 	player.data({
 		"coord-z": navigationMap.maxZ + 1
 	});
@@ -45,8 +45,8 @@ var Navigation = function(navigationMap, mapObjects) {
 		var rotate = player.data("rotate"),
 		coordZ = navigationMap.maxZ + 1,
 		nextOffset = {
-				top : offset.top,
-				left : offset.left
+			top : offset.top,
+			left : offset.left
 		};
 		if (forcedDirection) {
 			self.direction = forcedDirection
@@ -91,16 +91,12 @@ var Navigation = function(navigationMap, mapObjects) {
 		hasObject = checkCollisions(offset);
 
 		if (!hasObject) {
-			var audio = new Audio(footstepAudio);
-			audio.play();
+			playAudioIconic(footstepAudio);
 			navigationMap.moveObj(player, offset, rotate);
 
 		} else {
-			var audio = new Audio(collisionsAudio);
-			audio.play();
-
+			playAudioIconic(collisionsAudio);
 			hasObject = false;
-
 			offset = {
 					top : nextOffset.top,
 					left : nextOffset.left
@@ -199,33 +195,25 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		var textToSpeech = "Objeto " + objectMap.objeto.nome +", " + (objectMap.audioDescricao ? " Descricao: " + objectMap.audioDescricao : "Sem descricao") + 
 		". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". O objeto possui " + objectMap.altura + " de altura e " + objectMap.largura + " de largura." ,
-		pathAudioFile = objectMap.idArquivoAudio;
+		pathAudioFile = objectMap.audioIconico.arquivo;
 
 		console.log(textToSpeech);
 
 		// TODO - Fazer a chamada para o Text to Speech
 
 		if(pathAudioFile){
-			var audio = new Audio(pathAudioFile);
-			audio.play();
+			playAudioIconic(pathAudioFile);
 		}
 	}
 
-	/*height: value.altura,
-	width: value.largura,
-	idObject: value.objeto.id,
-	image: value.objeto.imagemMapa,
-	x: value.coordenadaX,
-	y: value.coordenadaY,
-	z: value.profundidade,
-	title: value.audioDescricao,
-	nome: value.objeto.nome,
-	id: value.idMapaObjeto,
-	rotate : value.angulo,
-	arquivoAudio : value.idArquivoAudio,
-	pontoInicial : value.pontoInicial,
-	pontoFinal : value.pontoFinal,
-	nivel : value.objeto.nivel*/
+	/*
+	 * height: value.altura, width: value.largura, idObject: value.objeto.id,
+	 * image: value.objeto.imagemMapa, x: value.coordenadaX, y:
+	 * value.coordenadaY, z: value.profundidade, title: value.audioDescricao,
+	 * nome: value.objeto.nome, id: value.idMapaObjeto, rotate : value.angulo,
+	 * arquivoAudio : value.idArquivoAudio, pontoInicial : value.pontoInicial,
+	 * pontoFinal : value.pontoFinal, nivel : value.objeto.nivel
+	 */
 
 	function checkDirection(angle) {
 		angle = navigationMap.normalizeAngle(angle);
@@ -296,6 +284,12 @@ var Navigation = function(navigationMap, mapObjects) {
 			if (hasObjectX && hasObjectY) {
 				hasObject = true;
 				lastBumpedObject = value;
+
+				if (value.audioIconico.arquivo){
+					collisionsAudio = value.audioIconico.arquivo;
+				}else{
+					collisionsAudio = '/resources/audio/collisions.mp3'
+				}
 				return false;
 			}
 		});
@@ -316,6 +310,16 @@ var Navigation = function(navigationMap, mapObjects) {
 			hasObject = true;
 		}
 		return hasObject;
+	}
+	
+	function playAudioIconic(audioPath){
+		var audio = new Audio(audioPath);
+		audio.play();
+		
+		audio.onerror = function() {
+		    console.log("Erro ao reproduzir audio: " + audioPath);
+		};
+		
 	}
 
 };

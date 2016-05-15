@@ -48,8 +48,9 @@ public class MapaObjeto {
     @Column(name = "ANGULO")
     private Integer angulo;
 
-    @Column(name = "ID_ARQUIVO_AUDIO")
-    private Integer idArquivoAudio;
+    @OneToOne
+    @JoinColumn(name = "ID_ARQUIVO_AUDIO")
+    private AudioIconico audioIconico;
 
     public MapaObjeto() {
     }
@@ -69,13 +70,13 @@ public class MapaObjeto {
     public void setIdMapa(Integer idMapa) {
 	this.idMapa = idMapa;
     }
-    
+
     public Objeto getObjeto() {
-        return objeto;
+	return objeto;
     }
 
     public void setObjeto(Objeto objeto) {
-        this.objeto = objeto;
+	this.objeto = objeto;
     }
 
     public Integer getProfundidade() {
@@ -134,12 +135,12 @@ public class MapaObjeto {
 	return angulo;
     }
 
-    public Integer getIdArquivoAudio() {
-	return idArquivoAudio;
+    public AudioIconico getAudioIconico() {
+        return audioIconico;
     }
 
-    public void setIdArquivoAudio(Integer idArquivoAudio) {
-	this.idArquivoAudio = idArquivoAudio;
+    public void setAudioIconico(AudioIconico audioIconico) {
+        this.audioIconico = audioIconico;
     }
-
+   
 }

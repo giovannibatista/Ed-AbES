@@ -12,7 +12,7 @@ public class MapaObjetoDTO {
     private Integer altura;
     private Integer largura;
     private Integer angulo;
-    private Integer idArquivoAudio;
+    private AudioIconicoDTO audioIconico;
     private boolean pontoInicial;
     private boolean pontoFinal;
 
@@ -36,11 +36,11 @@ public class MapaObjetoDTO {
     }
 
     public ObjetoDTO getObjeto() {
-        return objeto;
+	return objeto;
     }
 
     public void setObjeto(ObjetoDTO objeto) {
-        this.objeto = objeto;
+	this.objeto = objeto;
     }
 
     public Integer getProfundidade() {
@@ -99,28 +99,28 @@ public class MapaObjetoDTO {
 	return angulo;
     }
 
-    public Integer getIdArquivoAudio() {
-	return idArquivoAudio;
+    public AudioIconicoDTO getAudioIconico() {
+	return audioIconico;
     }
 
-    public void setIdArquivoAudio(Integer idArquivoAudio) {
-	this.idArquivoAudio = idArquivoAudio;
+    public void setAudioIconico(AudioIconicoDTO audioIconico) {
+	this.audioIconico = audioIconico;
     }
-    
+
     public boolean isPontoInicial() {
-        return pontoInicial;
+	return pontoInicial;
     }
 
     public void setPontoInicial(boolean pontoInicial) {
-        this.pontoInicial = pontoInicial;
+	this.pontoInicial = pontoInicial;
     }
 
     public boolean isPontoFinal() {
-        return pontoFinal;
+	return pontoFinal;
     }
 
     public void setPontoFinal(boolean pontoFinal) {
-        this.pontoFinal = pontoFinal;
+	this.pontoFinal = pontoFinal;
     }
 
     @Override
@@ -128,11 +128,7 @@ public class MapaObjetoDTO {
 	return "MapaObjetoDTO [id=" + id + ", idMapa=" + idMapa + ", objeto=" + objeto.toString() + ", profundidade="
 		+ profundidade + ", audioDescricao=" + audioDescricao + ", coordenadaX=" + coordenadaX
 		+ ", coordenadaY=" + coordenadaY + ", altura=" + altura + ", largura=" + largura + ", angulo=" + angulo
-		+ ", idArquivoAudio=" + idArquivoAudio + "]";
+		+ ", audioIconico=" + audioIconico.toString() + "]";
     }
-
-    
-    
-    
 
 }

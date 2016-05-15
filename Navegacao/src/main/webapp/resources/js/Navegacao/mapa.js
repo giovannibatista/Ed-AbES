@@ -22,7 +22,7 @@ $(window).load(function() {
 					nome: value.objeto.nome,
 					id: value.idMapaObjeto,
 					rotate : value.angulo,
-					arquivoAudio : value.idArquivoAudio,
+					arquivoAudio : value.audioIconico.arquivo,
 					pontoInicial : value.pontoInicial,
 					pontoFinal : value.pontoFinal,
 					nivel : value.objeto.nivel
