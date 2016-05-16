@@ -44,6 +44,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		console.log("self.walk");
 		var rotate = player.data("rotate"),
 		coordZ = navigationMap.maxZ + 1,
+		audio,
 		nextOffset = {
 			top : offset.top,
 			left : offset.left
@@ -120,13 +121,11 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getAroundObjects = function() {
-		debugger;
 		var currentPos = {
 				y : player.data("coord-y"),
 				x : player.data("coord-x")
-		};
-
-		var objects = [];
+		},
+		objects = [];
 
 		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
 		objects.push(getObjectByCoordinated((currentPos.x + 1), currentPos.y)); // RIGHT
@@ -134,12 +133,14 @@ var Navigation = function(navigationMap, mapObjects) {
 		objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
 
 		var i,
-		length = objects.length;
+		length = objects.length, textToSpeech = "";
 		for ( i = 0	; i < length; i++ ) {
 			if ( objects[i] !== null && objects[i] !== undefined ){
-				describeObject(objects[i]);
+				textToSpeech += toStringObject(objects[i]);
 			}
 		}
+		
+		playTextToSpeech(textToSpeech);
 
 	}
 
@@ -157,12 +158,12 @@ var Navigation = function(navigationMap, mapObjects) {
 		direction = checkDirection(rotate),
 		textDirection = DirectionEnum.getTextDirection(direction);
 
-		var textToSpeech = ("Estou na direcao %s, coluna %s e linha %s.",
-				textDirection, posX, posY);
+		var textToSpeech = "Estou na direcao " + textDirection + ", coluna " + posX + " e linha " + posY + ".";
 
 		console.log(textToSpeech);
 
-		// TODO - Fazer a chamada para o Text to Speech
+		playTextToSpeech(textToSpeech);
+
 	}
 
 	self.getLastBumpedObject = function() {
@@ -172,7 +173,9 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	function getObjectByCoordinated (x, y) {
-		var object = null;
+		var object = null,
+		hasObjectX = false, 
+		hasObjectY = false;
 
 		$.each(mapObjects, function(key, value) {
 			if (value.pontoInicial == false && value.objeto.nivel != 0) {
@@ -190,21 +193,32 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		return object;
 	}
+	
+	function toStringObject(objectMap) {
+		var textToSpeech = "";
+		if(objectMap !== null && objectMap !== undefined){
+			textToSpeech = "Objeto " + objectMap.objeto.nome +", " + (objectMap.audioDescricao ? " Descricao: " + objectMap.audioDescricao : "Sem descricao") + 
+			". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". O objeto possui " + objectMap.altura + " de altura e " + objectMap.largura + " de largura. " ,
+			
+			console.log(textToSpeech);
+		}
+		return textToSpeech;
+	}
 
 	function describeObject(objectMap) {
-
-		var textToSpeech = "Objeto " + objectMap.objeto.nome +", " + (objectMap.audioDescricao ? " Descricao: " + objectMap.audioDescricao : "Sem descricao") + 
-		". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". O objeto possui " + objectMap.altura + " de altura e " + objectMap.largura + " de largura." ,
-		pathAudioFile = objectMap.audioIconico.arquivo;
-
-		console.log(textToSpeech);
-
-		// TODO - Fazer a chamada para o Text to Speech
-
-		if(pathAudioFile){
-			playAudioIconic(pathAudioFile);
+		
+		if(objectMap !== null && objectMap !== undefined){
+			var textToSpeech = toStringObject(objectMap);
+			pathAudioFile = objectMap.audioIconico.arquivo;
+			
+			playTextToSpeech(textToSpeech);
+			
+			if(pathAudioFile){
+				playAudioIconic(pathAudioFile);
+			}
 		}
 	}
+	
 
 	/*
 	 * height: value.altura, width: value.largura, idObject: value.objeto.id,
@@ -297,7 +311,6 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	function validateCoordinate(nextPos, objectPos, measurements) {
-		// debugger;
 		var hasObject = false;
 
 		if (nextPos == objectPos) {
@@ -311,15 +324,22 @@ var Navigation = function(navigationMap, mapObjects) {
 		}
 		return hasObject;
 	}
-	
+
+	var audio;
 	function playAudioIconic(audioPath){
-		var audio = new Audio(audioPath);
+		if(audio){
+			if(!audio.paused){
+				audio.pause();
+				audio.currentTime = 0;
+			}
+		}
+		audio = new Audio(audioPath);
 		audio.play();
-		
+
 		audio.onerror = function() {
-		    console.log("Erro ao reproduzir audio: " + audioPath);
+			console.log("Erro ao reproduzir audio: " + audioPath);
 		};
-		
+
 	}
 
 };
