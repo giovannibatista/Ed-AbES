@@ -6,21 +6,21 @@ Mousetrap.bind('alt+e', function(e) {
 	console.log('alt+E foi pressionado. Navegacao encerrada');
 });
 
-Mousetrap.bind('alt+c', function(e) {
-	console.log('alt+c foi pressionado.');
-	navigation.getLastBumpedObject();
-});
-
-
 Mousetrap.bind('alt+s', function(e) {
-	console.log('alt+S foi pressionado. Navegacao parada/retomada');});
+	console.log('alt+S foi pressionado. Navegacao parada/retomada');
+});
 
 Mousetrap.bind('alt+p', function(e) {
 	console.log('alt+P foi pressionado. Audio parado/retomado');
 });
 
 Mousetrap.bind('alt+l', function(e) {
-	console.log('alt+l foi pressionado. Reproduzir lod de navegacao');
+	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
+});
+
+Mousetrap.bind('alt+c', function(e) {
+	console.log('alt+c foi pressionado.');
+	navigation.getLastBumpedObject();
 });
 
 Mousetrap.bind('alt+i', function(e) {

@@ -1,51 +1,49 @@
 var Navigation = function(navigationMap, mapObjects) {
-	var self = this,
-	player = navigationMap.startingPoint,
-	footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3',
-	mapObjects = mapObjects,
-	lastBumpedObject = null;
+	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3', mapObjects = mapObjects, lastBumpedObject = null;
 	DirectionEnum = {
-			UP : 1,
-			DOWN : 2,
-			LEFT : 3,
-			RIGHT : 4,
+		UP : 1,
+		DOWN : 2,
+		LEFT : 3,
+		RIGHT : 4,
 
-			getTextDirection : function(direction) {
-				var text = "";
-				switch (direction) {
-				case DirectionEnum.UP:
-					text = "Norte";
-					break;
-				case DirectionEnum.DOWN:
-					text = "Sul";
-					break;
-				case DirectionEnum.LEFT:
-					text = "Oeste";
-					break;
-				case DirectionEnum.RIGHT:
-					text = "Leste";
-					break;
-				default:
-					text = "Norte";
-				}
-				return text;
+		getTextDirection : function(direction) {
+			var text = "";
+			switch (direction) {
+			case DirectionEnum.UP:
+				text = "Norte";
+				break;
+			case DirectionEnum.DOWN:
+				text = "Sul";
+				break;
+			case DirectionEnum.LEFT:
+				text = "Oeste";
+				break;
+			case DirectionEnum.RIGHT:
+				text = "Leste";
+				break;
+			default:
+				text = "Norte";
 			}
-	},
-	offset = {
-			top : player.data("coord-y") * navigationMap.scale,
-			left : player.data("coord-x") * navigationMap.scale
+			return text;
+		}
+	}, offset = {
+		top : player.data("coord-y") * navigationMap.scale,
+		left : player.data("coord-x") * navigationMap.scale
 	};
 
 	player.data({
-		"coord-z": navigationMap.maxZ + 1
+		"coord-z" : navigationMap.maxZ + 1
 	});
 
+
+	self.init = function() {
+		console.log("init...");
+		self.getCurrentLocation();
+	}
+	
 	self.walk = function(forcedDirection) {
 		console.log("self.walk");
-		var rotate = player.data("rotate"),
-		coordZ = navigationMap.maxZ + 1,
-		audio,
-		nextOffset = {
+		var rotate = player.data("rotate"), coordZ = navigationMap.maxZ + 1, audio, nextOffset = {
 			top : offset.top,
 			left : offset.left
 		};
@@ -60,32 +58,32 @@ var Navigation = function(navigationMap, mapObjects) {
 			offset = {
 				top : offset.top - 32,
 				left : offset.left
-		};
+			};
 			break;
 		case DirectionEnum.DOWN:
 			offset = {
 				top : offset.top + 32,
 				left : offset.left
-		};
+			};
 			break;
 		case DirectionEnum.LEFT:
 			offset = {
 				top : offset.top,
 				left : offset.left - 32
-		};
+			};
 
 			break;
 		case DirectionEnum.RIGHT:
 			offset = {
 				top : offset.top,
 				left : offset.left + 32
-		};
+			};
 			break;
 		default:
 			offset = {
 				top : offset.top - 32,
 				left : offset.left
-		};
+			};
 
 		}
 		var hasObject = false;
@@ -99,8 +97,8 @@ var Navigation = function(navigationMap, mapObjects) {
 			playAudioIconic(collisionsAudio);
 			hasObject = false;
 			offset = {
-					top : nextOffset.top,
-					left : nextOffset.left
+				top : nextOffset.top,
+				left : nextOffset.left
 			};
 		}
 	}
@@ -122,43 +120,39 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.getAroundObjects = function() {
 		var currentPos = {
-				y : player.data("coord-y"),
-				x : player.data("coord-x")
-		},
-		objects = [];
+			y : player.data("coord-y"),
+			x : player.data("coord-x")
+		}, objects = [];
 
 		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
 		objects.push(getObjectByCoordinated((currentPos.x + 1), currentPos.y)); // RIGHT
 		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y + 1))); // DOWN
 		objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
 
-		var i,
-		length = objects.length, textToSpeech = "";
-		for ( i = 0	; i < length; i++ ) {
-			if ( objects[i] !== null && objects[i] !== undefined ){
+		var i, length = objects.length, textToSpeech = "";
+		for (i = 0; i < length; i++) {
+			if (objects[i] !== null && objects[i] !== undefined) {
 				textToSpeech += toStringObject(objects[i]);
 			}
 		}
-		
+
 		playTextToSpeech(textToSpeech);
 
 	}
-
 
 	self.getGoalMap = function() {
 
 		// TODO - Fazer a chamada para o Text to Speech
 	}
 
-
-
 	self.getCurrentLocation = function() {
 		var posX = player.data("coord-x");
 		posY = player.data("coord-y"), rotate = player.data("rotate"),
-		direction = checkDirection(rotate),
-		textDirection = DirectionEnum.getTextDirection(direction);
+				direction = checkDirection(rotate),
+				textDirection = DirectionEnum.getTextDirection(direction);
 
-		var textToSpeech = "Estou na direcao " + textDirection + ", coluna " + posX + " e linha " + posY + ".";
+		var textToSpeech = "Estou na direcao " + textDirection + ", coluna "
+				+ posX + " e linha " + posY + ".";
 
 		console.log(textToSpeech);
 
@@ -167,15 +161,11 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getLastBumpedObject = function() {
-
 		describeObject(lastBumpedObject);
-
 	}
 
-	function getObjectByCoordinated (x, y) {
-		var object = null,
-		hasObjectX = false, 
-		hasObjectY = false;
+	function getObjectByCoordinated(x, y) {
+		var object = null, hasObjectX = false, hasObjectY = false;
 
 		$.each(mapObjects, function(key, value) {
 			if (value.pontoInicial == false && value.objeto.nivel != 0) {
@@ -193,32 +183,38 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		return object;
 	}
-	
+
 	function toStringObject(objectMap) {
 		var textToSpeech = "";
-		if(objectMap !== null && objectMap !== undefined){
-			textToSpeech = "Objeto " + objectMap.objeto.nome +", " + (objectMap.audioDescricao ? " Descricao: " + objectMap.audioDescricao : "Sem descricao") + 
-			". Na Posicao X: " + objectMap.coordenadaX + " e posicao Y: " + objectMap.coordenadaY + ". O objeto possui " + objectMap.altura + " de altura e " + objectMap.largura + " de largura. " ,
-			
+		if (objectMap !== null && objectMap !== undefined) {
+			textToSpeech = "Objeto "
+					+ objectMap.objeto.nome
+					+ ", "
+					+ (objectMap.audioDescricao ? " Descricao: "
+							+ objectMap.audioDescricao : "Sem descricao")
+					+ ". Na Posicao X: " + objectMap.coordenadaX
+					+ " e posicao Y: " + objectMap.coordenadaY
+					+ ". O objeto possui " + objectMap.altura + " de altura e "
+					+ objectMap.largura + " de largura. ",
+
 			console.log(textToSpeech);
 		}
 		return textToSpeech;
 	}
 
 	function describeObject(objectMap) {
-		
-		if(objectMap !== null && objectMap !== undefined){
+
+		if (objectMap !== null && objectMap !== undefined) {
 			var textToSpeech = toStringObject(objectMap);
 			pathAudioFile = objectMap.audioIconico.arquivo;
-			
+
 			playTextToSpeech(textToSpeech);
-			
-			if(pathAudioFile){
+
+			if (pathAudioFile) {
 				playAudioIconic(pathAudioFile);
 			}
 		}
 	}
-	
 
 	/*
 	 * height: value.altura, width: value.largura, idObject: value.objeto.id,
@@ -248,7 +244,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-		break;
+			break;
 		}
 		return direction;
 	}
@@ -272,7 +268,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-		break;
+			break;
 		}
 		return direction;
 	}
@@ -280,7 +276,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	function checkCollisions(offset) {
 		var hasObjectX = false;
 		hasObjectY = false, hasObject = false, nextPosX = offset.left / 32,
-		nextPosY = offset.top / 32;
+				nextPosY = offset.top / 32;
 		$.each(mapObjects, function(key, value) {
 			// console.log("Nome: " + value.objeto.nome + " X" +
 			// value.coordenadaX + " Y" + value.coordenadaY + " nivel:" +
@@ -299,9 +295,9 @@ var Navigation = function(navigationMap, mapObjects) {
 				hasObject = true;
 				lastBumpedObject = value;
 
-				if (value.audioIconico.arquivo){
+				if (value.audioIconico.arquivo) {
 					collisionsAudio = value.audioIconico.arquivo;
-				}else{
+				} else {
 					collisionsAudio = '/resources/audio/collisions.mp3'
 				}
 				return false;
@@ -326,9 +322,9 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	var audio;
-	function playAudioIconic(audioPath){
-		if(audio){
-			if(!audio.paused){
+	function playAudioIconic(audioPath) {
+		if (audio) {
+			if (!audio.paused) {
 				audio.pause();
 				audio.currentTime = 0;
 			}
@@ -341,5 +337,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		};
 
 	}
+	
+	self.init();
 
 };

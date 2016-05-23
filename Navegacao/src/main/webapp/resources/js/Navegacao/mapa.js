@@ -1,5 +1,5 @@
-var navigation = {};
 $(window).load(function() {
+	var navigation = {};
 	var idMap = document.getElementById("idMapa").value,
 	$mapa = $("#mapa"),
 	$mapaNavegacao = new Map($mapa);//Instanciate the Map
@@ -30,6 +30,7 @@ $(window).load(function() {
 			});
 			//Instanciate the navigation
 			navigation = new Navigation($mapaNavegacao, json);
+			
 		},
 		error: function() {
 			alert("Erro ao ler os objetos do mapa. Por favor, contate o administador!");
@@ -39,8 +40,6 @@ $(window).load(function() {
 	//initiate the map
 	$mapaNavegacao.init();
 	//initiate the navigation
-	
-	
 });
 
 var Map = function($navigationMap){
