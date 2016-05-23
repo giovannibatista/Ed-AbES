@@ -11,6 +11,10 @@
 	href="<c:url value="/resources/css/Navegacao/mapa.css" />">
 	
 <script type="text/javascript"
+	src="<c:url value="/resources/js/lib/easytimer.js" />"></script>
+
+	
+<script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/audio.js" />"></script>
 
 <script type="text/javascript"

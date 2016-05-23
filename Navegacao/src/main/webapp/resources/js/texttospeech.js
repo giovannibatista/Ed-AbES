@@ -1,14 +1,14 @@
-function playTextToSpeech(text) {
-	text = encodeURIComponent(text);
-	var url = "/API/getTraducao?text=" + text;
+function playTextToSpeech(textToSpeech) {
+	textToSpeech = encodeURIComponent(textToSpeech);
+	var url = "/API/getTraducao?text=" + textToSpeech;
 	console.log("->" + url);
 	$('audio').attr('src', url).get(0).play();
 }
 
-function pauseTextToSpeech(text) {
+function pauseTextToSpeech(textToSpeech) {
 	$('audio').get(0).pause();
 }
 
-function resumeTextToSpeech(text) {
+function resumeTextToSpeech(textToSpeech) {
 	$('audio').get(0).play();
 }

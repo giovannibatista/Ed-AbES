@@ -18,6 +18,11 @@ Mousetrap.bind('alt+l', function(e) {
 	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
 });
 
+Mousetrap.bind('alt+t', function(e) {
+	console.log('alt+t foi pressionado. Tempo de navegacao');
+	navigation.getTimerNavigation();
+});
+
 Mousetrap.bind('alt+c', function(e) {
 	console.log('alt+c foi pressionado.');
 	navigation.getLastBumpedObject();

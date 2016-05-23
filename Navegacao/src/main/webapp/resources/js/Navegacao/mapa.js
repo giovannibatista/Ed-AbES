@@ -1,5 +1,5 @@
+var navigation = {};
 $(window).load(function() {
-	var navigation = {};
 	var idMap = document.getElementById("idMapa").value,
 	$mapa = $("#mapa"),
 	$mapaNavegacao = new Map($mapa);//Instanciate the Map

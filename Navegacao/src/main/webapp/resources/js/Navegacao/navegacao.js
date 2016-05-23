@@ -1,5 +1,6 @@
 var Navigation = function(navigationMap, mapObjects) {
-	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3', mapObjects = mapObjects, lastBumpedObject = null;
+	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3', mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false;
+	
 	DirectionEnum = {
 		UP : 1,
 		DOWN : 2,
@@ -39,6 +40,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	self.init = function() {
 		console.log("init...");
 		self.getCurrentLocation();
+		timerNavigation.start();
 	}
 	
 	self.walk = function(forcedDirection) {
@@ -90,11 +92,11 @@ var Navigation = function(navigationMap, mapObjects) {
 		hasObject = checkCollisions(offset);
 
 		if (!hasObject) {
-			playAudioIconic(footstepAudio);
+			playIconicAudio(footstepAudio);
 			navigationMap.moveObj(player, offset, rotate);
 
 		} else {
-			playAudioIconic(collisionsAudio);
+			playIconicAudio(collisionsAudio);
 			hasObject = false;
 			offset = {
 				top : nextOffset.top,
@@ -163,6 +165,21 @@ var Navigation = function(navigationMap, mapObjects) {
 	self.getLastBumpedObject = function() {
 		describeObject(lastBumpedObject);
 	}
+	
+	self.getTimerNavigation = function(){
+		var textToSpeech = timerNavigation.getTimeValues().toString();
+		textToSpeech = "Tempo de navegacao: " + textToSpeech;
+		console.log(textToSpeech);
+		playTextToSpeech(textToSpeech);
+	}
+	
+	self.ResumeStopNavigation = function(){
+		var textToSpeech = timerNavigation.getTimeValues().toString();
+		textToSpeech = "Tempo de navegacao: " + textToSpeech;
+		console.log(textToSpeech);
+		playTextToSpeech(textToSpeech);
+	}
+
 
 	function getObjectByCoordinated(x, y) {
 		var object = null, hasObjectX = false, hasObjectY = false;
@@ -211,7 +228,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			playTextToSpeech(textToSpeech);
 
 			if (pathAudioFile) {
-				playAudioIconic(pathAudioFile);
+				playIconicAudio(pathAudioFile);
 			}
 		}
 	}
@@ -322,7 +339,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	var audio;
-	function playAudioIconic(audioPath) {
+	function playIconicAudio(audioPath) {
 		if (audio) {
 			if (!audio.paused) {
 				audio.pause();
