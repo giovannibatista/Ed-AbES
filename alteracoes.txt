@@ -17,3 +17,4 @@
 14/05 19:50 - Rodar os 2 ultimos comandos do arquivo: Script para criacao do banco_postgresql.sql. Alteracoes de colisão, profundidade, informar objetos ao redor e último objeto colidido.
 23/05 14:00 - Executar script de criação do Bando, nova tabela criada.
 24/05 14:45 - Timer da navegação implementado e problemas de encode corrigidos. 
+24/05 16:36 - Controles de som implementados para a leitura dos textos. Tecla ALT M implementada, para retornar informações do mapa

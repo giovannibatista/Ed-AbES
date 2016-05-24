@@ -6,13 +6,13 @@ Mousetrap.bind('alt+e', function(e) {
 	console.log('alt+E foi pressionado. Navegacao encerrada');
 });
 
+Mousetrap.bind('alt+l', function(e) {
+	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
+});
 
 Mousetrap.bind('alt+p', function(e) {
 	console.log('alt+P foi pressionado. Audio parado/retomado');
-});
-
-Mousetrap.bind('alt+l', function(e) {
-	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
+	navigation.playPauseTextToSpeech();
 });
 
 Mousetrap.bind('alt+m', function(e) {
@@ -40,10 +40,14 @@ Mousetrap.bind('alt+o', function(e) {
 	navigation.getCurrentLocation();
 });
 
-Mousetrap.bind('alt+r', function(e) {
-	console.log('alt+R foi pressionado. Os seguintes objetos estao ao meu redor...');
-	navigation.getAroundObjects();
-});
+Mousetrap
+		.bind(
+				'alt+r',
+				function(e) {
+					console
+							.log('alt+R foi pressionado. Os seguintes objetos estao ao meu redor...');
+					navigation.getAroundObjects();
+				});
 
 Mousetrap.bind('up', function(e) {
 	console.log("up");

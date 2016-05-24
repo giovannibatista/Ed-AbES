@@ -5,10 +5,10 @@ function playTextToSpeech(textToSpeech) {
 	$('audio').attr('src', url).get(0).play();
 }
 
-function pauseTextToSpeech(textToSpeech) {
+function pauseTextToSpeech() {
 	$('audio').get(0).pause();
 }
 
-function resumeTextToSpeech(textToSpeech) {
+function resumeTextToSpeech() {
 	$('audio').get(0).play();
 }
