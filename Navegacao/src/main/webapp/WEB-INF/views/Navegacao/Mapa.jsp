@@ -15,17 +15,17 @@
 
 	
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/audio.js" />"></script>
+	src="<c:url value="/resources/js/Navegacao/audio.js" />" ></script>
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/navegacao.js" />" charset="utf-8"></script>
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/mapa.js" />"></script>
+	src="<c:url value="/resources/js/Navegacao/mapa.js" />" charset="utf-8"></script>
 
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />"></script>
+	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />" charset="utf-8"></script>
 
 <script type="text/javascript">
 	
@@ -49,6 +49,10 @@
 		<div id="blocoMapa">
 			<div id="mapa">
 				<input type="hidden" id="idMapa" value="${mapa.id}">
+				<input type="hidden" id="nomeMapa" value="${mapa.nome}">
+				<input type="hidden" id="descricaoMapa" value="${mapa.descricao}">
+				<input type="hidden" id="objetivoMapa" value="${mapa.objetivo}">
+				<input type="hidden" id="andarMapa" value="${mapa.andar}">
 			</div>
 		</div>
 	</div>

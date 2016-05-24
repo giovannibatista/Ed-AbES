@@ -15,9 +15,14 @@ Mousetrap.bind('alt+l', function(e) {
 	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
 });
 
+Mousetrap.bind('alt+m', function(e) {
+	console.log('alt+m foi pressionado. Informações do mapa');
+	navigation.getInfoMap();
+});
+
 Mousetrap.bind('alt+s', function(e) {
 	console.log('alt+S foi pressionado. Navegacao parada/retomada');
-	navigation.ResumeStopNavigation();
+	navigation.resumeStopNavigation();
 });
 
 Mousetrap.bind('alt+t', function(e) {
@@ -33,11 +38,6 @@ Mousetrap.bind('alt+c', function(e) {
 Mousetrap.bind('alt+o', function(e) {
 	console.log('alt+o foi pressionado.');
 	navigation.getCurrentLocation();
-});
-
-Mousetrap.bind('alt+o', function(e) {
-	console.log('alt+O foi pressionado.');
-	navigation.getGoalMap();
 });
 
 Mousetrap.bind('alt+r', function(e) {

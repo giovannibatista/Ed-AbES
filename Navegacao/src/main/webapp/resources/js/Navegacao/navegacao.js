@@ -149,8 +149,15 @@ var Navigation = function(navigationMap, mapObjects) {
 		playTextToSpeech(textToSpeech);
 	}
 
-	self.getGoalMap = function() {
-		// TODO - Fazer a chamada para o Text to Speech
+	self.getInfoMap = function() {
+		var nomeMapa = document.getElementById("nomeMapa").value,
+		descricaoMapa = document.getElementById("descricaoMapa").value, 
+		objetivoMapa = document.getElementById("objetivoMapa").value, 
+		andarMapa = document.getElementById("andarMapa").value; 
+		
+		var textToSpeech = "O mapa " + nomeMapa +" está no " + andarMapa + " pavimento. A descrição do mapa é " + descricaoMapa + ". E O objetivo é " + objetivoMapa;
+		console.log(textToSpeech);
+		playTextToSpeech(textToSpeech);
 	}
 
 	self.getCurrentLocation = function() {
@@ -179,7 +186,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		playTextToSpeech(textToSpeech);
 	}
 
-	self.ResumeStopNavigation = function(){
+	self.resumeStopNavigation = function(){
 		var timer = timerNavigation.getTimeValues().toString(),
 		textToSpeech = "";
 		if(!isNavigationStopped){
