@@ -15,4 +15,5 @@
 08/05 20:54 - Sistema de colisão implementado e nova lib de telas de atalho...
 09/05 20:54 - Primeira versão com som icônicos....
 14/05 19:50 - Rodar os 2 ultimos comandos do arquivo: Script para criacao do banco_postgresql.sql. Alteracoes de colisão, profundidade, informar objetos ao redor e último objeto colidido.
-
+23/05 14:00 - Executar script de criação do Bando, nova tabela criada.
+24/05 14:45 - Timer da navegação implementado e problemas de encode corrigidos. 
