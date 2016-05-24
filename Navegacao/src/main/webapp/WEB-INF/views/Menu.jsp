@@ -2,10 +2,6 @@
 	<ul id="acessibilidade">
 		<li><a href="#conteudo" title="Ir direto ao conteúdo da página">Saltar
 				para conteúdo</a></li>
-		<li><a href="#" onclick="alteraTamanhoFonte(1); return false;"
-			title="Aumentar tamanho das letras">Aumentar tamanho das letras</a></li>
-		<li><a href="" onclick="alteraTamanhoFonte(-1); return false;"
-			title="Diminuir tamanho das letras">Diminuir tamanho das letras</a></li>
 		<li><a id="altoContraste" href=""
 			onclick="setActiveStyleSheet('preto_branco', true); ocultarElemento('coresOriginais','altoContraste'); return false; "
 			title="Ativar alto contraste">Alto contraste</a></li>

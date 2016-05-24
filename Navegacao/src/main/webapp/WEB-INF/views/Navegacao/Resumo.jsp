@@ -61,7 +61,7 @@
 						readonly="readonly" />
 				</p>
 				<p>
-					<label for="andar">Andar : </label> <input type="text" name="andar"
+					<label for="andar">Pavimento : </label> <input type="text" name="andar"
 						id="andar" value="${mapa.andar}" readonly="readonly" />
 				</p>
 				<p>
