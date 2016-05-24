@@ -6,9 +6,6 @@ Mousetrap.bind('alt+e', function(e) {
 	console.log('alt+E foi pressionado. Navegacao encerrada');
 });
 
-Mousetrap.bind('alt+s', function(e) {
-	console.log('alt+S foi pressionado. Navegacao parada/retomada');
-});
 
 Mousetrap.bind('alt+p', function(e) {
 	console.log('alt+P foi pressionado. Audio parado/retomado');
@@ -16,6 +13,11 @@ Mousetrap.bind('alt+p', function(e) {
 
 Mousetrap.bind('alt+l', function(e) {
 	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
+});
+
+Mousetrap.bind('alt+s', function(e) {
+	console.log('alt+S foi pressionado. Navegacao parada/retomada');
+	navigation.ResumeStopNavigation();
 });
 
 Mousetrap.bind('alt+t', function(e) {

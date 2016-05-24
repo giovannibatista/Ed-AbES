@@ -1,35 +1,35 @@
 var Navigation = function(navigationMap, mapObjects) {
 	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3', mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false;
-	
-	DirectionEnum = {
-		UP : 1,
-		DOWN : 2,
-		LEFT : 3,
-		RIGHT : 4,
 
-		getTextDirection : function(direction) {
-			var text = "";
-			switch (direction) {
-			case DirectionEnum.UP:
-				text = "Norte";
-				break;
-			case DirectionEnum.DOWN:
-				text = "Sul";
-				break;
-			case DirectionEnum.LEFT:
-				text = "Oeste";
-				break;
-			case DirectionEnum.RIGHT:
-				text = "Leste";
-				break;
-			default:
-				text = "Norte";
+	DirectionEnum = {
+			UP : 1,
+			DOWN : 2,
+			LEFT : 3,
+			RIGHT : 4,
+
+			getTextDirection : function(direction) {
+				var text = "";
+				switch (direction) {
+				case DirectionEnum.UP:
+					text = "Norte";
+					break;
+				case DirectionEnum.DOWN:
+					text = "Sul";
+					break;
+				case DirectionEnum.LEFT:
+					text = "Oeste";
+					break;
+				case DirectionEnum.RIGHT:
+					text = "Leste";
+					break;
+				default:
+					text = "Norte";
+				}
+				return text;
 			}
-			return text;
-		}
 	}, offset = {
-		top : player.data("coord-y") * navigationMap.scale,
-		left : player.data("coord-x") * navigationMap.scale
+			top : player.data("coord-y") * navigationMap.scale,
+			left : player.data("coord-x") * navigationMap.scale
 	};
 
 	player.data({
@@ -38,92 +38,100 @@ var Navigation = function(navigationMap, mapObjects) {
 
 
 	self.init = function() {
-		console.log("init...");
+		console.log("Iniciando a navegação!");
 		self.getCurrentLocation();
 		timerNavigation.start();
 	}
-	
+
 	self.walk = function(forcedDirection) {
-		console.log("self.walk");
-		var rotate = player.data("rotate"), coordZ = navigationMap.maxZ + 1, audio, nextOffset = {
-			top : offset.top,
-			left : offset.left
-		};
-		if (forcedDirection) {
-			self.direction = forcedDirection
-		} else {
-			self.direction = checkDirection(rotate);
-		}
-
-		switch (self.direction) {
-		case DirectionEnum.UP:
-			offset = {
-				top : offset.top - 32,
-				left : offset.left
-			};
-			break;
-		case DirectionEnum.DOWN:
-			offset = {
-				top : offset.top + 32,
-				left : offset.left
-			};
-			break;
-		case DirectionEnum.LEFT:
-			offset = {
+		if(!checkIsNavigationStopped()){
+			console.log("self.walk");
+			var rotate = player.data("rotate"), coordZ = navigationMap.maxZ + 1, audio, nextOffset = {
 				top : offset.top,
-				left : offset.left - 32
-			};
-
-			break;
-		case DirectionEnum.RIGHT:
-			offset = {
-				top : offset.top,
-				left : offset.left + 32
-			};
-			break;
-		default:
-			offset = {
-				top : offset.top - 32,
 				left : offset.left
 			};
+			if (forcedDirection) {
+				self.direction = forcedDirection
+			} else {
+				self.direction = checkDirection(rotate);
+			}
 
-		}
-		var hasObject = false;
-		hasObject = checkCollisions(offset);
-
-		if (!hasObject) {
-			playIconicAudio(footstepAudio);
-			navigationMap.moveObj(player, offset, rotate);
-
-		} else {
-			playIconicAudio(collisionsAudio);
-			hasObject = false;
-			offset = {
-				top : nextOffset.top,
-				left : nextOffset.left
+			switch (self.direction) {
+			case DirectionEnum.UP:
+				offset = {
+					top : offset.top - 32,
+					left : offset.left
 			};
+				break;
+			case DirectionEnum.DOWN:
+				offset = {
+					top : offset.top + 32,
+					left : offset.left
+			};
+				break;
+			case DirectionEnum.LEFT:
+				offset = {
+					top : offset.top,
+					left : offset.left - 32
+			};
+
+				break;
+			case DirectionEnum.RIGHT:
+				offset = {
+					top : offset.top,
+					left : offset.left + 32
+			};
+				break;
+			default:
+				offset = {
+					top : offset.top - 32,
+					left : offset.left
+			};
+
+			}
+			var hasObject = false;
+			hasObject = checkCollisions(offset);
+
+			if (!hasObject) {
+				playIconicAudio(footstepAudio);
+				navigationMap.moveObj(player, offset, rotate);
+
+			} else {
+				playIconicAudio(collisionsAudio);
+				hasObject = false;
+				offset = {
+						top : nextOffset.top,
+						left : nextOffset.left
+				};
+			}
 		}
 	}
 
 	self.down = function() {
-		var direction = checkOppositeDirection(player.data("rotate"));
-		self.walk(direction);
+		if(!checkIsNavigationStopped()){
+			var direction = checkOppositeDirection(player.data("rotate"));
+			self.walk(direction);
+		}
 	}
 
 	self.rotateLeft = function() {
-		navigationMap.rotateObjectAction(player,
-				navigationMap.DirectionEnum.LEFT);
+		if(!checkIsNavigationStopped()){
+			navigationMap.rotateObjectAction(player,
+					navigationMap.DirectionEnum.LEFT);
+		}
 	}
 
 	self.rotateRight = function() {
-		navigationMap.rotateObjectAction(player,
-				navigationMap.DirectionEnum.RIGHT);
+		if(!checkIsNavigationStopped()){
+			navigationMap.rotateObjectAction(player,
+					navigationMap.DirectionEnum.RIGHT);
+		}
 	}
 
 	self.getAroundObjects = function() {
 		var currentPos = {
-			y : player.data("coord-y"),
-			x : player.data("coord-x")
+				y : player.data("coord-y"),
+				x : player.data("coord-x")
 		}, objects = [];
 
 		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
@@ -139,22 +147,20 @@ var Navigation = function(navigationMap, mapObjects) {
 		}
 
 		playTextToSpeech(textToSpeech);
-
 	}
 
 	self.getGoalMap = function() {
-
 		// TODO - Fazer a chamada para o Text to Speech
 	}
 
 	self.getCurrentLocation = function() {
 		var posX = player.data("coord-x");
 		posY = player.data("coord-y"), rotate = player.data("rotate"),
-				direction = checkDirection(rotate),
-				textDirection = DirectionEnum.getTextDirection(direction);
+		direction = checkDirection(rotate),
+		textDirection = DirectionEnum.getTextDirection(direction);
 
 		var textToSpeech = "Estou na direcao " + textDirection + ", coluna "
-				+ posX + " e linha " + posY + ".";
+		+ posX + " e linha " + posY + ".";
 
 		console.log(textToSpeech);
 
@@ -165,19 +171,32 @@ var Navigation = function(navigationMap, mapObjects) {
 	self.getLastBumpedObject = function() {
 		describeObject(lastBumpedObject);
 	}
-	
+
 	self.getTimerNavigation = function(){
 		var textToSpeech = timerNavigation.getTimeValues().toString();
 		textToSpeech = "Tempo de navegacao: " + textToSpeech;
 		console.log(textToSpeech);
 		playTextToSpeech(textToSpeech);
 	}
-	
+
 	self.ResumeStopNavigation = function(){
-		var textToSpeech = timerNavigation.getTimeValues().toString();
-		textToSpeech = "Tempo de navegacao: " + textToSpeech;
-		console.log(textToSpeech);
-		playTextToSpeech(textToSpeech);
+		var timer = timerNavigation.getTimeValues().toString(),
+		textToSpeech = "";
+		if(!isNavigationStopped){
+			timerNavigation.pause();
+			isNavigationStopped = true;
+			textToSpeech = "Navegacao pausada em " + timer + ". Para retomar a navegacao, tecle Alt S.";
+			console.log(textToSpeech);
+			playTextToSpeech(textToSpeech);
+			
+		}else{
+			timerNavigation.start();
+			isNavigationStopped = false;
+			textToSpeech = "Navegacao retomada em " + timer + ".";
+			console.log(textToSpeech);
+			playTextToSpeech(textToSpeech);
+
+		}
 	}
 
 
@@ -205,16 +224,16 @@ var Navigation = function(navigationMap, mapObjects) {
 		var textToSpeech = "";
 		if (objectMap !== null && objectMap !== undefined) {
 			textToSpeech = "Objeto "
-					+ objectMap.objeto.nome
-					+ ", "
-					+ (objectMap.audioDescricao ? " Descricao: "
-							+ objectMap.audioDescricao : "Sem descricao")
-					+ ". Na Posicao X: " + objectMap.coordenadaX
-					+ " e posicao Y: " + objectMap.coordenadaY
-					+ ". O objeto possui " + objectMap.altura + " de altura e "
-					+ objectMap.largura + " de largura. ",
+				+ objectMap.objeto.nome
+				+ ", "
+				+ (objectMap.audioDescricao ? " Descricao: "
+						+ objectMap.audioDescricao : "Sem descricao")
+						+ ". Na Posicao X: " + objectMap.coordenadaX
+						+ " e posicao Y: " + objectMap.coordenadaY
+						+ ". O objeto possui " + objectMap.altura + " de altura e "
+						+ objectMap.largura + " de largura. ",
 
-			console.log(textToSpeech);
+						console.log(textToSpeech);
 		}
 		return textToSpeech;
 	}
@@ -261,7 +280,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-			break;
+		break;
 		}
 		return direction;
 	}
@@ -285,7 +304,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		default:
 			direction = DirectionEnum.UP;
-			break;
+		break;
 		}
 		return direction;
 	}
@@ -293,7 +312,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	function checkCollisions(offset) {
 		var hasObjectX = false;
 		hasObjectY = false, hasObject = false, nextPosX = offset.left / 32,
-				nextPosY = offset.top / 32;
+		nextPosY = offset.top / 32;
 		$.each(mapObjects, function(key, value) {
 			// console.log("Nome: " + value.objeto.nome + " X" +
 			// value.coordenadaX + " Y" + value.coordenadaY + " nivel:" +
@@ -354,7 +373,17 @@ var Navigation = function(navigationMap, mapObjects) {
 		};
 
 	}
-	
+
+	function checkIsNavigationStopped(){
+		if(isNavigationStopped){
+			var textToSpeech = "Navegacao pausada. Para retomar a navegacao, tecle Alt S.";
+			console.log(textToSpeech);
+			playTextToSpeech(textToSpeech);
+		}
+		return isNavigationStopped;		
+
+	}
+
 	self.init();
 
 };

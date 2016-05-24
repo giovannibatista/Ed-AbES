@@ -18,7 +18,7 @@
 	src="<c:url value="/resources/js/Navegacao/audio.js" />"></script>
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"></script>
+	src="<c:url value="/resources/js/Navegacao/navegacao.js" />" charset="utf-8"></script>
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/mapa.js" />"></script>
