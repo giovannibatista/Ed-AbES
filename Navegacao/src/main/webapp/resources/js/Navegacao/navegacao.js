@@ -159,7 +159,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		direction = checkDirection(rotate),
 		textDirection = DirectionEnum.getTextDirection(direction);
 
-		var textToSpeech = "Estou na direcao " + textDirection + ", coluna "
+		var textToSpeech = "Estou na direção " + textDirection + ", coluna "
 		+ posX + " e linha " + posY + ".";
 
 		console.log(textToSpeech);
@@ -174,7 +174,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.getTimerNavigation = function(){
 		var textToSpeech = timerNavigation.getTimeValues().toString();
-		textToSpeech = "Tempo de navegacao: " + textToSpeech;
+		textToSpeech = "Tempo de navegação: " + textToSpeech;
 		console.log(textToSpeech);
 		playTextToSpeech(textToSpeech);
 	}
@@ -185,14 +185,14 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(!isNavigationStopped){
 			timerNavigation.pause();
 			isNavigationStopped = true;
-			textToSpeech = "Navegacao pausada em " + timer + ". Para retomar a navegacao, tecle Alt S.";
+			textToSpeech = "Navegação pausada em " + timer + ". Para retomar a navegação, tecle Alt S.";
 			console.log(textToSpeech);
 			playTextToSpeech(textToSpeech);
 			
 		}else{
 			timerNavigation.start();
 			isNavigationStopped = false;
-			textToSpeech = "Navegacao retomada em " + timer + ".";
+			textToSpeech = "Navegação retomada em " + timer + ".";
 			console.log(textToSpeech);
 			playTextToSpeech(textToSpeech);
 
@@ -226,10 +226,10 @@ var Navigation = function(navigationMap, mapObjects) {
 			textToSpeech = "Objeto "
 				+ objectMap.objeto.nome
 				+ ", "
-				+ (objectMap.audioDescricao ? " Descricao: "
-						+ objectMap.audioDescricao : "Sem descricao")
-						+ ". Na Posicao X: " + objectMap.coordenadaX
-						+ " e posicao Y: " + objectMap.coordenadaY
+				+ (objectMap.audioDescricao ? " Descrição: "
+						+ objectMap.audioDescricao : "Sem descrição")
+						+ ". Na posição X: " + objectMap.coordenadaX
+						+ " e posição Y: " + objectMap.coordenadaY
 						+ ". O objeto possui " + objectMap.altura + " de altura e "
 						+ objectMap.largura + " de largura. ",
 
@@ -369,14 +369,14 @@ var Navigation = function(navigationMap, mapObjects) {
 		audio.play();
 
 		audio.onerror = function() {
-			console.log("Erro ao reproduzir audio: " + audioPath);
+			console.log("Erro ao reproduzir áudio: " + audioPath);
 		};
 
 	}
 
 	function checkIsNavigationStopped(){
 		if(isNavigationStopped){
-			var textToSpeech = "Navegacao pausada. Para retomar a navegacao, tecle Alt S.";
+			var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt S.";
 			console.log(textToSpeech);
 			playTextToSpeech(textToSpeech);
 		}
