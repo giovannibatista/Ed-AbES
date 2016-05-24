@@ -2,6 +2,7 @@ function playTextToSpeech(textToSpeech) {
 	textToSpeech = encodeURIComponent(textToSpeech);
 	var url = "/API/getTraducao?text=" + textToSpeech;
 	console.log("->" + url);
+	$('audio').get(0).playbackRate = 2.0;
 	$('audio').attr('src', url).get(0).play();
 }
 
