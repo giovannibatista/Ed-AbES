@@ -154,8 +154,8 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getCurrentLocation = function() {
-		var posX = player.data("coord-x");
-		posY = player.data("coord-y"), rotate = player.data("rotate"),
+		var posX = player.data("coord-x") + 1;
+		posY = player.data("coord-y") + 1, rotate = player.data("rotate"),
 		direction = checkDirection(rotate),
 		textDirection = DirectionEnum.getTextDirection(direction);
 
@@ -228,8 +228,8 @@ var Navigation = function(navigationMap, mapObjects) {
 				+ ", "
 				+ (objectMap.audioDescricao ? " Descrição: "
 						+ objectMap.audioDescricao : "Sem descrição")
-						+ ". Na posição X: " + objectMap.coordenadaX
-						+ " e posição Y: " + objectMap.coordenadaY
+						+ ". Na posição X: " + (objectMap.coordenadaX + 1 )
+						+ " e posição Y: " + (objectMap.coordenadaY + 1 )
 						+ ". O objeto possui " + objectMap.altura + " de altura e "
 						+ objectMap.largura + " de largura. ",
 

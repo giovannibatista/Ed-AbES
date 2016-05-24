@@ -30,8 +30,8 @@ Mousetrap.bind('alt+c', function(e) {
 	navigation.getLastBumpedObject();
 });
 
-Mousetrap.bind('alt+i', function(e) {
-	console.log('alt+I foi pressionado.');
+Mousetrap.bind('alt+o', function(e) {
+	console.log('alt+o foi pressionado.');
 	navigation.getCurrentLocation();
 });
 
