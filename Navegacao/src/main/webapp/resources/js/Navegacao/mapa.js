@@ -128,7 +128,6 @@ var Map = function($navigationMap){
 	}
 	
 	var addMob = function($obj, offset, isNew) {
-		console.log("oi");
 		var imageSrc = $obj.data("image");
 		width = $obj.data("width"),
 		height = $obj.data("height"),
@@ -185,17 +184,16 @@ var Map = function($navigationMap){
 		self.maxY = getMaximumValue($mob, "y", self.maxY);
 
 		if(pontoInicial == true){
-			console.log("STARTING POINT: x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
+			console.log("STARTING POINT: x= " + $mob.data("coord-x") + "y= " + $mob.data("coord-y"));
 			self.startingPoint = $mob;
 		}
 
 		if(pontoFinal == true){
-			console.log("END POINT: x " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
+			console.log("END POINT: x= " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
 			self.endPoint = $mob;
 		}
 
 	}
-	
 
 	var getMaximumValue = function($mob, prop, maxValue) {
 		var value = $mob.data(prop);

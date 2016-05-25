@@ -1,15 +1,19 @@
 function playTextToSpeech(textToSpeech) {
+	var audio = $('audio');
 	textToSpeech = encodeURIComponent(textToSpeech);
 	var url = "/API/getTraducao?text=" + textToSpeech;
 	console.log("->" + url);
-	$('audio').get(0).playbackRate = 2.0;
-	$('audio').attr('src', url).get(0).play();
+	//audio.get(0).playbackRate = 2.0;
+	audio.attr('src', url);
+	audio.get(0).play();
 }
 
 function pauseTextToSpeech() {
-	$('audio').get(0).pause();
+	var audio = $('audio');
+	audio.get(0).pause();
 }
 
 function resumeTextToSpeech() {
-	$('audio').get(0).play();
+	var audio = $('audio');
+	audio.get(0).play();
 }

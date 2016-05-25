@@ -138,13 +138,16 @@ var Navigation = function(navigationMap, mapObjects) {
 		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y + 1))); // DOWN
 		objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
 
+		var directions = ["Norte", "Leste", "Sul", "Oeste"];
 		var i, length = objects.length, textToSpeech = "";
 		for (i = 0; i < length; i++) {
 			if (objects[i] !== null && objects[i] !== undefined) {
-				textToSpeech += toStringObject(objects[i]);
+				textToSpeech += toStringObject(objects[i], directions[i]);
 			}
 		}
-
+		if(!textToSpeech){
+			textToSpeech = "Não existe nenhum objeto ao seu redor!";
+		}
 		playTextToSpeech(textToSpeech);
 	}
 
@@ -177,7 +180,12 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getLastBumpedObject = function() {
-		describeObject(lastBumpedObject);
+		if(lastBumpedObject){
+			describeObject(lastBumpedObject, "Último objeto colidido foi ");
+		}else{
+			var textToSpeech = "Você não colidiu com nenhum objeto ainda!";
+			playTextToSpeech(textToSpeech);
+		}
 	}
 
 	self.getTimerNavigation = function() {
@@ -237,11 +245,13 @@ var Navigation = function(navigationMap, mapObjects) {
 		return object;
 	}
 
-	function toStringObject(objectMap) {
+	function toStringObject(objectMap, direction) {
 		var textToSpeech = "";
 		if (objectMap !== null && objectMap !== undefined) {
+			
 			textToSpeech = "Objeto "
 					+ objectMap.objeto.nome
+					+ (direction !== null && direction !== undefined ? " está ao " + direction : "" )
 					+ ", "
 					+ (objectMap.audioDescricao ? " Descrição: "
 							+ objectMap.audioDescricao : "Sem descrição")
@@ -255,12 +265,15 @@ var Navigation = function(navigationMap, mapObjects) {
 		return textToSpeech;
 	}
 
-	function describeObject(objectMap) {
+	function describeObject(objectMap, extraText) {
 
 		if (objectMap !== null && objectMap !== undefined) {
 			var textToSpeech = toStringObject(objectMap);
 			pathAudioFile = objectMap.audioIconico.arquivo;
 
+			if (objectMap !== null && objectMap !== undefined) {
+				textToSpeech = extraText + textToSpeech;
+			}
 			playTextToSpeech(textToSpeech);
 
 		}
@@ -371,18 +384,18 @@ var Navigation = function(navigationMap, mapObjects) {
 		return hasObject;
 	}
 
-	var audio;
 	function playIconicAudio(audioPath) {
-		if (audio) {
-			if (!audio.paused) {
-				audio.pause();
-				audio.currentTime = 0;
+		var audio = $('audio');
+		if (audio.get(0)) {
+			if (!audio.get(0).paused) {
+				audio.get(0).pause();
+				audio.get(0).currentTime = 0;
 			}
 		}
-		audio = new Audio(audioPath);
-		audio.play();
+		audio.attr('src', audioPath);
+		audio.get(0).play();
 
-		audio.onerror = function() {
+		audio.get(0).onerror = function() {
 			console.log("Erro ao reproduzir áudio: " + audioPath);
 		};
 
