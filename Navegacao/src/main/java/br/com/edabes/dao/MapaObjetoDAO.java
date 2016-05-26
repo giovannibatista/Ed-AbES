@@ -6,6 +6,6 @@ import br.com.edabes.model.MapaObjeto;
 
 public interface MapaObjetoDAO {
 
-    List<MapaObjeto> carregaObjetosMapa(MapaObjeto mapaObjeto);
+    List<MapaObjeto> carregarObjetosMapa(MapaObjeto mapaObjeto);
 
 }

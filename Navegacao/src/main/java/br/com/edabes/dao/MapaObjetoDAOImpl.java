@@ -25,9 +25,9 @@ public class MapaObjetoDAOImpl implements MapaObjetoDAO {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<MapaObjeto> carregaObjetosMapa(MapaObjeto mapaObjeto) {
+    public List<MapaObjeto> carregarObjetosMapa(MapaObjeto mapaObjeto) {
 	List<MapaObjeto> mapaObjetos = new ArrayList<MapaObjeto>();
-	Session session;;
+	Session session;
 	try {
 	   
 	    session = sessionFactory.getCurrentSession();

@@ -31,7 +31,7 @@ public class MapaObjetoServiceImpl implements MapaObjetoService {
 	try {
 	    mapaObjeto = converter.converteDTOParaModel(mapaObjetoDTO);
 
-	    List<MapaObjeto> mapaObjetos = mapaObjetoDAO.carregaObjetosMapa(mapaObjeto);
+	    List<MapaObjeto> mapaObjetos = mapaObjetoDAO.carregarObjetosMapa(mapaObjeto);
 
 	    // TODO: Refatorar para validar ponto inicial e final
 	    mapaObjetos.forEach(m -> mapaObjetoDTOs.add(validaPontoInicialFinal(converter.converteModelParaDTO(m))));

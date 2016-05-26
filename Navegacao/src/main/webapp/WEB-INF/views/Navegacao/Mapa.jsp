@@ -9,23 +9,25 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/Navegacao/mapa.css" />">
-	
+
 <script type="text/javascript"
 	src="<c:url value="/resources/js/lib/easytimer.js" />"></script>
 
-	
-<script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/audio.js" />" ></script>
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/navegacao.js" />" charset="utf-8"></script>
+	src="<c:url value="/resources/js/Navegacao/audio.js" />"></script>
+
+<script type="text/javascript"
+	src="<c:url value="/resources/js/Navegacao/navegacao.js" />"
+	charset="utf-8"></script>
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/mapa.js" />" charset="utf-8"></script>
 
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />" charset="utf-8"></script>
+	src="<c:url value="/resources/js/Navegacao/teclasatalhomapa.js" />"
+	charset="utf-8"></script>
 
 <script type="text/javascript">
 	
@@ -39,18 +41,12 @@
 
 	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa: ${mapa.nome}</h1>
-		
-		<input type="button" onclick="javascript:playText()" value="Play">
-		<input type="button" onclick="javascript:pauseText()" value="Pause">
-		<input type="button" onclick="javascript:resumeText()" value="Resume">
-		
-		<audio src="" class="speech" hidden="true"></audio>
-		
 		<div id="blocoMapa">
+			<audio src="" class="speech" hidden="true"></audio>
 			<div id="mapa">
-				<input type="hidden" id="idMapa" value="${mapa.id}">
-				<input type="hidden" id="nomeMapa" value="${mapa.nome}">
-				<input type="hidden" id="descricaoMapa" value="${mapa.descricao}">
+				<input type="hidden" id="idMapa" value="${mapa.id}"> <input
+					type="hidden" id="nomeMapa" value="${mapa.nome}"> <input
+					type="hidden" id="descricaoMapa" value="${mapa.descricao}">
 				<input type="hidden" id="objetivoMapa" value="${mapa.objetivo}">
 				<input type="hidden" id="andarMapa" value="${mapa.andar}">
 			</div>

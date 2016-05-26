@@ -41,7 +41,7 @@ public class MapaServiceImpl implements MapaService {
     public MapaDTO consultaMapa(MapaDTO consulta) {
 	MapaDTO mapaDTO = new MapaDTO();
 	try{
-	    Mapa mapa = mapaDAO.consultaMapa(converter.converteDTOParaModel(consulta));
+	    Mapa mapa = mapaDAO.consultarMapa(converter.converteDTOParaModel(consulta));
 	    mapaDTO = converter.converteModelParaDTO(mapa);
 	}catch(Exception e){
 	    e.printStackTrace();

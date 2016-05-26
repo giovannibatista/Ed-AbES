@@ -42,7 +42,7 @@ public class MapaDAOImpl implements MapaDAO {
     }
 
     @Override
-    public Mapa consultaMapa(Mapa mapa) {
+    public Mapa consultarMapa(Mapa mapa) {
 	Session session;
 	Query query;
 	try {
