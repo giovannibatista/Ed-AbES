@@ -11,8 +11,8 @@ div#mapa {
 
 #mapa_mobs {
 	position: absolute;
-	width: 1568px;
-	height: 512px;;
+/* 	width: 1568px;
+	height: 512px; */
 	background-size: 32px 32px;
 	background-image: url('/resources/img/bg-64x64.jpg');
 	background-repeat: repeat;

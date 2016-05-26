@@ -53,7 +53,9 @@ var Map = function($navigationMap){
 	self.params = {
 			initialScale: 32,
 			rotationDegrees: 90,
-			zindex: 8000
+			zindex: 8000,
+			defaultWidth: 49,
+			defaultHeight: 16
 	};
 
 	self.startingPoint = null;
@@ -91,12 +93,24 @@ var Map = function($navigationMap){
 		var $mobs = $("<div />");
 		$mobs.attr("id", "mapa_mobs");
 
+		setSizeMap($mobs);
+		//width: 1568px;
+		//height: 512px;
+		
 		//append into map
 		$mapRelative.append($mobs);
 
 		//store the reference
 		$map = $("#mapa_mobs");
+		
 	}
+	function setSizeMap(map){
+		var height = self.params.defaultHeight * self.params.initialScale,
+		width = self.params.defaultWidth * self.params.initialScale;
+		
+		map.css("width", width + "px");
+		map.css("height", height + "px");
+	} 
 
 	self.addMob = function(objectProperties) {
 		var $obj = $("<div />");
@@ -228,6 +242,14 @@ var Map = function($navigationMap){
 		//normalize positions
 		offset.top = ((offset.top > 0) ? offset.top : 0);
 		offset.left = ((offset.left > 0) ? offset.left : 0);
+		
+		offset.top = ((offset.top <  self.params.defaultHeight * self.scale) ? offset.top :  (self.params.defaultHeight-1) * self.scale);
+		offset.left = ((offset.left <  self.params.defaultWidth * self.scale) ? offset.left :  (self.params.defaultWidth-1) * self.scale);		
+		
+		/*
+		 * 	defaultWidth: 49,
+			defaultHeight: 16
+		 */
 
 		//calculate relative position
 		var pos = {
