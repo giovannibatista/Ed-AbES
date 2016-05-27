@@ -7,9 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.edabes.model.HistoricoNavegacao;
 
+@Repository
+@Transactional
 public class HistoricoNavegacaoDAOImpl implements HistoricoNavegacaoDAO {
 
     @Autowired

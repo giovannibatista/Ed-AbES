@@ -4,10 +4,12 @@
 
 Mousetrap.bind('alt+e', function(e) {
 	console.log('alt+E foi pressionado. Navegacao encerrada');
+	navigation.closeNavigation();
 });
 
 Mousetrap.bind('alt+l', function(e) {
 	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
+	navigation.playLog();
 });
 
 Mousetrap.bind('alt+p', function(e) {
