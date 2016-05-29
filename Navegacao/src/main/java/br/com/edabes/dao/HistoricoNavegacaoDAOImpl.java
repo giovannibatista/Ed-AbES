@@ -25,7 +25,7 @@ public class HistoricoNavegacaoDAOImpl implements HistoricoNavegacaoDAO {
 	try {
 	    session = sessionFactory.getCurrentSession();
 
-	    historicoNavegacao = (HistoricoNavegacao) session.save(historicoNavegacao);
+	    historicoNavegacao.setId((Integer)session.save(historicoNavegacao));
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}

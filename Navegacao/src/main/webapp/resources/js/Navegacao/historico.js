@@ -4,7 +4,7 @@ var NavigationHistory = function() {
 	self.history = {
 		id : 0,
 		log : "",
-		dataNavegacao : "",
+		dataNavegacao : new Date(),
 		usuario : 0,
 		tempoNavegacao : "",
 		mapa : {
@@ -36,7 +36,27 @@ var NavigationHistory = function() {
 	}
 	
 	self.saveNavigationHistory = function(){
-		console.log(self.history);
+		console.log(JSON.stringify(self.history));
+		$.ajax({
+			url : "/Navegacao/Historico/Incluir",
+			type : "POST",
+			contentType: "application/json; charset=utf-8",
+			mimeType: 'application/json',
+			data : JSON.stringify(self.history),
+			cache: false,
+			processData:false,
+			
+			success : function(json) {
+				alert("Histórico salvo com sucesso!");
+				document.location = "/";
+				
+			},
+			error : function() {
+				alert("Ocorreu um erro ao salvar os novos dados.");
+			}
+		});
+		
+		
 	}
 
 }

@@ -8,10 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import br.com.edabes.dto.HistoricoNavegacaoDTO;
 import br.com.edabes.service.HistoricoNavegacaoService;
@@ -44,20 +47,17 @@ public class HistoricoNavegacaoController {
 	return model;
     }
     
-    @RequestMapping(value = "/Navegacao/Historico/Incluir/", method = RequestMethod.POST)
-    @ResponseBody 
-    public ModelAndView IncluirHistoricoNavegacao(HistoricoNavegacaoDTO historicoNavegacao, HttpSession session) {
-	ModelAndView model = null;
-	List<HistoricoNavegacaoDTO> historicoNavegacaoDTOs = new ArrayList<HistoricoNavegacaoDTO>();
+    @RequestMapping(value = "/Navegacao/Historico/Incluir", method = RequestMethod.POST)
+    public @ResponseBody Boolean IncluirHistoricoNavegacao(@RequestBody final String historicoNavegacao, HttpSession session) {
+	Boolean incluiuHistoricoNavegacao = false;
 	try {
-	    model = new ModelAndView("/Navegacao/Historico");
-	    historicoNavegacaoDTOs = historicoNavegacaoService.listarHistoricoNavegacao(historicoNavegacao);
-	    // mapas = new ArrayList<>(); PARA TESTE
-	    model.addObject("historicoNavegacoes", historicoNavegacaoDTOs);
+	    Gson gson = new Gson();
+	    HistoricoNavegacaoDTO historicoNavegacaoDTO = gson.fromJson(historicoNavegacao, HistoricoNavegacaoDTO.class);
+	    incluiuHistoricoNavegacao = historicoNavegacaoService.incluirHistoricoNavegacao(historicoNavegacaoDTO);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
-	return model;
+	return incluiuHistoricoNavegacao;
     }
    /* 
     @RequestMapping(value = "/Salvar/Perfil", method = RequestMethod.POST)

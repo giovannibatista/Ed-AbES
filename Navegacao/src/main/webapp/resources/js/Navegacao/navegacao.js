@@ -250,7 +250,13 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.closeNavigation = function() {
-		console.log("Encerrar navegação.");
+		if(confirm("Você tem certeza que deseja encerrar a navegação?")){
+			navigationHistory.history.dataNavegacao = new Date();
+			navigationHistory.history.tempoNavegacao = timerNavigation.getTimeValues().toString();
+			navigationHistory.history.mapa.id = document.getElementById("idMapa").value;
+			navigationHistory.history.usuario = 3; //TODO: Usuário BRUNA, trocar para usuário logado!
+			navigationHistory.saveNavigationHistory();
+		}
 	}
 
 	function getObjectByCoordinated(x, y) {

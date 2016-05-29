@@ -28,15 +28,17 @@ public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService 
     @Override
     public Boolean incluirHistoricoNavegacao(HistoricoNavegacaoDTO historicoNavegacaoDTO) {
 	HistoricoNavegacao historicoNavegacao = null;
+	Boolean incluiuHistorico = false;
 	try {
 	    historicoNavegacao = new HistoricoNavegacao();
 	    historicoNavegacao = converter.converteDTOParaModel(historicoNavegacaoDTO);
 
 	    historicoNavegacao = historicoNavegacaoDAO.incluirHistoricoNavegacao(historicoNavegacao);
-	} catch (Exception e) {
+	    incluiuHistorico = historicoNavegacao.getId() != null ||  historicoNavegacao.getId() > 0 ? true : false;
+	    } catch (Exception e) {
 	    throw e;
 	}
-	return historicoNavegacao != null ? true : false;
+	return incluiuHistorico;
     }
 
     @Override

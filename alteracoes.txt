@@ -19,3 +19,4 @@
 24/05 14:45 - Timer da navegação implementado e problemas de encode corrigidos. 
 24/05 16:36 - Controles de som implementados para a leitura dos textos. Tecla ALT M implementada, para retornar informações do mapa
 25/05 17:19 - Informações de direção dos objetos no ATL R. Pausar sempre um som ao executar outro.
+29/05 15:52 - Está encerrando a navegação e salvando o histórico da navegação com ALT E.
