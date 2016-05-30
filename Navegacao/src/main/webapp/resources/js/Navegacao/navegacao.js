@@ -92,7 +92,6 @@ var Navigation = function(navigationMap, mapObjects) {
 
 			}
 			var hasObject = false;
-			hasObject = checkCollisions(offset);
 
 			if (!hasObject) {
 				playIconicAudio(footstepAudio);
@@ -102,7 +101,16 @@ var Navigation = function(navigationMap, mapObjects) {
 				}else{
 					navigationHistory.logWalkDown();
 				}
-
+				var finishedNavigation = false;
+				finishedNavigation = checkEndPoint(offset);
+				if(finishedNavigation){
+					self.saveNavigationHistory();
+					var textToSpeech = " Você finalizou a navegação. O ponto final estava na coluna "
+						+ (navigationMap.endPoint.data("coord-x") + 1) + " e linha "
+						+ (navigationMap.endPoint.data("coord-y") + 1) + ". Finalizou a navegação em " + timerNavigation.getTimeValues().toString() + ". Pressione enter para sair!";
+					playTextToSpeech(textToSpeech);
+				}
+				
 			} else {
 				playIconicAudio(collisionsAudio);
 				hasObject = false;
@@ -170,10 +178,11 @@ var Navigation = function(navigationMap, mapObjects) {
 		var nomeMapa = document.getElementById("nomeMapa").value, descricaoMapa = document
 		.getElementById("descricaoMapa").value, objetivoMapa = document
 		.getElementById("objetivoMapa").value, andarMapa = document
-		.getElementById("andarMapa").value;
+		.getElementById("andarMapa").value, descricaoTipoMapa = document
+		.getElementById("descricaoTipoMapa").value;
 
-		var textToSpeech = "O mapa " + nomeMapa + " está no " + andarMapa
-		+ " pavimento. A descrição do mapa é " + descricaoMapa
+		var textToSpeech = "O mapa " + nomeMapa + ", do tipo " + descricaoTipoMapa +", está no " + andarMapa
+		+ " pavimento.  A descrição do mapa é " + descricaoMapa
 		+ ". E O objetivo é " + objetivoMapa;
 		console.log(textToSpeech);
 		playTextToSpeech(textToSpeech);
@@ -238,10 +247,8 @@ var Navigation = function(navigationMap, mapObjects) {
 			textToSpeech = "Navegação retomada em " + timer + ".";
 			console.log(textToSpeech);
 			playTextToSpeech(textToSpeech);
-
 		}
 	}
-
 
 	self.playLog = function() {
 		var log = navigationHistory.history.log;
@@ -251,6 +258,16 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.closeNavigation = function() {
 		if(confirm("Você tem certeza que deseja encerrar a navegação?")){
+			navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
+			self.saveNavigationHistory();
+			document.location = "/";
+		}
+	}
+
+	self.saveNavigationHistory = function() {
+		timerNavigation.pause();
+		isNavigationStopped = true;
+		if(confirm("Você deseja salvar o histórico da navegaçao realizada?")){
 			navigationHistory.history.dataNavegacao = new Date();
 			navigationHistory.history.tempoNavegacao = timerNavigation.getTimeValues().toString();
 			navigationHistory.history.mapa.id = document.getElementById("idMapa").value;
@@ -312,16 +329,6 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		}
 	}
-
-	/*
-	 * height: value.altura, width: value.largura, idObject: value.objeto.id,
-	 * image: value.objeto.imagemMapa, x: value.coordenadaX, y:
-	 * value.coordenadaY, z: value.profundidade, title: value.audioDescricao,
-	 * nome: value.objeto.nome, id: value.idMapaObjeto, rotate : value.angulo,
-	 * arquivoAudio : value.idArquivoAudio, pontoInicial : value.pontoInicial,
-	 * pontoFinal : value.pontoFinal, nivel : value.objeto.nivel
-	 */
-
 	function checkDirection(angle) {
 		angle = navigationMap.normalizeAngle(angle);
 		var direction = DirectionEnum.UP;
@@ -375,11 +382,6 @@ var Navigation = function(navigationMap, mapObjects) {
 		hasObjectY = false, hasObject = false, nextPosX = offset.left / 32,
 		nextPosY = offset.top / 32;
 		$.each(mapObjects, function(key, value) {
-			// console.log("Nome: " + value.objeto.nome + " X" +
-			// value.coordenadaX + " Y" + value.coordenadaY + " nivel:" +
-			// value.objeto.nivel + "value.objeto.nivel == 0?" +
-			// value.objeto.nivel == 0 );
-			// TODO - Validar este ponto inicial e final em outro lugar...
 			if ((value.pontoInicial == false && value.pontoFinal == false)
 					&& value.objeto.nivel != 0) {
 				hasObjectY = validateCoordinate(nextPosY, value.coordenadaY,
@@ -401,6 +403,25 @@ var Navigation = function(navigationMap, mapObjects) {
 			}
 		});
 		return hasObject;
+	}
+
+	function checkEndPoint(offset) {
+		var nextPosX = offset.left / 32,
+		nextPosY = offset.top / 32, finishedNavigation = false, hasObjectY = false, hasObjectX = false;
+
+		if (navigationMap.endPoint != null){
+			var endX = navigationMap.endPoint.data("coord-x"), endY = navigationMap.endPoint.data("coord-y");
+
+			hasObjectY = validateCoordinate(nextPosY, endY, navigationMap.endPoint.data("height"));
+			hasObjectX = validateCoordinate(nextPosX, endX, navigationMap.endPoint.data("width"));
+
+			if (hasObjectX && hasObjectY) {
+				finishedNavigation = true;
+				navigationHistory.logFinishedChallengeNavigation(navigationMap.endPoint, timerNavigation.getTimeValues().toString());
+			}
+		}
+
+		return finishedNavigation;
 	}
 
 	function validateCoordinate(nextPos, objectPos, measurements) {

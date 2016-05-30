@@ -56,13 +56,18 @@
 						readonly="readonly" />
 				</p>
 				<p>
+					<label for="tipo">Tipo do Mapa : </label> <input type="text"
+						name="tipo" id="tipo" value="${mapa.descricaoTipoMapa}"
+						readonly="readonly" />
+				</p>
+				<p>
 					<label for="objetivo">Objetivo : </label> <input type="text"
 						name="objetivo" id="objetivo" value="${mapa.objetivo}"
 						readonly="readonly" />
 				</p>
 				<p>
-					<label for="andar">Pavimento : </label> <input type="text" name="andar"
-						id="andar" value="${mapa.andar}" readonly="readonly" />
+					<label for="andar">Pavimento : </label> <input type="text"
+						name="andar" id="andar" value="${mapa.andar}" readonly="readonly" />
 				</p>
 				<p>
 					<label for="autor">Autor : </label> <input type="text" name="autor"

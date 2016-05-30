@@ -35,6 +35,18 @@ var NavigationHistory = function() {
 				+ (objectMap.coordenadaY + 1) + ".";
 	}
 	
+	self.logFinishedNavigation = function(objectMap, timer) {
+		self.history.log += " Você finalizou a navegação em " + timer + ". A posição final do seu jogador foi coluna "
+		+ (objectMap.data("coord-x") + 1) + " e linha "
+		+ (objectMap.data("coord-y") + 1) + ".";
+	}
+	
+	self.logFinishedChallengeNavigation = function(objectMap, timer) {
+		self.history.log += " Você finalizou a navegação em " + timer + ". O ponto final estava na posição coluna "
+				+ (objectMap.data("coord-x") + 1) + " e linha "
+				+ (objectMap.data("coord-y") + 1) + ".";
+	}
+	
 	self.saveNavigationHistory = function(){
 		console.log(JSON.stringify(self.history));
 		$.ajax({
@@ -44,15 +56,15 @@ var NavigationHistory = function() {
 			mimeType: 'application/json',
 			data : JSON.stringify(self.history),
 			cache: false,
+			async: false,
 			processData:false,
 			
 			success : function(json) {
-				alert("Histórico salvo com sucesso!");
-				document.location = "/";
-				
+				playTextToSpeech("Histórico de navegação salvo com sucesso!");
+				console.log("Histórico salvo com sucesso!");
 			},
 			error : function() {
-				alert("Ocorreu um erro ao salvar os novos dados.");
+				alert("Ocorreu um erro ao salvar o histórico de navegação.");
 			}
 		});
 		

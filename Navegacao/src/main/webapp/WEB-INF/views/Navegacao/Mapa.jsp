@@ -53,6 +53,7 @@
 					type="hidden" id="descricaoMapa" value="${mapa.descricao}">
 				<input type="hidden" id="objetivoMapa" value="${mapa.objetivo}">
 				<input type="hidden" id="andarMapa" value="${mapa.andar}">
+				<input type="hidden" id="descricaoTipoMapa" value="${mapa.descricaoTipoMapa}">
 			</div>
 		</div>
 	</div>

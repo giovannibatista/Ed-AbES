@@ -110,6 +110,10 @@ public class MapaDTO {
     public void setAndar(String andar) {
 	this.andar = andar;
     }
+    
+    public String getDescricaoTipoMapa() {
+        return this.getTipoMapa() == 1 ? "Navegação Livre" : "Desafio";
+    }
 
     @Override
     public String toString() {

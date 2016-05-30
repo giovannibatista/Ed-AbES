@@ -58,14 +58,7 @@
 								<tr onclick="javascript: abrirResumo(${mapa.id});">
 									<th scope="row">${mapa.nome}</th>
 									<td>${mapa.descricao}</td>
-									<c:choose>
-										<c:when test="${mapa.tipoMapa == 1}">
-											<td>Navegação Livre</td>
-										</c:when>
-										<c:otherwise>
-											<td>Desafio</td>
-										</c:otherwise>
-									</c:choose>
+									<td>${mapa.descricaoTipoMapa}</td>
 									<td>${mapa.dataAlteracao}</td>
 									<td><input type="button" id="salvarMapaBotao"
 										onclick="javascript: abrirResumo(${mapa.id});"
