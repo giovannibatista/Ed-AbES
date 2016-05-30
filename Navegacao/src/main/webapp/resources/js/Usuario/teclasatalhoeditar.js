@@ -2,13 +2,13 @@
  * 
  */
 
-Mousetrap.bind('alt + s', function(e) {
+Mousetrap.bind('alt+s', function(e) {
 	var idUsuario = $("#id").val();
-	alert('alt + s is pressed. Id: ' + idUsuario);
+	console.log('alt + s is pressed. Id: ' + idUsuario);
 	salvarUsuario(idUsuario);
 });
 
-Mousetrap.bind('alt + s', function(e) {
-	alert('alt + s is pressed');
+Mousetrap.bind('alt+s', function(e) {
+	console.log('alt + s is pressed');
 	cancelarAlteracoesUsuario();
 });

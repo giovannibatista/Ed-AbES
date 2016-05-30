@@ -28,6 +28,8 @@ $(window).load(function() {
 					nivel : value.objeto.nivel
 				});
 			});
+			var map = $("#mapa_mobs");
+			$mapaNavegacao.setSizeMap(map);
 			//Instanciate the navigation
 			navigation = new Navigation($mapaNavegacao, json);
 			
@@ -93,7 +95,7 @@ var Map = function($navigationMap){
 		var $mobs = $("<div />");
 		$mobs.attr("id", "mapa_mobs");
 
-		setSizeMap($mobs);
+		//self.setSizeMap($mobs);
 		//width: 1568px;
 		//height: 512px;
 		
@@ -104,9 +106,23 @@ var Map = function($navigationMap){
 		$map = $("#mapa_mobs");
 		
 	}
-	function setSizeMap(map){
+	self.setSizeMap = function(map) {
 		var height = self.params.defaultHeight * self.params.initialScale,
 		width = self.params.defaultWidth * self.params.initialScale;
+		
+		if (self.maxX > 0  && self.maxY > 0){
+			var heightMaxY = self.maxY * self.params.initialScale, widthMaxX = self.maxX * self.params.initialScale;
+			
+			if(heightMaxY > height){
+				self.params.defaultHeight = self.maxY;
+				height = heightMaxY;
+				
+			}
+			if(widthMaxX > width){
+				self.params.defaultWidth = self.maxX;
+				width = widthMaxX;
+			}
+		} 	
 		
 		map.css("width", width + "px");
 		map.css("height", height + "px");
@@ -194,8 +210,8 @@ var Map = function($navigationMap){
 		
 		self.maxZ = getMaximumValue($mob, "coord-z", self.maxZ);
 		//TODO : Refatorar para pegar o X+Largura e Y+Altura...
-		self.maxX = getMaximumValue($mob, "x", self.maxX);
-		self.maxY = getMaximumValue($mob, "y", self.maxY);
+		self.maxX = getMaximumValueWithSize($mob, "x", self.maxX, "height");
+		self.maxY = getMaximumValueWithSize($mob, "y", self.maxY, "width");
 
 		if(pontoInicial == true){
 			console.log("STARTING POINT: x= " + $mob.data("coord-x") + "y= " + $mob.data("coord-y"));
@@ -211,6 +227,18 @@ var Map = function($navigationMap){
 
 	var getMaximumValue = function($mob, prop, maxValue) {
 		var value = $mob.data(prop);
+
+		if(maxValue < value){
+			maxValue = value;
+		}
+
+		return maxValue;
+	}	
+	
+	var getMaximumValueWithSize = function($mob, prop, maxValue, size) {
+		var value = $mob.data(prop), valueAux = $mob.data(size);
+		
+		value = (value-1) + valueAux;
 
 		if(maxValue < value){
 			maxValue = value;

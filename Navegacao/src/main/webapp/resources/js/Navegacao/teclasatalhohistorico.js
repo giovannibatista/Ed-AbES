@@ -2,7 +2,7 @@
  * 
  */
 
-Mousetrap.bind('alt + p', function(e) {
-	alert('alt + p is pressed');
+Mousetrap.bind('alt+p', function(e) {
+	console.log('alt + p is pressed');
 	pararAudio();
 });
