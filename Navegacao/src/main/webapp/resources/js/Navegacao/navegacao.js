@@ -92,6 +92,8 @@ var Navigation = function(navigationMap, mapObjects) {
 
 			}
 			var hasObject = false;
+			
+			hasObject = checkCollisions(offset);
 
 			if (!hasObject) {
 				playIconicAudio(footstepAudio);

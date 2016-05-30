@@ -126,6 +126,13 @@ var Map = function($navigationMap){
 		
 		map.css("width", width + "px");
 		map.css("height", height + "px");
+		
+		var mapExterno = $("#mapa");
+		
+		mapExterno.css("width", width + "px");
+		mapExterno.css("height", height + "px");
+		
+		
 	} 
 
 	self.addMob = function(objectProperties) {
@@ -238,7 +245,7 @@ var Map = function($navigationMap){
 	var getMaximumValueWithSize = function($mob, prop, maxValue, size) {
 		var value = $mob.data(prop), valueAux = $mob.data(size);
 		
-		value = (value-1) + valueAux;
+		value = (value) + valueAux;
 
 		if(maxValue < value){
 			maxValue = value;
