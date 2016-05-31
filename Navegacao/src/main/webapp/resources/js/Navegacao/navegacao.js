@@ -38,7 +38,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.init = function() {
 		console.log("Iniciando a navegação!");
-		var log = "Iniciando a navegação. " + self.getCurrentLocation();
+		var log = getInitLog();
 		navigationHistory.logInit(log);
 		timerNavigation.start();
 	}
@@ -92,7 +92,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 			}
 			var hasObject = false;
-			
+
 			hasObject = checkCollisions(offset);
 
 			if (!hasObject) {
@@ -112,7 +112,7 @@ var Navigation = function(navigationMap, mapObjects) {
 						+ (navigationMap.endPoint.data("coord-y") + 1) + ". Finalizou a navegação em " + timerNavigation.getTimeValues().toString() + ". Pressione enter para sair!";
 					playTextToSpeech(textToSpeech);
 				}
-				
+
 			} else {
 				playIconicAudio(collisionsAudio);
 				hasObject = false;
@@ -155,70 +155,80 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getAroundObjects = function() {
-		var currentPos = {
-				y : player.data("coord-y"),
-				x : player.data("coord-x")
-		}, objects = [];
+		if (!checkIsNavigationStopped()) {
+			navigationHistory.logActions("ALT R", "Objetos ao seu redor");
+			var currentPos = {
+					y : player.data("coord-y"),
+					x : player.data("coord-x")
+			}, objects = [];
 
-		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
-		objects.push(getObjectByCoordinated((currentPos.x + 1), currentPos.y)); // RIGHT
-		objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y + 1))); // DOWN
-		objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
+			objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
+			objects.push(getObjectByCoordinated((currentPos.x + 1), currentPos.y)); // RIGHT
+			objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y + 1))); // DOWN
+			objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
 
-		var directions = ["Norte", "Leste", "Sul", "Oeste"];
-		var i, length = objects.length, textToSpeech = "";
-		for (i = 0; i < length; i++) {
-			if (objects[i] !== null && objects[i] !== undefined) {
-				textToSpeech += toStringObject(objects[i], directions[i]);
+			var directions = ["Norte", "Leste", "Sul", "Oeste"];
+			var i, length = objects.length, textToSpeech = "";
+			for (i = 0; i < length; i++) {
+				if (objects[i] !== null && objects[i] !== undefined) {
+					textToSpeech += toStringObject(objects[i], directions[i]);
+				}
 			}
-		}
-		if(!textToSpeech){
-			textToSpeech = "Não existe nenhum objeto ao seu redor!";
-		}
-		playTextToSpeech(textToSpeech);
-	}
-
-	self.getInfoMap = function() {
-		var nomeMapa = document.getElementById("nomeMapa").value, descricaoMapa = document
-		.getElementById("descricaoMapa").value, objetivoMapa = document
-		.getElementById("objetivoMapa").value, andarMapa = document
-		.getElementById("andarMapa").value, descricaoTipoMapa = document
-		.getElementById("descricaoTipoMapa").value;
-
-		var textToSpeech = "O mapa " + nomeMapa + ", do tipo " + descricaoTipoMapa +", está no " + andarMapa
-		+ " pavimento.  A descrição do mapa é " + descricaoMapa
-		+ ". E O objetivo é " + objetivoMapa;
-		console.log(textToSpeech);
-		playTextToSpeech(textToSpeech);
-	}
-
-	self.getCurrentLocation = function() {
-		var posX = player.data("coord-x") + 1;
-		posY = player.data("coord-y") + 1, rotate = player.data("rotate"),
-		direction = checkDirection(rotate),
-		textDirection = DirectionEnum.getTextDirection(direction);
-
-		var textToSpeech = "Estou na direção " + textDirection + ", coluna "
-		+ posX + " e linha " + posY + ".";
-
-		console.log(textToSpeech);
-
-		playTextToSpeech(textToSpeech);
-
-		return textToSpeech;
-
-	}
-
-	self.getLastBumpedObject = function() {
-		if(lastBumpedObject){
-			describeObject(lastBumpedObject, "Último objeto colidido foi ");
-		}else{
-			var textToSpeech = "Você não colidiu com nenhum objeto ainda!";
+			if(!textToSpeech){
+				textToSpeech = "Não existe nenhum objeto ao seu redor!";
+			}
 			playTextToSpeech(textToSpeech);
 		}
 	}
 
+	self.getInfoMap = function() {
+		if (!checkIsNavigationStopped()) {
+			navigationHistory.logActions("ALT M", "Informações do mapa");
+			var nomeMapa = document.getElementById("nomeMapa").value, descricaoMapa = document
+			.getElementById("descricaoMapa").value, objetivoMapa = document
+			.getElementById("objetivoMapa").value, andarMapa = document
+			.getElementById("andarMapa").value, descricaoTipoMapa = document
+			.getElementById("descricaoTipoMapa").value;
+
+			var textToSpeech = "O mapa " + nomeMapa + ", do tipo " + descricaoTipoMapa +", está no " + andarMapa
+			+ " pavimento.  A descrição do mapa é " + descricaoMapa
+			+ ". E O objetivo é " + objetivoMapa;
+			console.log(textToSpeech);
+			playTextToSpeech(textToSpeech);
+		}
+	}
+
+	self.getCurrentLocation = function() {
+		if (!checkIsNavigationStopped()) {
+			navigationHistory.logActions("ALT O", "Localização atual do jogador");
+			var posX = player.data("coord-x") + 1;
+			posY = player.data("coord-y") + 1, rotate = player.data("rotate"),
+			direction = checkDirection(rotate),
+			textDirection = DirectionEnum.getTextDirection(direction);
+
+			var textToSpeech = "Estou na direção " + textDirection + ", coluna "
+			+ posX + " e linha " + posY + ".";
+
+			console.log(textToSpeech);
+
+			playTextToSpeech(textToSpeech);
+		}
+	}
+
+	self.getLastBumpedObject = function() {
+		if (!checkIsNavigationStopped()) {
+			navigationHistory.logActions("ALT C", "Informações do último objeto colidido");
+			if(lastBumpedObject){
+				describeObject(lastBumpedObject, "Último objeto colidido foi ");
+			}else{
+				var textToSpeech = "Você não colidiu com nenhum objeto ainda!";
+				playTextToSpeech(textToSpeech);
+			}
+		}
+	}
+
 	self.getTimerNavigation = function() {
+		navigationHistory.logActions("ALT T", "Informações do tempo de navegação");
 		var textToSpeech = timerNavigation.getTimeValues().toString();
 		textToSpeech = "Tempo de navegação: " + textToSpeech;
 		console.log(textToSpeech);
@@ -226,16 +236,20 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.playPauseTextToSpeech = function() {
-		var audioTextToSpeech = $('audio').get(0);
-		if (!audioTextToSpeech.paused) {
-			audioTextToSpeech.pause();
-			pauseTextToSpeech();
-		}else{
-			resumeTextToSpeech();
+		if (!checkIsNavigationStopped()) {
+			navigationHistory.logActions("ALT P", "Pausar e Retomar áudio dos textos");
+			var audioTextToSpeech = $('audio').get(0);
+			if (!audioTextToSpeech.paused) {
+				audioTextToSpeech.pause();
+				pauseTextToSpeech();
+			}else{
+				resumeTextToSpeech();
+			}
 		}
 	}
 
 	self.resumeStopNavigation = function() {
+		navigationHistory.logActions("ALT S", "Pausar e Retomar a navegação");
 		var timer = timerNavigation.getTimeValues().toString(), textToSpeech = "";
 		if (!isNavigationStopped) {
 			timerNavigation.pause();
@@ -255,12 +269,16 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.playLog = function() {
-		var log = navigationHistory.history.log;
-		console.log(log);
-		playTextToSpeech(log);
+		if (!checkIsNavigationStopped()) {
+			navigationHistory.logActions("ALT L", "Reproduzir o log da navegação");
+			var log = navigationHistory.history.log;
+			console.log(log);
+			playTextToSpeech(log);
+		}
 	}
 
 	self.closeNavigation = function() {
+		navigationHistory.logActions("ALT E", "Encerrar a navegação");
 		if(confirm("Você tem certeza que deseja encerrar a navegação?")){
 			navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
 			self.saveNavigationHistory();
@@ -470,6 +488,19 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	}
 
+	function getInitLog(){
+		var posX = player.data("coord-x") + 1;
+		posY = player.data("coord-y") + 1, rotate = player.data("rotate"),
+		direction = checkDirection(rotate),
+		textDirection = DirectionEnum.getTextDirection(direction);
+
+		var textToSpeech = "Iniciando a navegação, estou na direção " + textDirection + ", coluna "
+		+ posX + " e linha " + posY + ".";
+
+		playTextToSpeech(textToSpeech);
+
+		return textToSpeech;
+	}
 	self.init();
 
 };

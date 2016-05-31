@@ -1,6 +1,11 @@
 function playTextToSpeech(textToSpeech) {
 	var audio = $('audio');
 	textToSpeech = encodeURIComponent(textToSpeech);
+	console.log(textToSpeech.length);
+	if(textToSpeech.length > 2048){
+		debugger;
+		console.log("MAIORRRRR");
+	}
 	var url = "/API/getTraducao?text=" + textToSpeech;
 	console.log("->" + url);
 	//audio.get(0).playbackRate = 2.0;
