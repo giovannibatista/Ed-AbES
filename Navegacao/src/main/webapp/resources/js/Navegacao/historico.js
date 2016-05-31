@@ -65,8 +65,8 @@ var NavigationHistory = function() {
 			processData:false,
 
 			success : function(json) {
-				playTextToSpeech("Histórico de navegação salvo com sucesso!");
 				console.log("Histórico salvo com sucesso!");
+				playTextToSpeech("Histórico de navegação salvo com sucesso. Navegação finalizada. Para retornar a navegar, acesse o Menu \"Iniciar Navegação\" ou ALT 1.")
 			},
 			error : function() {
 				alert("Ocorreu um erro ao salvar o histórico de navegação.");

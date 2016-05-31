@@ -1,5 +1,5 @@
 var Navigation = function(navigationMap, mapObjects) {
-	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3',left = '/resources/audio/beep_left.wav',right = '/resources/audio/beep_right.wav' , mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false, navigationHistory = new NavigationHistory();
+	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3',left = '/resources/audio/beep_left.wav',right = '/resources/audio/beep_right.wav' , mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false, isNavigationFinished = false, navigationHistory = new NavigationHistory(), isBlocked = false, confirmClose = false, confirmSaveHistory = false;
 
 	DirectionEnum = {
 			UP : 1,
@@ -44,7 +44,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.walk = function(forcedDirection) {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			console.log("self.walk");
 			var rotate = player.data("rotate"), coordZ = navigationMap.maxZ + 1, audio, nextOffset = {
 				top : offset.top,
@@ -106,7 +106,7 @@ var Navigation = function(navigationMap, mapObjects) {
 				var finishedNavigation = false;
 				finishedNavigation = checkEndPoint(offset);
 				if(finishedNavigation){
-					self.saveNavigationHistory();
+					askToSaveNavigationHistory();
 					var textToSpeech = " Você finalizou a navegação. O ponto final estava na coluna "
 						+ (navigationMap.endPoint.data("coord-x") + 1) + " e linha "
 						+ (navigationMap.endPoint.data("coord-y") + 1) + ". Finalizou a navegação em " + timerNavigation.getTimeValues().toString() + ". Pressione enter para sair!";
@@ -126,14 +126,14 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.down = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			var direction = checkOppositeDirection(player.data("rotate"));
 			self.walk(direction);
 		}
 	}
 
 	self.rotateLeft = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationMap.rotateObjectAction(player,
 					navigationMap.DirectionEnum.LEFT);
 			var rotate = player.data("rotate"),
@@ -144,7 +144,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.rotateRight = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationMap.rotateObjectAction(player,
 					navigationMap.DirectionEnum.RIGHT);
 			var rotate = player.data("rotate"),
@@ -155,7 +155,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getAroundObjects = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT R", "Objetos ao seu redor");
 			var currentPos = {
 					y : player.data("coord-y"),
@@ -182,7 +182,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getInfoMap = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT M", "Informações do mapa");
 			var nomeMapa = document.getElementById("nomeMapa").value, descricaoMapa = document
 			.getElementById("descricaoMapa").value, objetivoMapa = document
@@ -199,7 +199,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getCurrentLocation = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT O", "Localização atual do jogador");
 			var posX = player.data("coord-x") + 1;
 			posY = player.data("coord-y") + 1, rotate = player.data("rotate"),
@@ -216,7 +216,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getLastBumpedObject = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT C", "Informações do último objeto colidido");
 			if(lastBumpedObject){
 				describeObject(lastBumpedObject, "Último objeto colidido foi ");
@@ -228,15 +228,17 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.getTimerNavigation = function() {
-		navigationHistory.logActions("ALT T", "Informações do tempo de navegação");
-		var textToSpeech = timerNavigation.getTimeValues().toString();
-		textToSpeech = "Tempo de navegação: " + textToSpeech;
-		console.log(textToSpeech);
-		playTextToSpeech(textToSpeech);
+		if(!checkIsNavigationFinished()){
+			navigationHistory.logActions("ALT T", "Informações do tempo de navegação");
+			var textToSpeech = timerNavigation.getTimeValues().toString();
+			textToSpeech = "Tempo de navegação: " + textToSpeech;
+			console.log(textToSpeech);
+			playTextToSpeech(textToSpeech);
+		}
 	}
 
 	self.playPauseTextToSpeech = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT P", "Pausar e Retomar áudio dos textos");
 			var audioTextToSpeech = $('audio').get(0);
 			if (!audioTextToSpeech.paused) {
@@ -249,27 +251,29 @@ var Navigation = function(navigationMap, mapObjects) {
 	}
 
 	self.resumeStopNavigation = function() {
-		navigationHistory.logActions("ALT S", "Pausar e Retomar a navegação");
-		var timer = timerNavigation.getTimeValues().toString(), textToSpeech = "";
-		if (!isNavigationStopped) {
-			timerNavigation.pause();
-			isNavigationStopped = true;
-			textToSpeech = "Navegação pausada em " + timer
-			+ ". Para retomar a navegação, tecle Alt S.";
-			console.log(textToSpeech);
-			playTextToSpeech(textToSpeech);
+		if(!checkIsNavigationFinished()){
+			navigationHistory.logActions("ALT S", "Pausar e Retomar a navegação");
+			var timer = timerNavigation.getTimeValues().toString(), textToSpeech = "";
+			if (!isNavigationStopped) {
+				timerNavigation.pause();
+				isNavigationStopped = true;
+				textToSpeech = "Navegação pausada em " + timer
+				+ ". Para retomar a navegação, tecle Alt S.";
+				console.log(textToSpeech);
+				playTextToSpeech(textToSpeech);
 
-		} else {
-			timerNavigation.start();
-			isNavigationStopped = false;
-			textToSpeech = "Navegação retomada em " + timer + ".";
-			console.log(textToSpeech);
-			playTextToSpeech(textToSpeech);
+			} else {
+				timerNavigation.start();
+				isNavigationStopped = false;
+				textToSpeech = "Navegação retomada em " + timer + ".";
+				console.log(textToSpeech);
+				playTextToSpeech(textToSpeech);
+			}
 		}
 	}
 
 	self.playLog = function() {
-		if (!checkIsNavigationStopped()) {
+		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT L", "Reproduzir o log da navegação");
 			var log = navigationHistory.history.log;
 			console.log(log);
@@ -277,24 +281,60 @@ var Navigation = function(navigationMap, mapObjects) {
 		}
 	}
 
-	self.closeNavigation = function() {
-		navigationHistory.logActions("ALT E", "Encerrar a navegação");
-		if(confirm("Você tem certeza que deseja encerrar a navegação?")){
-			navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
-			self.saveNavigationHistory();
-			document.location = "/";
+	self.askToCloseNavigation = function() {
+		if(!checkIsNavigationFinished()){
+			navigationHistory.logActions("ALT E", "Encerrar a navegação");
+			var textToSpeech = "Você tem certeza que deseja encerrar a navegação? Tecle S para sim ou N para não.";
+			playTextToSpeech(textToSpeech);
+			confirmClose = true;
+			confirmSaveHistory = false;
+			isBlocked = true;
 		}
 	}
 
-	self.saveNavigationHistory = function() {
+	function closeNavigation() {
+		isNavigationFinished = true;
 		timerNavigation.pause();
-		isNavigationStopped = true;
-		if(confirm("Você deseja salvar o histórico da navegaçao realizada?")){
-			navigationHistory.history.dataNavegacao = new Date();
-			navigationHistory.history.tempoNavegacao = timerNavigation.getTimeValues().toString();
-			navigationHistory.history.mapa.id = document.getElementById("idMapa").value;
-			navigationHistory.history.usuario = 3; //TODO: Usuário BRUNA, trocar para usuário logado!
-			navigationHistory.saveNavigationHistory();
+		navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
+		askToSaveNavigationHistory();
+	}
+
+	function askToSaveNavigationHistory() {
+		var textToSpeech = "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
+		playTextToSpeech(textToSpeech);
+		confirmClose = false;
+		confirmSaveHistory = true;
+	}
+
+	function saveNavigationHistory() {
+		navigationHistory.history.dataNavegacao = new Date();
+		navigationHistory.history.tempoNavegacao = timerNavigation.getTimeValues().toString();
+		navigationHistory.history.mapa.id = document.getElementById("idMapa").value;
+		navigationHistory.history.usuario = 3; //TODO: Usuário BRUNA, trocar para usuário logado!
+		navigationHistory.saveNavigationHistory();
+		confirmClose = false;
+		confirmSaveHistory = false;
+		isBlocked = false;
+	}
+
+	self.yes = function() {
+		if(isBlocked &&(confirmClose || confirmSaveHistory)){
+			playTextToSpeech("Sim");
+			if(confirmClose){
+				closeNavigation();
+			}else if(confirmSaveHistory){
+				saveNavigationHistory();
+			}
+		}
+	}
+
+	self.no = function() {
+		if(isBlocked &&(confirmClose || confirmSaveHistory)){
+			playTextToSpeech("Não");
+			if(confirmClose){
+				isNavigationFinished = false;
+				isBlocked = false;
+			}
 		}
 	}
 
@@ -478,14 +518,33 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	}
 
-	function checkIsNavigationStopped() {
-		if (isNavigationStopped) {
-			var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt S.";
-			console.log(textToSpeech);
-			playTextToSpeech(textToSpeech);
-		}
-		return isNavigationStopped;
+	function checkIsNavigationStoppedOrFinished() {
+		if(!isBlocked){
+			if(checkIsNavigationFinished()){
+				return isNavigationFinished;
+			}
 
+			if (isNavigationStopped) {
+				var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt S.";
+				console.log(textToSpeech);
+				playTextToSpeech(textToSpeech);
+			}
+			return isNavigationStopped;
+		}
+		return isBlocked;
+
+	}
+
+	function checkIsNavigationFinished() {
+		if(!isBlocked){
+			if (isNavigationFinished) {
+				var textToSpeech = "Navegação finalizada. Para retornar a navegar, acesse o Menu \"Iniciar Navegação\" ou ALT 1.";
+				console.log(textToSpeech);
+				playTextToSpeech(textToSpeech);
+			}
+			return isNavigationFinished;
+		}
+		return isBlocked;
 	}
 
 	function getInitLog(){

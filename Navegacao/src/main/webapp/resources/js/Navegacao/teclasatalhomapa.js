@@ -2,33 +2,43 @@
  * 
  */
 
+Mousetrap.bind('s', function(e) {
+	console.log('s');
+	navigation.yes();
+});
+
+Mousetrap.bind('n', function(e) {
+	console.log('n');
+	navigation.no();
+});
+
 Mousetrap.bind('alt+e', function(e) {
-	console.log('alt+E foi pressionado. Navegacao encerrada');
-	navigation.closeNavigation();
+	console.log('alt+E foi pressionado.');
+	navigation.askToCloseNavigation();
 });
 
 Mousetrap.bind('alt+l', function(e) {
-	console.log('alt+l foi pressionado. Reproduzir log de navegacao');
+	console.log('alt+l foi pressionado.');
 	navigation.playLog();
 });
 
 Mousetrap.bind('alt+p', function(e) {
-	console.log('alt+P foi pressionado. Audio parado/retomado');
+	console.log('alt+P foi pressionado.');
 	navigation.playPauseTextToSpeech();
 });
 
 Mousetrap.bind('alt+m', function(e) {
-	console.log('alt+m foi pressionado. Informações do mapa');
+	console.log('alt+m foi pressionado.');
 	navigation.getInfoMap();
 });
 
 Mousetrap.bind('alt+s', function(e) {
-	console.log('alt+S foi pressionado. Navegacao parada/retomada');
+	console.log('alt+S foi pressionado. ');
 	navigation.resumeStopNavigation();
 });
 
 Mousetrap.bind('alt+t', function(e) {
-	console.log('alt+t foi pressionado. Tempo de navegacao');
+	console.log('alt+t foi pressionado.');
 	navigation.getTimerNavigation();
 });
 
@@ -42,14 +52,10 @@ Mousetrap.bind('alt+o', function(e) {
 	navigation.getCurrentLocation();
 });
 
-Mousetrap
-		.bind(
-				'alt+r',
-				function(e) {
-					console
-							.log('alt+R foi pressionado. Os seguintes objetos estao ao meu redor...');
-					navigation.getAroundObjects();
-				});
+Mousetrap.bind('alt+r',function(e) {
+	console.log('alt+R foi pressionado.');
+	navigation.getAroundObjects();
+});
 
 Mousetrap.bind('up', function(e) {
 	console.log("up");
