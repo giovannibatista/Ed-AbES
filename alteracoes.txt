@@ -21,3 +21,4 @@
 25/05 17:19 - Informações de direção dos objetos no ATL R. Pausar sempre um som ao executar outro.
 29/05 15:52 - Está encerrando a navegação e salvando o histórico da navegação com ALT E.
 30/05 14:16 - Modo desafio implementado e encerramento da navegação
+31/05 12:43 - Som icônico ao girar para esquerda e direita

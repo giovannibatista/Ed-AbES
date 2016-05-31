@@ -1,5 +1,5 @@
 var Navigation = function(navigationMap, mapObjects) {
-	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3', mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false, navigationHistory = new NavigationHistory();
+	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3',left = '/resources/audio/beep_left.wav',right = '/resources/audio/beep_right.wav' , mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false, navigationHistory = new NavigationHistory();
 
 	DirectionEnum = {
 			UP : 1,
@@ -138,6 +138,7 @@ var Navigation = function(navigationMap, mapObjects) {
 					navigationMap.DirectionEnum.LEFT);
 			var rotate = player.data("rotate"),
 			direction = checkDirection(rotate);
+			playIconicAudio(left);
 			navigationHistory.logChangeDirection(DirectionEnum.getTextDirection(direction));
 		}
 	}
@@ -148,6 +149,7 @@ var Navigation = function(navigationMap, mapObjects) {
 					navigationMap.DirectionEnum.RIGHT);
 			var rotate = player.data("rotate"),
 			direction = checkDirection(rotate);
+			playIconicAudio(right);
 			navigationHistory.logChangeDirection(DirectionEnum.getTextDirection(direction));
 		}
 	}
