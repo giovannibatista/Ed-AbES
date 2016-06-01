@@ -22,56 +22,54 @@
 
 		<p>Esta tela apresenta os históricos das navegações realizadas
 			pelo usuário em determinado mapa, exibindo informações sobre o tempo
-			de navegação, log da navegação e data de navegação.</p>
+			de navegação, log de navegação e data de navegação.</p>
 		<p>Você poderá acessar o log do histórico de navegação e escutá-lo
 			utilizando o leitor de telas ou baixar ele no formato TXT para sua
 			máquina.</p>
-		<p>O log da navegação consiste em mostrar os movimentos e ações realizados
-			durante a navegação nos mapas. Como por exemplo: Você andou um passo ao
-			Sul. Você se virou para o Oeste. Você se virou para o Norte. Etc.</p>
-
-		<div id="blocoControlesSom">
-			<h2>Controles de som</h2>
-			<input type="button" id="controleSomBotao" name="controleSomBotao"
-				value="Pausar o áudio"
-				alt="Botão pausar o áudio. Para parar a reprodução do log de navegação, tecle Alt P."
-				onclick="javascript: pararAudio()" />
-		</div>
+		<p>O log de navegação consiste em mostrar os movimentos e ações
+			realizados durante a navegação nos mapas. Como por exemplo: Você
+			andou um passo ao Sul. Você se virou para o Oeste. Você se virou para
+			o Norte. Etc.</p>
 
 		<div id="blocoListaHistoricoNavegacao">
-
-			<table border="1" id="historicoNavegacoes" class="listas">
-				<caption>Tabela de histórico das navegações realizadas.</caption>
-				<thead>
-					<tr>
-						<th scope="col">Nome do mapa</th>
-						<th scope="col">Data de navegação</th>
-						<th scope="col">Tempo de navegação</th>
-						<th scope="col">Log da navegação</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr onclick="javascript: reproduzirLogNavegacao(1);">
-						<th scope="row">Mapa 1
-						<td>12/11/2015</td>
-						<td>00:35:54</td>
-						<td><input type="button" id="reproduzirLogNavegacaoBotao"
-							alt="Botão reproduzir log da navegação. Tecle Enter para reproduzir o log dos movimentos realizados."
-							onclick="javascript: reproduzirLogNavegacao(1);"
-							value="Reproduzir Log de Navegação" /></td>
-					</tr>
-					<tr onclick="javascript: reproduzirLogNavegacao(2);">
-						<th scope="row">Mapa 2
-						<td>12/11/2014</td>
-						<td>00:14:34</td>
-						<td><input type="button" id="reproduzirLogNavegacaoBotao"
-							alt="Botão reproduzir log da navegação. Tecle Enter para reproduzir o log dos movimentos realizados."
-							onclick="javascript: reproduzirLogNavegacao(2);"
-							value="Reproduzir Log de Navegação" /></td>
-					</tr>
-				</tbody>
-			</table>
-
+			<c:choose>
+				<c:when test="${not empty historicoNavegacoes}">
+					<table border="1" id="historicoNavegacoes" class="listas">
+						<caption>Tabela de histórico das navegações realizadas.</caption>
+						<thead>
+							<tr>
+								<th scope="col">Nome do mapa</th>
+								<th scope="col">Data de navegação</th>
+								<th scope="col">Tempo de navegação</th>
+								<th scope="col">Vizualizar log de navegação</th>
+								<th scope="col">Download log de navegação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${historicoNavegacoes}" var="historico">
+								<tr>
+									<th scope="row">${historico.mapa.nome}</th>
+									<td>${historico.dataNavegacao}</td>
+									<td>${historico.tempoNavegacao}</td> 
+									<td><input type="button" id="vizualizarLogNavegacaoBotao"
+									alt="Botão para vizualizar log de navegação em uma nova janela."
+									onclick="javascript: vizualizarLogNavegacao(${historico.id});"
+									value="Vizualizar log de Navegação" /></td>
+									<td><input type="button" id="downloadLogNavegacaoBotao"
+									alt="Botão realizar download log de navegação para um arquivo no formato TXT."
+									onclick="javascript: downloadLogNavegacao(${historico.id});"
+									value="Dowload do log de Navegação" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<div id="blocoListaMapasVazio" class="blocoListaVazio">
+						<p>Nenhum histórico de navegação encontrado.</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>

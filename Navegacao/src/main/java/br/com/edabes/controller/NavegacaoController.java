@@ -106,12 +106,6 @@ public class NavegacaoController {
 	return "/Navegacao/Resumo";
     }
 
-    @RequestMapping(value = "/Navegacao/Historico", method = RequestMethod.GET)
-    public String iniciarHistorico() {
-	System.out.println("Iniciando o historico");
-	return "/Navegacao/Historico";
-    }
-
     public ArrayList<MapaDTO> getMapas() {
 	return mapas;
     }

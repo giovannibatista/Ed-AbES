@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,16 +29,21 @@ public class HistoricoNavegacaoController {
 	// TODO Auto-generated constructor stub
     }
     
-    @RequestMapping(value = "/Navegacao/Historico/{id}", method = RequestMethod.GET)
-    public ModelAndView listarHistoricoNavegacao(@PathVariable("id") Integer idUsuario, HttpSession session) {
+  /*  @RequestMapping(value = "/Navegacao/Historico", method = RequestMethod.GET)
+    public String iniciarHistorico() {
+	System.out.println("Iniciando o historico");
+	return "/Navegacao/Historico";
+    }
+*/    
+    @RequestMapping(value = "/Navegacao/Historico", method = RequestMethod.GET)
+    public ModelAndView listarHistoricoNavegacao(/*@PathVariable("id") Integer idUsuario,*/ HttpSession session) {
 	ModelAndView model = null;
 	List<HistoricoNavegacaoDTO> historicoNavegacaoDTOs = new ArrayList<HistoricoNavegacaoDTO>();
 	HistoricoNavegacaoDTO historicoNavegacaoDTO = new HistoricoNavegacaoDTO(); 
 	try {
 	    model = new ModelAndView("/Navegacao/Historico");
-	    historicoNavegacaoDTO.setUsuario(idUsuario);
+	    //historicoNavegacaoDTO.setUsuario(idUsuario);
 	    historicoNavegacaoDTOs = historicoNavegacaoService.listarHistoricoNavegacao(historicoNavegacaoDTO);
-	    // mapas = new ArrayList<>(); PARA TESTE
 	    model.addObject("historicoNavegacoes", historicoNavegacaoDTOs);
 	} catch (Exception e) {
 	    e.printStackTrace();
