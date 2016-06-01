@@ -9,8 +9,8 @@
 <jsp:include page="../Imports.jsp" />
 
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/Navegacao/listar.css" />" >
-	
+	href="<c:url value="/resources/css/Navegacao/listar.css" />">
+
 <script>
 	function abrirResumo(idMapa) {
 		document.location = "/Navegacao/Resumo/" + idMapa;
@@ -32,10 +32,9 @@
 		</p>
 		<p>Caso você não tenha nenhum mapa salvo, acesse a opção de menu
 			"Mapas públicos", utilizando o atalho "Alt 2". Fazendo isto, você
-			poderá verificar os mapas disponíveis e escolher um ou ou mais mapas
-			para navegação. Para isto, selecione a opção "Salvar mapa" quando
-			estiver na linha do mapa que desejar salvar. A tabela apresenta o
-			Nome do Mapa, Descrição, Tipo do Mapa e Data de alteração.</p>
+			poderá verificar os mapas disponíveis e escolher um ou mais mapas
+			para salvar. Lembrando que para que a lista de mapas salvos apareca
+			aqui é necessário estar logado no Módulo de Navegação.</p>
 
 		<div id="mapasSalvosArea">
 			<c:choose>
@@ -60,9 +59,10 @@
 									<td>${mapa.descricao}</td>
 									<td>${mapa.descricaoTipoMapa}</td>
 									<td>${mapa.dataAlteracao}</td>
-									<td><input type="button" id="salvarMapaBotao"
+									<td><input type="button" id="abriResumoBotao"
 										onclick="javascript: abrirResumo(${mapa.id});"
-										value="Iniciar Navegação do ${mapa.nome}" /></td>
+										value="Iniciar Navegação do ${mapa.nome}"
+										alt="Botão para iniciar navegação do Mapa. Tecle Enter para abrir resumo do mapa." /></td>
 								</tr>
 							</c:forEach>
 						</tbody>

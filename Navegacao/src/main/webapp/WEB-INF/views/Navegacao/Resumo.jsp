@@ -34,12 +34,11 @@
 		<p>A seguir serão lidas das informações sobre o mapa que você
 			escolheu para navegar.</p>
 		<p>Para iniciar a navegação, você pode acessar o botão "Iniciar
-			Navegação" pela navegação pela tecla TAB ou as setas cima/baixo, após
-			ter ouvido as informações do mapa ou pela tecla de atalho "Alt I".
-			Para retornar a tela anterior, de seleção dos mapas salvos, o botão
-			poderá ser acessado pela tecla de atalho "Alt V" ou pelo atalho do
-			menu principal que é Alt 2 e lista os mapas públicos disponíveis para
-			escolha.</p>
+			Navegação" pressionar a tecla de atalho "Alt I". Para voltar para a
+			tela anterior, de seleção de mapas salvos, você pode pressionar o
+			botão "Voltar" ou usar a tecla de atalho "Alt V". Caso deseje acessar
+			a lista dos mapas públicos, utilize o atalho do menu principal que é
+			"Alt 2", que listará os mapas públicos disponíveis para navegar.</p>
 
 		<div id="informacaoMapa">
 			<h2>Informações do Mapa</h2>
