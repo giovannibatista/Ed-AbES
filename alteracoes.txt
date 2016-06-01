@@ -24,3 +24,4 @@
 31/05 12:43 - Som icônico ao girar para esquerda e direita
 31/05 15:00 - Todas opções bloqueadas no ALT S e teclas de atalho no log do histórico da navegação.
 31/05 17:46 - Processo de encerramento OK e alteeração no tampo Data de navegação da tabela Historico_Navegacao
+01/06 00:45 - Novos ícones para navegação.
