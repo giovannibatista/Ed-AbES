@@ -10,4 +10,6 @@ public interface HistoricoNavegacaoService {
 
     List<HistoricoNavegacaoDTO> listarHistoricoNavegacao(HistoricoNavegacaoDTO historicoNavegacaoDTO);
 
+    HistoricoNavegacaoDTO consultarHistoricoNavegacao(HistoricoNavegacaoDTO historicoNavegacaoDTO);
+
 }

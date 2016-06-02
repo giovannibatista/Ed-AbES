@@ -8,9 +8,15 @@
 <jsp:include page="../Imports.jsp" />
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/historico.js" />"></script>
+	src="<c:url value="/resources/js/Historico/historiconavegacao.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/teclasatalhohistorico.js" />"></script>
+	
+<script type="text/javascript">
+function abrirLogNavegacao(idHistoricoNavegacao){
+	document.location = "/Historico/Consultar/"+idHistoricoNavegacao;
+}
+</script>
 
 </head>
 <body>
@@ -41,7 +47,7 @@
 								<th scope="col">Nome do mapa</th>
 								<th scope="col">Data de navegação</th>
 								<th scope="col">Tempo de navegação</th>
-								<th scope="col">Vizualizar log de navegação</th>
+								<th scope="col">Abrir log de navegação</th>
 								<th scope="col">Download log de navegação</th>
 							</tr>
 						</thead>
@@ -51,10 +57,10 @@
 									<th scope="row">${historico.mapa.nome}</th>
 									<td>${historico.dataNavegacao}</td>
 									<td>${historico.tempoNavegacao}</td> 
-									<td><input type="button" id="vizualizarLogNavegacaoBotao"
-									alt="Botão para vizualizar log de navegação em uma nova janela."
-									onclick="javascript: vizualizarLogNavegacao(${historico.id});"
-									value="Vizualizar log de Navegação" /></td>
+									<td><input type="button" id="abrirLogNavegacaoBotao"
+									alt="Botão para abrir o log de navegação em uma nova janela."
+									onclick="javascript: abrirLogNavegacao(${historico.id});"
+									value="Abrir log de Navegação" /></td>
 									<td><input type="button" id="downloadLogNavegacaoBotao"
 									alt="Botão realizar download log de navegação para um arquivo no formato TXT."
 									onclick="javascript: downloadLogNavegacao(${historico.id});"
@@ -66,7 +72,7 @@
 				</c:when>
 				<c:otherwise>
 					<div id="blocoListaMapasVazio" class="blocoListaVazio">
-						<p>Nenhum histórico de navegação encontrado.</p>
+						<p>Nenhum histórico de navegação encontrado. </p>
 					</div>
 				</c:otherwise>
 			</c:choose>

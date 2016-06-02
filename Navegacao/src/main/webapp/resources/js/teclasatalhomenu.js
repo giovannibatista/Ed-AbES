@@ -29,7 +29,7 @@ Mousetrap.bind('alt+5', function(e) {
 
 Mousetrap.bind('alt+6', function(e) {
 	console.log('alt+6 is pressed');
-	document.location = "/Navegacao/Historico/";
+	document.location = "/Historico/Listar/";
 });
 
 Mousetrap.bind('alt+7', function(e) {

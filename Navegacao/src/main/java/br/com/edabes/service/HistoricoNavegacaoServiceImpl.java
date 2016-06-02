@@ -35,7 +35,7 @@ public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService 
 
 	    historicoNavegacao = historicoNavegacaoDAO.incluirHistoricoNavegacao(historicoNavegacao);
 	    incluiuHistorico = historicoNavegacao.getId() != null ||  historicoNavegacao.getId() > 0 ? true : false;
-	    } catch (Exception e) {
+	} catch (Exception e) {
 	    throw e;
 	}
 	return incluiuHistorico;
@@ -54,6 +54,19 @@ public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService 
 	    throw e;
 	}
 	return historicoNavegacaoDTOs;
+    }
+
+    @Override
+    public HistoricoNavegacaoDTO consultarHistoricoNavegacao(HistoricoNavegacaoDTO historicoNavegacaoDTO) {
+	HistoricoNavegacao historicoNavegacao = null;
+	try {
+	    historicoNavegacao = converter.converteDTOParaModel(historicoNavegacaoDTO);
+	    historicoNavegacao = historicoNavegacaoDAO.consultarHistoricoNavegacao(historicoNavegacao);
+	    historicoNavegacaoDTO = converter.converteModelParaDTO(historicoNavegacao);
+	} catch (Exception e) {
+	    throw e;
+	}
+	return historicoNavegacaoDTO;
     }
 
 }

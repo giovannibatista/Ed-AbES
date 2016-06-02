@@ -8,5 +8,6 @@ public interface HistoricoNavegacaoDAO {
     
     HistoricoNavegacao incluirHistoricoNavegacao(HistoricoNavegacao historicoNavegacao);
     List<HistoricoNavegacao> listarHistoricoNavegacao(HistoricoNavegacao historicoNavegacao);
+    HistoricoNavegacao consultarHistoricoNavegacao(HistoricoNavegacao historicoNavegacao);
 
 }

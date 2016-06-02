@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,22 +30,31 @@ public class HistoricoNavegacaoController {
 	// TODO Auto-generated constructor stub
     }
     
-  /*  @RequestMapping(value = "/Navegacao/Historico", method = RequestMethod.GET)
-    public String iniciarHistorico() {
-	System.out.println("Iniciando o historico");
-	return "/Navegacao/Historico";
-    }
-*/    
-    @RequestMapping(value = "/Navegacao/Historico", method = RequestMethod.GET)
+    @RequestMapping(value = "/Historico/Listar", method = RequestMethod.GET)
     public ModelAndView listarHistoricoNavegacao(/*@PathVariable("id") Integer idUsuario,*/ HttpSession session) {
 	ModelAndView model = null;
 	List<HistoricoNavegacaoDTO> historicoNavegacaoDTOs = new ArrayList<HistoricoNavegacaoDTO>();
 	HistoricoNavegacaoDTO historicoNavegacaoDTO = new HistoricoNavegacaoDTO(); 
 	try {
-	    model = new ModelAndView("/Navegacao/Historico");
+	    model = new ModelAndView("/Historico/Listar");
 	    //historicoNavegacaoDTO.setUsuario(idUsuario);
 	    historicoNavegacaoDTOs = historicoNavegacaoService.listarHistoricoNavegacao(historicoNavegacaoDTO);
 	    model.addObject("historicoNavegacoes", historicoNavegacaoDTOs);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return model;
+    }
+    
+    @RequestMapping(value = "/Historico/Consultar/{id}", method = RequestMethod.GET)
+    public ModelAndView consultarHistoricoNavegacao(@PathVariable("id") Integer idHistoricoNavegacao, HttpSession session) {
+	ModelAndView model = null;
+	HistoricoNavegacaoDTO historicoNavegacaoDTO = new HistoricoNavegacaoDTO(); 
+	try {
+	    model = new ModelAndView("/Historico/Consultar");
+	    historicoNavegacaoDTO.setId(idHistoricoNavegacao);
+	    historicoNavegacaoDTO = historicoNavegacaoService.consultarHistoricoNavegacao(historicoNavegacaoDTO);
+	    model.addObject("historicoNavegacao", historicoNavegacaoDTO);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -63,28 +73,5 @@ public class HistoricoNavegacaoController {
 	}
 	return incluiuHistoricoNavegacao;
     }
-   /* 
-    @RequestMapping(value = "/Salvar/Perfil", method = RequestMethod.POST)
-	public @ResponseBody boolean salvarPerfilPostt(Usuario usuario, HttpSession session) {
-		boolean dadosSalvos = false;
-		Usuario usuarioLogado = null;
-		
-		if (isAuthenticated(session)) {
-			usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-			usuarioLogado = super.getUserSession(session);
-			usuario.setId(usuarioLogado.getId());
-			dadosSalvos = usuarioService.alterarDadosUsuario(usuario);
-			
-			if(dadosSalvos) {
-				session.setAttribute("usuarioLogado", usuario);
-			}
-		}
-		
-		return dadosSalvos;
-	}*/
-    
-    
-    
-    
-
+   
 }

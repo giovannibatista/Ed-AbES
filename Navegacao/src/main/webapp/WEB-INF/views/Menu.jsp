@@ -5,7 +5,8 @@
 		<li><a id="altoContraste" href=""
 			onclick="setActiveStyleSheet('preto_branco', true); ocultarElemento('coresOriginais','altoContraste'); return false; "
 			title="Ativar alto contraste">Alto contraste</a></li>
-		<li><a id="coresOriginais" class="oculto" title="Voltar para as cores originais"
+		<li><a id="coresOriginais" class="oculto"
+			title="Voltar para as cores originais"
 			onclick="setActiveStyleSheet('padrao', true); ocultarElemento('altoContraste','coresOriginais'); return false; "
 			href="#topo-pg">Cores originais</a></li>
 
@@ -29,7 +30,7 @@
 		<li role="presentation"><a href="/Ajuda/TeclasAtalho"
 			title="Teclas de Atalho - Atalho Alt 5">Teclas de Atalho</a></li>
 
-		<li role="presentation"><a href="/Navegacao/Historico"
+		<li role="presentation"><a href="/Historico/Listar"
 			title="Histório de Navegações - Atalho Alt 6">Histório de
 				Navegações</a></li>
 		<li role="presentation" class="menuItemRight"><a
