@@ -28,4 +28,4 @@
 01/06 13:37 - Textos atualizados
 01/06 19:22 - Buscando do BD a lista dos históricos daas navegações
 01/06 23:35 - Log do histórico de navegação em nova janela
-
+04/06 19:04 - Problemas ao encerrar a navegação e tecla f9 implementada

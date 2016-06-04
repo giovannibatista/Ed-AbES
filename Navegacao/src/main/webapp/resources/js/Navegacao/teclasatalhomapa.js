@@ -2,6 +2,11 @@
  * 
  */
 
+Mousetrap.bind('f9', function(e) {
+	console.log('f9');
+	navigation.playKeyboardShortcuts();
+});
+
 Mousetrap.bind('s', function(e) {
 	console.log('s');
 	navigation.yes();
@@ -12,8 +17,8 @@ Mousetrap.bind('n', function(e) {
 	navigation.no();
 });
 
-Mousetrap.bind('alt+e', function(e) {
-	console.log('alt+E foi pressionado.');
+Mousetrap.bind('alt+q', function(e) {
+	console.log('alt+Q foi pressionado.');
 	navigation.askToCloseNavigation();
 });
 

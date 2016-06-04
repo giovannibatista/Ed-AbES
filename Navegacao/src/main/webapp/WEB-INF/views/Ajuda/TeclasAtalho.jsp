@@ -115,7 +115,7 @@
 						comando foi acionado.</p></li>
 				<li><p>"Alt T" - Informa o tempo que o jogador está
 						navegando no mapa.</p></li>
-				<li><p>"F3" - Informa as teclas de atalho durante a
+				<li><p>"F9" - Informa as teclas de atalho durante a
 						navegação.</p></li>
 
 			</ul>

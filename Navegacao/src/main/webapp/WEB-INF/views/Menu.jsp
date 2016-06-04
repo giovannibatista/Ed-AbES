@@ -31,8 +31,9 @@
 			title="Teclas de Atalho - Atalho Alt 5">Teclas de Atalho</a></li>
 
 		<li role="presentation"><a href="/Historico/Listar"
-			title="Histório de Navegações - Atalho Alt 6">Histório de
-				Navegações</a></li>
+			title="Histórico de Navegação - Atalho Alt 6">Histórico de
+				Navegação</a></li>
+
 		<li role="presentation" class="menuItemRight"><a
 			href="/Usuario/Editar" title="Usuário - Atalho Alt 7">Usuário</a></li>
 	</ul>

@@ -106,11 +106,9 @@ var Navigation = function(navigationMap, mapObjects) {
 				var finishedNavigation = false;
 				finishedNavigation = checkEndPoint(offset);
 				if(finishedNavigation){
-					askToSaveNavigationHistory();
-					var textToSpeech = " Você finalizou a navegação. O ponto final estava na coluna "
-						+ (navigationMap.endPoint.data("coord-x") + 1) + " e linha "
-						+ (navigationMap.endPoint.data("coord-y") + 1) + ". Finalizou a navegação em " + timerNavigation.getTimeValues().toString() + ". Pressione enter para sair!";
-					playTextToSpeech(textToSpeech);
+					isBlocked = true;
+					timerNavigation.pause();
+					askToSaveNavigationHistory(true);
 				}
 
 			} else {
@@ -283,7 +281,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.askToCloseNavigation = function() {
 		if(!checkIsNavigationFinished()){
-			navigationHistory.logActions("ALT E", "Encerrar a navegação");
+			navigationHistory.logActions("ALT Q", "Encerrar a navegação");
 			var textToSpeech = "Você tem certeza que deseja encerrar a navegação? Tecle S para sim ou N para não.";
 			playTextToSpeech(textToSpeech);
 			confirmClose = true;
@@ -291,16 +289,51 @@ var Navigation = function(navigationMap, mapObjects) {
 			isBlocked = true;
 		}
 	}
+	
+	self.yes = function() {
+		if(isBlocked &&(confirmClose || confirmSaveHistory)){
+			playTextToSpeech("Sim");
+			navigationHistory.logActions("S", "Sim");
+			if(confirmClose){
+				closeNavigation();
+			}else if(confirmSaveHistory){
+				saveNavigationHistory();
+			}
+		}
+	}
+
+	self.no = function() {
+		if(isBlocked &&(confirmClose || confirmSaveHistory)){
+			playTextToSpeech("Não");
+			navigationHistory.logActions("N", "Não.");
+			isBlocked = false;
+			if(confirmClose){
+				isNavigationFinished = false;
+			}
+		}
+	}
+	
+	self.playKeyboardShortcuts = function() {
+		var url = '/resources/audio/Soar-teclas-navegacao-ggz.mp3';
+		playIconicAudio(url);
+	}
 
 	function closeNavigation() {
 		isNavigationFinished = true;
 		timerNavigation.pause();
 		navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
-		askToSaveNavigationHistory();
+		askToSaveNavigationHistory(false);
 	}
 
-	function askToSaveNavigationHistory() {
-		var textToSpeech = "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
+	function askToSaveNavigationHistory(challenge) {
+		var textToSpeech = "";
+		if(challenge){
+			textToSpeech = " Você finalizou a navegação. O ponto final estava na coluna "
+				+ (navigationMap.endPoint.data("coord-x") + 1) + " e linha "
+				+ (navigationMap.endPoint.data("coord-y") + 1) + ". ";
+			isNavigationFinished = true;
+		}
+		textToSpeech += "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
 		playTextToSpeech(textToSpeech);
 		confirmClose = false;
 		confirmSaveHistory = true;
@@ -315,27 +348,6 @@ var Navigation = function(navigationMap, mapObjects) {
 		confirmClose = false;
 		confirmSaveHistory = false;
 		isBlocked = false;
-	}
-
-	self.yes = function() {
-		if(isBlocked &&(confirmClose || confirmSaveHistory)){
-			playTextToSpeech("Sim");
-			if(confirmClose){
-				closeNavigation();
-			}else if(confirmSaveHistory){
-				saveNavigationHistory();
-			}
-		}
-	}
-
-	self.no = function() {
-		if(isBlocked &&(confirmClose || confirmSaveHistory)){
-			playTextToSpeech("Não");
-			if(confirmClose){
-				isNavigationFinished = false;
-				isBlocked = false;
-			}
-		}
 	}
 
 	function getObjectByCoordinated(x, y) {
