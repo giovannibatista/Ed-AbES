@@ -12,7 +12,7 @@
 
 	</ul>
 </div>
-<nav id="menu" role="navigation">
+<nav id="menu">
 	<ul class="nav nav-pills">
 		<li><a href="/Navegacao/Listar"
 			aria-label="Iniciar Navegação - Atalho Alt 1">Iniciar Navegação</a></li>
