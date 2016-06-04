@@ -25,7 +25,7 @@
 	href="<c:url value="/resources/css/Navegacao/resumo.css" />">
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
@@ -42,7 +42,7 @@
 
 		<div id="informacaoMapa">
 			<h2>Informações do Mapa</h2>
-			<form id="mapaForm">
+			<div id="mapaForm">
 				<p>
 					<label for="nomeMapa">Nome do mapa : </label> <input type="text"
 						name="nomeMapa" id="nomeMapa" value="${mapa.nome}"
@@ -82,21 +82,24 @@
 						type="text" name="dataAlteracao" id="dataAlteracao"
 						value="${mapa.dataAlteracao}" readonly="readonly" />
 				</p>
-			</form>
+			</div>
 		</div>
 
 		<div id="acoesNavegacao">
 			<h2>Ações da navegação do mapa</h2>
 			<input type="button"
-				alt="Botão Iniciar Navegação - Atalho Alt I para Iniciar Navegação"
+				aria-label="Botão Iniciar Navegação - Atalho Alt I para Iniciar Navegação"
 				id="iniciarNavegacaoBotao"
 				onclick="javascript: iniciarNavegacao(${mapa.id})"
 				value="Iniciar Navegação" /> <input type="button"
-				alt="Botão Voltar para tela de escolha dos mapas salvos - Atalho Alt V para voltar."
+				aria-label="Botão Voltar para tela de escolha dos mapas salvos - Atalho Alt V para voltar."
 				id="voltarBotao" onclick="javascript: voltarListaMapas();"
 				value="Voltar para tela anterior" />
 
 		</div>
+
+		<a href="#conteudo">Voltar para o topo</a>
+
 	</div>
 </body>
 </html>

@@ -1,40 +1,40 @@
 <div id="controlesAcessibilidade">
 	<ul id="acessibilidade">
-		<li><a href="#conteudo" title="Ir direto ao conteúdo da página">Saltar
+		<li><a href="#conteudo" aria-label="Ir direto ao conteúdo da página">Pular
 				para conteúdo</a></li>
-		<li><a id="altoContraste" href=""
-			onclick="setActiveStyleSheet('preto_branco', true); ocultarElemento('coresOriginais','altoContraste'); return false; "
-			title="Ativar alto contraste">Alto contraste</a></li>
-		<li><a id="coresOriginais" class="oculto"
-			title="Voltar para as cores originais"
-			onclick="setActiveStyleSheet('padrao', true); ocultarElemento('altoContraste','coresOriginais'); return false; "
-			href="#topo-pg">Cores originais</a></li>
+		<li><a href="javascript:void(0)"
+			onclick="setActiveStyleSheet('preto_branco', true); ocultarElemento('coresOriginais','altoContraste'); return false;"
+			id="altoContraste" aria-label="Ativar alto contraste">Alto contraste</a></li>
+		<li><a href="javascript:void(0)"
+			onclick="setActiveStyleSheet('padrao', true); ocultarElemento('altoContraste','coresOriginais'); return false;"
+			id="coresOriginais" class="oculto"
+			aria-label="Voltar para as cores originais">Cores originais</a></li>
 
 	</ul>
 </div>
-<nav id="menu">
+<nav id="menu" role="navigation">
 	<ul class="nav nav-pills">
-		<li role="presentation"><a href="/Navegacao/Listar"
-			title="Iniciar Navegação - Atalho Alt 1">Iniciar Navegação</a></li>
+		<li><a href="/Navegacao/Listar"
+			aria-label="Iniciar Navegação - Atalho Alt 1">Iniciar Navegação</a></li>
 
-		<li role="presentation"><a href="/Mapa/Listar"
-			title="Mapas Públicos - Atalho Alt 2">Mapas Públicos</a></li>
+		<li><a href="/Mapa/Listar"
+			aria-label="Mapas Públicos - Atalho Alt 2">Mapas Públicos</a></li>
 
-		<li role="presentation"><a href="/Navegacao/Treinamento"
-			title="Módulo de Treinamento - Atalho Alt 3">Módulo de
+		<li><a href="/Navegacao/Treinamento"
+			aria-label="Módulo de Treinamento - Atalho Alt 3">Módulo de
 				Treinamento</a></li>
 
-		<li role="presentation"><a href="/Ajuda/Sobre"
-			title="Sobre - Atalho Alt 4">Sobre</a></li>
+		<li><a href="/Ajuda/Sobre"
+			aria-label="Sobre - Atalho Alt 4">Sobre</a></li>
 
-		<li role="presentation"><a href="/Ajuda/TeclasAtalho"
-			title="Teclas de Atalho - Atalho Alt 5">Teclas de Atalho</a></li>
+		<li><a href="/Ajuda/TeclasAtalho"
+			aria-label="Teclas de Atalho - Atalho Alt 5">Teclas de Atalho</a></li>
 
-		<li role="presentation"><a href="/Historico/Listar"
-			title="Histórico de Navegação - Atalho Alt 6">Histórico de
+		<li><a href="/Historico/Listar"
+			aria-label="Histórico de Navegação - Atalho Alt 6">Histórico de
 				Navegação</a></li>
 
-		<li role="presentation" class="menuItemRight"><a
-			href="/Usuario/Editar" title="Usuário - Atalho Alt 7">Usuário</a></li>
+		<li class="menuItemRight"><a
+			href="/Usuario/Editar" aria-label="Usuário - Atalho Alt 7">Usuário</a></li>
 	</ul>
 </nav>

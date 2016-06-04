@@ -19,7 +19,7 @@
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
@@ -59,10 +59,10 @@
 									<td>${mapa.descricao}</td>
 									<td>${mapa.descricaoTipoMapa}</td>
 									<td>${mapa.dataAlteracao}</td>
-									<td><input type="button" id="abriResumoBotao"
+									<td><input type="button" id="abriResumoBotao${mapa.id}"
 										onclick="javascript: abrirResumo(${mapa.id});"
 										value="Iniciar Navegação do ${mapa.nome}"
-										alt="Botão para iniciar navegação do Mapa. Tecle Enter para abrir resumo do mapa." /></td>
+										aria-label="Botão para iniciar navegação do Mapa. Tecle Enter para abrir resumo do mapa." /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -77,6 +77,8 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+
+		<a href="#conteudo">Voltar para o topo</a>
 	</div>
 </body>
 </html>

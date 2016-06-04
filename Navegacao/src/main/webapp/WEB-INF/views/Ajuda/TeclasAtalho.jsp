@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main">
@@ -17,11 +17,17 @@
 			<p>As teclas de navegação estão organizadas em categorias:</p>
 			<div id="menuConteudo">
 				<ul>
-					<li><a href="#teclasMenu">Navegação em menu</a></li>
-					<li><a href="#teclasMapa">Navegação no mapa</a></li>
-					<li><a href="#teclasTabelas">Navegação em tabela de mapas
-							e no histórico de navegação</a></li>
-					<li><a href="#teclasAcesso">Teclas de acesso rápido</a></li>
+					<li><a href="#teclasMenu"
+						aria-label="Pular para Navegação em menu">Navegação em menu</a></li>
+					<li><a href="#teclasMapa"
+						aria-label="Pular para Navegação no mapa">Navegação no mapa</a></li>
+					<li><a href="#teclasTabelas"
+						aria-label="Pular para Navegação tabela de mapas
+							e no histórico de navegação">Navegação
+							em tabela de mapas e no histórico de navegação</a></li>
+					<li><a href="#teclasAcesso"
+						aria-label="Pular para Teclas de acesso rápido">Teclas de
+							acesso rápido</a></li>
 				</ul>
 			</div>
 		</article>
@@ -78,7 +84,7 @@
 			</ul>
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
+		<a href="#conteudo">Voltar para o topo</a>
 
 		<article id="teclasMapa">
 			<h2>Navegação no mapa</h2>
@@ -121,7 +127,7 @@
 			</ul>
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
+		<a href="#conteudo">Voltar para o topo</a>
 
 		<article id="teclasTabelas">
 			<h2>Navegação em tabelas de mapas e no histórico de navegação.</h2>
@@ -143,9 +149,7 @@
 			</ul>
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
-
-
+		<a href="#conteudo">Voltar para o topo</a>
 
 		<article id="teclasAcesso">
 			<h2>Teclas de acesso rápido</h2>
@@ -158,9 +162,7 @@
 
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
-		<a href="#menu" title="Link para subir ao menu">Voltar ao menu</a>
-
+		<a href="#conteudo">Voltar para o topo</a>
 
 	</div>
 </body>

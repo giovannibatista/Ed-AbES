@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
@@ -58,15 +58,17 @@
 							<td>${mapa.descricao}</td>
 							<td>${mapa.descricaoTipoMapa}</td>
 							<td>${mapa.dataAlteracao}</td>
-							<td><input type="button" id="salvarMapaBotao"
+							<td><input type="button" id="salvarMapaBotao${mapa.id}"
 								onclick="javascript: salvarMapa(${mapa.id});"
 								value="Salvar ${mapa.nome}"
-								alt="Botão para salvar o Mapa. Tecle Enter para salvar." /></td>
+								aria-label="Botão para salvar o Mapa. Tecle Enter para salvar." /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
+
+		<a href="#conteudo">Voltar para o topo</a>
 	</div>
 </body>
 </html>

@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main">
@@ -20,10 +20,15 @@
 			<p>As informações estão organizadas em categorias:</p>
 			<div id="menuConteudo">
 				<ul>
-					<li><a href="#sobre">Sobre Ed-Abes</a></li>
-					<li><a href="#construcao">Sobre Módulo de Construção</a></li>
-					<li><a href="#navegacao">Sobre Módulo de Navegação</a></li>
-					<li><a href="#contato">Contato</a></li>
+					<li><a href="#sobre" aria-label="Pular para Sobre Ed-Abes">Sobre
+							Ed-AbES</a></li>
+					<li><a href="#construcao"
+						aria-label="Pular para Sobre Módulo de Construção">Sobre
+							Módulo de Construção</a></li>
+					<li><a href="#navegacao"
+						aria-label="Pular para Sobre Módulo de Navegação">Sobre Módulo
+							de Navegação</a></li>
+					<li><a href="#contato" aria-label="Pular para Contato">Contato</a></li>
 				</ul>
 			</div>
 		</article>
@@ -49,7 +54,7 @@
 				Navegação por Bruna Fialho e Giovanni Carlos.</p>
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
+		<a href="#conteudo">Voltar para o topo</a>
 
 		<article id="construcao">
 			<h2>Sobre Módulo de Construção</h2>
@@ -71,7 +76,7 @@
 				de Navegação.</p>
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
+		<a href="#conteudo">Voltar para o topo</a>
 
 		<article id="navegacao">
 			<h2>Sobre Módulo de Navegação</h2>
@@ -93,7 +98,7 @@
 				apresentado no Decreto nº 5.296, de 2 de dezembro de 2004.</p>
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
+		<a href="#conteudo">Voltar para o topo</a>
 
 		<article id="contato">
 			<h2>Contato</h2>
@@ -102,27 +107,25 @@
 				Borba Campos.</p>
 			<p>Para contatá-los, envie um e-mail para:</p>
 			<ul>
-				<li><label for="emailBruna">Bruna Fialho:</label> <a
-					id="emailBruna" href="mailto:bruna.fialho@acad.pucrs.br"
-					target="_top" title="Link para
+				<li><p>Bruna Fialho:</p> <a id="emailBruna"
+					href="mailto:bruna.fialho@acad.pucrs.br" target="_top"
+					aria-label="Linaria-label=
 					o email da Bruna Fialho">bruna.fialho@acad.pucrs.br</a></li>
 
-				<li><label for="emailGiovanni">Giovanni Batista Carlos:</label>
-					<a id="emailGiovanni" href="mailto:giovanni.carlos@acad.pucrs.br"
-					target="_top" title="Link
+				<li><p>Giovanni Batista Carlos:</p> <a id="emailGiovanni"
+					href="mailto:giovanni.carlos@acad.pucrs.br" target="_top"
+					aria-label="Link
 					para o email do Giovanni Carlos">giovanni.carlos@acad.pucrs.br</a></li>
 
-				<li><label for="emailMarcia">Márcia de Borba Campos</label> <a
-					id="emailMarcia" href="mailto:marcia.campos@pucrs.br" target="_top"
-					title="Link para o
+				<li><p>Márcia de Borba Campos</p> <a id="emailMarcia"
+					href="mailto:marcia.campos@pucrs.br" target="_top"
+					aria-label="Link para o
 					email da Márcia Campos">marcia.campos@pucrs.br</a></li>
 			</ul>
 
 		</article>
 
-		<a href="#conteudo" title="Link para subir ao topo da página">Topo</a>
-
-		<a href="#menu" title="Link para subir ao menu">Voltar ao menu</a>
+		<a href="#conteudo">Voltar para o topo</a>
 	</div>
 </body>
 </html>

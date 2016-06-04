@@ -4,14 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Módulo de Navegação do Ed-AbES - Tela Histórico de
-	navegações</title>
+	navegação</title>
 <jsp:include page="../Imports.jsp" />
 
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Historico/historiconavegacao.js" />"></script>
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/teclasatalhohistorico.js" />"></script>
-	
+	src="<c:url value="/resources/js/Historico/teclasatalhohistorico.js" />"></script>
+
 <script type="text/javascript">
 function abrirLogNavegacao(idHistoricoNavegacao){
 	document.location = "/Historico/Consultar/"+idHistoricoNavegacao;
@@ -20,11 +20,11 @@ function abrirLogNavegacao(idHistoricoNavegacao){
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main" id="conteudo">
-		<h1>Histórico de Navegações</h1>
+		<h1>Histórico de Navegação</h1>
 
 		<p>Esta tela apresenta os históricos das navegações realizadas
 			pelo usuário em determinado mapa, exibindo informações sobre o tempo
@@ -56,15 +56,15 @@ function abrirLogNavegacao(idHistoricoNavegacao){
 								<tr>
 									<th scope="row">${historico.mapa.nome}</th>
 									<td>${historico.dataNavegacao}</td>
-									<td>${historico.tempoNavegacao}</td> 
+									<td>${historico.tempoNavegacao}</td>
 									<td><input type="button" id="abrirLogNavegacaoBotao"
-									alt="Botão para abrir o log de navegação em uma nova janela."
-									onclick="javascript: abrirLogNavegacao(${historico.id});"
-									value="Abrir log de Navegação" /></td>
+										aria-label="Botão para abrir o log de navegação em uma nova janela."
+										onclick="javascript: abrirLogNavegacao(${historico.id});"
+										value="Abrir log de Navegação" /></td>
 									<td><input type="button" id="downloadLogNavegacaoBotao"
-									alt="Botão realizar download log de navegação para um arquivo no formato TXT."
-									onclick="javascript: downloadLogNavegacao(${historico.id});"
-									value="Dowload do log de Navegação" /></td>
+										aria-label="Botão realizar download log de navegação para um arquivo no formato TXT."
+										onclick="javascript: downloadLogNavegacao(${historico.id});"
+										value="Dowload do log de Navegação" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -72,11 +72,14 @@ function abrirLogNavegacao(idHistoricoNavegacao){
 				</c:when>
 				<c:otherwise>
 					<div id="blocoListaMapasVazio" class="blocoListaVazio">
-						<p>Nenhum histórico de navegação encontrado. </p>
+						<p>Nenhum histórico de navegação encontrado.</p>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</div>
+
+		<a href="#conteudo">Voltar para o topo</a>
+
 	</div>
 </body>
 </html>

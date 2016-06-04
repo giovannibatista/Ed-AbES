@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main" id="conteudo">

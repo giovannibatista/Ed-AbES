@@ -15,8 +15,9 @@
 
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Navegacao/audio.js" />" charset="utf-8"></script>
-	
+	src="<c:url value="/resources/js/Navegacao/audio.js" />"
+	charset="utf-8"></script>
+
 <script type="text/javascript"
 	src="<c:url value="/resources/js/Navegacao/historico.js" />"
 	charset="utf-8"></script>
@@ -39,21 +40,22 @@
 
 </head>
 <body>
-	<header role="banner">
+	<header>
 		<jsp:include page="../Menu.jsp" />
 	</header>
 
 	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa: ${mapa.nome}</h1>
 		<div id="blocoMapa">
-			<audio src="" class="speech" hidden="true"></audio>
+			<audio class="speech" hidden="true"></audio>
 			<div id="mapa">
 				<input type="hidden" id="idMapa" value="${mapa.id}"> <input
 					type="hidden" id="nomeMapa" value="${mapa.nome}"> <input
 					type="hidden" id="descricaoMapa" value="${mapa.descricao}">
 				<input type="hidden" id="objetivoMapa" value="${mapa.objetivo}">
-				<input type="hidden" id="andarMapa" value="${mapa.andar}">
-				<input type="hidden" id="descricaoTipoMapa" value="${mapa.descricaoTipoMapa}">
+				<input type="hidden" id="andarMapa" value="${mapa.andar}"> <input
+					type="hidden" id="descricaoTipoMapa"
+					value="${mapa.descricaoTipoMapa}">
 			</div>
 		</div>
 	</div>
