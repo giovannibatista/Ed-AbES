@@ -57,11 +57,11 @@ function abrirLogNavegacao(idHistoricoNavegacao){
 									<th scope="row">${historico.mapa.nome}</th>
 									<td>${historico.dataNavegacao}</td>
 									<td>${historico.tempoNavegacao}</td>
-									<td><input type="button" id="abrirLogNavegacaoBotao"
+									<td><input type="button" id="abrirLogNavegacaoBotao${historico.id}"
 										aria-label="Botão para abrir o log de navegação em uma nova janela."
 										onclick="javascript: abrirLogNavegacao(${historico.id});"
 										value="Abrir log de Navegação" /></td>
-									<td><input type="button" id="downloadLogNavegacaoBotao"
+									<td><input type="button" id="downloadLogNavegacaoBotao${historico.id}"
 										aria-label="Botão realizar download log de navegação para um arquivo no formato TXT."
 										onclick="javascript: downloadLogNavegacao(${historico.id});"
 										value="Dowload do log de Navegação" /></td>

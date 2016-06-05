@@ -47,7 +47,7 @@
 	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa: ${mapa.nome}</h1>
 		<div id="blocoMapa">
-			<audio class="speech" hidden="true"></audio>
+			<audio class="speech" style="diplay:none;"></audio>
 			<div id="mapa">
 				<input type="hidden" id="idMapa" value="${mapa.id}"> <input
 					type="hidden" id="nomeMapa" value="${mapa.nome}"> <input

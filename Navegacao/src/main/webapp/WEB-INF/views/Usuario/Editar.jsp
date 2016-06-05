@@ -25,44 +25,44 @@
 
 		<form id="usuarioForm">
 			<p>
-				<label for="nomeUsuario">Nome : </label> <input type="text"
+				<label for="nome">Nome : </label> <input type="text"
 					name="nome" id="nome" value="Giovanni" class="inputUsuario" /> <input
 					type="hidden" name="id" id="id" value="1" />
 			</p>
 			<p>
-				<label>Sobrenome : </label> <input type="text" name="sobrenome"
+				<label for="sobrenome">Sobrenome : </label> <input type="text" name="sobrenome"
 					id="sobrenome" value="Carlos" class="inputUsuario" />
 			</p>
 			<p>
-				<label>E-mail : </label> <input type="email" name="email" id="email"
+				<label for="email">E-mail : </label> <input type="email" name="email" id="email"
 					value="giovanni.bat@gmail.com" class="inputUsuario" />
 			</p>
 			<p>
-				<label>Ano de Nascimento : </label> <input type="text"
+				<label for="anoNascimento">Ano de Nascimento : </label> <input type="text"
 					name="anoNascimento" id="anoNascimento" value="1990"
 					class="inputUsuario" />
 			</p>
 			<p>
-				<label>Gênero : </label> <input type="radio" name="genero" value="M"
+				<label for="masculino">Gênero : </label> <input type="radio" name="genero" value="M"
 					id="masculino" /> <label for="masculino">Masculino</label> <input
 					type="radio" name="genero" value="F" id="feminino" /> <label
 					for="feminino">Feminino</label>
 
 			</p>
 			<p>
-				<label>Cidade : </label> <input type="text" name="cidade"
+				<label for="cidade">Cidade : </label> <input type="text" name="cidade"
 					id="cidade" value="Porto Alegre" class="inputUsuario" />
 			</p>
 			<p>
-				<label>País : </label> <input type="text" name="pais" id="pais"
+				<label for="pais">País : </label> <input type="text" name="pais" id="pais"
 					value="Brasil" class="inputUsuario" />
 			</p>
 			<p>
-				<label>Senha : </label> <input type="password" name="Senha"
+				<label for="senha">Senha : </label> <input type="password" name="Senha"
 					id="senha" value="123456" class="inputUsuario" />
 			</p>
 			<p>
-				<label>Confirmar senha : </label> <input type="password"
+				<label for="confirmaSenha">Confirmar senha : </label> <input type="password"
 					name="confirmaSenha" id="confirmaSenha" value="123456"
 					class="inputUsuario" />
 			</p>
