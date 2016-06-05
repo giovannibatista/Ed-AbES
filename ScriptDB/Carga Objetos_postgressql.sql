@@ -123,7 +123,7 @@ INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Chão', '/resources/img/
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Chão', '/resources/img/objs/espaco/chao/water.png', '/resources/img/objs/espaco/chao/watermap.png', 'Chão', 22, 0);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Chão', '/resources/img/objs/espaco/chao/whitefloor.png', '/resources/img/objs/espaco/chao/whitefloormap.png', 'Chão', 22, 0);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Chão', '/resources/img/objs/espaco/chao/woodenfloor.png', '/resources/img/objs/espaco/chao/woodenfloormap.png', 'Chão', 22, 0);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 1, 'Parede', '/resources/img/objs/espaco/parede/parede.png', '/resources/img/objs/espaco/parede/paredemap.png', 'Parede', 23, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 1, 'Parede', '/resources/img/objs/espaco/parede/parede.png', '/resources/img/objs/espaco/parede/paredemap.png', 'Parede', 23, 1);
 
 --Objetos Construcao
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 1, 'Cerca', '/resources/img/objs/construcao/cercas/cerca.png', '/resources/img/objs/construcao/cercas/cercamap.png', 'Cerca', 24, 1);
@@ -149,3 +149,6 @@ ALTERAÇÕES FEITAS PARA O MÓDULO DE NAVEGAÇÃO
 UPDATE CATEGORIA SET TITULO = 'Localização do usuário' WHERE ID_CATEGORIA = 5;
 UPDATE OBJETO SET ALTURA = 1, LARGURA = 1 WHERE DESCRICAO LIKE 'Ponto Fim';
 UPDATE OBJETO SET ALTURA = 1, LARGURA = 1 WHERE DESCRICAO LIKE 'Ponto Inicio';
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 4, 'Parede Horizontal', '/resources/img/objs/espaco/parede/paredehorizontal.png', '/resources/img/objs/espaco/parede/paredehorizontalmap.png', 'Parede', 23, 1);
+UPDATE objeto SET nivel = 1 WHERE descricao LIKE 'Parede%';
+

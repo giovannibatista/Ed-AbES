@@ -2,6 +2,7 @@ function playTextToSpeech(textToSpeech) {
 	var audio = $('audio');
 	textToSpeech = encodeURIComponent(textToSpeech);
 	console.log(textToSpeech.length);
+	console.log(textToSpeech);
 	if(textToSpeech.length > 2048){
 		debugger;
 		console.log("MAIORRRRR");

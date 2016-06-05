@@ -29,6 +29,8 @@ public class NavegacaoController {
     private MapaObjetoService mapaObjetoService;
 
     private ArrayList<MapaDTO> mapas;
+    
+    private final Integer idMapaTreinamento = 27;
 
     public NavegacaoController() {
 	super();
@@ -101,9 +103,18 @@ public class NavegacaoController {
     }
 
     @RequestMapping(value = "/Navegacao/Treinamento", method = RequestMethod.GET)
-    public String iniciarTreinamento() {
-	System.out.println("Iniciando o treinamento");
-	return "/Navegacao/Resumo";
+    public ModelAndView iniciarTreinamento() {
+	ModelAndView model = null;
+	try{
+	    model = new ModelAndView("/Navegacao/Treinamento");
+	    MapaDTO mapaTreinamento = new MapaDTO();
+	    mapaTreinamento.setId(idMapaTreinamento);
+	    MapaDTO mapaDTO = mapaService.consultaMapa(mapaTreinamento);
+	    model.addObject("mapa", mapaDTO);
+	}catch(Exception e){
+	    e.printStackTrace();
+	}
+	return model;
     }
 
     public ArrayList<MapaDTO> getMapas() {

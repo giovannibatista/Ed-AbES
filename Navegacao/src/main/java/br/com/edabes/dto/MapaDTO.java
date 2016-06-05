@@ -1,5 +1,6 @@
 package br.com.edabes.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -18,9 +19,12 @@ public class MapaDTO {
     private String unidadeDeMedida;
     private Integer importadoPor;
     private String andar;
+    
+    private ArrayList<MapaObjetoDTO> mapaObjetos;
 
     public MapaDTO() {
 	super();
+	mapaObjetos = new ArrayList<MapaObjetoDTO>();
     }
 
     public Integer getId() {
@@ -113,6 +117,14 @@ public class MapaDTO {
     
     public String getDescricaoTipoMapa() {
         return this.getTipoMapa() == 1 ? "Navegação Livre" : "Desafio";
+    }
+    
+    public ArrayList<MapaObjetoDTO> getMapaObjetos() {
+        return mapaObjetos;
+    }
+
+    public void setMapaObjetos(ArrayList<MapaObjetoDTO> mapaObjetos) {
+        this.mapaObjetos = mapaObjetos;
     }
 
     @Override
