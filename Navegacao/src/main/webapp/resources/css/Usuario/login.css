@@ -1,0 +1,9 @@
+div#conteudo div{
+	margin: 25px;
+	width: 40%;
+}
+
+div#conteudo .inputUsuario{
+	width: 100%;
+}
+

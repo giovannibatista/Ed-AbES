@@ -31,3 +31,4 @@
 04/06 19:04 - Problemas ao encerrar a navegação e tecla f9 implementada
 04/06 20:25 - Problemas WCAG arrumados e aria-label implementado
 05/06 20:00 - Módulo de treinamento implementado.
+06/06 01:17 - Cadastro de novos usuários implementado.

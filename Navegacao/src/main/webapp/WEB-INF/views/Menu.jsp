@@ -35,6 +35,6 @@
 				Navegação</a></li>
 
 		<li class="menuItemRight"><a
-			href="/Usuario/Editar" aria-label="Usuário - Atalho Alt 7">Usuário</a></li>
+			href="/Usuario/Login" aria-label="Usuário - Atalho Alt 7">Usuário</a></li>
 	</ul>
 </nav>

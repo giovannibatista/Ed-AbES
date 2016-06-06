@@ -21,58 +21,83 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main" id="conteudo">
-		<h1>Informações do usuário</h1>
+		<c:choose>
+			<c:when test="${not empty usuario}">
+				<h1>Edição do usuário</h1>
+			</c:when>
+			<c:otherwise>
+				<h1>Novo do usuário</h1>
+			</c:otherwise>
 
-		<form id="usuarioForm">
-			<p>
-				<label for="nome">Nome : </label> <input type="text"
-					name="nome" id="nome" value="Giovanni" class="inputUsuario" /> <input
-					type="hidden" name="id" id="id" value="1" />
-			</p>
-			<p>
-				<label for="sobrenome">Sobrenome : </label> <input type="text" name="sobrenome"
-					id="sobrenome" value="Carlos" class="inputUsuario" />
-			</p>
-			<p>
-				<label for="email">E-mail : </label> <input type="email" name="email" id="email"
-					value="giovanni.bat@gmail.com" class="inputUsuario" />
-			</p>
-			<p>
-				<label for="anoNascimento">Ano de Nascimento : </label> <input type="text"
-					name="anoNascimento" id="anoNascimento" value="1990"
-					class="inputUsuario" />
-			</p>
-			<p>
-				<label for="masculino">Gênero : </label> <input type="radio" name="genero" value="M"
-					id="masculino" /> <label for="masculino">Masculino</label> <input
-					type="radio" name="genero" value="F" id="feminino" /> <label
-					for="feminino">Feminino</label>
+		</c:choose>
 
+		<form id="usuarioForm" method="POST" action="Novo">
+			<p id="errors" role="alert" aria-atomic="true"></p>
+			<p>
+				Os campos obrigatórios estão marcados com asterisco (<abbr
+					class="req" title="Campo Obrigatório">*</abbr>).
 			</p>
 			<p>
-				<label for="cidade">Cidade : </label> <input type="text" name="cidade"
-					id="cidade" value="Porto Alegre" class="inputUsuario" />
+				<label for="nome">Nome<abbr class="req"
+					title="Campo Obrigatório">*</abbr>:
+				</label> <input type="text" name="nome" id="nome" value="${usuario.nome}"
+					class="inputUsuario" 
+					placeholder="Exemplo: João" /> <input type="hidden" name="id"
+					id="id" value="${usuario.id}" />
 			</p>
 			<p>
-				<label for="pais">País : </label> <input type="text" name="pais" id="pais"
-					value="Brasil" class="inputUsuario" />
+				<label for="sobrenome">Sobrenome<abbr class="req"
+					title="Campo Obrigatório">*</abbr>:
+				</label> <input type="text" name="sobrenome" id="sobrenome"
+					value="${usuario.sobreNome}" class="inputUsuario"
+					 placeholder="Exemplo: Silva" />
 			</p>
 			<p>
-				<label for="senha">Senha : </label> <input type="password" name="Senha"
-					id="senha" value="123456" class="inputUsuario" />
+				<label for="email">E-mail<abbr class="req"
+					title="Campo Obrigatório">*</abbr>:
+				</label> <input type="email" name="email" id="email"
+					value="${usuario.email}" class="inputUsuario" 
+					placeholder="Exemplo: joao@email.com" />
 			</p>
 			<p>
-				<label for="confirmaSenha">Confirmar senha : </label> <input type="password"
-					name="confirmaSenha" id="confirmaSenha" value="123456"
-					class="inputUsuario" />
+				<label for="anoNascimento">Ano de Nascimento: </label> <input
+					type="text" name="anoNascimento" id="anoNascimento"
+					value="${usuario.anoNascimento}" class="inputUsuario"
+					placeholder="Exemplo: 1990" />
 			</p>
 			<p>
-				<input type="button" id="salvarUsuarioBotao"
+				<label for="cidade">Cidade: </label> <input type="text"
+					name="cidade" id="cidade" value="${usuario.cidade}"
+					class="inputUsuario" placeholder="Exemplo: Porto Alegre" />
+			</p>
+			<p>
+				<label for="pais">País: </label> <input type="text" name="pais"
+					id="pais" value="${usuario.pais}" class="inputUsuario"
+					placeholder="Exemplo: Brasil" />
+			</p>
+			<p>
+				<label for="senha">Senha<abbr class="req"
+					title="Campo Obrigatório">*</abbr>:
+				</label> <input type="password" name="Senha" id="senha"
+					value="${usuario.senha}" class="inputUsuario" 
+					placeholder="Senha"	/>
+			</p>
+			<p>
+				<label for="confirmaSenha">Confirmar senha<abbr class="req"
+					title="Campo Obrigatório">*</abbr>:
+				</label> <input type="password" name="confirmaSenha" id="confirmaSenha"
+					value="${usuario.senha}" class="inputUsuario" 
+					placeholder="Confirmar senha" 
+					aria-label="A senha deve ser a mesma informada anteriormente"
+					required oninput="validaSenha(this)" />
+			</p>
+			<p>
+				<input type="Submit" id="salvarUsuarioBotao"
 					name="salvarUsuarioBotao" value="Salvar usuário"
 					aria-label="Botão para salvar as informações do usuário - Atalho Alt S"
-					onclick="javascript: salvarUsuario(1)" /> <input type="button"
-					id="cancelarALteracoesBotao" name="cancelarAlteracoesBotao"
-					value="Cancelar alterações"
+					onclick="javascript: salvarUsuario(${usuario.id})" /> <input
+					type="button" id="cancelarALteracoesBotao"
+					name="cancelarAlteracoesBotao" value="Cancelar alterações"
 					aria-label="Botão para cancelar as informações alteradas do usuário - Atalho Alt C"
 					onclick="javascript: cancelarAlteracoesUsuario()" />
 			</p>

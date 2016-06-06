@@ -1,7 +1,11 @@
-form#usuarioForm{
+form#usuarioForm {
 	width: 60%;
 }
 
-form#usuarioForm .inputUsuario{
+form#usuarioForm .inputUsuario {
 	width: 100%;
+}
+
+.req {
+	font-size: 150%
 }
