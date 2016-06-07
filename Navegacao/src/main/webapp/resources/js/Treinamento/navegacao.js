@@ -135,7 +135,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 					if(index == 1 && currentAction == "init"){
 						setTimeout(function(){
-							var textToSpeech = "Este é o som de um passo do jogador. Agora dê mais dois passos para OESTE com a tecla de atalho seta para cima.";
+							var textToSpeech = "Este é o som de um passo do jogador. Agora dê mais dois passos para frente com a tecla de atalho de seta para cima. Você irá colidir em uma cadeira.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "";
 						}, 1000);
@@ -144,7 +144,7 @@ var Navigation = function(navigationMap, mapObjects) {
 					if(index == 1 && currentAction == "localizacao"){
 						up = false;
 						setTimeout(function(){
-							var textToSpeech = "Vamos continuar nosso treinamento. Agora tecle seta para esquerda para girar o jogador 90 graus para esquerda, sentido antihorário novamente. ";
+							var textToSpeech = "Para encontrar o segundo objeto, gire para a direção LESTE, utilizando a tecla de atalho seta para esquerda.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "";
 							currentAction = "up";
@@ -155,7 +155,7 @@ var Navigation = function(navigationMap, mapObjects) {
 					
 					if(index == 2 && currentAction == "left"){
 						setTimeout(function(){
-							var textToSpeech = "Durante a navegação, podemos saber quanto tempo estamos levando, para isso podemos utilizar a tecla ALT T.";
+							var textToSpeech = "Durante a navegação, podemos saber quanto tempo estamos levando, para isso podemos utilizar a tecla de atalho ALT T. Letra T de tempo.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
 							altT = true;
@@ -166,8 +166,8 @@ var Navigation = function(navigationMap, mapObjects) {
 					
 					if(index == 1 && currentAction == "retomarNavegacao"){
 						setTimeout(function(){
-							var textToSpeech = "Acho que estamos bem perto. Mas vamos ver quais objetos estão ao nosso redor. " +
-									"Utilize o comando ALT R para verificar os objetos ao redor do jogador, com distância de um passo.";
+							var textToSpeech = "Acho que estamos bem perto. Vamos ver os objetos que estão ao nosso redor. " +
+									"Utilize a tecla de atalho ALT R. Letra R para verificar os objetos ao redor do jogador, com distância de um passo.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
 							index = 0;
@@ -202,8 +202,8 @@ var Navigation = function(navigationMap, mapObjects) {
 					if(index == 3){
 						up = false;
 						setTimeout(function(){
-							var textToSpeech = "Opa, você colidiu em um objeto. Ao colidir, um som icônico de madeira foi reproduzido. " +
-							"Vamos descobrir qual foi o último objeto que o jogador colidiu. E para isso, utilize a tecla de atalho ALT C.";
+							var textToSpeech = "Opa, você colidiu em um objeto de madeira. Já sabemos que foi em uma cadeira." +
+							" Para conhecer as características da cadeira, utilize a tecla de atalho ALT CE. Letra CE de colisão.";
 							playTextToSpeech(textToSpeech);
 							altC = true;
 							currentAction = "colisao";
@@ -229,8 +229,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 				if(currentAction == "colisao"){
 					setTimeout(function(){
-						var textToSpeech = "Esté o som emitido quando o jogodor gira 90 graus para a esquerda. Para o jogador não se perder e saber aonde está no mapa, podemos " +
-						"utilizar a tecla de atalho ATL O, que retorna a localização atual do jogador. Então tecle ALT O.";
+						var textToSpeech = "Esté o som emitido quando ocorre um giro de 90 graus para a esquerda. Utilize a tecla de atalho ALT Ó. Letra Ó de onde estou no mapa";
 						playTextToSpeech(textToSpeech);
 						currentAction = "left";
 						index = 0;
@@ -263,10 +262,9 @@ var Navigation = function(navigationMap, mapObjects) {
 				navigationHistory.logChangeDirection(DirectionEnum.getTextDirection(direction));
 				
 				setTimeout(function(){
-					var textToSpeech = "O som emitido ao girar o jogador 90 graus para direita é diferente de quando girar 90 graus esquerda. " +
-							"Mais uns passos e chegamos no nosso outro objeto do mapa. Porém sempre é bom descansar um pouco. Então você pode pausar a navegação. " +
+					var textToSpeech = "Mais uns passos e chegamos ao segundo objeto do mapa. Porém sempre é bom descansar um pouco. Então você pode pausar a navegação. " +
 							"Com a navegação parada, o jogador não pode navegar e o cronomêtro também irá parar." +
-							"Utilize a tecla ALT S para pausar a navegação.";
+							"Utilize a tecla ALT ésse para pausar a navegação. Letra ésse de STOP.";
 					playTextToSpeech(textToSpeech);
 					currentAction = "right";
 					right = false;
@@ -298,9 +296,9 @@ var Navigation = function(navigationMap, mapObjects) {
 						textToSpeech += toStringObject(objects[i], directions[i]);
 					}
 				}
-				textToSpeech += ". Oba chegamos ao segundo objeto do mapa. Com o comando ALT R podemos saber todos objetos ao nosso redor, no sentido horário. " +
-						"Para ter certeza do objeto ao na direção SUL, vamos colidir com ele. " +
-						"De mais um passo a frente e escute o som padrão de colisão do sistema, quando não é vinculado nenhum som ao objeto.";
+				textToSpeech += ". Estamos á um passo do segundo objeto. " +
+						"Vamos dar um passo para frente para colidir com o objeto. " +
+						"Você está virado para o SUL e para dar um passo para frente, utilize a tecla de atalho seta para cima. ";
 				playTextToSpeech(textToSpeech);
 				altR = false;
 				up = true;
@@ -324,8 +322,8 @@ var Navigation = function(navigationMap, mapObjects) {
 
 				var textToSpeech = "O mapa " + nomeMapa + ", do tipo " + descricaoTipoMapa +", está no " + andarMapa
 				+ " pavimento.  A descrição do mapa é " + descricaoMapa
-				+ ". E O objetivo é " + objetivoMapa + ". Com as informações do mapa, já podemos iniciar a navegação. " +
-				"Vamos começar dando um passo para frente, em direção " + textDirection + " e aprender como é o som icônico de um passo. " +
+				+ ". E O objetivo é " + objetivoMapa  +
+				". Vamos começar dando um passo para frente. Observe como é o som de andar para frente. " +
 				"Para isso, se utiliza a tecla de atalho seta para cima.";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
@@ -343,12 +341,12 @@ var Navigation = function(navigationMap, mapObjects) {
 				direction = checkDirection(rotate),
 				textDirection = DirectionEnum.getTextDirection(direction);
 
-				var textToSpeech = "Estou na direção " + textDirection + ", coluna "
-				+ posX + " e linha " + posY + ".";
+				var textToSpeech = "Estou na linha " + posY + ", coluna "
+				+ posX + ". Virado para o " + textDirection + ".";
 
 				if(currentAction == "left"){
-					textToSpeech += " Como giramos o nosso jogador 90 graus para a esquerda, agora estamos na direção " + textDirection +". " +
-					"Vamos em frente! De um passo para frente com a tecla seta para cima."
+					textToSpeech += " Você está virado para o " + textDirection +". " +
+					"Como você está virado para o SUL, você precisa utilizar a tecla de atalho seta para cima para andar para frente.";
 					up = true;
 					altO = false;
 					currentAction = "localizacao";
@@ -384,8 +382,9 @@ var Navigation = function(navigationMap, mapObjects) {
 				
 				navigationHistory.logActions("ALT T", "Informações do tempo de navegação");
 				var textToSpeech = timerNavigation.getTimeValues().toString();
-				textToSpeech = " O tempo de navegação é " + textToSpeech + ". Estamos indo muito bem e estamos quase chegando no outro objeto. " +
-						"Agora vamos girar nosso personagem 90 graus para direita, sentido horário. Utilize a tecla de atalho seta para direita e preste atenção no som que será emitido.";
+				textToSpeech = " O tempo de navegação é " + textToSpeech + ". Estamos indo muito bem e estamos quase chegando no segundo objeto. " +
+						"Vamos girar para o SUL. Utilize a tecla de atalho seta para direita. " +
+						"Observe o som que será emitido.";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 				right = true;
@@ -419,7 +418,7 @@ var Navigation = function(navigationMap, mapObjects) {
 					timerNavigation.pause();
 					isNavigationStopped = true;
 					textToSpeech = "Navegação pausada em " + timer
-					+ ". Para retomar a navegação, tecle Alt S. Mas antes, tente movimentar seu jogador para frente e vamos ver o que acontece!";
+					+ ". Para retomar a navegação, tecle Alt ésse novamente. Mas antes, tente movimentar seu jogador para frente e vamos ver o que acontece!";
 					console.log(textToSpeech);
 					playTextToSpeech(textToSpeech);
 					up = true;
@@ -429,7 +428,7 @@ var Navigation = function(navigationMap, mapObjects) {
 				} else {
 					timerNavigation.start();
 					isNavigationStopped = false;
-					textToSpeech = "Navegação retomada em " + timer + ". De um passo para frente com a tecla seta para cima.";
+					textToSpeech = "Navegação retomada em " + timer + ". Você está virado para o SUL. Dê um passo para frente utilizando atecla de atalho seta para cima.";
 					console.log(textToSpeech);
 					playTextToSpeech(textToSpeech);
 					up = true;
@@ -588,10 +587,9 @@ var Navigation = function(navigationMap, mapObjects) {
 				textToSpeech = extraText + textToSpeech;
 			}
 			if(currentAction == "colisao"){
-				textToSpeech += "Este objeto possui um som icônico próprio de batida em madeira. " +
-				"Objetos que não possuem nenhum som vinculados, emitem um som padrão de colisão. " +
-				"Agora, vamos descobrir o outro objeto no mapa. Primeiro, precisamos chegar até ele. Utilize a tecla de atalho seta para esquerda," +
-				"para girar seu personagem 90 graus para esquerda, sentido antihorário.";
+				textToSpeech += "Você localizou o primeiro objeto. " +
+				"Vamos encontrar o outro objeto no mapa, que está linha 8 e coluna 7. Siga as instruções: Para girar 90 graus para esquerda, utilize a tecla de atalho seta para esquerda" +
+				". Você ficará virado para baixo.";
 				left = true;
 			}
 			playTextToSpeech(textToSpeech);
@@ -732,10 +730,10 @@ var Navigation = function(navigationMap, mapObjects) {
 			}
 
 			if (isNavigationStopped) {
-				var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt S. " +
-						"Então, quando a navegação estiver pausada, apaenas os comandos para encerrar a navegação, " +
-						"saber o tempo de navegaçao e o de retomar a navegação estarão disponíveis para o jogador. Porém ainda não queremos encerrar a navegação. " +
-						"Então tecle ALT S para retomar a navegação";
+				var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt ésse. " +
+						"Quando a navegação está pausada, somente alguns comandos funcionam. ALT ésse de STOP, para retornar a navegação, ALT QUE de QUIT, para finalizar a navegação e " +
+						"ALT T de TEMPO para saber o tempo total de navegação. Ainda não queremos encerrar a navegação. " +
+						"Então tecle ALT ésse para continuar a navegação. ";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 				
@@ -767,8 +765,8 @@ var Navigation = function(navigationMap, mapObjects) {
 		direction = checkDirection(rotate),
 		textDirection = DirectionEnum.getTextDirection(direction);
 
-		var textToSpeech = "Bem-vindo ao módulo de treinamento do Ed-AbES. Seu jogador iniciou na direção " + textDirection + ", coluna "
-		+ posX + " e linha " + posY + " do mapa. Primeiro vamos saber mais informações do mapa de treinamento, para isso utilize a tecla de atalho ALT M.";
+		var textToSpeech = "Bem-vindo ao módulo de treinamento do E d-AbES. Você está na linha " + posY + " e coluna "
+		+ posX + ". Você está virado para a direção " + textDirection + ". Para acessar as informações sobre o mapa utilize a tecla de atalho ALT EME. Letra EME de mapa.";
 
 		playTextToSpeech(textToSpeech);
 
