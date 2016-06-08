@@ -4,8 +4,7 @@ function playTextToSpeech(textToSpeech) {
 	console.log(textToSpeech.length);
 	console.log(textToSpeech);
 	if(textToSpeech.length > 2048){
-		debugger;
-		console.log("MAIORRRRR");
+		console.log("Texto com mais de 2048 caracteres: Tamanho=" + textToSpeech.length);
 	}
 	var url = "/API/getTraducao?text=" + textToSpeech;
 	console.log("->" + url);

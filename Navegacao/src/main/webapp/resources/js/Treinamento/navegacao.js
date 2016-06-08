@@ -1,7 +1,7 @@
 var Navigation = function(navigationMap, mapObjects) {
 	var self = this, 
 	player = navigationMap.startingPoint, 
-	footstepAudio = '/resources/audio/footsteps-cut.mp3', 
+	footstepAudio = '/resources/audio/footsteps-cut.wav', 
 	collisionsAudio = '/resources/audio/collisions.mp3',
 	audioLeft = '/resources/audio/beep_left.wav',
 	audioRight = '/resources/audio/beep_right.wav' , 
@@ -24,7 +24,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	altR = false,
 	altS = false,
 	altL = false,
-	altP = false,
+	altP = true,
 	altQ = false,
 	yes = false,
 	no = false,
@@ -461,7 +461,8 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(altQ){
 			if(!checkIsNavigationFinished()){
 				navigationHistory.logActions("ALT Q", "Encerrar a navegação");
-				var textToSpeech = "Ao encerrar a navegação, é lhe perguntado se Você tem certeza que deseja encerrar a navegação? Com as opções S para sim ou N para não. Tecle S para encerrar a navegação e o treinamento.";
+				var textToSpeech = "Ao encerrar a navegação, é lhe perguntado se Você tem certeza que deseja encerrar a navegação? Com as opções S para sim ou N para não." +
+						" Tecle S para encerrar a navegação e o treinamento.";
 				playTextToSpeech(textToSpeech);
 				confirmClose = true;
 				confirmSaveHistory = false;
@@ -515,9 +516,9 @@ var Navigation = function(navigationMap, mapObjects) {
 	function askToSaveNavigationHistory(challenge) {
 		var textToSpeech = "";
 		if(challenge){
-			textToSpeech = " Você finalizou a navegação. O ponto final estava na coluna "
-				+ (navigationMap.endPoint.data("coord-x") + 1) + " e linha "
-				+ (navigationMap.endPoint.data("coord-y") + 1) + ". ";
+			textToSpeech = " Você finalizou a navegação. O ponto final estava na linha "
+				+ (navigationMap.endPoint.data("coord-y") + 1) + " e coluna "
+				+ (navigationMap.endPoint.data("coord-x") + 1) + ". ";
 			isNavigationFinished = true;
 		}
 		textToSpeech += "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
@@ -567,8 +568,8 @@ var Navigation = function(navigationMap, mapObjects) {
 				+ ", "
 				+ (objectMap.audioDescricao ? " Descrição: "
 						+ objectMap.audioDescricao : "Sem descrição")
-						+ ". Na coluna: " + (objectMap.coordenadaX + 1)
-						+ " e linha: " + (objectMap.coordenadaY + 1)
+						+ ". Na linha: " + (objectMap.coordenadaY + 1)
+						+ " e coluna: " + (objectMap.coordenadaX + 1)
 						+ ". O objeto possui " + objectMap.altura + " de altura e "
 						+ objectMap.largura + " de largura. ",
 

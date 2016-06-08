@@ -26,10 +26,6 @@
 						<div class="clearfix">
 							<a href="/Mapa/Editar/${idMapa}" class="btn btn-warning col-md-5 col-xs-12">Voltar</a>
 							<button id="saveMap" class="btn btn-success col-md-6 col-md-offset-1 col-xs-12" type="button">Salvar o mapa</button>
-							<button id="andarBtn" type="button" onclick="criar();">Criar</button>
-							<button id="andarBtn" type="button" onclick="andar();">Andar</button>
-							<button id="andarBtn" type="button" onclick="andar2();">Andar 2</button>
-							
 						</div>
 						<br />
 						<jsp:include page="_IncDesenhoMenu.jsp" />

@@ -1,5 +1,5 @@
 var Navigation = function(navigationMap, mapObjects) {
-	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.mp3', collisionsAudio = '/resources/audio/collisions.mp3',left = '/resources/audio/beep_left.wav',right = '/resources/audio/beep_right.wav' , mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false, isNavigationFinished = false, navigationHistory = new NavigationHistory(), isBlocked = false, confirmClose = false, confirmSaveHistory = false;
+	var self = this, player = navigationMap.startingPoint, footstepAudio = '/resources/audio/footsteps-cut.wav', collisionsAudio = '/resources/audio/collisions.mp3',left = '/resources/audio/beep_left.wav',right = '/resources/audio/beep_right.wav' , mapObjects = mapObjects, lastBumpedObject = null, timerNavigation = new Timer(), isNavigationStopped = false, isNavigationFinished = false, navigationHistory = new NavigationHistory(), isBlocked = false, confirmClose = false, confirmSaveHistory = false, startTime = "", time = "";
 
 	DirectionEnum = {
 			UP : 1,
@@ -40,6 +40,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		console.log("Iniciando a navegação!");
 		var log = getInitLog();
 		navigationHistory.logInit(log);
+		startTime = getTextTime();
 		timerNavigation.start();
 	}
 
@@ -204,8 +205,8 @@ var Navigation = function(navigationMap, mapObjects) {
 			direction = checkDirection(rotate),
 			textDirection = DirectionEnum.getTextDirection(direction);
 
-			var textToSpeech = "Estou na direção " + textDirection + ", coluna "
-			+ posX + " e linha " + posY + ".";
+			var textToSpeech = "Estou na linha " + posY + ", coluna "
+				+ posX + ". Virado para o " + textDirection + ".";
 
 			console.log(textToSpeech);
 
@@ -252,10 +253,14 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(!checkIsNavigationFinished()){
 			navigationHistory.logActions("ALT S", "Pausar e Retomar a navegação");
 			var timer = timerNavigation.getTimeValues().toString(), textToSpeech = "";
+			
 			if (!isNavigationStopped) {
 				timerNavigation.pause();
 				isNavigationStopped = true;
-				textToSpeech = "Navegação pausada em " + timer
+				console.log(time);
+				time = getTextTime();
+				
+				textToSpeech = "Navegação pausada " + time
 				+ ". Para retomar a navegação, tecle Alt S.";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
@@ -263,7 +268,8 @@ var Navigation = function(navigationMap, mapObjects) {
 			} else {
 				timerNavigation.start();
 				isNavigationStopped = false;
-				textToSpeech = "Navegação retomada em " + timer + ".";
+				time = getTextTime();
+				textToSpeech = "Navegação retomada " + time + ".";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 			}
@@ -321,16 +327,20 @@ var Navigation = function(navigationMap, mapObjects) {
 	function closeNavigation() {
 		isNavigationFinished = true;
 		timerNavigation.pause();
-		navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
+		var endTime = getTextTime();
+
+		var nomeMapa = document.getElementById("nomeMapa").value;
+		var text =" Log de navegação do mapa " + nomeMapa +". Data: " + getTextDate() + " . Iniciou " + startTime +" e finalizou " + endTime + ". Duração da navegação " + timerNavigation.getTimeValues().toString();  
+		navigationHistory.logFinishedNavigation(player, text);
 		askToSaveNavigationHistory(false);
 	}
 
 	function askToSaveNavigationHistory(challenge) {
 		var textToSpeech = "";
 		if(challenge){
-			textToSpeech = " Você finalizou a navegação. O ponto final estava na coluna "
-				+ (navigationMap.endPoint.data("coord-x") + 1) + " e linha "
-				+ (navigationMap.endPoint.data("coord-y") + 1) + ". ";
+			textToSpeech = " Você finalizou a navegação. O ponto final está na linha "
+				+ (navigationMap.endPoint.data("coord-y") + 1) + " e coluna "
+				+ (navigationMap.endPoint.data("coord-x") + 1) + ". ";
 			isNavigationFinished = true;
 		}
 		textToSpeech += "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
@@ -380,8 +390,8 @@ var Navigation = function(navigationMap, mapObjects) {
 				+ ", "
 				+ (objectMap.audioDescricao ? " Descrição: "
 						+ objectMap.audioDescricao : "Sem descrição")
-						+ ". Na coluna: " + (objectMap.coordenadaX + 1)
-						+ " e linha: " + (objectMap.coordenadaY + 1)
+						+ ". Na linha: " + (objectMap.coordenadaY + 1)
+						+ " e coluna: " + (objectMap.coordenadaX + 1)
 						+ ". O objeto possui " + objectMap.altura + " de altura e "
 						+ objectMap.largura + " de largura. ",
 
@@ -537,7 +547,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			}
 
 			if (isNavigationStopped) {
-				var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt S.";
+				var textToSpeech = "Navegação pausada   " + time + ". Para retomar a navegação, tecle Alt S.";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 			}
@@ -565,12 +575,33 @@ var Navigation = function(navigationMap, mapObjects) {
 		direction = checkDirection(rotate),
 		textDirection = DirectionEnum.getTextDirection(direction);
 
-		var textToSpeech = "Iniciando a navegação, estou na direção " + textDirection + ", coluna "
-		+ posX + " e linha " + posY + ".";
+		var textToSpeech = "Iniciando a navegação, estou na direção " + textDirection + ", linha "
+		+ posY + " e coluna " + posX + ".";
 
 		playTextToSpeech(textToSpeech);
 
 		return textToSpeech;
+	}
+	
+	function getTextTime(){
+		var date = new Date(); // for now
+		var hours =  date.getHours() == 1 ? " á " + date.getHours() + " hora " : "ás " + date.getHours() + " horas ";
+		var minutes = date.getMinutes() == 1 ? date.getMinutes() + " minuto e " : date.getMinutes() + " minutos e ";
+		var seconds = date.getSeconds() == 1 ? date.getSeconds() + " segundo " : date.getSeconds() + " segundos ";
+		var textTime = hours + minutes + seconds;
+		
+		return textTime;
+	}
+	
+	function getTextDate(){
+		var date = new Date(); 
+		var day = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
+		var month = date.getDate() < 10 ? "0"+date.getMonth() : date.getMonth();
+		var year = date.getFullYear();
+		
+		var text = day+"/"+month+"/"+year;
+		
+		return text;
 	}
 	self.init();
 

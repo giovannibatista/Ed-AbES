@@ -35,17 +35,19 @@ var NavigationHistory = function() {
 			+ (objectMap.coordenadaY + 1) + ".";
 	}
 
-	self.logFinishedNavigation = function(objectMap, timer) {
-		self.history.log += " Você finalizou a navegação em " + timer + ". A posição final do seu jogador foi coluna "
-		+ (objectMap.data("coord-x") + 1) + " e linha "
-		+ (objectMap.data("coord-y") + 1) + ".";
+	self.logFinishedNavigation = function(objectMap, text) {
+		self.history.log = text + ". " + self.history.log;
+		self.history.log += "A posição final do seu jogador foi linha "
+		+ (objectMap.data("coord-y") + 1) + " e coluna "
+		+ (objectMap.data("coord-x") + 1) + ".";
 	}
 
 	self.logFinishedChallengeNavigation = function(objectMap, timer) {
-		self.history.log += " Você finalizou a navegação em " + timer + ". O ponto final estava na posição coluna "
-		+ (objectMap.data("coord-x") + 1) + " e linha "
-		+ (objectMap.data("coord-y") + 1) + ".";
+		self.history.log += " Você finalizou a navegação em " + timer + ". O ponto final estava na posição linha "
+		+ (objectMap.data("coord-y") + 1) + " e coluna "
+		+ (objectMap.data("coord-x") + 1) + ".";
 	}
+
 
 	self.logActions = function(action, text){
 		self.history.log += " Você pressionou a tecla de atalho " + action
