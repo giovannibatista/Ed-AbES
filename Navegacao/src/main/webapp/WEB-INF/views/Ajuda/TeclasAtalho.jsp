@@ -25,9 +25,9 @@
 						aria-label="Pular para Navegação tabela de mapas
 							e no histórico de navegação">Navegação
 							em tabela de mapas e no histórico de navegação</a></li>
-					<li><a href="#teclasAcesso"
+					<!-- <li><a href="#teclasAcesso"
 						aria-label="Pular para Teclas de acesso rápido">Teclas de
-							acesso rápido</a></li>
+							acesso rápido</a></li> -->
 				</ul>
 			</div>
 		</article>
@@ -149,7 +149,7 @@
 			</ul>
 		</article>
 
-		<a href="#conteudo">Voltar para o topo</a>
+		<!-- <a href="#conteudo">Voltar para o topo</a>
 
 		<article id="teclasAcesso">
 			<h2>Teclas de acesso rápido</h2>
@@ -159,7 +159,7 @@
 				<li><p>"F8" - Informações básicas sobre a tela em que o
 						usuário se encontra.</p></li>
 			</ul>
-
+ -->
 		</article>
 
 		<a href="#conteudo">Voltar para o topo</a>

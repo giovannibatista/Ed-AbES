@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta http-equiv="content-language" content="pt-br">
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/lib/bootstrap.min.css" />">

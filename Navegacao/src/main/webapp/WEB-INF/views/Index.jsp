@@ -3,11 +3,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Módulo de Navegação do E d-AbES - Tela Inicial</title>
+
 <jsp:include page="Imports.jsp" />
+
 
 <link rel="stylesheet" href="<c:url value="/resources/css/index.css" />">
 
+<title>Módulo de Navegação do Ed-AbES - Tela Inicial</title>
 </head>
 <body>
 	<header>
@@ -40,7 +42,7 @@
 			"Alt 5". O uso do mouse permanece disponível para interação com o
 			sistema.</p>
 
-		<a href="#conteudo">Voltar para o topo</a>
 	</div>
+	<a href="#conteudo" class="voltarTopo">Voltar para o topo</a>
 </body>
 </html>

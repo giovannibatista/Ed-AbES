@@ -1,7 +1,6 @@
 /**
  * 
  */
-
 Mousetrap.bind('alt+i', function(e) {
 	var idMapa = document.getElementById("idMapa").value;
 	console.log('alt + I is pressed. Id: ' + idMapa);

@@ -5,7 +5,12 @@
 	width: 60%;
 }
 
-#conteudo h1{
+#conteudo h1 {
 	text-align: center;
 	margin-bottom: 50px;
+}
+
+.voltarTopo {
+	margin: 0 auto;
+	width: 60%;
 }

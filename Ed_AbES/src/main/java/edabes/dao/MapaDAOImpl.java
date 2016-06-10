@@ -210,7 +210,7 @@ public class MapaDAOImpl implements MapaDAO {
 	try {
 	    session = sessionFactory.getCurrentSession();
 	    session.save(mapaObjeto);
-
+	    
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
