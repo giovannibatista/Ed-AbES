@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Módulo de Navegação do Ed-AbES - Tela Inicial</title>
+<title>Módulo de Navegação do E d-AbES - Tela Inicial</title>
 <jsp:include page="Imports.jsp" />
 
 <link rel="stylesheet" href="<c:url value="/resources/css/index.css" />">
@@ -13,7 +13,7 @@
 	<header>
 		<jsp:include page="Menu.jsp" />
 	</header>
-	<div class="main">
+	<div id="conteudo">
 
 		<h1>Ed-AbES - Módulo de Navegação!</h1>
 		<p>O Ed-AbES é um projeto desenvolvido para navegação virtual de
