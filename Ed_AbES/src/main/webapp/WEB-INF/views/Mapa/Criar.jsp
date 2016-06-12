@@ -42,18 +42,17 @@
 										<label class="col-md-4 control-label">Objetivo:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" id="objetivoMapa"
-												name="objetivoMapa" placeholder="Ex: O objetivo deste mapa é chegar na cozinha." required onblur="ativaAtalhos()" onfocus="desativaAtalhos()"/>
+												name="objetivoMapa" placeholder="Ex: O objetivo é chegar na cozinha. Ou o objetivo é navegar livremente no mapa." required onblur="ativaAtalhos()" onfocus="desativaAtalhos()"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-4 control-label">Unidade de medida:</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="unidadeDeMedida"
-												name="unidadeDeMedida" placeholder="Ex: Passos, quilômetros, metros..." required onblur="ativaAtalhos()" onfocus="desativaAtalhos()"/>
+											<p>Passos</p>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-4 control-label">Andar: </label>
+										<label class="col-md-4 control-label">Pavimento: </label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" id="andar"
 												name="andar" placeholder="Ex: Primeiro, Segundo..." required onblur="ativaAtalhos()" onfocus="desativaAtalhos()"/>

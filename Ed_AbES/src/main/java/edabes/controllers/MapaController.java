@@ -117,6 +117,7 @@ public class MapaController extends EdController {
 			mapa.setNomeCriador(nomeCriador);
 			mapa.setDataAlteracao(dataCriacao);
 			mapa.setCriadorMapa(criador);
+			mapa.setUnidadeDeMedida("Passos");
 				
 			mapaDTO = mapaInformacoesService.salvarCaracteristicasMapa(mapa, "Editar", id);
 		}
@@ -303,6 +304,7 @@ public class MapaController extends EdController {
 				mapa.setDataAlteracao(dataCriacao);
 				mapa.setCriadorMapa(criador);
 				mapa.setImportadoPor(0);
+				mapa.setUnidadeDeMedida("Passos");
 					
 				mapaDTO = mapaInformacoesService.salvarCaracteristicasMapa(mapa, "Criar", 0);
 			}

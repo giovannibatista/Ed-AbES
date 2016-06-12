@@ -32,28 +32,5 @@ $(function() {
 		return (false);
 	});
 	
-	/*
-	$formularioMapa.unbind("submit").bind("submit", function() {	
-		var idMapa = 2;
-		
-		$.ajax({
-			url : "/Teste",
-			dataType : "text",
-			type : "POST",
-			data : {idMapa:2},
-			success : function(banana) {
-				alert(banana);
-				alert("Sai matHeus")
-			},
-			error : function() {
-				//console.log(json);
-				alert("Ocorreu um erro ao salvar o mapa.");
-			}
-		});
-		
-		return (false);
-	
-	});
-	 */
 	
 });

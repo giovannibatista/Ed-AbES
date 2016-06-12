@@ -67,7 +67,7 @@ var NavigationHistory = function() {
 
 			success : function(json) {
 				console.log("Histórico salvo com sucesso!");
-				playTextToSpeech("Histórico de navegação salvo com sucesso. Treinamento encerrado. Para inicar uma navegação, acesse o Menu \"Iniciar Navegação\" ou utilize a tecla de atalho ALT 1. Ou para retornar o treinamento, acesse o Menu \"Módulo de treinamento\" ou utilize a tecla de atalho ALT 3 ");
+				playTextToSpeech("Histórico de navegação salvo com sucesso. Treinamento encerrado. Para iniciar uma navegação, acesse o Menu \"Iniciar Navegação\" ou utilize a tecla de atalho ALT 1. Ou para retornar o treinamento, acesse o Menu \"Módulo de treinamento\" ou utilize a tecla de atalho ALT 3 ");
 			},
 			error : function() {
 				playTextToSpeech("Ocorreu um erro ao salvar o histórico de navegação!");

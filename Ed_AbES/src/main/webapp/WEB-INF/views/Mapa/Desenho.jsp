@@ -89,50 +89,53 @@
 					var mobs = $mapEdAbes.exportMobs();
 					var objetoSemAudioDescricao = false;
 					var nomeObjetoSemAudioDescricao;
-					
+					var temPontoInicio = false;
 					$.each(mobs, function(key, value) {
+						if(value.nome == "Ponto Inicio" && value.status != 3 ){
+							if(!temPontoInicio){
+								temPontoInicio = true;
+							}
+						}
 						if(!value.audioDescricao) {
-							objetoSemAudioDescricao = true;
-							nomeObjetoSemAudioDescricao = value.nome;
-							//exit foreach statement
-							return;
+							if(!objetoSemAudioDescricao){
+								objetoSemAudioDescricao = true;
+								nomeObjetoSemAudioDescricao = value.nome;
+								//exit foreach statement
+							}
 						} 
 					});
 					
 					//In case all the objects are with titles, OR
 					//In case you have confirmed that you accept saving the map without a description
-					if(!objetoSemAudioDescricao || 
-						confirm(noTitleAlert.format(nomeObjetoSemAudioDescricao))) {
-						console.log(mobs);
-						var tipoMapa = $("#tipoMapa").val();
-						var salvarMapaLivre = "";
-						if(tipoMapa == 2){
-							if(confirm("Deseja salvar o mapa também do tipo LIVRE?")){
-								salvarMapaLivre = "sim";
-							}
-						}
-						$.ajax({
-							url: "/Mapa/Desenho/Salvar/${idMapa}",
-							type: "POST",
-							dataType: "json",
-							contentType: "application/json",
-							data : JSON.stringify({
-								dtoList: mobs, teste: 'sim'
-							})
-							,
-							success: function(success) {
-								alert(success ? "Mapa salvo com sucesso." : "Erro ao salvar o mapa.");
-								
-								if (success) {
-									document.location = document.location;
+					if(temPontoInicio){
+						if(!objetoSemAudioDescricao || 
+							confirm(noTitleAlert.format(nomeObjetoSemAudioDescricao))) {
+							console.log(mobs);
+							var tipoMapa = $("#tipoMapa").val();
+							$.ajax({
+								url: "/Mapa/Desenho/Salvar/${idMapa}",
+								type: "POST",
+								dataType: "json",
+								contentType: "application/json",
+								data : JSON.stringify({
+									dtoList: mobs
+								})
+								,
+								success: function(success) {
+									alert(success ? "Mapa salvo com sucesso." : "Erro ao salvar o mapa.");
+									
+									if (success) {
+										document.location = document.location;
+									}
+								},
+								error: function() {
+									alert("Erro ao requisitar função AJAX. Por favor, contate o administrador.");
 								}
-							},
-							error: function() {
-								alert("Erro ao requisitar função AJAX. Por favor, contate o administrador.");
-							}
-						});
+							});
+						}
+					}else{
+						alert("Ponto Inicial é obrigatório para todos tipos de mapa!");
 					}
-					
 				});
 				
 				//triggers only when the DOM is loaded
@@ -175,99 +178,7 @@
 			});
 			
 			var $mob = $("<div />");
-			function criar() {
-				debugger;
-					
-					$mob.addClass("mobs");
-					$mob
-							.css({
-								"background-image" : "url(/resources/img/bg-64x64-red.jpg)",
-								"background-size" : "32px 32px",
-								width : 32,
-								height : 32
-							});
 
-					//Get the deserved z-index based on the object status (NEW or UPDATE)
-					profundidade = 20;
-
-					//append characteristics
-					$mob.data({
-						id : 99,
-						image : "/resources/img/bg-64x64-red.jpg",
-						idObjeto : 99,
-						width : 1,
-						height : 1,
-						status : 1,
-						title : "ANDAR",
-						nome : "ANDAR TESTE",
-						rotate : 0,
-						"coord-z" : 20,
-						arquivoAudio : undefined
-					});
-
-					var offset = {
-						left : 0,
-						top : 0
-					};
-					var $map = $("#mapa_mobs");
-					$map.append($mob);
-				
-					var rotate = 0;
-					
-					_moveObj($mob, offset, rotate);
-
-				}
-			
-			var _moveObj = function($obj, offset, rotate) {
-				var profundidade = $obj.data("coord-z");
-
-				//normalize positions
-				offset.top = ((offset.top > 0) ? offset.top : 0);
-				offset.left = ((offset.left > 0) ? offset.left : 0);
-
-				//calculate relative position
-				var pos = {
-						left: parseInt(offset.left/32),
-						top: parseInt(offset.top/32)
-				};
-
-				//move to absolute position
-				$obj.css({
-					transform: "translate3d("+ (pos.left * 32) +"px, "+ (pos.top * 32) +"px, 0) rotate("+rotate+"deg)",
-					left: 0,
-					top: 0,
-					zIndex: 20
-				});
-
-				//append characteristics
-				$obj.data({
-					"coord-x": pos.left,
-					"coord-y": pos.top
-				});
-			}
-			
-			function andar(){
-				var offset = {
-						top: $mob.data("coord-y") * 32 + 32,
-						left: $mob.data("coord-x") * 32
-				};
-				
-				var rotate = 0;
-				
-				_moveObj($mob, offset, rotate);
-			}
-			
-			function andar2(){
-				var offset = {
-						top: $mob.data("coord-y") * 32 ,
-						left: $mob.data("coord-x") * 32 + 32
-				};
-				
-				var rotate = 0;
-				
-				_moveObj($mob, offset, rotate);
-			}
-			
 
 		</script>
 	</body>

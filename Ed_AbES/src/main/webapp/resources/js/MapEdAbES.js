@@ -71,6 +71,7 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 	self.exportMobs = function() {
 		var mobs = new Array();
 
+		
 		$(".mobs").each(function() {
 			var $obj = $(this);
 			
@@ -86,7 +87,8 @@ var MapEdAbES = function($mapaObject, $thumbnail) {
 				"operacao": $obj.data("status"),
 				"nome": $obj.data("nome"),
 				"angulo": $obj.data("rotate"),
-				"idArquivoAudio": $obj.data("idArquivoAudio")
+				"idArquivoAudio": $obj.data("idArquivoAudio"),
+				"status" : $obj.data("status")
 			});
 		});
 

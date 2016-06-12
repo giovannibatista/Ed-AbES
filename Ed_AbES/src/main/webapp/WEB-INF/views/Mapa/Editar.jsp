@@ -45,18 +45,17 @@
 										<label class="col-md-4 control-label">Objetivo:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" id="objetivoMapa"
-												name="objetivoMapa" value="${caracteristicas.objetivoMapa}" placeholder="Ex: O objetivo deste mapa é chegar na cozinha." required />
+												name="objetivoMapa" value="${caracteristicas.objetivoMapa}" placeholder="Ex: O objetivo é chegar na cozinha. Ou o objetivo é navegar livremente no mapa." required />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-4 control-label">Unidade de medida:</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="unidadeDeMedida"
-												name="unidadeDeMedida" value="${caracteristicas.unidadeDeMedida}" placeholder="Ex: Passos, quilômetros, metros..." required />
+											<p>Passos</p>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-4 control-label">Andar:</label>
+										<label class="col-md-4 control-label">Pavimento:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" id="andar"
 												name="andar" value="${caracteristicas.andar}" placeholder="Ex: Primeiro, Segundo..." required"/>
