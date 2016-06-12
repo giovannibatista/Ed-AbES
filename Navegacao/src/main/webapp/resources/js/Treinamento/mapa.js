@@ -1,11 +1,10 @@
 var navigation = {};
 $(window).load(function() {
-	var idMap = document.getElementById("idMapa").value,
-	$mapa = $("#mapa"),
+	var $mapa = $("#mapa"),
 	$mapaNavegacao = new Map($mapa);//Instanciate the Map
 
 	$.ajax({
-		url: "/Navegacao/Mapa/Objetos/" + idMap,
+		url: "/Navegacao/Mapa/Treinamento/Objetos",
 		type: "GET",
 		dataType: "json",
 		success: function(json) {

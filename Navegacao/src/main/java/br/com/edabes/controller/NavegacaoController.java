@@ -30,8 +30,6 @@ public class NavegacaoController {
 
     private ArrayList<MapaDTO> mapas;
     
-    private final Integer idMapaTreinamento = 27;
-
     public NavegacaoController() {
 	super();
 	mapas = new ArrayList<MapaDTO>();
@@ -107,15 +105,26 @@ public class NavegacaoController {
 	ModelAndView model = null;
 	try{
 	    model = new ModelAndView("/Navegacao/Treinamento");
-	    MapaDTO mapaTreinamento = new MapaDTO();
-	    mapaTreinamento.setId(idMapaTreinamento);
-	    MapaDTO mapaDTO = mapaService.consultaMapa(mapaTreinamento);
-	    model.addObject("mapa", mapaDTO);
+	    MapaDTO mapaTreinamento = mapaService.consultaMapaTreinamento();
+	    model.addObject("mapa", mapaTreinamento);
 	}catch(Exception e){
 	    e.printStackTrace();
 	}
 	return model;
     }
+    
+    @RequestMapping(value = "/Navegacao/Mapa/Treinamento/Objetos", method = RequestMethod.GET)
+    @ResponseBody
+    public String carregarObjetosMapaTreinamento( HttpSession session) {
+	String mapaObjetos = "";
+	try {
+	    mapaObjetos = mapaObjetoService.carregaObjetosMapaTreinamento();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return mapaObjetos;
+    }
+
 
     public ArrayList<MapaDTO> getMapas() {
 	return mapas;

@@ -257,7 +257,6 @@ var Navigation = function(navigationMap, mapObjects) {
 			if (!isNavigationStopped) {
 				timerNavigation.pause();
 				isNavigationStopped = true;
-				console.log(time);
 				time = getTextTime();
 				
 				textToSpeech = "Navegação pausada " + time

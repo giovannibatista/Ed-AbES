@@ -11,12 +11,15 @@ import br.com.edabes.converter.MapaObjetoConverter;
 import br.com.edabes.dao.MapaObjetoDAO;
 import br.com.edabes.dto.MapaObjetoDTO;
 import br.com.edabes.model.MapaObjeto;
+import br.com.edabes.utils.FileUtils;
 
 @Service
 public class MapaObjetoServiceImpl implements MapaObjetoService {
 
     @Autowired
     private MapaObjetoDAO mapaObjetoDAO;
+    
+    private final String objetosTreinamentoJson = "resources\\json\\objetosTreinamento.json";
 
     private Converter<MapaObjeto, MapaObjetoDTO> converter;
 
@@ -51,6 +54,18 @@ public class MapaObjetoServiceImpl implements MapaObjetoService {
 	}
 
 	return mapaObjetoDTO;
+    }
+
+    @Override
+    public String carregaObjetosMapaTreinamento() throws Exception {
+	String objetos = "";
+	try{
+	    FileUtils fileUtils = new FileUtils();
+	    objetos = fileUtils.FileToString(objetosTreinamentoJson);
+	}catch(Exception e){
+	    throw e;
+	}
+	return objetos;
     }
 
 }

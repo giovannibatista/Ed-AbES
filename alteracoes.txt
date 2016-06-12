@@ -33,3 +33,4 @@
 05/06 20:00 - Módulo de treinamento implementado.
 06/06 01:17 - Cadastro de novos usuários implementado.
 08/06 16:36 - Alterações relacionado a ultima reunião.
+12/06 13:29 - Modulo de Treinamento finalizao e acessivel

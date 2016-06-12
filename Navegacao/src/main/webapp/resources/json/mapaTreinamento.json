@@ -1,0 +1,13 @@
+{  
+   "id":27,
+   "nome":"Treinamento",
+   "descricao":"Este é um mapa para treinamento no módulo de navegação. O mapa possui dois objetos.",
+   "objetivo":"O jogador conhecer as funcionalidades da navegação e os dois objetos do mapa.",
+   "tipoMapa":1,
+   "dataAlteracao":"Jun 8, 2016 12:00:00 AM",
+   "dataCriacao":"Jun 4, 2016 12:00:00 AM",
+   "nomeCriador":"Bruna",
+   "unidadeDeMedida":"Passos",
+   "importadoPor":0,
+   "andar":"Primeiro"
+}

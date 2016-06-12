@@ -29,7 +29,8 @@ var Navigation = function(navigationMap, mapObjects) {
 	yes = false,
 	no = false,
 	index = 0,
-	currentAction = "";
+	currentAction = "",
+	startTime = "", time = "";
 
 	DirectionEnum = {
 			UP : 1,
@@ -70,6 +71,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		console.log("Iniciando a navegação!");
 		var log = getInitLog();
 		navigationHistory.logInit(log);
+		startTime = getTextTime();
 		timerNavigation.start();
 	}
 
@@ -143,36 +145,36 @@ var Navigation = function(navigationMap, mapObjects) {
 
 					if(index == 1 && currentAction == "localizacao"){
 						up = false;
+						index = 0;
 						setTimeout(function(){
 							var textToSpeech = "Para encontrar o segundo objeto, gire para a direção LESTE, utilizando a tecla de atalho seta para esquerda.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "";
 							currentAction = "up";
 							left = true;
-							index = 0;
 						}, 1000);
 					}
 					
 					if(index == 2 && currentAction == "left"){
+						up=false;
+						index = 0;
 						setTimeout(function(){
 							var textToSpeech = "Durante a navegação, podemos saber quanto tempo estamos levando, para isso podemos utilizar a tecla de atalho ALT T. Letra T de tempo.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
 							altT = true;
-							up=false;
-							index = 0;
 						}, 1000);
 					}
 					
 					if(index == 1 && currentAction == "retomarNavegacao"){
+						index = 0;
+						up=false;
 						setTimeout(function(){
 							var textToSpeech = "Acho que estamos bem perto. Vamos ver os objetos que estão ao nosso redor. " +
 									"Utilize a tecla de atalho ALT R. Letra R para verificar os objetos ao redor do jogador, com distância de um passo.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
-							index = 0;
 							altR = true;
-							up=false;
 						}, 1000);
 					}
 					
@@ -188,26 +190,26 @@ var Navigation = function(navigationMap, mapObjects) {
 					navigationHistory.logCollision(lastBumpedObject);
 					
 					if(index == 1 && currentAction == "redor"){
+						index = 0;
+						up = false;
 						setTimeout(function(){
 							var textToSpeech = "Estamos quase no fim do nosso treinamento. Durante a navegação, você pode escutar o log dos seus movimentos e comandos realizados. " +
 									"A fim de relembrar o caminho que andou ou se está indo na direção correta. Utilize o comando ALT L para reproduzir o log do histórico da navegação.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
-							index = 0;
 							altL = true;
-							up = false;
 						}, 1000);
 					}
 					
 					if(index == 3){
 						up = false;
+						index = 0;
 						setTimeout(function(){
 							var textToSpeech = "Opa, você colidiu em um objeto de madeira. Já sabemos que foi em uma cadeira." +
 							" Para conhecer as características da cadeira, utilize a tecla de atalho ALT CE. Letra CE de colisão.";
 							playTextToSpeech(textToSpeech);
 							altC = true;
 							currentAction = "colisao";
-							index = 0;
 						}, 1000);
 					}
 				}
@@ -227,23 +229,26 @@ var Navigation = function(navigationMap, mapObjects) {
 				playIconicAudio(audioLeft);
 				navigationHistory.logChangeDirection(DirectionEnum.getTextDirection(direction));
 
-				if(currentAction == "colisao"){
+				index++;
+				if(currentAction == "colisao" && index == 1){
+					left = false
+					index = 0;
 					setTimeout(function(){
 						var textToSpeech = "Esté o som emitido quando ocorre um giro de 90 graus para a esquerda. Utilize a tecla de atalho ALT Ó. Letra Ó de onde estou no mapa";
 						playTextToSpeech(textToSpeech);
 						currentAction = "left";
-						index = 0;
 						altO = true;
 					}, 1000);
 				}
 				
-				if(currentAction == "up"){
+				if(currentAction == "up" && index == 1){
+					left = false;
+					index = 0;
 					setTimeout(function(){
 						var textToSpeech = "Agora dê mais dois passos para frente com a tecla seta para cima";
 						playTextToSpeech(textToSpeech);
 						currentAction = "left";
 						up = true;
-						left = false;
 						
 					}, 1000);
 				}
@@ -417,7 +422,8 @@ var Navigation = function(navigationMap, mapObjects) {
 				if (!isNavigationStopped) {
 					timerNavigation.pause();
 					isNavigationStopped = true;
-					textToSpeech = "Navegação pausada em " + timer
+					time = getTextTime();
+					textToSpeech = "Navegação pausada " + time
 					+ ". Para retomar a navegação, tecle Alt ésse novamente. Mas antes, tente movimentar seu jogador para frente e vamos ver o que acontece!";
 					console.log(textToSpeech);
 					playTextToSpeech(textToSpeech);
@@ -428,7 +434,8 @@ var Navigation = function(navigationMap, mapObjects) {
 				} else {
 					timerNavigation.start();
 					isNavigationStopped = false;
-					textToSpeech = "Navegação retomada em " + timer + ". Você está virado para o SUL. Dê um passo para frente utilizando atecla de atalho seta para cima.";
+					time = getTextTime();
+					textToSpeech = "Navegação retomada " + time + ". Você está virado para o SUL. Dê um passo para frente utilizando atecla de atalho seta para cima.";
 					console.log(textToSpeech);
 					playTextToSpeech(textToSpeech);
 					up = true;
@@ -509,7 +516,11 @@ var Navigation = function(navigationMap, mapObjects) {
 	function closeNavigation() {
 		isNavigationFinished = true;
 		timerNavigation.pause();
-		navigationHistory.logFinishedNavigation(player, timerNavigation.getTimeValues().toString());
+		var endTime = getTextTime();
+
+		var nomeMapa = document.getElementById("nomeMapa").value;
+		var text =" Log de navegação do mapa " + nomeMapa +". Data: " + getTextDate() + " . Iniciou " + startTime +" e finalizou " + endTime + ". Duração da navegação " + timerNavigation.getTimeValues().toString();
+		navigationHistory.logFinishedNavigation(player, text);
 		askToSaveNavigationHistory(false);
 	}
 
@@ -775,6 +786,27 @@ var Navigation = function(navigationMap, mapObjects) {
 		currentAction = "init";
 
 		return textToSpeech;
+	}
+	
+	function getTextTime(){
+		var date = new Date(); // for now
+		var hours =  date.getHours() == 1 ? " á " + date.getHours() + " hora " : "ás " + date.getHours() + " horas ";
+		var minutes = date.getMinutes() == 1 ? date.getMinutes() + " minuto e " : date.getMinutes() + " minutos e ";
+		var seconds = date.getSeconds() == 1 ? date.getSeconds() + " segundo " : date.getSeconds() + " segundos ";
+		var textTime = hours + minutes + seconds;
+		
+		return textTime;
+	}
+	
+	function getTextDate(){
+		var date = new Date(); 
+		var day = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
+		var month = date.getDate() < 10 ? "0"+date.getMonth() : date.getMonth();
+		var year = date.getFullYear();
+		
+		var text = day+"/"+month+"/"+year;
+		
+		return text;
 	}
 	self.init();
 

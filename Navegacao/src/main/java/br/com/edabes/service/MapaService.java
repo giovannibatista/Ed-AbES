@@ -8,6 +8,8 @@ public interface MapaService {
     public ArrayList<MapaDTO> listarMapas() throws Exception;
 
     public MapaDTO consultaMapa(MapaDTO consulta);
+
+    public MapaDTO consultaMapaTreinamento() throws Exception;
   
 
 }

@@ -31,7 +31,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 	    // TRAZER SOH OS CAMPOS DA TELA
 	    session = sessionFactory.getCurrentSession();
-	    query = session.createQuery("from Mapa m where m.id <> 27");
+	    query = session.createQuery("from Mapa m where m.id <> 27 order by id");
 	    mapas = (ArrayList<Mapa>) query.list();
 
 	} catch (Exception e) {

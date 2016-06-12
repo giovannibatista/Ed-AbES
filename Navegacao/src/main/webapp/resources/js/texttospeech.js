@@ -1,8 +1,9 @@
+var i = 0;
 function playTextToSpeech(textToSpeech) {
 	var audio = $('audio');
+	console.log(i + " - " +textToSpeech);
 	textToSpeech = encodeURIComponent(textToSpeech);
-	console.log(textToSpeech.length);
-	console.log(textToSpeech);
+	i++;
 	if(textToSpeech.length > 2048){
 		console.log("Texto com mais de 2048 caracteres: Tamanho=" + textToSpeech.length);
 	}

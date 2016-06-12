@@ -8,4 +8,6 @@ public interface MapaObjetoService {
 
     ArrayList<MapaObjetoDTO> carregaObjetosMapa(MapaObjetoDTO mapaObjetoDTO);
 
+    String carregaObjetosMapaTreinamento() throws Exception;
+
 }
