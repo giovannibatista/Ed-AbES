@@ -39,6 +39,7 @@ public class HistoricoNavegacaoController {
 	    model = new ModelAndView("/Historico/Listar");
 	    //historicoNavegacaoDTO.setUsuario(idUsuario);
 	    historicoNavegacaoDTOs = historicoNavegacaoService.listarHistoricoNavegacao(historicoNavegacaoDTO);
+	    historicoNavegacaoDTOs = new ArrayList<HistoricoNavegacaoDTO>();
 	    model.addObject("historicoNavegacoes", historicoNavegacaoDTOs);
 	} catch (Exception e) {
 	    e.printStackTrace();

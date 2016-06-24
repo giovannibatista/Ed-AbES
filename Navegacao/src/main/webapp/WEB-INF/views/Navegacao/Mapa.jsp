@@ -35,7 +35,7 @@
 	charset="utf-8"></script>
 
 <script type="text/javascript">
-	
+	document.body.style.overflow=allowScroll?"":"hidden";
 </script>
 
 </head>

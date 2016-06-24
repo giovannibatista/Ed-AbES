@@ -40,6 +40,14 @@ input[type=button] {
 	box-shadow: 2px 2px 4px #ffffff;
 }
 
+input[type=submit] {
+	background: #000000;
+	color: #ffffff;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	box-shadow: 2px 2px 4px #ffffff;
+}
+
 a {
 	color: #ffffff;
 }

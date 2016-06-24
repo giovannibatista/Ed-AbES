@@ -99,13 +99,13 @@
 						direita sentido horário.</p></li>
 				<li><p>"Alt C" - Informa a descrição do último objeto que o
 						jogador colidiu.</p></li>
-				<li><p>"Alt E" - Encerra a navegação e questiona o usuário
-						se deseja salvar o histórico da navegação.</p></li>
 				<li><p>"Alt L" - Reproduzir o log da navegação corrente.</p></li>
 				<li><p>"Alt M" - Informações sobre o mapa. Retorna o nome,
 						pavimento, descrição e objetivo do mapa.</p></li>
 				<li><p>"Alt O" - Informa a localização atual do jogador no
 						mapa.</p></li>
+				<li><p>"Alt Q" - Encerra a navegação e questiona o usuário
+						se deseja salvar o histórico da navegação.</p></li>
 				<li><p>"Alt P" - Controle de som: pausa ou retoma o áudio,
 						de acordo com a situação do áudio no momento em que a tecla é
 						acionada.</p></li>
