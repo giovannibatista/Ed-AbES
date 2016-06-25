@@ -4,11 +4,14 @@ $(window).load(function() {
 	$mapa = $("#mapa"),
 	$mapaNavegacao = new Map($mapa);//Instanciate the Map
 
+	
 	$.ajax({
 		url: "/Navegacao/Mapa/Objetos/" + idMap,
 		type: "GET",
 		dataType: "json",
 		success: function(json) {
+			var map = $("#mapa_mobs");
+			$mapaNavegacao.setSizeMap(map);
 			$.each(json, function(key, value) {
 				$mapaNavegacao.addMob({
 					height: value.altura,
@@ -28,8 +31,6 @@ $(window).load(function() {
 					nivel : value.objeto.nivel
 				});
 			});
-			var map = $("#mapa_mobs");
-			$mapaNavegacao.setSizeMap(map);
 			//Instanciate the navigation
 			navigation = new Navigation($mapaNavegacao, json);
 			
@@ -48,7 +49,7 @@ var Map = function($navigationMap){
 	var self = this,
 	$mapRelative = $navigationMap,
 	$map = null
-
+ 
 	self.maxRotation = 360;
 
 	//Custom parameters
@@ -56,8 +57,8 @@ var Map = function($navigationMap){
 			initialScale: 32,
 			rotationDegrees: 90,
 			zindex: 8000,
-			defaultWidth: 49,
-			defaultHeight: 16
+			defaultWidth: 0,//49,
+			defaultHeight: 0//16
 	};
 
 	self.startingPoint = null;
@@ -66,7 +67,6 @@ var Map = function($navigationMap){
 	self.maxX = 0;
 	self.maxY = 0;
 	
-
 	self.init = function(params) {
 		//Extend options
 		self.params = $.extend(self.params, params);
@@ -99,6 +99,7 @@ var Map = function($navigationMap){
 		//width: 1568px;
 		//height: 512px;
 		
+		
 		//append into map
 		$mapRelative.append($mobs);
 
@@ -107,6 +108,8 @@ var Map = function($navigationMap){
 		
 	}
 	self.setSizeMap = function(map) {
+		
+		resetDefaultSize();
 		var height = self.params.defaultHeight * self.params.initialScale,
 		width = self.params.defaultWidth * self.params.initialScale;
 		
@@ -124,16 +127,67 @@ var Map = function($navigationMap){
 			}
 		} 	
 		
+		//screen.width + "*" + screen.height
+		//width = 768;
+		//height = 256;
+		
 		map.css("width", width + "px");
 		map.css("height", height + "px");
 		
 		var mapExterno = $("#mapa");
 		
-		mapExterno.css("width", width + "px");
+		mapExterno.css("width", width  + "px");
 		mapExterno.css("height", height + "px");
 		
 		
 	} 
+	/*
+	 * 
+	 * 	1600x900 = 1568x512
+		49x16
+		
+		1366x768 = 1312x448
+		41x14
+		
+		1280x800 = 1248x480
+		39x15
+		
+		
+		1024x768 = 992x416
+		31x13
+		
+		800x600 = 768x256
+		24x8
+
+	*/
+	function resetDefaultSize(){
+		var screenWidth = screen.width,
+		screenHeight = screen.height;
+		console.log(screen.width + "*" + screen.height );
+
+		if(screenWidth < 1024 ){
+			//800x600 = 768x256
+			self.params.defaultWidth = 24;
+			self.params.defaultHeight = 8;
+		}else if(screenWidth < 1280 ){
+			//1024x768 = 992x416
+			self.params.defaultWidth = 31;
+			self.params.defaultHeight = 13;
+		}else if(screenWidth < 1366 ){
+			//1280x800 = 1248x480
+			self.params.defaultWidth = 39;
+			self.params.defaultHeight = 15;
+		}else if(screenWidth < 1600  ){
+			//1366x768 = 1312x448
+			self.params.defaultWidth = 41;
+			self.params.defaultHeight = 14;
+		}else{
+			//1600x900 = 1568x512
+			self.params.defaultWidth = 49;
+			self.params.defaultHeight = 16;
+		}
+		console.log(self.params.defaultWidth + "x" + self.params.defaultHeight );
+	}
 
 	self.addMob = function(objectProperties) {
 		var $obj = $("<div />");
