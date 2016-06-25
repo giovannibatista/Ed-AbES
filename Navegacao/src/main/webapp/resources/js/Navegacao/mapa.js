@@ -10,8 +10,7 @@ $(window).load(function() {
 		type: "GET",
 		dataType: "json",
 		success: function(json) {
-			var map = $("#mapa_mobs");
-			$mapaNavegacao.setSizeMap(map);
+			
 			$.each(json, function(key, value) {
 				$mapaNavegacao.addMob({
 					height: value.altura,
@@ -31,6 +30,8 @@ $(window).load(function() {
 					nivel : value.objeto.nivel
 				});
 			});
+			var map = $("#mapa_mobs");
+			$mapaNavegacao.setSizeMap(map);
 			//Instanciate the navigation
 			navigation = new Navigation($mapaNavegacao, json);
 			
@@ -57,8 +58,8 @@ var Map = function($navigationMap){
 			initialScale: 32,
 			rotationDegrees: 90,
 			zindex: 8000,
-			defaultWidth: 0,//49,
-			defaultHeight: 0//16
+			defaultWidth: 49,
+			defaultHeight: 16
 	};
 
 	self.startingPoint = null;
@@ -307,16 +308,23 @@ var Map = function($navigationMap){
 		return (index);
 	}
 
-	self.moveObj = function($obj, offset, rotate, coordZ) {
+	self.moveObj = function($obj, offset, rotate, isPlayer) {
 		var profundidade = $obj.data("coord-z");
 
 		//normalize positions
 		offset.top = ((offset.top > 0) ? offset.top : 0);
 		offset.left = ((offset.left > 0) ? offset.left : 0);
 		
-		offset.top = ((offset.top <  self.params.defaultHeight * self.scale) ? offset.top :  (self.params.defaultHeight-1) * self.scale);
-		offset.left = ((offset.left <  self.params.defaultWidth * self.scale) ? offset.left :  (self.params.defaultWidth-1) * self.scale);		
+		console.log("top:" + offset.top);
+		console.log("left: " + offset.left);
+		console.log("vali1:" + self.params.defaultHeight * self.scale);
+		console.log("vali2: " + self.params.defaultWidth * self.scale);
+		console.log("-------");
 		
+		if(isPlayer){
+			offset.top = ((offset.top <  self.params.defaultHeight * self.scale) ? offset.top :  (self.params.defaultHeight-1) * self.scale);
+			offset.left = ((offset.left <  self.params.defaultWidth * self.scale) ? offset.left :  (self.params.defaultWidth-1) * self.scale);		
+		}
 		/*
 		 * 	defaultWidth: 49,
 			defaultHeight: 16

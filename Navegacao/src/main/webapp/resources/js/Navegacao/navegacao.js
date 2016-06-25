@@ -98,7 +98,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 			if (!hasObject) {
 				playIconicAudio(footstepAudio);
-				navigationMap.moveObj(player, offset, rotate);
+				navigationMap.moveObj(player, offset, rotate, true);
 				if(!logDown){
 					navigationHistory.logWalkUp(DirectionEnum.getTextDirection(self.direction));
 				}else{

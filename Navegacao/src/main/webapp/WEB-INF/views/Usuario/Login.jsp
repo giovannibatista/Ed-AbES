@@ -34,6 +34,18 @@
 				</script>
 			</c:if>
 		</c:if>
+		
+		<c:if test="${cadastro == true}">
+			<c:if test="${verificacaoCadastro == true}">
+				<script type="text/javascript">
+					$('#msg').html('');
+					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
+
+					alert("Usuário cadastrado com sucesso");
+				</script>
+			</c:if>
+		</c:if>
+		
 
 		<p>Esta tela apresenta as opções de você criar um novo usuário no
 			sistema Ed-AbES - Módulo de navegação ou efetuar o login com sua
