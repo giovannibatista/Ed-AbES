@@ -31,7 +31,6 @@ table>thead {
 
 table>tbody>tr>td>input[type=button] {
 	margin: 10px;
-	width: 80%;
 }
 
 input[type=text], input[type=email], input[type=password], input[type=number] {

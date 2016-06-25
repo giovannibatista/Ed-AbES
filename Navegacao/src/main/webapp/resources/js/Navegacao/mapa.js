@@ -141,25 +141,7 @@ var Map = function($navigationMap){
 		
 		
 	} 
-	/*
-	 * 
-	 * 	1600x900 = 1568x512
-		49x16
-		
-		1366x768 = 1312x448
-		41x14
-		
-		1280x800 = 1248x480
-		39x15
-		
-		
-		1024x768 = 992x416
-		31x13
-		
-		800x600 = 768x256
-		24x8
 
-	*/
 	function resetDefaultSize(){
 		var screenWidth = screen.width,
 		screenHeight = screen.height;
