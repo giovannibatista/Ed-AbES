@@ -315,12 +315,6 @@ var Map = function($navigationMap){
 		offset.top = ((offset.top > 0) ? offset.top : 0);
 		offset.left = ((offset.left > 0) ? offset.left : 0);
 		
-		console.log("top:" + offset.top);
-		console.log("left: " + offset.left);
-		console.log("vali1:" + self.params.defaultHeight * self.scale);
-		console.log("vali2: " + self.params.defaultWidth * self.scale);
-		console.log("-------");
-		
 		if(isPlayer){
 			offset.top = ((offset.top <  self.params.defaultHeight * self.scale) ? offset.top :  (self.params.defaultHeight-1) * self.scale);
 			offset.left = ((offset.left <  self.params.defaultWidth * self.scale) ? offset.left :  (self.params.defaultWidth-1) * self.scale);		

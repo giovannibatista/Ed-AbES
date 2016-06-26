@@ -10,6 +10,8 @@ import br.com.edabes.dto.UsuarioDTO;
 public interface UsuarioService {
 
     public String trocaSenha(String email);
+    
+    public boolean login(String nome, String senha);
 
     public boolean alterarDadosUsuario(UsuarioDTO usuarioDTO);
     

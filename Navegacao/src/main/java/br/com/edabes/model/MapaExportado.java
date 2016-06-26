@@ -1,32 +1,57 @@
-package br.com.edabes.dto;
+package br.com.edabes.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-@Component
-public class MapaDTO {
+@Entity
+@Table(name = "MAPA_EXPORTADO")
+public class MapaExportado {
 
+    @Id
+    @Column(name = "ID_MAPA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MAPA_EXPORTADO_SEQ")
+    @SequenceGenerator(name = "MAPA_EXPORTADO_SEQ", sequenceName = "MAPA_EXPORTADO_SEQ", allocationSize = 1)
     private Integer id;
-    private String nome;
-    private String descricao;
-    private String objetivo;
-    private Integer tipoMapa;
-    private Date dataAlteracao;
-    private Date dataCriacao;
-    private Integer criador;
-    private String nomeCriador;
-    private String unidadeDeMedida;
-    private Integer importadoPor;
-    private String andar;
-    
-    private ArrayList<MapaObjetoDTO> mapaObjetos;
 
-    public MapaDTO() {
-	super();
-	mapaObjetos = new ArrayList<MapaObjetoDTO>();
-    }
+    @Column(name = "NOME_MAPA")
+    private String nome;
+
+    @Column(name = "DESCRICAO")
+    private String descricao;
+
+    @Column(name = "OBJETIVO")
+    private String objetivo;
+
+    @Column(name = "TIPO_MAPA")
+    private Integer tipoMapa;
+
+    @Column(name = "CRIADOR")
+    private Integer criador;
+
+    @Column(name = "NOME_CRIADOR")
+    private String nomeCriador;
+
+    @Column(name = "DT_CRIACAO")
+    private Date dataCriacao;
+
+    @Column(name = "DT_ALTERACAO")
+    private Date dataAlteracao;
+
+    @Column(name = "UNIDADE_MEDIDA")
+    private String unidadeDeMedida;
+
+    @Column(name = "IMPORTADO")
+    private Integer importadoPor;
+
+    @Column(name = "ANDAR")
+    private String andar;
 
     public Integer getId() {
 	return id;
@@ -68,12 +93,12 @@ public class MapaDTO {
 	this.tipoMapa = tipoMapa;
     }
 
-    public Date getDataAlteracao() {
-	return dataAlteracao;
+    public Integer getCriador() {
+	return criador;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
-	this.dataAlteracao = dataAlteracao;
+    public void setCriador(Integer criador) {
+	this.criador = criador;
     }
 
     public String getNomeCriador() {
@@ -90,6 +115,14 @@ public class MapaDTO {
 
     public void setDataCriacao(Date dataCriacao) {
 	this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataAlteracao() {
+	return dataAlteracao;
+    }
+
+    public void setDataAlteracao(Date dataAlteracao) {
+	this.dataAlteracao = dataAlteracao;
     }
 
     public String getUnidadeDeMedida() {
@@ -115,32 +148,13 @@ public class MapaDTO {
     public void setAndar(String andar) {
 	this.andar = andar;
     }
-    
-    public String getDescricaoTipoMapa() {
-        return this.getTipoMapa() == 1 ? "Navegação Livre" : "Desafio";
-    }
-    
-    public ArrayList<MapaObjetoDTO> getMapaObjetos() {
-        return mapaObjetos;
-    }
-
-    public void setMapaObjetos(ArrayList<MapaObjetoDTO> mapaObjetos) {
-        this.mapaObjetos = mapaObjetos;
-    }
-    
-    public Integer getCriador() {
-        return criador;
-    }
-
-    public void setCriador(Integer criador) {
-        this.criador = criador;
-    }
 
     @Override
     public String toString() {
-	return "MapaDTO [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", tipoMapa=" + tipoMapa
-		+ ", dataAlteracao=" + dataAlteracao + ", dataDeCriacao=" + dataCriacao + ", nomeCriador=" + nomeCriador
-		+ ", unidadeDeMedida=" + unidadeDeMedida + ", importadoPor=" + importadoPor + ", andar=" + andar + "]";
+	return "MapaExportado [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", objetivo=" + objetivo
+		+ ", tipoMapa=" + tipoMapa + ", criador=" + criador + ", nomeCriador=" + nomeCriador + ", dataCriacao="
+		+ dataCriacao + ", dataAlteracao=" + dataAlteracao + ", unidadeDeMedida=" + unidadeDeMedida
+		+ ", importadoPor=" + importadoPor + ", andar=" + andar + "]";
     }
 
 }

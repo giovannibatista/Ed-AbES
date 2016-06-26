@@ -19,7 +19,6 @@ public class MapaController {
 
     private ArrayList<MapaDTO> mapas;
 
-
     public MapaController() {
 	super();
 	mapas = new ArrayList<MapaDTO>();
@@ -30,11 +29,12 @@ public class MapaController {
 	ModelAndView model = null;
 	try {
 	    model = new ModelAndView("/Mapa/Listar");
-	    mapas = mapaService.listarMapas();
+	    mapas = mapaService.listarMapasPublicos();
 	    // mapas = new ArrayList<>(); PARA TESTE
-	    model.addObject("mapas", mapas);	} catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    model.addObject("mapas", mapas);
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
 	return model;
     }
 

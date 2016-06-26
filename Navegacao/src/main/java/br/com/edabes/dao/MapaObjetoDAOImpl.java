@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.edabes.model.MapaObjeto;
+import br.com.edabes.model.MapaObjetoExportado;
 
 @Repository
 @Transactional
@@ -29,17 +30,54 @@ public class MapaObjetoDAOImpl implements MapaObjetoDAO {
 	List<MapaObjeto> mapaObjetos = new ArrayList<MapaObjeto>();
 	Session session;
 	try {
-	   
+
 	    session = sessionFactory.getCurrentSession();
 	    Example example = Example.create(mapaObjeto);
-	    
-	    mapaObjetos =  session.createCriteria(MapaObjeto.class).add(example).list();
+
+	    mapaObjetos = session.createCriteria(MapaObjeto.class).add(example).list();
 
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    throw e;
 	}
 	return mapaObjetos;
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<MapaObjetoExportado> carregarObjetosMapaPublico(MapaObjetoExportado mapaObjeto) {
+	List<MapaObjetoExportado> mapaObjetos = new ArrayList<MapaObjetoExportado>();
+	Session session;
+	try {
+
+	    session = sessionFactory.getCurrentSession();
+	    Example example = Example.create(mapaObjeto);
+
+	    mapaObjetos = session.createCriteria(MapaObjetoExportado.class).add(example).list();
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    throw e;
+	}
+	return mapaObjetos;
+    }
+
+    @Override
+    public void importarMapaObjeto(MapaObjeto objeto) {
+	Session session;
+	int idMapaImportado = -1;
+
+	try {
+
+	    session = sessionFactory.getCurrentSession();
+	    session.save(objeto);
+
+	    // idMapaImportado =
+	    // buscaIdMapaImportadoPorNome(mapa.getNomeMapa());
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
     }
 
 }

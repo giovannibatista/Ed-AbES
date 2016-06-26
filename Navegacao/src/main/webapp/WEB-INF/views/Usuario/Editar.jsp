@@ -31,32 +31,39 @@
 
 		</c:choose>
 
+
+		<p id="errors" role="alert" aria-atomic="true"></p>
+		<c:if test="${cadastro == false}">
+			<script type="text/javascript">
+				$('#errors').html('');
+				$('#errors').append('<p>Ocorreu um erro ao cadastrar o usuário!</p>');
+			</script>
+		</c:if>
+
+		<p>
+			Os campos obrigatórios estão marcados com asterisco (<abbr
+				class="req" title="Campo Obrigatório">*</abbr>).
+		</p>
 		<form id="usuarioForm" method="POST" action="Novo">
-			<p id="errors" role="alert" aria-atomic="true"></p>
-			<p>
-				Os campos obrigatórios estão marcados com asterisco (<abbr
-					class="req" title="Campo Obrigatório">*</abbr>).
-			</p>
 			<p>
 				<label for="nome">Nome<abbr class="req"
 					title="Campo Obrigatório">*</abbr>:
 				</label> <input type="text" name="nome" id="nome" value="${usuario.nome}"
-					class="inputUsuario" 
-					placeholder="Exemplo: João" /> <input type="hidden" name="id"
-					id="id" value="${usuario.id}" />
+					class="inputUsuario" placeholder="Exemplo: João" /> <input
+					type="hidden" name="id" id="id" value="${usuario.id}" />
 			</p>
 			<p>
 				<label for="sobrenome">Sobrenome<abbr class="req"
 					title="Campo Obrigatório">*</abbr>:
 				</label> <input type="text" name="sobrenome" id="sobrenome"
-					value="${usuario.sobreNome}" class="inputUsuario"
-					 placeholder="Exemplo: Silva" />
+					value="${usuario.sobrenome}" class="inputUsuario"
+					placeholder="Exemplo: Silva" />
 			</p>
 			<p>
 				<label for="email">E-mail<abbr class="req"
 					title="Campo Obrigatório">*</abbr>:
-				</label> <input type="email" name="email" id="email"
-					value="${usuario.email}" class="inputUsuario" 
+				</label> <input type="email" name="email" id="email" readonly="readonly"
+					value="${usuario.email}" class="inputUsuario"
 					placeholder="Exemplo: joao@email.com" />
 			</p>
 			<p>
@@ -79,15 +86,14 @@
 				<label for="senha">Senha<abbr class="req"
 					title="Campo Obrigatório">*</abbr>:
 				</label> <input type="password" name="Senha" id="senha"
-					value="${usuario.senha}" class="inputUsuario" 
-					placeholder="Senha"	/>
+					value="${usuario.senha}" class="inputUsuario" placeholder="Senha" />
 			</p>
 			<p>
 				<label for="confirmaSenha">Confirmar senha<abbr class="req"
 					title="Campo Obrigatório">*</abbr>:
 				</label> <input type="password" name="confirmaSenha" id="confirmaSenha"
-					value="${usuario.senha}" class="inputUsuario" 
-					placeholder="Confirmar senha" 
+					value="${usuario.senha}" class="inputUsuario"
+					placeholder="Confirmar senha"
 					aria-label="A senha deve ser a mesma informada anteriormente"
 					required oninput="validaSenha(this)" />
 			</p>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +20,8 @@ public class UsuarioController extends EdController {
     @Autowired
     private UsuarioService usuarioService;
 
+    private String email;
+
     public UsuarioController() {
     }
 
@@ -29,8 +32,18 @@ public class UsuarioController extends EdController {
     }
 
     @RequestMapping(value = "/Usuario/Editar", method = RequestMethod.GET)
-    public String abrirEdicaoUsuario() {
-	return "/Usuario/Editar";
+    public ModelAndView abrirEdicaoUsuario() {
+	ModelAndView model = null;
+	try {
+	    model = new ModelAndView("/Usuario/Editar");
+	    UsuarioDTO usuario = new UsuarioDTO();
+	    usuario.setEmail(getEmail());
+	    model.addObject("usuario", usuario);
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return model;
     }
 
     @RequestMapping(value = "/Usuario/ConsultarEmail", method = RequestMethod.POST)
@@ -41,6 +54,8 @@ public class UsuarioController extends EdController {
 	    usuarioDTO = new UsuarioDTO();
 
 	    usuarioDTO.setEmail(email);
+
+	    setEmail(email);
 
 	    usuarioDTO = usuarioService.buscaUsuario(usuarioDTO);
 
@@ -53,34 +68,76 @@ public class UsuarioController extends EdController {
 	return mensagemRetorno;
     }
 
-    /**
-     * Metodo para redirecionamento para a pagina de cadastro do usuario
-     * 
-     * @param Usuario
-     *            usuario - Objeto com as informacoes do usuario
-     * @return ModelAndView mv - Redirecionamento para pagina de cadastro
-     */
     @RequestMapping(value = "/Usuario/Novo", method = RequestMethod.POST)
     public ModelAndView novoUsuario(UsuarioDTO usuario) {
 	ModelAndView model = null;
 	try {
-	    model = new ModelAndView("/Usuario/Login");
 
 	    usuario = usuarioService.incluirUsuario(usuario);
 
 	    if (usuario.getId() != null) {
+		model = new ModelAndView("/Usuario/Login");
 		model.addObject("cadastro", "true");
 		model.addObject("verificacaoCadastro", "true");
 	    } else {
 		model = new ModelAndView("/Usuario/Editar");
 		model.addObject("cadastro", "false");
-		model.addObject("usuadio", usuario);
+		model.addObject("usuario", usuario);
 	    }
 
 	} catch (Exception e) {
 	    e.printStackTrace();
+	    model = new ModelAndView("/Usuario/Editar");
+	    model.addObject("cadastro", "false");
+	    usuario.setSenha("");
+	    model.addObject("usuario", usuario);
+
 	}
 	return model;
+    }
+
+    @RequestMapping(value = "/Usuario/EfetuarLogin", method = RequestMethod.POST)
+    public ModelAndView loginPost(@RequestParam(value = "email", required = false) String email,
+	    @RequestParam(value = "senha", required = false) String senha, HttpSession session) {
+	boolean flag = false;
+	ModelAndView mv = null;
+	try {
+	    UsuarioDTO usuarioLogado = new UsuarioDTO();
+	    flag = (boolean) usuarioService.login(email, senha);
+	    if (flag) {
+		usuarioLogado.setEmail(email);
+		usuarioLogado = usuarioService.buscaUsuario(usuarioLogado);
+		super.loginUser(session, usuarioLogado);
+
+		mv = redirectToHome();
+	    } else {
+		mv = redirectToLogin();
+		mv.addObject("verificacao", "erro");
+	    }
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+
+	return mv;
+    }
+
+    @RequestMapping(value = "/User/Logout", method = RequestMethod.GET)
+    public ModelAndView logoutGet(HttpSession session) {
+	ModelAndView mv = redirectToLogin();
+
+	if (isAuthenticated(session)) {
+	    super.logoutUser(session);
+	}
+
+	return mv;
+    }
+
+    public String getEmail() {
+	return email;
+    }
+
+    public void setEmail(String email) {
+	this.email = email;
     }
 
 }

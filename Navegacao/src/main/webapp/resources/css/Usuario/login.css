@@ -3,6 +3,12 @@ div#conteudo div{
 	width: 40%;
 }
 
+div#conteudo form{
+	margin: 25px;
+	width: 40%;
+}
+
+
 div#conteudo .inputUsuario{
 	width: 100%;
 }

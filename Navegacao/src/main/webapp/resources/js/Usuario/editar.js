@@ -57,6 +57,7 @@ function validaSenha (input){
 
 
 function cancelarAlteracoesUsuario(){
-	alert('Alterações descartadas');
+	$('#msg').html('');
+	$('#msg').append('<p>Alterações descartadas</p>');
 	document.location = "/Usuario/Login";
 }

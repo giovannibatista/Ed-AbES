@@ -1,16 +1,16 @@
 package br.com.edabes.converter;
 
 import br.com.edabes.dto.MapaDTO;
-import br.com.edabes.model.Mapa;
+import br.com.edabes.model.MapaExportado;
 
-public class MapaConverter implements Converter<Mapa, MapaDTO> {
+public class MapaExportadoConverter implements Converter<MapaExportado, MapaDTO> {
 
 
-	public MapaConverter() {
+	public MapaExportadoConverter() {
 		super();
 	}
 
-	public MapaDTO converteModelParaDTO(Mapa mapa) {
+	public MapaDTO converteModelParaDTO(MapaExportado mapa) {
 		MapaDTO mapaDTO = new MapaDTO();
 
 		if (mapa == null) {
@@ -33,11 +33,11 @@ public class MapaConverter implements Converter<Mapa, MapaDTO> {
 		return mapaDTO;
 	}
 
-	public Mapa converteDTOParaModel(MapaDTO mapaDTO) {
-		Mapa mapa = new Mapa();
+	public MapaExportado converteDTOParaModel(MapaDTO mapaDTO) {
+	    MapaExportado mapa = new MapaExportado();
 
 		if (mapaDTO == null) {
-			return new Mapa();
+			return new MapaExportado();
 		}
 
 		mapa.setId(mapaDTO.getId());

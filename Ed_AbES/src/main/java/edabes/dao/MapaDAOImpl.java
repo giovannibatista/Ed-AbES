@@ -118,7 +118,8 @@ public class MapaDAOImpl implements MapaDAO {
 
 	return mapaExcluido;
     }
-
+    
+ 
     /**
      * Metodo para excluir todos os objetos de um mapa
      * 
@@ -432,7 +433,7 @@ public class MapaDAOImpl implements MapaDAO {
 
 	try {
 	    session = sessionFactory.getCurrentSession();
-	    query = session.createQuery("from Mapa where IMPORTADO = :idUsuario)");
+	    query = session.createQuery("from Mapa where IMPORTADO = :idUsuario");
 	    query.setParameter("idUsuario", idUsuario);
 
 	    listaDeMapas = (ArrayList<Mapa>) query.list();

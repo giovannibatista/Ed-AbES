@@ -12,120 +12,133 @@ import javax.persistence.Table;
 @Table(name="MAPA_OBJETO_EXPORTADO")
 public class MapaObjetoExportado {
 
-	@Id
-	@Column(name="ID_MAPA_OBJETO")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MAPA_OBJETO_EXPORTADO_SEQ")
-	@SequenceGenerator(name = "MAPA_OBJETO_EXPORTADO_SEQ", sequenceName = "MAPA_OBJETO_EXPORTADO_SEQ", allocationSize = 1)
-	private int id;
+    @Id
+    @Column(name="ID_MAPA_OBJETO")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MAPA_OBJETO_EXPORTADO_SEQ")
+    @SequenceGenerator(name = "MAPA_OBJETO_EXPORTADO_SEQ", sequenceName = "MAPA_OBJETO_EXPORTADO_SEQ", allocationSize = 1)
+    private int id;
 
-	@Column(name="ID_MAPA")
-	private int idMapa;
+    @Column(name="ID_MAPA")
+    private int idMapa;
 
-	@Column(name="ID_OBJETO")
-	private int idObjeto;
+    @Column(name="ID_OBJETO")
+    private int idObjeto;
 
-	@Column(name="PROFUNDIDADE")
-	private int profundidade;
+    @Column(name="PROFUNDIDADE")
+    private int profundidade;
 
-	@Column(name="AUDIO_DESCRICAO")
-	private String audioDescricao;
+    @Column(name="AUDIO_DESCRICAO")
+    private String audioDescricao;
 
-	@Column(name="COORDENADA_X")
-	private int coordenadaX;
+    @Column(name="COORDENADA_X")
+    private int coordenadaX;
 
-	@Column(name="COORDENADA_Y")
-	private int coordenadaY;
+    @Column(name="COORDENADA_Y")
+    private int coordenadaY;
 
-	@Column(name="ALTURA")
-	private int altura;
+    @Column(name="ALTURA")
+    private int altura;
 
-	@Column(name="LARGURA")
-	private int largura;
+    @Column(name="LARGURA")
+    private int largura;
 
-	@Column(name="ID_ARQUIVO_AUDIO")
-	private Integer idArquivoAudio;
+    @Column(name="ID_ARQUIVO_AUDIO")
+    private Integer idArquivoAudio;
 
-	public MapaObjetoExportado() {
-	}
+    @Column(name = "ANGULO")
+    private Integer angulo;
 
-	public int getId() {
-		return id;
-	}
+    public MapaObjetoExportado() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+	return id;
+    }
 
-	public int getIdMapa() {
-		return idMapa;
-	}
+    public void setId(int id) {
+	this.id = id;
+    }
 
-	public void setIdMapa(int idMapa) {
-		this.idMapa = idMapa;
-	}
+    public int getIdMapa() {
+	return idMapa;
+    }
 
-	public int getIdObjeto() {
-		return idObjeto;
-	}
+    public void setIdMapa(int idMapa) {
+	this.idMapa = idMapa;
+    }
 
-	public void setIdObjeto(int idObjeto) {
-		this.idObjeto = idObjeto;
-	}
+    public int getIdObjeto() {
+	return idObjeto;
+    }
 
-	public int getProfundidade() {
-		return profundidade;
-	}
+    public void setIdObjeto(int idObjeto) {
+	this.idObjeto = idObjeto;
+    }
 
-	public void setProfundidade(int profundidade) {
-		this.profundidade = profundidade;
-	}
+    public int getProfundidade() {
+	return profundidade;
+    }
 
-	public String getAudioDescricao() {
-		return audioDescricao;
-	}
+    public void setProfundidade(int profundidade) {
+	this.profundidade = profundidade;
+    }
 
-	public void setAudioDescricao(String audioDescricao) {
-		this.audioDescricao = audioDescricao;
-	}
+    public String getAudioDescricao() {
+	return audioDescricao;
+    }
 
-	public int getCoordenadaX() {
-		return coordenadaX;
-	}
+    public void setAudioDescricao(String audioDescricao) {
+	this.audioDescricao = audioDescricao;
+    }
 
-	public void setCoordenadaX(int coordenadaX) {
-		this.coordenadaX = coordenadaX;
-	}
+    public int getCoordenadaX() {
+	return coordenadaX;
+    }
 
-	public int getCoordenadaY() {
-		return coordenadaY;
-	}
+    public void setCoordenadaX(int coordenadaX) {
+	this.coordenadaX = coordenadaX;
+    }
 
-	public void setCoordenadaY(int coordenadaY) {
-		this.coordenadaY = coordenadaY;
-	}
+    public int getCoordenadaY() {
+	return coordenadaY;
+    }
 
-	public int getAltura() {
-		return altura;
-	}
+    public void setCoordenadaY(int coordenadaY) {
+	this.coordenadaY = coordenadaY;
+    }
 
-	public void setAltura(int altura) {
-		this.altura = altura;
-	}
+    public int getAltura() {
+	return altura;
+    }
 
-	public int getLargura() {
-		return largura;
-	}
+    public void setAltura(int altura) {
+	this.altura = altura;
+    }
 
-	public void setLargura(int largura) {
-		this.largura = largura;
-	}
+    public int getLargura() {
+	return largura;
+    }
 
-	public Integer getIdArquivoAudio() {
-		return idArquivoAudio;
-	}
+    public void setLargura(int largura) {
+	this.largura = largura;
+    }
 
-	public void setIdArquivoAudio(Integer idArquivoAudio) {
-		this.idArquivoAudio = idArquivoAudio;
-	}
+    public Integer getIdArquivoAudio() {
+	return idArquivoAudio;
+    }
+
+    public void setIdArquivoAudio(Integer idArquivoAudio) {
+	this.idArquivoAudio = idArquivoAudio;
+    }
+
+    public Integer getAngulo() {
+        return angulo;
+    }
+
+    public void setAngulo(Integer angulo) {
+        this.angulo = angulo;
+    }
+    
+    
 
 }

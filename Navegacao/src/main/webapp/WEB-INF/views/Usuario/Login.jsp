@@ -30,23 +30,11 @@
 					$('#msg').html('');
 					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
 
-					alert("Usuário cadastrado com sucesso");
+					//alert("Usuário cadastrado com sucesso");
 				</script>
 			</c:if>
 		</c:if>
 		
-		<c:if test="${cadastro == true}">
-			<c:if test="${verificacaoCadastro == true}">
-				<script type="text/javascript">
-					$('#msg').html('');
-					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
-
-					alert("Usuário cadastrado com sucesso");
-				</script>
-			</c:if>
-		</c:if>
-		
-
 		<p>Esta tela apresenta as opções de você criar um novo usuário no
 			sistema Ed-AbES - Módulo de navegação ou efetuar o login com sua
 			conta já existente!</p>
@@ -66,26 +54,26 @@
 				onclick="javascript: novoUsuario();" />
 		</div>
 
-		<div id="loginForm">
+		<form id="loginForm" method="POST" action="/Usuario/EfetuarLogin">
 			<h2>Já sou cadastrado!</h2>
 			<p>Informe seu e-mail e senha para efetuar o login!</p>
 			<p>
 				<label for="emailLogin">Digite seu email : </label> <input
-					type="email" name="emailLogin" id="emailLogin"
+					type="email" name="email" id="email"
 					aria-label="Informe seu email efetuar login!"
 					placeholder="Exemplo: bruna@mail.com" value="" class="inputUsuario" />
 			</p>
 			<p>
 				<label for="senha">Digite sua Senha : </label> <input
-					type="password" name="Senha" id="senha" value=""
+					type="password" name="senha" id="senha" value=""
 					class="inputUsuario" />
 			</p>
 
-			<input type="button" id="loginBotao" name="loginBotao"
+			<input type="submit" id="loginBotao" name="loginBotao"
 				value="Efetuar login"
 				aria-label="Botão para efetuar login e acessar a aplicação"
-				onclick="javascript: efetuarLogin();" />
-		</div>
+				/>
+		</form>
 
 		<a href="#conteudo">Voltar para o topo</a>
 

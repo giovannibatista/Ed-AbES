@@ -6,6 +6,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.edabes.dto.UsuarioDTO;
 
+/*
+ * 
+ * Classe importada do projeto Ed-AbES - Módulo de Construção
+ * Desenvolvido por Daniel Pinto(2015) e Muriel Pereira(2015).
+ */
 public abstract class EdController {
 	private static String SESSION_KEY = "usuarioLogado";
 	

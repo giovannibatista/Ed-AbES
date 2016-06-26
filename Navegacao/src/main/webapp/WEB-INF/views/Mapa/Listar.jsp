@@ -53,11 +53,11 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${mapas}" var="mapa">
-						<tr onclick="javascript: salvarMapa(${mapa.id});">
-							<th scope="row">${mapa.nome}</th>
-							<td>${mapa.descricao}</td>
-							<td>${mapa.descricaoTipoMapa}</td>
-							<td>${mapa.dataAlteracao}</td>
+						<tr >
+							<th onclick="javascript: salvarMapa(${mapa.id});" scope="row">${mapa.nome}</th>
+							<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.descricao}</td>
+							<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.descricaoTipoMapa}</td>
+							<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.dataAlteracao}</td>
 							<td><input type="button" id="salvarMapaBotao${mapa.id}"
 								onclick="javascript: salvarMapa(${mapa.id});"
 								value="Salvar ${mapa.nome}"

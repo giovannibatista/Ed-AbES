@@ -45,14 +45,25 @@ public class UsuarioServiceImpl implements UsuarioService {
 	return senhaAlterada;
     }
 
-    /**
-     * Metodo para alterar os dados do usuario
-     * 
-     * @param UsuarioDTO
-     *            usuario - Usuario logado
-     * @return boolean dadosAlterados - True caso os dados tenham sido alterados
-     *         com sucesso
-     */
+    public boolean login(String email, String senha) {
+	boolean flag = false;
+	String senhaCript = "";
+	try{
+
+	    //Criptografando a senha digitada
+	    Crypter crypter = new Crypter();
+	    senhaCript = crypter.crypt(senha);
+
+	    flag = usuarioDAO.buscaUsuarioByEmailESenha(email, senhaCript);
+	}catch(Exception e){
+	    e.printStackTrace();
+	}
+
+	return flag;
+    }
+
+
+    
     public boolean alterarDadosUsuario(UsuarioDTO usuarioDTO) {
 	boolean dadosAlterados = false;
 	Usuario usuario = null;
@@ -88,6 +99,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	String senhaCript = "";
 	Usuario usuario = null;
 	try{
+
+
 	    usuario = converter.converteDTOParaModel(usuarioDTO);
 	    Crypter crypter = new Crypter();
 	    senhaCript = crypter.crypt(usuario.getSenha()); 

@@ -73,6 +73,7 @@ public class MapaDesenhoServiceImpl implements MapaDesenhoService {
 					objetoExportado = new MapaObjetoExportado();
 					objetoExportado.setIdMapa(idMapaExportado);
 					objetoExportado.setAltura(objeto.getAltura());
+					objetoExportado.setAngulo(objeto.getAngulo());
 					objetoExportado.setAudioDescricao(objeto.getAudioDescricao());
 					objetoExportado.setCoordenadaX(objeto.getCoordenadaX());
 					objetoExportado.setCoordenadaY(objeto.getCoordenadaY());
