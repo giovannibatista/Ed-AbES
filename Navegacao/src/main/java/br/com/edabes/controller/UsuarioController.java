@@ -26,9 +26,19 @@ public class UsuarioController extends EdController {
     }
 
     @RequestMapping(value = "/Usuario/Login", method = RequestMethod.GET)
-    public String efetuarLoginUsuario() {
-	System.out.println("Executando a lógica com Spring MVC para outra view");
-	return "/Usuario/Login";
+    public ModelAndView efetuarLoginUsuario(HttpSession session) {
+	ModelAndView model = null;
+	UsuarioDTO usuarioLogado = null;
+	try{
+	    model = new ModelAndView("/Usuario/Login");
+	    if (isAuthenticated(session)) {
+		usuarioLogado = (UsuarioDTO) session.getAttribute("usuarioLogado");
+		model.addObject("usuario", usuarioLogado);
+	    }
+	}catch(Exception e){
+	    e.printStackTrace();
+	}
+	return model;
     }
 
     @RequestMapping(value = "/Usuario/Editar", method = RequestMethod.GET)
@@ -121,7 +131,7 @@ public class UsuarioController extends EdController {
 	return mv;
     }
 
-    @RequestMapping(value = "/User/Logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/Usuario/Logout", method = RequestMethod.GET)
     public ModelAndView logoutGet(HttpSession session) {
 	ModelAndView mv = redirectToLogin();
 

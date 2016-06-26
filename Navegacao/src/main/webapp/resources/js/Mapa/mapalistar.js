@@ -5,11 +5,16 @@ function salvarMapa(idMapa) {
 		type : "GET",
 		success : function(data) {
 			if (data) {
-				alert("Incluiu novo mapa");
+				$('#msg').html('');
+				$('#msg').append('<p>Mapa salvo com sucesso!</p>');
 			}
 		},
 		error : function() {
-			alert("Erro ao Salvar mapa. Por favor, contate o administador!");
+			$('#msg').html('');
+			$('#msg')
+			.append(
+			'<p>Erro ao Salvar mapa. Por favor, contate o administador!</p>');
+
 		}
 	});
 }

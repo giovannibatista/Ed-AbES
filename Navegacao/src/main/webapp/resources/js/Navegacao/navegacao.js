@@ -327,11 +327,17 @@ var Navigation = function(navigationMap, mapObjects) {
 		isNavigationFinished = true;
 		timerNavigation.pause();
 		var endTime = getTextTime();
-
+		var idUsuario = document.getElementById("idUsuario").value;
 		var nomeMapa = document.getElementById("nomeMapa").value;
 		var text =" Log de navegação do mapa " + nomeMapa +". Data: " + getTextDate() + " . Iniciou " + startTime +" e finalizou " + endTime + ". Duração da navegação " + timerNavigation.getTimeValues().toString();  
 		navigationHistory.logFinishedNavigation(player, text);
-		askToSaveNavigationHistory(false);
+		
+		if(idUsuario){
+			askToSaveNavigationHistory(false);
+		}else{
+			var textToSpeech = "Navegação finalizada. Para retornar a navegar, acesse o Menu \"Iniciar Navegação\" ou ALT 1.";
+			playTextToSpeech(textToSpeech);
+		}
 	}
 
 	function askToSaveNavigationHistory(challenge) {
@@ -342,17 +348,19 @@ var Navigation = function(navigationMap, mapObjects) {
 				+ (navigationMap.endPoint.data("coord-x") + 1) + ". ";
 			isNavigationFinished = true;
 		}
-		textToSpeech += "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
-		playTextToSpeech(textToSpeech);
-		confirmClose = false;
-		confirmSaveHistory = true;
+		var idUsuario = document.getElementById("idUsuario").value;
+		if(idUsuario){
+			textToSpeech += "Você deseja salvar o histórico da navegaçao realizada? Tecle S para sim ou N para não.";
+			playTextToSpeech(textToSpeech);
+			confirmClose = false;
+			confirmSaveHistory = true;
+		}
 	}
 
 	function saveNavigationHistory() {
 		navigationHistory.history.dataNavegacao = new Date();
 		navigationHistory.history.tempoNavegacao = timerNavigation.getTimeValues().toString();
 		navigationHistory.history.mapa.id = document.getElementById("idMapa").value;
-		navigationHistory.history.usuario = 3; //TODO: Usuário BRUNA, trocar para usuário logado!
 		navigationHistory.saveNavigationHistory();
 		confirmClose = false;
 		confirmSaveHistory = false;

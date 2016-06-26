@@ -16,6 +16,10 @@
 function abrirLogNavegacao(idHistoricoNavegacao){
 	document.location = "/Historico/Consultar/"+idHistoricoNavegacao;
 }
+
+function downloadLogNavegacao(idHistoricoNavegacao){
+	document.location = "/Navegacao/Historico/Download/"+idHistoricoNavegacao;
+}
 </script>
 
 </head>
@@ -63,7 +67,7 @@ function abrirLogNavegacao(idHistoricoNavegacao){
 										value="Abrir log de Navegação" /></td>
 									<td><input type="button" id="downloadLogNavegacaoBotao${historico.id}"
 										aria-label="Botão realizar download log de navegação para um arquivo no formato TXT."
-										onclick="javascript: downloadLogNavegacao(${historico.id});"
+										onclick="javascript: downloadLogNavegacao(${historico.id});" 
 										value="Dowload do log de Navegação" /></td>
 								</tr>
 							</c:forEach>
@@ -72,7 +76,7 @@ function abrirLogNavegacao(idHistoricoNavegacao){
 				</c:when>
 				<c:otherwise>
 					<div id="blocoListaMapasVazio" class="blocoListaVazio">
-						<p>Nenhum histórico de navegação encontrado.</p>
+						<p>Nenhum histórico de navegação encontrado!</p>
 					</div>
 				</c:otherwise>
 			</c:choose>

@@ -33,6 +33,7 @@ public class HistoricoNavegacaoDAOImpl implements HistoricoNavegacaoDAO {
 	return historicoNavegacao;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<HistoricoNavegacao> listarHistoricoNavegacao(HistoricoNavegacao historicoNavegacao) {
 	List<HistoricoNavegacao> historicoNavegacaos = new ArrayList<HistoricoNavegacao>();

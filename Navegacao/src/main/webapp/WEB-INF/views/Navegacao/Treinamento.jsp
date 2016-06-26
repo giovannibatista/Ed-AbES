@@ -26,7 +26,8 @@
 	charset="utf-8"></script>
 
 <script type="text/javascript"
-	src="<c:url value="/resources/js/Treinamento/mapa.js" />" charset="utf-8"></script>
+	src="<c:url value="/resources/js/Treinamento/mapa.js" />"
+	charset="utf-8"></script>
 
 
 <script type="text/javascript"
@@ -50,7 +51,9 @@
 				<input type="hidden" id="objetivoMapa" value="${mapa.objetivo}">
 				<input type="hidden" id="andarMapa" value="${mapa.andar}"> <input
 					type="hidden" id="descricaoTipoMapa"
-					value="${mapa.descricaoTipoMapa}">
+					value="${mapa.descricaoTipoMapa}"> <input type="hidden"
+					id="idUsuario" value="${usuario.id}">
+
 			</div>
 		</div>
 	</div>

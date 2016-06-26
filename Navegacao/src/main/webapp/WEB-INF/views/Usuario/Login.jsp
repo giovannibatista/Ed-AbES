@@ -20,6 +20,8 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main" id="conteudo">
+
+
 		<h1>Identificação</h1>
 
 		<p id="msg" role="alert" aria-atomic="true"></p>
@@ -27,17 +29,49 @@
 		<c:if test="${cadastro == true}">
 			<c:if test="${verificacaoCadastro == true}">
 				<script type="text/javascript">
-					$('#msg').html('');
-					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
+							$('#msg').html('');
+							$('#msg').append(
+									'<p>Usuário cadastrado com sucesso!</p>');
 
-					//alert("Usuário cadastrado com sucesso");
-				</script>
+							//alert("Usuário cadastrado com sucesso");
+						</script>
 			</c:if>
 		</c:if>
-		
-		<p>Esta tela apresenta as opções de você criar um novo usuário no
-			sistema Ed-AbES - Módulo de navegação ou efetuar o login com sua
-			conta já existente!</p>
+
+		<c:choose>
+			<c:when test="${not empty usuario}">
+
+				<p>Esta tela apresenta as opções de você criar um novo usuário
+					no sistema Ed-AbES - Módulo de navegação, efetuar o login com sua
+					conta já existente e efetuar logout, caso você esteja logado com
+					sua conta!</p>
+
+				<!-- <div id="editarUsuarioForm">
+					<h2>Quero editar meu usuário!</h2>
+					<input type="button" id="editarUsuarioBotao"
+						name="editarUsuarioBotao" value="Editar meu usuário"
+						aria-label="Botão para editar o cadastro do usuário"
+						onclick="javascript: editarUsuario();" />
+				</div> -->
+
+				<div id="logoutUsuarioForm">
+					<h2>Desejo efetuar logout da aplicação</h2>
+
+					<input type="button" id="logoutUsuarioBotao"
+						name="logoutUsuarioBotao" value="Sair"
+						aria-label="Botão para sair da sua conta"
+						onclick="javascript: logout();" />
+				</div>
+
+			</c:when>
+			<c:otherwise>
+
+				<p>Esta tela apresenta as opções de você criar um novo usuário
+					no sistema Ed-AbES - Módulo de navegação ou efetuar o login com sua
+					conta já existente!</p>
+
+			</c:otherwise>
+		</c:choose>
 
 		<div id="novoUsuarioForm">
 			<h2>Sou um novo usuário!</h2>
@@ -71,9 +105,10 @@
 
 			<input type="submit" id="loginBotao" name="loginBotao"
 				value="Efetuar login"
-				aria-label="Botão para efetuar login e acessar a aplicação"
-				/>
+				aria-label="Botão para efetuar login e acessar a aplicação" />
 		</form>
+
+
 
 		<a href="#conteudo">Voltar para o topo</a>
 

@@ -21,6 +21,9 @@
 
 	<div role="main" id="conteudo">
 		<h1>Lista de Mapas Públicos</h1>
+		
+		<p id="msg" role="alert" aria-atomic="true"></p>
+
 		<p>Esta tela apresenta a lista dos mapas públicos disponibilizados
 			pelos usuários do Ed-AbES - Módulo de Construção para possam ser
 			explorados no Módulo de Navegação. Para navegar entre a lista de
@@ -37,35 +40,43 @@
 			porém ao fechar a aplicação, perderá os mapas salvos.</p>
 
 		<div id="mapasPublicosArea">
+			<c:choose>
+				<c:when test="${not empty mapas}">
+					<table border="1" id="mapasPublicos" class="listas">
+						<caption>Tabela dos mapas públicos construídos no módulo
+							de construção.</caption>
+						<thead>
+							<tr>
+								<th scope="col">Nome do mapa</th>
+								<th scope="col">Descrição</th>
+								<th scope="col">Tipo do mapa</th>
+								<th scope="col">Data de alteração</th>
+								<th scope="col">Ações</th>
 
-			<table border="1" id="mapasPublicos" class="listas">
-				<caption>Tabela dos mapas públicos construídos no módulo
-					de construção.</caption>
-				<thead>
-					<tr>
-						<th scope="col">Nome do mapa</th>
-						<th scope="col">Descrição</th>
-						<th scope="col">Tipo do mapa</th>
-						<th scope="col">Data de alteração</th>
-						<th scope="col">Ações</th>
-
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${mapas}" var="mapa">
-						<tr >
-							<th onclick="javascript: salvarMapa(${mapa.id});" scope="row">${mapa.nome}</th>
-							<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.descricao}</td>
-							<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.descricaoTipoMapa}</td>
-							<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.dataAlteracao}</td>
-							<td><input type="button" id="salvarMapaBotao${mapa.id}"
-								onclick="javascript: salvarMapa(${mapa.id});"
-								value="Salvar ${mapa.nome}"
-								aria-label="Botão para salvar o Mapa. Tecle Enter para salvar." /></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${mapas}" var="mapa">
+								<tr>
+									<th onclick="javascript: salvarMapa(${mapa.id});" scope="row">${mapa.nome}</th>
+									<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.descricao}</td>
+									<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.descricaoTipoMapa}</td>
+									<td onclick="javascript: salvarMapa(${mapa.id});">${mapa.dataAlteracao}</td>
+									<td><input type="button" id="salvarMapaBotao${mapa.id}"
+										onclick="javascript: salvarMapa(${mapa.id});"
+										value="Salvar ${mapa.nome}"
+										aria-label="Botão para salvar o Mapa. Tecle Enter para salvar." /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<div id="blocoListaMapasVazio" class="blocoListaVazio">
+						<p>Nenhum mapa público disponível.</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 		<a href="#conteudo">Voltar para o topo</a>

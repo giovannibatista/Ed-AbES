@@ -154,7 +154,7 @@ var Navigation = function(navigationMap, mapObjects) {
 							left = true;
 						}, 1000);
 					}
-					
+
 					if(index == 2 && currentAction == "left"){
 						up=false;
 						index = 0;
@@ -165,20 +165,20 @@ var Navigation = function(navigationMap, mapObjects) {
 							altT = true;
 						}, 1000);
 					}
-					
+
 					if(index == 1 && currentAction == "retomarNavegacao"){
 						index = 0;
 						up=false;
 						setTimeout(function(){
 							var textToSpeech = "Acho que estamos bem perto. Vamos ver os objetos que estão ao nosso redor. " +
-									"Utilize a tecla de atalho ALT R. Letra R para verificar os objetos ao redor do jogador, com distância de um passo.";
+							"Utilize a tecla de atalho ALT R. Letra R para verificar os objetos ao redor do jogador, com distância de um passo.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
 							altR = true;
 						}, 1000);
 					}
-					
-					
+
+
 
 				} else {
 					playIconicAudio(collisionsAudio);
@@ -188,19 +188,19 @@ var Navigation = function(navigationMap, mapObjects) {
 							left : nextOffset.left
 					};
 					navigationHistory.logCollision(lastBumpedObject);
-					
+
 					if(index == 1 && currentAction == "redor"){
 						index = 0;
 						up = false;
 						setTimeout(function(){
 							var textToSpeech = "Estamos quase no fim do nosso treinamento. Durante a navegação, você pode escutar o log dos seus movimentos e comandos realizados. " +
-									"A fim de relembrar o caminho que andou ou se está indo na direção correta. Utilize o comando ALT L para reproduzir o log do histórico da navegação.";
+							"A fim de relembrar o caminho que andou ou se está indo na direção correta. Utilize o comando ALT L para reproduzir o log do histórico da navegação.";
 							playTextToSpeech(textToSpeech);
 							currentAction = "up";
 							altL = true;
 						}, 1000);
 					}
-					
+
 					if(index == 3){
 						up = false;
 						index = 0;
@@ -240,7 +240,7 @@ var Navigation = function(navigationMap, mapObjects) {
 						altO = true;
 					}, 1000);
 				}
-				
+
 				if(currentAction == "up" && index == 1){
 					left = false;
 					index = 0;
@@ -249,7 +249,7 @@ var Navigation = function(navigationMap, mapObjects) {
 						playTextToSpeech(textToSpeech);
 						currentAction = "left";
 						up = true;
-						
+
 					}, 1000);
 				}
 			}
@@ -265,11 +265,11 @@ var Navigation = function(navigationMap, mapObjects) {
 				direction = checkDirection(rotate);
 				playIconicAudio(audioRight);
 				navigationHistory.logChangeDirection(DirectionEnum.getTextDirection(direction));
-				
+
 				setTimeout(function(){
 					var textToSpeech = "Mais uns passos e chegamos ao segundo objeto do mapa. Porém sempre é bom descansar um pouco. Então você pode pausar a navegação. " +
-							"Com a navegação parada, o jogador não pode navegar e o cronomêtro também irá parar." +
-							"Utilize a tecla ALT ésse para pausar a navegação. Letra ésse de STOP.";
+					"Com a navegação parada, o jogador não pode navegar e o cronomêtro também irá parar." +
+					"Utilize a tecla ALT ésse para pausar a navegação. Letra ésse de STOP.";
 					playTextToSpeech(textToSpeech);
 					currentAction = "right";
 					right = false;
@@ -290,7 +290,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 				/*objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y - 1))); // UP
 				objects.push(getObjectByCoordinated((currentPos.x + 1), currentPos.y)); // RIGHT
-				*/
+				 */
 				objects.push(getObjectByCoordinated(currentPos.x, (currentPos.y + 1))); // DOWN
 				//objects.push(getObjectByCoordinated((currentPos.x - 1), currentPos.y)); // LEFT
 
@@ -302,8 +302,8 @@ var Navigation = function(navigationMap, mapObjects) {
 					}
 				}
 				textToSpeech += ". Estamos á um passo do segundo objeto. " +
-						"Vamos dar um passo para frente para colidir com o objeto. " +
-						"Você está virado para o SUL e para dar um passo para frente, utilize a tecla de atalho seta para cima. ";
+				"Vamos dar um passo para frente para colidir com o objeto. " +
+				"Você está virado para o SUL e para dar um passo para frente, utilize a tecla de atalho seta para cima. ";
 				playTextToSpeech(textToSpeech);
 				altR = false;
 				up = true;
@@ -384,12 +384,12 @@ var Navigation = function(navigationMap, mapObjects) {
 	self.getTimerNavigation = function() {
 		if(altT){
 			if(!checkIsNavigationFinished()){
-				
+
 				navigationHistory.logActions("ALT T", "Informações do tempo de navegação");
 				var textToSpeech = timerNavigation.getTimeValues().toString();
 				textToSpeech = " O tempo de navegação é " + textToSpeech + ". Estamos indo muito bem e estamos quase chegando no segundo objeto. " +
-						"Vamos girar para o SUL. Utilize a tecla de atalho seta para direita. " +
-						"Observe o som que será emitido.";
+				"Vamos girar para o SUL. Utilize a tecla de atalho seta para direita. " +
+				"Observe o som que será emitido.";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 				right = true;
@@ -453,9 +453,9 @@ var Navigation = function(navigationMap, mapObjects) {
 				navigationHistory.logActions("ALT L", "Reproduzir o log da navegação");
 				var log = navigationHistory.history.log;
 				console.log(log);
-				
+
 				log += ". Fim do Log. Pronto! Você finalizou o treinamento do módulo de navegação. " +
-						"Acredito que foi muito bem e já pode escolher um mapa na lista de mapas públicos e começar a navegar. Vamos encerrar a navegação com o comando ALT Q.";
+				"Acredito que foi muito bem e já pode escolher um mapa na lista de mapas públicos e começar a navegar. Vamos encerrar a navegação com o comando ALT Q.";
 				altQ = true;
 				altL = false;
 				currentAction = "";
@@ -469,12 +469,12 @@ var Navigation = function(navigationMap, mapObjects) {
 			if(!checkIsNavigationFinished()){
 				navigationHistory.logActions("ALT Q", "Encerrar a navegação");
 				var textToSpeech = "Ao encerrar a navegação, é lhe perguntado se Você tem certeza que deseja encerrar a navegação? Com as opções S para sim ou N para não." +
-						" Tecle S para encerrar a navegação e o treinamento.";
+				" Tecle S para encerrar a navegação e o treinamento.";
 				playTextToSpeech(textToSpeech);
 				confirmClose = true;
 				confirmSaveHistory = false;
 				isBlocked = true;
-				
+
 				yes = true; 
 				altQ = false;
 			}
@@ -517,11 +517,18 @@ var Navigation = function(navigationMap, mapObjects) {
 		isNavigationFinished = true;
 		timerNavigation.pause();
 		var endTime = getTextTime();
+		var idUsuario = document.getElementById("idUsuario").value;
 
-		var nomeMapa = document.getElementById("nomeMapa").value;
-		var text =" Log de navegação do mapa " + nomeMapa +". Data: " + getTextDate() + " . Iniciou " + startTime +" e finalizou " + endTime + ". Duração da navegação " + timerNavigation.getTimeValues().toString();
-		navigationHistory.logFinishedNavigation(player, text);
-		askToSaveNavigationHistory(false);
+		if(idUsuario){
+			var nomeMapa = document.getElementById("nomeMapa").value;
+			var text =" Log de navegação do mapa " + nomeMapa +". Data: " + getTextDate() + " . Iniciou " + startTime +" e finalizou " + endTime + ". Duração da navegação " + timerNavigation.getTimeValues().toString();
+
+			askToSaveNavigationHistory(false);
+			navigationHistory.logFinishedNavigation(player, text);
+		}else{
+			var textToSpeech = "Treinamento encerrado. Para iniciar uma navegação, acesse o Menu \"Iniciar Navegação\" ou utilize a tecla de atalho ALT 1. Ou para retornar o treinamento, acesse o Menu \"Módulo de treinamento\" ou utilize a tecla de atalho ALT 3 ";
+			playTextToSpeech(textToSpeech);
+		}
 	}
 
 	function askToSaveNavigationHistory(challenge) {
@@ -542,7 +549,6 @@ var Navigation = function(navigationMap, mapObjects) {
 		navigationHistory.history.dataNavegacao = new Date();
 		navigationHistory.history.tempoNavegacao = timerNavigation.getTimeValues().toString();
 		navigationHistory.history.mapa.id = document.getElementById("idMapa").value;
-		navigationHistory.history.usuario = 3; //TODO: Usuário BRUNA, trocar para usuário logado!
 		navigationHistory.saveNavigationHistory();
 		confirmClose = false;
 		confirmSaveHistory = false;
@@ -743,12 +749,12 @@ var Navigation = function(navigationMap, mapObjects) {
 
 			if (isNavigationStopped) {
 				var textToSpeech = "Navegação pausada. Para retomar a navegação, tecle Alt ésse. " +
-						"Quando a navegação está pausada, somente alguns comandos funcionam. ALT ésse de STOP, para retornar a navegação, ALT QUE de QUIT, para finalizar a navegação e " +
-						"ALT T de TEMPO para saber o tempo total de navegação. Ainda não queremos encerrar a navegação. " +
-						"Então tecle ALT ésse para continuar a navegação. ";
+				"Quando a navegação está pausada, somente alguns comandos funcionam. ALT ésse de STOP, para retornar a navegação, ALT QUE de QUIT, para finalizar a navegação e " +
+				"ALT T de TEMPO para saber o tempo total de navegação. Ainda não queremos encerrar a navegação. " +
+				"Então tecle ALT ésse para continuar a navegação. ";
 				console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
-				
+
 				altS = true;
 				up = false;
 				currentAction = "retomarNavegacao";
@@ -787,25 +793,25 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		return textToSpeech;
 	}
-	
+
 	function getTextTime(){
 		var date = new Date(); // for now
 		var hours =  date.getHours() == 1 ? " á " + date.getHours() + " hora " : "ás " + date.getHours() + " horas ";
 		var minutes = date.getMinutes() == 1 ? date.getMinutes() + " minuto e " : date.getMinutes() + " minutos e ";
 		var seconds = date.getSeconds() == 1 ? date.getSeconds() + " segundo " : date.getSeconds() + " segundos ";
 		var textTime = hours + minutes + seconds;
-		
+
 		return textTime;
 	}
-	
+
 	function getTextDate(){
 		var date = new Date(); 
 		var day = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
 		var month = date.getDate() < 10 ? "0"+date.getMonth() : date.getMonth();
 		var year = date.getFullYear();
-		
+
 		var text = day+"/"+month+"/"+year;
-		
+
 		return text;
 	}
 	self.init();

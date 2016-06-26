@@ -1,6 +1,7 @@
 package br.com.edabes.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,7 @@ import br.com.edabes.converter.Converter;
 import br.com.edabes.converter.HistoricoNavegacaoConverter;
 import br.com.edabes.dao.HistoricoNavegacaoDAO;
 import br.com.edabes.dto.HistoricoNavegacaoDTO;
-import br.com.edabes.dto.MapaObjetoDTO;
 import br.com.edabes.model.HistoricoNavegacao;
-import br.com.edabes.model.MapaObjeto;
 
 @Service
 public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService {
@@ -34,7 +33,7 @@ public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService 
 	    historicoNavegacao = converter.converteDTOParaModel(historicoNavegacaoDTO);
 
 	    historicoNavegacao = historicoNavegacaoDAO.incluirHistoricoNavegacao(historicoNavegacao);
-	    incluiuHistorico = historicoNavegacao.getId() != null ||  historicoNavegacao.getId() > 0 ? true : false;
+	    incluiuHistorico = historicoNavegacao.getId() != null || historicoNavegacao.getId() > 0 ? true : false;
 	} catch (Exception e) {
 	    throw e;
 	}
@@ -49,7 +48,14 @@ public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService 
 	    historicoNavegacao = converter.converteDTOParaModel(historicoNavegacaoDTO);
 	    List<HistoricoNavegacao> historicoNavegacoes = historicoNavegacaoDAO
 		    .listarHistoricoNavegacao(historicoNavegacao);
+	    
 	    historicoNavegacoes.forEach(m -> historicoNavegacaoDTOs.add(converter.converteModelParaDTO(m)));
+
+	    Comparator<HistoricoNavegacaoDTO> comparator = (hn1, hn2) -> hn1.getDataNavegacao().compareTo(hn2.getDataNavegacao());
+	    historicoNavegacaoDTOs.sort(comparator.reversed());
+	    
+	    //historicoNavegacoes.sort(comparator.reversed());
+	    
 	} catch (Exception e) {
 	    throw e;
 	}

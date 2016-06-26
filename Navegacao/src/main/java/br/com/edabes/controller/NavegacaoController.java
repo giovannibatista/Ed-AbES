@@ -32,6 +32,8 @@ public class NavegacaoController extends EdController {
     private MapaObjetoService mapaObjetoService;
 
     private ArrayList<MapaDTO> mapas;
+    
+    private boolean estavaLogado = false;
 
     public NavegacaoController() {
 	super();
@@ -51,7 +53,12 @@ public class NavegacaoController extends EdController {
 		mapaDTO.setImportadoPor(usuarioLogado.getId());
 		mapas = mapaService.listarMapas(mapaDTO);
 		model.addObject("mapas", mapas);
+		estavaLogado = true;
 	    } else {
+		if(estavaLogado){
+		    mapas = new ArrayList<>();
+		    estavaLogado = false;
+		}
 		model.addObject("mapas", mapas);
 	    }
 	} catch (Exception e) {
