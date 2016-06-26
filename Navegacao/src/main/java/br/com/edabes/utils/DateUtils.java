@@ -5,22 +5,22 @@ import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
-	public static String getDateFormatString() {
+    public static String getDateFormatString() {
 
-		LocalDateTime dataAtual = LocalDateTime.now();
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmSS");
-		String data = dataAtual.format(dateTimeFormatter);
+	LocalDateTime dataAtual = LocalDateTime.now();
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
+	String data = dataAtual.format(dateTimeFormatter);
 
-		return data;
-	}
-	
-	public static LocalDateTime getDateFormat() {
+	return data;
+    }
 
-		LocalDateTime dataAtual = LocalDateTime.now();
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmSS");
-		dataAtual.format(dateTimeFormatter);
+    public static LocalDateTime getDateFormat() {
 
-		return dataAtual;
-	}
+	LocalDateTime dataAtual = LocalDateTime.now();
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:SS");
+	dataAtual.format(dateTimeFormatter);
+
+	return dataAtual;
+    }
 
 }

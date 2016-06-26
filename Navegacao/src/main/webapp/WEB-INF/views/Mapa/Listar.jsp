@@ -22,7 +22,8 @@
 	<div role="main" id="conteudo">
 		<h1>Lista de Mapas Públicos</h1>
 		
-		<p id="msg" role="alert" aria-atomic="true"></p>
+		<p id="msg" role="alert" aria-live="polite"></p>
+		
 
 		<p>Esta tela apresenta a lista dos mapas públicos disponibilizados
 			pelos usuários do Ed-AbES - Módulo de Construção para possam ser

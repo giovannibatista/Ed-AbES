@@ -71,7 +71,7 @@
 				<c:otherwise>
 					<div id="blocoListaMapasVazio" class="blocoListaVazio">
 						<p>Nenhum mapa salvo. Para iniciar uma navegação é necessário
-							salvar um mapa público. Para acessar os Mpas Públicos, utilize a
+							salvar um mapa público. Para acessar os Mapas Públicos, utilize a
 							tecla de atalho Alt 2.</p>
 					</div>
 				</c:otherwise>

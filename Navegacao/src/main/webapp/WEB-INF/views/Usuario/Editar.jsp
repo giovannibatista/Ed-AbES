@@ -32,7 +32,7 @@
 		</c:choose>
 
 
-		<p id="errors" role="alert" aria-atomic="true"></p>
+
 		<c:if test="${cadastro == false}">
 			<script type="text/javascript">
 				$('#errors').html('');
@@ -45,6 +45,7 @@
 				class="req" title="Campo Obrigatório">*</abbr>).
 		</p>
 		<form id="usuarioForm" method="POST" action="Novo">
+			<p id="errors" role="alert" aria-live="polite"></p>
 			<p>
 				<label for="nome">Nome<abbr class="req"
 					title="Campo Obrigatório">*</abbr>:

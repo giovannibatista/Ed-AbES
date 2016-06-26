@@ -121,8 +121,8 @@ public class UsuarioController extends EdController {
 
 		mv = redirectToHome();
 	    } else {
-		mv = redirectToLogin();
-		mv.addObject("verificacao", "erro");
+		mv = new ModelAndView("/Usuario/Login");
+		mv.addObject("erroLogin", true);
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();

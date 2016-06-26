@@ -24,7 +24,7 @@ public class AudioServiceImpl implements AudioService {
 	@Autowired
 	private AudioDAO audioDAO;
 
-	private final String FILESYSTEM = "C:\\dev\\tcc\\audio_files\\";
+	private final String FILESYSTEM = "C:\\dev\\tcc\\ed_abes\\audio_files\\";
 
 	public AudioServiceImpl() {
 
@@ -51,7 +51,7 @@ public class AudioServiceImpl implements AudioService {
 		Audio audio = new Audio();
 
 		audio.setId(audioDTO.getId());
-		audio.setArquivo(FILESYSTEM + audioDTO.getArquivo().getName());
+		audio.setArquivo("/resources/audio/" + audioDTO.getArquivo().getName());
 		audio.setDescricao(audioDTO.getDescricao());
 
 		return audio;

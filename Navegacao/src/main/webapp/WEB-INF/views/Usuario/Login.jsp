@@ -24,18 +24,22 @@
 
 		<h1>Identificação</h1>
 
-		<p id="msg" role="alert" aria-atomic="true"></p>
+		<p id="msg" role="alert" aria-live="polite"></p>
 
 		<c:if test="${cadastro == true}">
 			<c:if test="${verificacaoCadastro == true}">
 				<script type="text/javascript">
-							$('#msg').html('');
-							$('#msg').append(
-									'<p>Usuário cadastrado com sucesso!</p>');
-
-							//alert("Usuário cadastrado com sucesso");
-						</script>
+					$('#msg').html('');
+					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
+				</script>
 			</c:if>
+		</c:if>
+
+		<c:if test="${erroLogin == true}">
+			<script type="text/javascript">
+				$('#msg').html('');
+				$('#msg').append('<p>Email ou senha incorretos. Efetuar o login novamente!</p>');
+			</script>
 		</c:if>
 
 		<c:choose>
@@ -73,6 +77,7 @@
 			</c:otherwise>
 		</c:choose>
 
+
 		<div id="novoUsuarioForm">
 			<h2>Sou um novo usuário!</h2>
 			<p>
@@ -89,6 +94,7 @@
 		</div>
 
 		<form id="loginForm" method="POST" action="/Usuario/EfetuarLogin">
+		
 			<h2>Já sou cadastrado!</h2>
 			<p>Informe seu e-mail e senha para efetuar o login!</p>
 			<p>
