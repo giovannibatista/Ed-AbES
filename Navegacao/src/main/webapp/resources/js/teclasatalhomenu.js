@@ -34,6 +34,6 @@ Mousetrap.bind('alt+6', function(e) {
 
 Mousetrap.bind('alt+7', function(e) {
 	console.log('alt+7 is pressed');
-	document.location = "/Usuario/Editar/";
+	document.location = "/Usuario/Login/";
 });
 
