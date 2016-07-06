@@ -26,6 +26,10 @@ function novoUsuario() {
 	});
 }
 
+function editarUsuario(){
+	document.location = "/Usuario/Editar";
+}
+
 function logout(){
 	document.location = "/Usuario/Logout";
 }

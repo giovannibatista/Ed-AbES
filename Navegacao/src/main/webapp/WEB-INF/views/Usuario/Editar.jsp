@@ -22,7 +22,7 @@
 	</header>
 	<div role="main" id="conteudo">
 		<c:choose>
-			<c:when test="${not empty usuario}">
+			<c:when test="${logado == true}">
 				<h1>Edição do usuário</h1>
 			</c:when>
 			<c:otherwise>

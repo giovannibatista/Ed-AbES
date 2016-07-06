@@ -42,14 +42,21 @@ public class UsuarioController extends EdController {
     }
 
     @RequestMapping(value = "/Usuario/Editar", method = RequestMethod.GET)
-    public ModelAndView abrirEdicaoUsuario() {
+    public ModelAndView abrirEdicaoUsuario(HttpSession session) {
 	ModelAndView model = null;
 	try {
-	    model = new ModelAndView("/Usuario/Editar");
 	    UsuarioDTO usuario = new UsuarioDTO();
-	    usuario.setEmail(getEmail());
-	    model.addObject("usuario", usuario);
+	    model = new ModelAndView("/Usuario/Editar");
+	    if (isAuthenticated(session)) {
+		usuario = (UsuarioDTO) session.getAttribute("usuarioLogado");
+		model.addObject("usuario", usuario);
+		model.addObject("logado", true);
+	    }else{
+		usuario.setEmail(getEmail());
+		
+	    }
 
+	    model.addObject("usuario", usuario);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
