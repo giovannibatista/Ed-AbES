@@ -32,7 +32,7 @@ public class NavegacaoController extends EdController {
     private MapaObjetoService mapaObjetoService;
 
     private ArrayList<MapaDTO> mapas;
-    
+
     private boolean estavaLogado = false;
 
     public NavegacaoController() {

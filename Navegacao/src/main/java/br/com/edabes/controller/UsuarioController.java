@@ -25,22 +25,6 @@ public class UsuarioController extends EdController {
     public UsuarioController() {
     }
 
-    @RequestMapping(value = "/Usuario/Login", method = RequestMethod.GET)
-    public ModelAndView efetuarLoginUsuario(HttpSession session) {
-	ModelAndView model = null;
-	UsuarioDTO usuarioLogado = null;
-	try{
-	    model = new ModelAndView("/Usuario/Login");
-	    if (isAuthenticated(session)) {
-		usuarioLogado = (UsuarioDTO) session.getAttribute("usuarioLogado");
-		model.addObject("usuario", usuarioLogado);
-	    }
-	}catch(Exception e){
-	    e.printStackTrace();
-	}
-	return model;
-    }
-
     @RequestMapping(value = "/Usuario/Editar", method = RequestMethod.GET)
     public ModelAndView abrirEdicaoUsuario(HttpSession session) {
 	ModelAndView model = null;
@@ -53,11 +37,27 @@ public class UsuarioController extends EdController {
 		model.addObject("logado", true);
 	    }else{
 		usuario.setEmail(getEmail());
-		
+
 	    }
 
 	    model.addObject("usuario", usuario);
 	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	return model;
+    }
+
+    @RequestMapping(value = "/Usuario/Login", method = RequestMethod.GET)
+    public ModelAndView efetuarLoginUsuario(HttpSession session) {
+	ModelAndView model = null;
+	UsuarioDTO usuarioLogado = null;
+	try{
+	    model = new ModelAndView("/Usuario/Login");
+	    if (isAuthenticated(session)) {
+		usuarioLogado = (UsuarioDTO) session.getAttribute("usuarioLogado");
+		model.addObject("usuario", usuarioLogado);
+	    }
+	}catch(Exception e){
 	    e.printStackTrace();
 	}
 	return model;
@@ -109,6 +109,15 @@ public class UsuarioController extends EdController {
 	    usuario.setSenha("");
 	    model.addObject("usuario", usuario);
 
+	}
+	return model;
+    }
+
+    public ModelAndView alterarUsuario(UsuarioDTO usuarioDTO, HttpSession session){
+	ModelAndView model = null;
+	try {
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
 	return model;
     }
