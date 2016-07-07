@@ -5,15 +5,10 @@ import java.util.Date;
 public class HistoricoNavegacaoDTO {
 
     private Integer id;
-
     private String log;
-
     private Date dataNavegacao;
-
     private String tempoNavegacao;
-
     private Integer usuario;
-
     private MapaDTO mapa;
 
     public HistoricoNavegacaoDTO() {

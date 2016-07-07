@@ -136,11 +136,11 @@ public class MapaObjeto {
     }
 
     public AudioIconico getAudioIconico() {
-        return audioIconico;
+	return audioIconico;
     }
 
     public void setAudioIconico(AudioIconico audioIconico) {
-        this.audioIconico = audioIconico;
+	this.audioIconico = audioIconico;
     }
-   
+
 }

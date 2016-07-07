@@ -82,8 +82,8 @@ public class ObjetoDTO {
     @Override
     public String toString() {
 	return "ObjetoDTO [id=" + id + ", altura=" + altura + ", largura=" + largura + ", nome=" + nome + ", descricao="
-		+ descricao + ", subcategoria=" + subcategoria.toString() + ", imagemMapa=" + imagemMapa + ", nivel=" + nivel
-		+ "]";
+		+ descricao + ", subcategoria=" + subcategoria.toString() + ", imagemMapa=" + imagemMapa + ", nivel="
+		+ nivel + "]";
     }
 
 }

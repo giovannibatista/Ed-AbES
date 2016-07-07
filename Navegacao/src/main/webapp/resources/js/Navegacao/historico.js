@@ -37,7 +37,7 @@ var NavigationHistory = function() {
 
 	self.logFinishedNavigation = function(objectMap, text) {
 		self.history.log = text + ". " + self.history.log;
-		self.history.log += "A posição final do seu jogador foi linha "
+		self.history.log += "Fim da navegação. A posição final do seu jogador foi linha "
 		+ (objectMap.data("coord-y") + 1) + " e coluna "
 		+ (objectMap.data("coord-x") + 1) + ".";
 	}
@@ -50,8 +50,11 @@ var NavigationHistory = function() {
 
 
 	self.logActions = function(action, text){
-		self.history.log += " Você pressionou a tecla de atalho " + action
-				+ ", correspondente a ação: " + text + "."; 
+		/*
+		 * Informações retiradas, trablhos futuros: Logar estas informações em um log diferente
+		 * 
+		 * self.history.log += " Você pressionou a tecla de atalho " + action
+				+ ", correspondente a ação: " + text + "."; */
 	}
 
 	self.saveNavigationHistory = function(){

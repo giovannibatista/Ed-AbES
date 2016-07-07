@@ -30,7 +30,6 @@ public class MapaController {
 	try {
 	    model = new ModelAndView("/Mapa/Listar");
 	    mapas = mapaService.listarMapasPublicos();
-	    // mapas = new ArrayList<>(); PARA TESTE
 	    model.addObject("mapas", mapas);
 	} catch (Exception e) {
 	    e.printStackTrace();

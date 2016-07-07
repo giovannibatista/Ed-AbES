@@ -38,5 +38,5 @@ public class SubcategoriaDTO {
     public String toString() {
 	return "SubcategoriaDTO [id=" + id + ", idCategoria=" + idCategoria + ", titulo=" + titulo + "]";
     }
-    
+
 }

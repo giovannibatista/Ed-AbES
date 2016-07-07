@@ -9,19 +9,19 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SUBCATEGORIA")
+@Table(name = "SUBCATEGORIA")
 public class Subcategoria {
 
     @Id
-    @Column(name="ID_SUBCATEGORIA")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SUBCATEGORIA_SEQ")
+    @Column(name = "ID_SUBCATEGORIA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SUBCATEGORIA_SEQ")
     @SequenceGenerator(name = "SUBCATEGORIA_SEQ", sequenceName = "SUBCATEGORIA_SEQ", allocationSize = 1)
     private int id;
 
-    @Column(name="ID_CATEGORIA")
+    @Column(name = "ID_CATEGORIA")
     private int idCategoria;
 
-    @Column(name="TITULO")
+    @Column(name = "TITULO")
     private String titulo;
 
     public Subcategoria() {

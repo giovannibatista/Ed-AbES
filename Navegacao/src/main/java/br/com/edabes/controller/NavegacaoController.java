@@ -55,7 +55,7 @@ public class NavegacaoController extends EdController {
 		model.addObject("mapas", mapas);
 		estavaLogado = true;
 	    } else {
-		if(estavaLogado){
+		if (estavaLogado) {
 		    mapas = new ArrayList<>();
 		    estavaLogado = false;
 		}

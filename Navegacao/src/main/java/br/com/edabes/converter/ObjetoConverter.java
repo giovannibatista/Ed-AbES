@@ -6,7 +6,7 @@ import br.com.edabes.model.Objeto;
 import br.com.edabes.model.Subcategoria;
 
 public class ObjetoConverter implements Converter<Objeto, ObjetoDTO> {
-    
+
     private Converter<Subcategoria, SubcategoriaDTO> subcategoriaConverter = new SubcategoriaConverter();
 
     @Override
@@ -36,7 +36,5 @@ public class ObjetoConverter implements Converter<Objeto, ObjetoDTO> {
 	objeto.setSubcategoria(subcategoriaConverter.converteDTOParaModel(dto.getSubcategoria()));
 	return objeto;
     }
-    
-    
 
 }

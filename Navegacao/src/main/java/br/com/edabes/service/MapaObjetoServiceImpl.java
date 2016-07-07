@@ -18,7 +18,7 @@ public class MapaObjetoServiceImpl implements MapaObjetoService {
 
     @Autowired
     private MapaObjetoDAO mapaObjetoDAO;
-    
+
     private final String objetosTreinamentoJson = "resources\\json\\objetosTreinamento.json";
 
     private Converter<MapaObjeto, MapaObjetoDTO> converter;
@@ -36,7 +36,6 @@ public class MapaObjetoServiceImpl implements MapaObjetoService {
 
 	    List<MapaObjeto> mapaObjetos = mapaObjetoDAO.carregarObjetosMapa(mapaObjeto);
 
-	    // TODO: Refatorar para validar ponto inicial e final
 	    mapaObjetos.forEach(m -> mapaObjetoDTOs.add(validaPontoInicialFinal(converter.converteModelParaDTO(m))));
 
 	} catch (Exception e) {
@@ -59,10 +58,10 @@ public class MapaObjetoServiceImpl implements MapaObjetoService {
     @Override
     public String carregaObjetosMapaTreinamento() throws Exception {
 	String objetos = "";
-	try{
+	try {
 	    FileUtils fileUtils = new FileUtils();
 	    objetos = fileUtils.FileToString(objetosTreinamentoJson);
-	}catch(Exception e){
+	} catch (Exception e) {
 	    throw e;
 	}
 	return objetos;

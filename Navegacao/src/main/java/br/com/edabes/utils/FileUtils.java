@@ -18,9 +18,10 @@ public class FileUtils {
     }
 
     /*
-     * Método importado do exemplo do site https://dzone.com/articles/get-current-web-application
+     * Método importado do exemplo do site
+     * https://dzone.com/articles/get-current-web-application
      * 
-    */ 
+     */
     public String getPath(String file) throws UnsupportedEncodingException {
 	String path = this.getClass().getClassLoader().getResource("").getPath();
 	String fullPath = URLDecoder.decode(path, "UTF-8");

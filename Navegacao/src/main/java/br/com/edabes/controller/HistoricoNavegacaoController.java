@@ -31,7 +31,6 @@ public class HistoricoNavegacaoController extends EdController {
 
     public HistoricoNavegacaoController() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     @RequestMapping(value = "/Historico/Listar", method = RequestMethod.GET)
@@ -91,8 +90,8 @@ public class HistoricoNavegacaoController extends EdController {
     }
 
     @RequestMapping(value = "/Navegacao/Historico/Download/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
-    public @ResponseBody String downloadHistoricoNavegacao(@PathVariable("id") int id,
-	    HttpSession session, HttpServletResponse response) throws IOException {
+    public @ResponseBody String downloadHistoricoNavegacao(@PathVariable("id") int id, HttpSession session,
+	    HttpServletResponse response) throws IOException {
 	HistoricoNavegacaoDTO historicoNavegacaoDTO = new HistoricoNavegacaoDTO();
 
 	if (isAuthenticated(session)) {

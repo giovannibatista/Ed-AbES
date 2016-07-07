@@ -61,7 +61,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	return usuarioEncontrado;
     }
 
-    
     public Usuario incluirUsuario(Usuario usuario) {
 	Session session;
 	Usuario usuarioJaExistente = null;
@@ -71,7 +70,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	    usuarioJaExistente = (Usuario) buscaUsuario(usuario);
 
 	    if (usuarioJaExistente == null) {
-		// Inserindo o usuario
 		usuario.setId((Integer) session.save(usuario));
 	    }
 	} catch (Exception e) {
@@ -92,14 +90,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     public Usuario buscaUsuario(Usuario usuario) {
 	Session session;
 	try {
-	   
-	    session = sessionFactory.getCurrentSession();
-	    
-	    Example example = Example.create(usuario);
-	    
-	    usuario =  (Usuario) session.createCriteria(Usuario.class).add(example).uniqueResult();
 
-	       
+	    session = sessionFactory.getCurrentSession();
+
+	    Example example = Example.create(usuario);
+
+	    usuario = (Usuario) session.createCriteria(Usuario.class).add(example).uniqueResult();
 
 	} catch (Exception e) {
 	    e.printStackTrace();

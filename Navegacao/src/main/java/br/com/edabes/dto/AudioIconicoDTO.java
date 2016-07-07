@@ -3,9 +3,7 @@ package br.com.edabes.dto;
 public class AudioIconicoDTO {
 
     private Integer id;
-
     private String arquivo;
-
     private String descricao;
 
     public AudioIconicoDTO() {
@@ -40,6 +38,5 @@ public class AudioIconicoDTO {
     public String toString() {
 	return "AudioIconicoDTO [id=" + id + ", arquivo=" + arquivo + ", descricao=" + descricao + "]";
     }
-    
 
 }

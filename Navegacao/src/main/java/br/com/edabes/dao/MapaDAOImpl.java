@@ -1,13 +1,11 @@
 package br.com.edabes.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +30,6 @@ public class MapaDAOImpl implements MapaDAO {
 	Query query;
 	try {
 
-	    // TRAZER SOH OS CAMPOS DA TELA
 	    session = sessionFactory.getCurrentSession();
 	    query = session
 		    .createQuery("from Mapa m where m.criador = :criador AND importado = 0 order by dt_alteracao desc");
@@ -54,7 +51,6 @@ public class MapaDAOImpl implements MapaDAO {
 	Query query;
 	try {
 
-	    // TRAZER SOH OS CAMPOS DA TELA
 	    session = sessionFactory.getCurrentSession();
 	    query = session.createQuery("from Mapa m where IMPORTADO = :idUsuario order by dt_alteracao desc");
 	    query.setParameter("idUsuario", mapa.getImportadoPor());
@@ -75,7 +71,6 @@ public class MapaDAOImpl implements MapaDAO {
 	Query query;
 	try {
 
-	    // TRAZER SOH OS CAMPOS DA TELA
 	    session = sessionFactory.getCurrentSession();
 	    query = session.createQuery("from MapaExportado m order by dt_criacao desc");
 

@@ -41,7 +41,6 @@ public class NavegacaoServiceImpl implements NavegacaoService {
 	return false;
     }
 
-
     private Boolean carregarListaObjetosNivelSolo(MapaObjetoDTO mapaObjetoDTO) {
 	if (mapaObjetoDTO.getObjeto().getNivel() == 0) {
 	    SubcategoriaDTO subcategoriaDTO = mapaObjetoDTO.getObjeto().getSubcategoria();

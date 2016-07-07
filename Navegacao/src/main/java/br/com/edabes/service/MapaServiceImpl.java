@@ -26,10 +26,10 @@ public class MapaServiceImpl implements MapaService {
 
     @Autowired
     private MapaDAO mapaDAO;
-    
+
     @Autowired
     private MapaObjetoDAO mapaObjetoDAO;
-    
+
     private Converter<Mapa, MapaDTO> mapaConverter;
     private Converter<MapaExportado, MapaDTO> mapaExportadoconverter;
 
@@ -46,10 +46,9 @@ public class MapaServiceImpl implements MapaService {
 	try {
 	    mapa = mapaConverter.converteDTOParaModel(mapaDTO);
 	    ArrayList<Mapa> mapasCriados = mapaDAO.listarMapasCriadosDoUsuario(mapa);
-	    
+
 	    ArrayList<Mapa> mapasImportados = mapaDAO.listarMapasImportadosDoUsuario(mapa);
 
-	    
 	    mapasCriados.forEach(m -> mapasDTOs.add(mapaConverter.converteModelParaDTO(m)));
 	    mapasImportados.forEach(m -> mapasDTOs.add(mapaConverter.converteModelParaDTO(m)));
 
@@ -59,12 +58,12 @@ public class MapaServiceImpl implements MapaService {
 	}
 	return mapasDTOs;
     }
-    
+
     public ArrayList<MapaDTO> listarMapasPublicos() throws Exception {
 	ArrayList<MapaDTO> mapasDTOs = new ArrayList<MapaDTO>();
 	try {
 	    ArrayList<MapaExportado> mapas = mapaDAO.listarMapasPublicos();
-	    
+
 	    mapas.forEach(m -> mapasDTOs.add(mapaExportadoconverter.converteModelParaDTO(m)));
 
 	} catch (Exception e) {
@@ -77,23 +76,23 @@ public class MapaServiceImpl implements MapaService {
     @Override
     public MapaDTO consultarMapa(MapaDTO consulta) {
 	MapaDTO mapaDTO = new MapaDTO();
-	try{
+	try {
 	    Mapa mapa = mapaDAO.consultarMapa(mapaConverter.converteDTOParaModel(consulta));
 	    mapaDTO = mapaConverter.converteModelParaDTO(mapa);
-	}catch(Exception e){
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    throw e;
 	}
 	return mapaDTO;
     }
-    
+
     @Override
     public MapaDTO consultarMapaPublico(MapaDTO consulta) {
 	MapaDTO mapaDTO = new MapaDTO();
-	try{
+	try {
 	    MapaExportado mapa = mapaDAO.consultarMapaPublico(mapaExportadoconverter.converteDTOParaModel(consulta));
 	    mapaDTO = mapaExportadoconverter.converteModelParaDTO(mapa);
-	}catch(Exception e){
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    throw e;
 	}
@@ -104,14 +103,13 @@ public class MapaServiceImpl implements MapaService {
     public MapaDTO consultarMapaTreinamento() throws Exception {
 	String mapa = "";
 	MapaDTO mapaDTO = null;
-	try{
+	try {
 	    FileUtils fileUtils = new FileUtils();
 	    mapa = fileUtils.FileToString(mapaTreinamentoJson);
 	    Gson gson = new Gson();
 	    mapaDTO = gson.fromJson(mapa, MapaDTO.class);
-	    
-	    
-	}catch(Exception e){
+
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    throw e;
 	}
@@ -121,19 +119,19 @@ public class MapaServiceImpl implements MapaService {
     @Override
     public void importarMapa(MapaDTO mapaDTO) {
 	Mapa mapa = new Mapa();
-	try{
+	try {
 	    mapa = mapaConverter.converteDTOParaModel(mapaDTO);
 	    mapa.setNome(montaNomeMapaImportado(mapa.getNome()));
 	    mapa.setId(0);
-	    
+
 	    Integer idNovoMapa = mapaDAO.salvarMapa(mapa);
-	    if(idNovoMapa > 0){
+	    if (idNovoMapa > 0) {
 		MapaObjetoExportado mapaObjeto = new MapaObjetoExportado();
 		mapaObjeto.setIdMapa(mapaDTO.getId());
 
 		List<MapaObjetoExportado> objetos = mapaObjetoDAO.carregarObjetosMapaPublico(mapaObjeto);
 		for (MapaObjetoExportado mapaObjetoExportado : objetos) {
-		    
+
 		    MapaObjeto objeto = new MapaObjeto();
 		    objeto.setIdMapa(idNovoMapa);
 		    objeto.setAltura(mapaObjetoExportado.getAltura());
@@ -144,29 +142,29 @@ public class MapaServiceImpl implements MapaService {
 		    objeto.setProfundidade(mapaObjetoExportado.getProfundidade());
 		    objeto.setAudioDescricao(mapaObjetoExportado.getAudioDescricao());
 		    objeto.setObjeto(mapaObjetoExportado.getObjeto());
-		    
+
 		    mapaObjetoDAO.importarMapaObjeto(objeto);
-		    
+
 		}
-		
+
 	    }
-	}catch(Exception e){
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    throw e;
 	}
-	
+
     }
-    
-    private String montaNomeMapaImportado(String nomeMapa){
+
+    private String montaNomeMapaImportado(String nomeMapa) {
 	String nomeMapaImportado = "";
-	
-	if(nomeMapa.length() < 70){
-		nomeMapaImportado = nomeMapa + " importado em " + DateUtils.getDateFormatString();
-	}else{
-		nomeMapaImportado = nomeMapa + DateUtils.getDateFormatString();
+
+	if (nomeMapa.length() < 70) {
+	    nomeMapaImportado = nomeMapa + " importado em " + DateUtils.getDateFormatString();
+	} else {
+	    nomeMapaImportado = nomeMapa + DateUtils.getDateFormatString();
 	}
-	
+
 	return nomeMapaImportado;
-}
+    }
 
 }

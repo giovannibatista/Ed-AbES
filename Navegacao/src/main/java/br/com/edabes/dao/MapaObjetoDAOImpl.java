@@ -42,7 +42,7 @@ public class MapaObjetoDAOImpl implements MapaObjetoDAO {
 	}
 	return mapaObjetos;
     }
-    
+
     @SuppressWarnings("unchecked")
     @Override
     public List<MapaObjetoExportado> carregarObjetosMapaPublico(MapaObjetoExportado mapaObjeto) {
@@ -65,15 +65,10 @@ public class MapaObjetoDAOImpl implements MapaObjetoDAO {
     @Override
     public void importarMapaObjeto(MapaObjeto objeto) {
 	Session session;
-	int idMapaImportado = -1;
-
 	try {
 
 	    session = sessionFactory.getCurrentSession();
 	    session.save(objeto);
-
-	    // idMapaImportado =
-	    // buscaIdMapaImportadoPorNome(mapa.getNomeMapa());
 
 	} catch (Exception e) {
 	    e.printStackTrace();

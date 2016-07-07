@@ -100,15 +100,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public UsuarioDTO alterarUsuario(UsuarioDTO usuarioDTO) {
-	String senhaCript = "";
 	Usuario usuario = null;
 	try {
 
 	    usuario = converter.converteDTOParaModel(usuarioDTO);
-	    /*Crypter crypter = new Crypter();
-	    senhaCript = crypter.crypt(usuario.getSenha());
-	    usuario.setSenha(senhaCript);
-*/
 	    usuario = usuarioDAO.alterarUsuario(usuario);
 	    usuarioDTO = converter.converteModelParaDTO(usuario);
 

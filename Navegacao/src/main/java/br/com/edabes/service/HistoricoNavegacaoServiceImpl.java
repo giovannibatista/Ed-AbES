@@ -48,14 +48,13 @@ public class HistoricoNavegacaoServiceImpl implements HistoricoNavegacaoService 
 	    historicoNavegacao = converter.converteDTOParaModel(historicoNavegacaoDTO);
 	    List<HistoricoNavegacao> historicoNavegacoes = historicoNavegacaoDAO
 		    .listarHistoricoNavegacao(historicoNavegacao);
-	    
+
 	    historicoNavegacoes.forEach(m -> historicoNavegacaoDTOs.add(converter.converteModelParaDTO(m)));
 
-	    Comparator<HistoricoNavegacaoDTO> comparator = (hn1, hn2) -> hn1.getDataNavegacao().compareTo(hn2.getDataNavegacao());
+	    Comparator<HistoricoNavegacaoDTO> comparator = (hn1, hn2) -> hn1.getDataNavegacao()
+		    .compareTo(hn2.getDataNavegacao());
 	    historicoNavegacaoDTOs.sort(comparator.reversed());
-	    
-	    //historicoNavegacoes.sort(comparator.reversed());
-	    
+
 	} catch (Exception e) {
 	    throw e;
 	}

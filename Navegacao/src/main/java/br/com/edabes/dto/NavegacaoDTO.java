@@ -6,7 +6,6 @@ public class NavegacaoDTO {
 
     private ArrayList<MapaObjetoDTO> objetosNivelSolo;
     private ArrayList<MapaObjetoDTO> objetos;
-    // TODO - Testar sem esta lista;
     private ArrayList<MapaObjetoDTO> todosObjetos;
 
     public NavegacaoDTO() {

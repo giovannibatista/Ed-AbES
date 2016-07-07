@@ -20,7 +20,7 @@ public class MapaDTO {
     private String unidadeDeMedida;
     private Integer importadoPor;
     private String andar;
-    
+
     private ArrayList<MapaObjetoDTO> mapaObjetos;
 
     public MapaDTO() {
@@ -115,25 +115,25 @@ public class MapaDTO {
     public void setAndar(String andar) {
 	this.andar = andar;
     }
-    
+
     public String getDescricaoTipoMapa() {
-        return this.getTipoMapa() == 1 ? "Navegação Livre" : "Desafio";
+	return this.getTipoMapa() == 1 ? "Navegação Livre" : "Desafio";
     }
-    
+
     public ArrayList<MapaObjetoDTO> getMapaObjetos() {
-        return mapaObjetos;
+	return mapaObjetos;
     }
 
     public void setMapaObjetos(ArrayList<MapaObjetoDTO> mapaObjetos) {
-        this.mapaObjetos = mapaObjetos;
+	this.mapaObjetos = mapaObjetos;
     }
-    
+
     public Integer getCriador() {
-        return criador;
+	return criador;
     }
 
     public void setCriador(Integer criador) {
-        this.criador = criador;
+	this.criador = criador;
     }
 
     @Override

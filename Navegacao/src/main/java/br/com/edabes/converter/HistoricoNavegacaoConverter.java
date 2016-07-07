@@ -6,7 +6,7 @@ import br.com.edabes.model.HistoricoNavegacao;
 import br.com.edabes.model.Mapa;
 
 public class HistoricoNavegacaoConverter implements Converter<HistoricoNavegacao, HistoricoNavegacaoDTO> {
-    
+
     private Converter<Mapa, MapaDTO> mapaConverter = new MapaConverter();
 
     @Override
