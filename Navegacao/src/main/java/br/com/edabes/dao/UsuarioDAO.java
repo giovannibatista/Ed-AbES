@@ -17,6 +17,6 @@ public interface UsuarioDAO {
 
     public String trocaSenha(String email);
 
-    public boolean alterarDadosUsuario(Usuario usuario);
+    public Usuario alterarUsuario(Usuario usuario);
 
 }

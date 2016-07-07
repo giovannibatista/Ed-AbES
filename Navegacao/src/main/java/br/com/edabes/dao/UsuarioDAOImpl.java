@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.edabes.model.MapaObjeto;
 import br.com.edabes.model.Usuario;
 import br.com.edabes.utils.Crypter;
 import br.com.edabes.utils.UtilsGenerator;
@@ -49,12 +48,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	    Query query = session.createQuery("from Usuario where EMAIL = :email and SENHA = :senha");
 	    query.setParameter("email", email);
 	    query.setParameter("senha", senha);
+	    @SuppressWarnings("unchecked")
 	    List<Usuario> list = query.list();
 
 	    if (!list.isEmpty() && list != null) {
 		usuarioEncontrado = true;
-		Usuario usu = (Usuario) list.get(0);
-		// System.out.println(usu.getNome());
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -152,14 +150,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
      * @return boolean dadosAlterados - True caso as informacoes tenham sido
      *         alteradas com sucesso
      */
-    public boolean alterarDadosUsuario(Usuario usuario) {
-	boolean dadosAlterados = false;
+    public Usuario alterarUsuario(Usuario usuario) {
 	Session session;
 	session = sessionFactory.getCurrentSession();
 	Query query = null;
-	int result = 0;
 	boolean verificaAlterada = false;
-	UtilsGenerator utilsGenerator = null;
 	Crypter crypter = new Crypter();
 	String novaSenhaCriptografada;
 
@@ -183,17 +178,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	    query.setParameter("senha", usuario.getSenha());
 	    query.setParameter("idUsuario", usuario.getId());
 
-	    result = query.executeUpdate();
-
-	    if (result > 0) {
-		dadosAlterados = true;
-	    }
+	    query.executeUpdate();
 
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
-	return dadosAlterados;
+	return usuario;
     }
 
     /**
@@ -205,6 +196,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
      *            email - email do usuario
      * @return boolean senhaDiferente - True se a senha estiver incorreta
      */
+    @SuppressWarnings("unchecked")
     public boolean verificaSenhaAlterada(String senha, String email) {
 	boolean senhaDiferente = false;
 	Session session;

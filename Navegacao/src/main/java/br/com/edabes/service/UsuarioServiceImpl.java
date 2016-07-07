@@ -48,35 +48,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     public boolean login(String email, String senha) {
 	boolean flag = false;
 	String senhaCript = "";
-	try{
+	try {
 
-	    //Criptografando a senha digitada
+	    // Criptografando a senha digitada
 	    Crypter crypter = new Crypter();
 	    senhaCript = crypter.crypt(senha);
 
 	    flag = usuarioDAO.buscaUsuarioByEmailESenha(email, senhaCript);
-	}catch(Exception e){
-	    e.printStackTrace();
-	}
-
-	return flag;
-    }
-
-
-    
-    public boolean alterarDadosUsuario(UsuarioDTO usuarioDTO) {
-	boolean dadosAlterados = false;
-	Usuario usuario = null;
-	try {
-	    usuario = converter.converteDTOParaModel(usuarioDTO);
-	    dadosAlterados = usuarioDAO.alterarDadosUsuario(usuario);
-
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
-	return dadosAlterados;
-
+	return flag;
     }
 
     public UsuarioDTO buscaUsuario(UsuarioDTO usuarioDTO) {
@@ -85,7 +68,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	    usuario = converter.converteDTOParaModel(usuarioDTO);
 
 	    usuario = usuarioDAO.buscaUsuario(usuario);
-	    if(usuario != null){
+	    if (usuario != null) {
 		usuarioDTO = converter.converteModelParaDTO(usuario);
 	    }
 	} catch (Exception e) {
@@ -98,21 +81,40 @@ public class UsuarioServiceImpl implements UsuarioService {
     public UsuarioDTO incluirUsuario(UsuarioDTO usuarioDTO) {
 	String senhaCript = "";
 	Usuario usuario = null;
-	try{
-
+	try {
 
 	    usuario = converter.converteDTOParaModel(usuarioDTO);
 	    Crypter crypter = new Crypter();
-	    senhaCript = crypter.crypt(usuario.getSenha()); 
+	    senhaCript = crypter.crypt(usuario.getSenha());
 	    usuario.setSenha(senhaCript);
 
 	    usuario = usuarioDAO.incluirUsuario(usuario);
 	    usuarioDTO = converter.converteModelParaDTO(usuario);
 
-	} catch(Exception e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	}
 
+	return usuarioDTO;
+    }
+
+    @Override
+    public UsuarioDTO alterarUsuario(UsuarioDTO usuarioDTO) {
+	String senhaCript = "";
+	Usuario usuario = null;
+	try {
+
+	    usuario = converter.converteDTOParaModel(usuarioDTO);
+	    /*Crypter crypter = new Crypter();
+	    senhaCript = crypter.crypt(usuario.getSenha());
+	    usuario.setSenha(senhaCript);
+*/
+	    usuario = usuarioDAO.alterarUsuario(usuario);
+	    usuarioDTO = converter.converteModelParaDTO(usuario);
+
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
 
 	return usuarioDTO;
     }

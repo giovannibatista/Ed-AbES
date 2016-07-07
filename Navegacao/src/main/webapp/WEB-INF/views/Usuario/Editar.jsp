@@ -31,8 +31,6 @@
 
 		</c:choose>
 
-
-
 		<c:if test="${cadastro == false}">
 			<script type="text/javascript">
 				$('#errors').html('');
@@ -44,7 +42,7 @@
 			Os campos obrigatórios estão marcados com asterisco (<abbr
 				class="req" title="Campo Obrigatório">*</abbr>).
 		</p>
-		<form id="usuarioForm" method="POST" action="Novo">
+		<form id="usuarioForm" method="POST" action="Salvar">
 			<p id="errors" role="alert" aria-live="polite"></p>
 			<p>
 				<label for="nome">Nome<abbr class="req"

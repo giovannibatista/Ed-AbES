@@ -85,12 +85,16 @@ public class UsuarioController extends EdController {
 	return mensagemRetorno;
     }
 
-    @RequestMapping(value = "/Usuario/Novo", method = RequestMethod.POST)
+    @RequestMapping(value = "/Usuario/Salvar", method = RequestMethod.POST)
     public ModelAndView novoUsuario(UsuarioDTO usuario) {
 	ModelAndView model = null;
 	try {
-
-	    usuario = usuarioService.incluirUsuario(usuario);
+	    
+	    if (usuario.getId() == null) {
+		usuario = usuarioService.incluirUsuario(usuario);
+	    }else{
+		usuario = usuarioService.alterarUsuario(usuario);
+	    }
 
 	    if (usuario.getId() != null) {
 		model = new ModelAndView("/Usuario/Login");
@@ -109,15 +113,6 @@ public class UsuarioController extends EdController {
 	    usuario.setSenha("");
 	    model.addObject("usuario", usuario);
 
-	}
-	return model;
-    }
-
-    public ModelAndView alterarUsuario(UsuarioDTO usuarioDTO, HttpSession session){
-	ModelAndView model = null;
-	try {
-	} catch (Exception e) {
-	    e.printStackTrace();
 	}
 	return model;
     }
