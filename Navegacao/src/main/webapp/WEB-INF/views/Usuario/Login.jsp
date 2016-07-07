@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Módulo de Navegação do Ed-AbES - Tela de login do usuário</title>
+<title>Módulo de Navegação do Ed-AbES - Tela do usuário</title>
 
 <jsp:include page="../Imports.jsp" />
 
@@ -21,7 +21,7 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main" id="conteudo">
-
+ 
 		<h1>Identificação</h1>
 
 		<p id="msg" role="alert" aria-live="polite"></p>
@@ -31,6 +31,13 @@
 				<script type="text/javascript">
 					$('#msg').html('');
 					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
+				</script>
+			</c:if>
+			
+			<c:if test="${verificacaoAlteracao == true}">
+				<script type="text/javascript">
+						$('#msg').html('');
+						$('#msg').append('<p>Usuário alterado com sucesso!</p>');
 				</script>
 			</c:if>
 		</c:if>
