@@ -93,25 +93,25 @@ public class UsuarioController extends EdController {
 			if (isAuthenticated(session)) {
 				usuario = usuarioService.alterarUsuario(usuario);
 				super.loginUser(session, usuario);
-				model.addObject("verificacaoCadastro", "true");
+				model.addObject("inclusao", false);
 			}else{
 				usuario = usuarioService.incluirUsuario(usuario);
-				model.addObject("verificacaoAlteracao", "true");
+				model.addObject("inclusao", true);
 			}
 
 			if (usuario.getId() != null) {
-				model.addObject("cadastro", "true");
+				model.addObject("cadastro", true);
 				model.addObject("usuario", usuario);
 			} else {
 				model = new ModelAndView("/Usuario/Editar");
-				model.addObject("cadastro", "false");
+				model.addObject("cadastro", false);
 				model.addObject("usuario", usuario);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			model = new ModelAndView("/Usuario/Editar");
-			model.addObject("cadastro", "false");
+			model.addObject("cadastro", false);
 			model.addObject("usuario", usuario);
 		}
 		return model;

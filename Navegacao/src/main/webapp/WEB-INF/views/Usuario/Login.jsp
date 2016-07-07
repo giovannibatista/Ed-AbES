@@ -21,25 +21,30 @@
 		<jsp:include page="../Menu.jsp" />
 	</header>
 	<div role="main" id="conteudo">
- 
-		<h1>Identificação</h1>
+
+
 
 		<p id="msg" role="alert" aria-live="polite"></p>
 
 		<c:if test="${cadastro == true}">
-			<c:if test="${verificacaoCadastro == true}">
-				<script type="text/javascript">
-					$('#msg').html('');
-					$('#msg').append('<p>Usuário cadastrado com sucesso!</p>');
-				</script>
-			</c:if>
-			
-			<c:if test="${verificacaoAlteracao == true}">
-				<script type="text/javascript">
+			<c:choose>
+				<c:when test="${inclusao == true}">
+					<script type="text/javascript">
+						console.log('1');
 						$('#msg').html('');
-						$('#msg').append('<p>Usuário alterado com sucesso!</p>');
-				</script>
-			</c:if>
+						$('#msg').append(
+								'<p>Usuário cadastrado com sucesso!</p>');
+					</script>
+				</c:when>
+				<c:otherwise>
+					<script type="text/javascript">
+						console.log('1');
+						$('#msg').html('');
+						$('#msg')
+								.append('<p>Usuário alterado com sucesso!</p>');
+					</script>
+				</c:otherwise>
+			</c:choose>
 		</c:if>
 
 		<c:if test="${erroLogin == true}">
@@ -53,6 +58,9 @@
 
 		<c:choose>
 			<c:when test="${not empty usuario}">
+			
+					<h1>Usuário logado: ${usuario.nome}</h1>
+			
 
 				<p>Esta tela apresenta as opções de você criar um novo usuário
 					no sistema Ed-AbES - Módulo de navegação, efetuar o login com sua
@@ -68,7 +76,7 @@
 				</div>
 
 				<div id="logoutUsuarioForm">
-					<h2>Desejo efetuar logout da aplicação</h2>
+					<h2>Desejo efetuar o logout da aplicação!</h2>
 
 					<input type="button" id="logoutUsuarioBotao"
 						name="logoutUsuarioBotao" value="Efetuar logout"
@@ -78,6 +86,9 @@
 
 			</c:when>
 			<c:otherwise>
+			
+					<h1>Identificação</h1>
+			
 
 				<p>Esta tela apresenta as opções de você criar um novo usuário
 					no sistema Ed-AbES - Módulo de navegação ou efetuar o login com sua
