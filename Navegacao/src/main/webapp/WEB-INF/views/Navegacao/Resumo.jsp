@@ -39,10 +39,10 @@
 			botão "Voltar" ou usar a tecla de atalho "Alt V". Caso deseje acessar
 			a lista dos mapas públicos, utilize o atalho do menu principal que é
 			"Alt 2", que listará os mapas públicos disponíveis para navegar.</p>
-		<p>Quando iniciar a navegação no mapa, é recomendado que
-			desligue o leitor de tela para uma melhor experiência. Pois poderá ocorrer colisão de
-			teclas de atalho e sobreposição do som da aplicação e do leitor de
-			tela.</p>
+		<p>Quando iniciar a navegação no mapa, é recomendado que desligue
+			o leitor de tela para uma melhor experiência. Pois poderá ocorrer
+			colisão de teclas de atalho e sobreposição do som da aplicação e do
+			leitor de tela.</p>
 
 		<div id="informacaoMapa">
 			<h2>Informações do Mapa</h2>
@@ -95,10 +95,10 @@
 				aria-label="Iniciar Navegação - Tecla de atalho Alt I para Iniciar Navegação."
 				id="iniciarNavegacaoBotao"
 				onclick="javascript: iniciarNavegacao(${mapa.id})"
-				value="Iniciar Navegação" accesskey="i"/> <input type="button"
+				value="Iniciar Navegação" accesskey="i" /> <input type="button"
 				aria-label="Voltar para tela de escolha dos mapas salvos - Tecla de atalho Alt Vê para voltar."
 				id="voltarBotao" onclick="javascript: voltarListaMapas();"
-				value="Voltar para tela anterior" accesskey="v"/>
+				value="Voltar para tela anterior" accesskey="v" />
 
 		</div>
 

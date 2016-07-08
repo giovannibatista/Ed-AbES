@@ -46,7 +46,7 @@
 	<div role="main" id="conteudo">
 		<h1>Navegação no Mapa: ${mapa.nome}</h1>
 		<div id="blocoMapa">
-			<audio class="speech" style="diplay:none;"></audio>
+			<audio class="speech" style="diplay: none;"></audio>
 			<div id="mapa">
 				<input type="hidden" id="idMapa" value="${mapa.id}"> <input
 					type="hidden" id="nomeMapa" value="${mapa.nome}"> <input
@@ -54,8 +54,8 @@
 				<input type="hidden" id="objetivoMapa" value="${mapa.objetivo}">
 				<input type="hidden" id="andarMapa" value="${mapa.andar}"> <input
 					type="hidden" id="descricaoTipoMapa"
-					value="${mapa.descricaoTipoMapa}">
-				<input type="hidden" id="idUsuario" value="${usuario.id}">
+					value="${mapa.descricaoTipoMapa}"> <input type="hidden"
+					id="idUsuario" value="${usuario.id}">
 			</div>
 		</div>
 	</div>

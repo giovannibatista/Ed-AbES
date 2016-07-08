@@ -22,8 +22,6 @@
 	</header>
 	<div role="main" id="conteudo">
 
-
-
 		<p id="msg" role="alert" aria-live="polite"></p>
 
 		<c:if test="${cadastro == true}">
@@ -58,9 +56,9 @@
 
 		<c:choose>
 			<c:when test="${not empty usuario}">
-			
-					<h1>Usuário logado: ${usuario.nome}</h1>
-			
+
+				<h1>Usuário logado: ${usuario.nome}</h1>
+
 
 				<p>Esta tela apresenta as opções de você criar um novo usuário
 					no sistema Ed-AbES - Módulo de navegação, efetuar o login com sua
@@ -86,9 +84,9 @@
 
 			</c:when>
 			<c:otherwise>
-			
-					<h1>Identificação</h1>
-			
+
+				<h1>Identificação</h1>
+
 
 				<p>Esta tela apresenta as opções de você criar um novo usuário
 					no sistema Ed-AbES - Módulo de navegação ou efetuar o login com sua
