@@ -68,7 +68,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	});
 
 	self.init = function() {
-		console.log("Iniciando a navegação!");
+		////console.log("Iniciando a navegação!");
 		var log = getInitLog();
 		navigationHistory.logInit(log);
 		startTime = getTextTime();
@@ -79,7 +79,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(up){
 			index++;
 			if (!checkIsNavigationStoppedOrFinished()) {
-				console.log("self.walk");
+				//console.log("self.walk");
 
 				var rotate = player.data("rotate"), coordZ = navigationMap.maxZ + 1, audio, nextOffset = {
 					top : offset.top,
@@ -330,7 +330,7 @@ var Navigation = function(navigationMap, mapObjects) {
 				+ ". E O objetivo é " + objetivoMapa  +
 				". Vamos começar dando um passo para frente. Observe como é o som de andar para frente. " +
 				"Para isso, se utiliza a tecla de atalho seta para cima.";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 				up=true;
 			}
@@ -357,7 +357,7 @@ var Navigation = function(navigationMap, mapObjects) {
 					currentAction = "localizacao";
 				}
 
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 
 				playTextToSpeech(textToSpeech);
 			}
@@ -390,7 +390,7 @@ var Navigation = function(navigationMap, mapObjects) {
 				textToSpeech = " O tempo de navegação é " + textToSpeech + ". Estamos indo muito bem e estamos quase chegando no segundo objeto. " +
 				"Vamos girar para o SUL. Utilize a tecla de atalho seta para direita. " +
 				"Observe o som que será emitido.";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 				right = true;
 				altT = false;
@@ -425,23 +425,23 @@ var Navigation = function(navigationMap, mapObjects) {
 					time = getTextTime();
 					textToSpeech = "Navegação pausada " + time
 					+ ". Para retomar a navegação, tecle Alt ésse novamente. Mas antes, tente movimentar seu jogador para frente e vamos ver o que acontece!";
-					console.log(textToSpeech);
+					//console.log(textToSpeech);
 					playTextToSpeech(textToSpeech);
 					up = true;
 					altS = false;
-					currentAction = "navegacaoparada"
+					currentAction = "navegacaoparada";
 
 				} else {
 					timerNavigation.start();
 					isNavigationStopped = false;
 					time = getTextTime();
 					textToSpeech = "Navegação retomada " + time + ". Você está virado para o SUL. Dê um passo para frente utilizando atecla de atalho seta para cima.";
-					console.log(textToSpeech);
+					//console.log(textToSpeech);
 					playTextToSpeech(textToSpeech);
 					up = true;
 					altS = false;
 					index = 0;
-					currentAction = "retomarNavegacao"
+					currentAction = "retomarNavegacao";
 				}
 			}
 		}
@@ -452,7 +452,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			if (!checkIsNavigationStoppedOrFinished()) {
 				navigationHistory.logActions("ALT L", "Reproduzir o log da navegação");
 				var log = navigationHistory.history.log;
-				console.log(log);
+				//console.log(log);
 
 				log += ". Fim do Log. Pronto! Você finalizou o treinamento do módulo de navegação. " +
 				"Acredito que foi muito bem e já pode escolher um mapa na lista de mapas públicos e começar a navegar. Vamos encerrar a navegação com o comando ALT Q.";
@@ -588,9 +588,9 @@ var Navigation = function(navigationMap, mapObjects) {
 						+ ". Na linha: " + (objectMap.coordenadaY + 1)
 						+ " e coluna: " + (objectMap.coordenadaX + 1)
 						+ ". O objeto possui " + objectMap.altura + " de altura e "
-						+ objectMap.largura + " de largura. ",
+						+ objectMap.largura + " de largura. ";
 
-						console.log(textToSpeech);
+						//console.log(textToSpeech);
 		}
 		return textToSpeech;
 	}
@@ -736,7 +736,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		audio.get(0).play();
 
 		audio.get(0).onerror = function() {
-			console.log("Erro ao reproduzir áudio: " + audioPath);
+			//console.log("Erro ao reproduzir áudio: " + audioPath);
 		};
 
 	}
@@ -752,7 +752,7 @@ var Navigation = function(navigationMap, mapObjects) {
 				"Quando a navegação está pausada, somente alguns comandos funcionam. ALT ésse de STOP, para retornar a navegação, ALT QUE de QUIT, para finalizar a navegação e " +
 				"ALT T de TEMPO para saber o tempo total de navegação. Ainda não queremos encerrar a navegação. " +
 				"Então tecle ALT ésse para continuar a navegação. ";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 
 				altS = true;
@@ -769,7 +769,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(!isBlocked){
 			if (isNavigationFinished) {
 				var textToSpeech = "Navegação finalizada. Para retornar a navegar, acesse o Menu \"Iniciar Navegação\" ou ALT 1.";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 			}
 			return isNavigationFinished;

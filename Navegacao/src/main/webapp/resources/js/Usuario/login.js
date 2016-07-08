@@ -18,7 +18,6 @@ function novoUsuario() {
 				document.location = "/Usuario/Editar";
 			}
 
-			console.log("Consulta com sucesso=" + text);
 		},
 		error : function() {
 			alert("Ocorreu um erro ao consultar email!");
@@ -26,10 +25,10 @@ function novoUsuario() {
 	});
 }
 
-function editarUsuario(){
+function editarUsuario() {
 	document.location = "/Usuario/Editar";
 }
 
-function logout(){
+function logout() {
 	document.location = "/Usuario/Logout";
 }

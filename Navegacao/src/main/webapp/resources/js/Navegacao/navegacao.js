@@ -37,7 +37,7 @@ var Navigation = function(navigationMap, mapObjects) {
 	});
 
 	self.init = function() {
-		console.log("Iniciando a navegação!");
+		//console.log("Iniciando a navegação!");
 		var log = getInitLog();
 		navigationHistory.logInit(log);
 		startTime = getTextTime();
@@ -46,7 +46,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 	self.walk = function(forcedDirection) {
 		if (!checkIsNavigationStoppedOrFinished()) {
-			console.log("self.walk");
+			////console.log("self.walk");
 			var rotate = player.data("rotate"), coordZ = navigationMap.maxZ + 1, audio, nextOffset = {
 				top : offset.top,
 				left : offset.left
@@ -192,7 +192,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			var textToSpeech = "O mapa " + nomeMapa + ", do tipo " + descricaoTipoMapa +", está no " + andarMapa
 			+ " pavimento.  A descrição do mapa é " + descricaoMapa
 			+ ". E O objetivo é " + objetivoMapa;
-			console.log(textToSpeech);
+			////console.log(textToSpeech);
 			playTextToSpeech(textToSpeech);
 		}
 	}
@@ -206,9 +206,9 @@ var Navigation = function(navigationMap, mapObjects) {
 			textDirection = DirectionEnum.getTextDirection(direction);
 
 			var textToSpeech = "Estou na linha " + posY + ", coluna "
-				+ posX + ". Virado para o " + textDirection + ".";
+			+ posX + ". Virado para o " + textDirection + ".";
 
-			console.log(textToSpeech);
+			//console.log(textToSpeech);
 
 			playTextToSpeech(textToSpeech);
 		}
@@ -231,7 +231,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			navigationHistory.logActions("ALT T", "Informações do tempo de navegação");
 			var textToSpeech = timerNavigation.getTimeValues().toString();
 			textToSpeech = "Tempo de navegação: " + textToSpeech;
-			console.log(textToSpeech);
+			//console.log(textToSpeech);
 			playTextToSpeech(textToSpeech);
 		}
 	}
@@ -253,15 +253,15 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(!checkIsNavigationFinished()){
 			navigationHistory.logActions("ALT S", "Pausar e Retomar a navegação");
 			var timer = timerNavigation.getTimeValues().toString(), textToSpeech = "";
-			
+
 			if (!isNavigationStopped) {
 				timerNavigation.pause();
 				isNavigationStopped = true;
 				time = getTextTime();
-				
+
 				textToSpeech = "Navegação pausada " + time
 				+ ". Para retomar a navegação, tecle Alt S.";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 
 			} else {
@@ -269,7 +269,7 @@ var Navigation = function(navigationMap, mapObjects) {
 				isNavigationStopped = false;
 				time = getTextTime();
 				textToSpeech = "Navegação retomada " + time + ".";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 			}
 		}
@@ -279,7 +279,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		if (!checkIsNavigationStoppedOrFinished()) {
 			navigationHistory.logActions("ALT L", "Reproduzir o log da navegação");
 			var log = navigationHistory.history.log;
-			console.log(log);
+			//console.log(log);
 			playTextToSpeech(log);
 		}
 	}
@@ -294,7 +294,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			isBlocked = true;
 		}
 	}
-	
+
 	self.yes = function() {
 		if(isBlocked &&(confirmClose || confirmSaveHistory)){
 			playTextToSpeech("Sim");
@@ -317,7 +317,7 @@ var Navigation = function(navigationMap, mapObjects) {
 			}
 		}
 	}
-	
+
 	self.playKeyboardShortcuts = function() {
 		var url = '/resources/audio/Soar-teclas-navegacao-ggz.mp3';
 		playIconicAudio(url);
@@ -331,7 +331,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		var nomeMapa = document.getElementById("nomeMapa").value;
 		var text =" Log de navegação do mapa " + nomeMapa +". Data: " + getTextDate() + " . Iniciou " + startTime +" e finalizou " + endTime + ". Duração da navegação " + timerNavigation.getTimeValues().toString();  
 		navigationHistory.logFinishedNavigation(player, text);
-		
+
 		if(idUsuario){
 			askToSaveNavigationHistory(false);
 		}else{
@@ -400,9 +400,9 @@ var Navigation = function(navigationMap, mapObjects) {
 						+ ". Na linha: " + (objectMap.coordenadaY + 1)
 						+ " e coluna: " + (objectMap.coordenadaX + 1)
 						+ ". O objeto possui " + objectMap.altura + " de altura e "
-						+ objectMap.largura + " de largura. ",
+						+ objectMap.largura + " de largura. ";
 
-						console.log(textToSpeech);
+						//console.log(textToSpeech);
 		}
 		return textToSpeech;
 	}
@@ -555,7 +555,7 @@ var Navigation = function(navigationMap, mapObjects) {
 
 			if (isNavigationStopped) {
 				var textToSpeech = "Navegação pausada   " + time + ". Para retomar a navegação, tecle Alt S.";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 			}
 			return isNavigationStopped;
@@ -568,7 +568,7 @@ var Navigation = function(navigationMap, mapObjects) {
 		if(!isBlocked){
 			if (isNavigationFinished) {
 				var textToSpeech = "Navegação finalizada. Para retornar a navegar, acesse o Menu \"Iniciar Navegação\" ou ALT 1.";
-				console.log(textToSpeech);
+				//console.log(textToSpeech);
 				playTextToSpeech(textToSpeech);
 			}
 			return isNavigationFinished;
@@ -589,25 +589,25 @@ var Navigation = function(navigationMap, mapObjects) {
 
 		return textToSpeech;
 	}
-	
+
 	function getTextTime(){
 		var date = new Date(); // for now
 		var hours =  date.getHours() == 1 ? " á " + date.getHours() + " hora " : "ás " + date.getHours() + " horas ";
 		var minutes = date.getMinutes() == 1 ? date.getMinutes() + " minuto e " : date.getMinutes() + " minutos e ";
 		var seconds = date.getSeconds() == 1 ? date.getSeconds() + " segundo " : date.getSeconds() + " segundos ";
 		var textTime = hours + minutes + seconds;
-		
+
 		return textTime;
 	}
-	
+
 	function getTextDate(){
 		var date = new Date(); 
 		var day = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
 		var month = date.getDate() < 10 ? "0"+date.getMonth() : date.getMonth();
 		var year = date.getFullYear();
-		
+
 		var text = day+"/"+month+"/"+year;
-		
+
 		return text;
 	}
 	self.init();

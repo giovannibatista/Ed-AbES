@@ -8,14 +8,14 @@ $(document).ready(function(e) {
 
 	$('#usuarioForm').submit(function() {
 		var error = false;
-		
+
 		error = validateForm();
-		
+
 		if(error){
 			return false;
 		}
 	});
-	
+
 	function validateForm(){
 		var error = false;
 		$('#errors').html('');
@@ -40,9 +40,9 @@ $(document).ready(function(e) {
 			error = true;
 			$('#errors').append('<p>Por favor, preencha o campo Confirma Senha.</p>');
 		}
-		
+
 		return error;
-		
+
 	}
 
 });

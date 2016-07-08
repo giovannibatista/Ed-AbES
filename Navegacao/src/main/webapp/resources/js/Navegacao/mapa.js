@@ -4,13 +4,13 @@ $(window).load(function() {
 	$mapa = $("#mapa"),
 	$mapaNavegacao = new Map($mapa);//Instanciate the Map
 
-	
+
 	$.ajax({
 		url: "/Navegacao/Mapa/Objetos/" + idMap,
 		type: "GET",
 		dataType: "json",
 		success: function(json) {
-			
+
 			$.each(json, function(key, value) {
 				$mapaNavegacao.addMob({
 					height: value.altura,
@@ -34,7 +34,7 @@ $(window).load(function() {
 			$mapaNavegacao.setSizeMap(map);
 			//Instanciate the navigation
 			navigation = new Navigation($mapaNavegacao, json);
-			
+
 		},
 		error: function() {
 			alert("Erro ao ler os objetos do mapa. Por favor, contate o administador!");
@@ -50,7 +50,7 @@ var Map = function($navigationMap){
 	var self = this,
 	$mapRelative = $navigationMap,
 	$map = null
- 
+
 	self.maxRotation = 360;
 
 	//Custom parameters
@@ -67,7 +67,7 @@ var Map = function($navigationMap){
 	self.maxZ = 0;
 	self.maxX = 0;
 	self.maxY = 0;
-	
+
 	self.init = function(params) {
 		//Extend options
 		self.params = $.extend(self.params, params);
@@ -82,7 +82,7 @@ var Map = function($navigationMap){
 
 		//Create inner map object
 		_createInnerMap();
-		
+
 		return (self);
 	};
 
@@ -96,57 +96,50 @@ var Map = function($navigationMap){
 		var $mobs = $("<div />");
 		$mobs.attr("id", "mapa_mobs");
 
-		//self.setSizeMap($mobs);
-		//width: 1568px;
-		//height: 512px;
-		
-		
+	
 		//append into map
 		$mapRelative.append($mobs);
 
 		//store the reference
 		$map = $("#mapa_mobs");
-		
+
 	}
 	self.setSizeMap = function(map) {
-		
+
 		resetDefaultSize();
 		var height = self.params.defaultHeight * self.params.initialScale,
 		width = self.params.defaultWidth * self.params.initialScale;
-		
+
 		if (self.maxX > 0  && self.maxY > 0){
 			var heightMaxY = self.maxY * self.params.initialScale, widthMaxX = self.maxX * self.params.initialScale;
-			
+
 			if(heightMaxY > height){
 				self.params.defaultHeight = self.maxY;
 				height = heightMaxY;
-				
+
 			}
 			if(widthMaxX > width){
 				self.params.defaultWidth = self.maxX;
 				width = widthMaxX;
 			}
 		} 	
-		
-		//screen.width + "*" + screen.height
-		//width = 768;
-		//height = 256;
-		
+
+	
 		map.css("width", width + "px");
 		map.css("height", height + "px");
-		
+
 		var mapExterno = $("#mapa");
-		
+
 		mapExterno.css("width", width  + "px");
 		mapExterno.css("height", height + "px");
-		
-		
+
+
 	} 
 
 	function resetDefaultSize(){
 		var screenWidth = screen.width,
 		screenHeight = screen.height;
-		console.log(screen.width + "*" + screen.height );
+		////console.log(screen.width + "*" + screen.height );
 
 		if(screenWidth < 1024 ){
 			//800x600 = 768x256
@@ -169,7 +162,7 @@ var Map = function($navigationMap){
 			self.params.defaultWidth = 49;
 			self.params.defaultHeight = 16;
 		}
-		console.log(self.params.defaultWidth + "x" + self.params.defaultHeight );
+		////console.log(self.params.defaultWidth + "x" + self.params.defaultHeight );
 	}
 
 	self.addMob = function(objectProperties) {
@@ -200,7 +193,7 @@ var Map = function($navigationMap){
 
 		addMob($obj, offset, (objectProperties.id == 0));
 	}
-	
+
 	var addMob = function($obj, offset, isNew) {
 		var imageSrc = $obj.data("image");
 		width = $obj.data("width"),
@@ -217,7 +210,7 @@ var Map = function($navigationMap){
 		x = $obj.data("x"),
 		y = $obj.data("y"),
 		$mob = $("<div />"); 		//create the mob
-		
+
 		$mob.addClass("mobs");
 		$mob.css({
 			"background-image": "url("+imageSrc+")",
@@ -250,20 +243,19 @@ var Map = function($navigationMap){
 
 		//move to desired position
 		self.moveObj($mob, offset, rotate);
-		
-		
+
+
 		self.maxZ = getMaximumValue($mob, "coord-z", self.maxZ);
-		//TODO : Refatorar para pegar o X+Largura e Y+Altura...
 		self.maxX = getMaximumValueWithSize($mob, "x", self.maxX, "height");
 		self.maxY = getMaximumValueWithSize($mob, "y", self.maxY, "width");
 
 		if(pontoInicial == true){
-			console.log("STARTING POINT: x= " + $mob.data("coord-x") + "y= " + $mob.data("coord-y"));
+			////console.log("STARTING POINT: x= " + $mob.data("coord-x") + "y= " + $mob.data("coord-y"));
 			self.startingPoint = $mob;
 		}
 
 		if(pontoFinal == true){
-			console.log("END POINT: x= " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
+			////console.log("END POINT: x= " + $mob.data("coord-x") + "y " + $mob.data("coord-y"));
 			self.endPoint = $mob;
 		}
 
@@ -278,10 +270,10 @@ var Map = function($navigationMap){
 
 		return maxValue;
 	}	
-	
+
 	var getMaximumValueWithSize = function($mob, prop, maxValue, size) {
 		var value = $mob.data(prop), valueAux = $mob.data(size);
-		
+
 		value = (value) + valueAux;
 
 		if(maxValue < value){
@@ -314,7 +306,7 @@ var Map = function($navigationMap){
 		//normalize positions
 		offset.top = ((offset.top > 0) ? offset.top : 0);
 		offset.left = ((offset.left > 0) ? offset.left : 0);
-		
+
 		if(isPlayer){
 			offset.top = ((offset.top <  self.params.defaultHeight * self.scale) ? offset.top :  (self.params.defaultHeight-1) * self.scale);
 			offset.left = ((offset.left <  self.params.defaultWidth * self.scale) ? offset.left :  (self.params.defaultWidth-1) * self.scale);		
@@ -474,5 +466,5 @@ var Map = function($navigationMap){
 		}
 		return angle;
 	}
-	
+
 };

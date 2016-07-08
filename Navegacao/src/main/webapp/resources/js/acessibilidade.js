@@ -38,21 +38,7 @@ function salvarEstadoContraste(title) {
 
 }
 
-/*function salvarTamanhoFonte(multiplicador) {
-	localStorage.setItem("multiplicador", multiplicador);
-}*/
-
 function ocultarElemento(retirar, ocultar) {
 	$("#" + retirar).removeClass("oculto");
 	$("#" + ocultar).addClass("oculto");
 }
-
-/*function alteraTamanhoFonte(multiplicador) {
-	if (document.body.style.fontSize == "") {
-		document.body.style.fontSize = "1.5em";
-	}
-	var tamanhoTela = parseFloat(document.body.style.fontSize)
-			+ (multiplicador * 0.2)
-	document.body.style.fontSize = tamanhoTela + "em";
-	salvarTamanhoFonte(multiplicador);
-}*/
