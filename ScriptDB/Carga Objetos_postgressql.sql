@@ -1,8 +1,8 @@
---Categoria
+Ôªø--Categoria
 INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'Exterior');
 INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'Interior');
-INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'EspaÁo');
-INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'ConstruÁ„o');
+INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'Espa√ßo');
+INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'Constru√ß√£o');
 INSERT INTO CATEGORIA VALUES (NEXTVAL('CATEGORIA_SEQ'), 'Desafio');
 
 
@@ -18,21 +18,21 @@ INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 1, 'Rede');
 --Subcategoria Interior
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Abajur');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Armario');
-INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'BalanÁa');
+INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Balan√ßa');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Banheiro');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Cadeira');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Cama');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Cortina');
-INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'EletrodomÈstico');
+INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Eletrodom√©stico');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Eletronico');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Lixeira');
-INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'LouÁa');
+INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Lou√ßa');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Mesa');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Sofa');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 2, 'Tapete');
 
 --Subcategoria Espaco
-INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 3, 'Ch„o');
+INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 3, 'Ch√£o');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 3, 'Parede');
 
 --Subcategoria Construcao
@@ -47,7 +47,7 @@ INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 5, 'Ponto');
 INSERT INTO SUBCATEGORIA VALUES (NEXTVAL('SUBCATEGORIA_SEQ'), 5, 'Rota');
 
 --Objetos Exterior
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 4, 'BalanÁo', '/resources/img/objs/exterior/brinquedo/balanco.png', '/resources/img/objs/exterior/brinquedo/balancomap.png', 'BalanÁo', 1, 1);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 4, 'Balan√ßo', '/resources/img/objs/exterior/brinquedo/balanco.png', '/resources/img/objs/exterior/brinquedo/balancomap.png', 'Balan√ßo', 1, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Planta', '/resources/img/objs/exterior/jardim/planta.png', '/resources/img/objs/exterior/jardim/plantamap.png', 'Planta', 2, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Planta2', '/resources/img/objs/exterior/jardim/planta2.png', '/resources/img/objs/exterior/jardim/planta2map.png', 'Planta2', 2, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Planta3', '/resources/img/objs/exterior/jardim/planta3.png', '/resources/img/objs/exterior/jardim/planta3map.png', 'Planta3', 2, 1);
@@ -65,7 +65,7 @@ INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 4, 'Armario', '/resources/i
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 4, 'Armario', '/resources/img/objs/interior/armario/whiteestante.png', '/resources/img/objs/interior/armario/whiteestantemap.png', 'Armario', 9, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 4, 'Armario', '/resources/img/objs/interior/armario/woodenestante.png', '/resources/img/objs/interior/armario/woodenestantemap.png', 'Armario', 9, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 4, 'Armario', '/resources/img/objs/interior/armario/woodenwardrobe.png', '/resources/img/objs/interior/armario/woodenwardrobemap.png', 'Armario', 9, 1);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'BalanÁa', '/resources/img/objs/interior/balanca/balanca.png', '/resources/img/objs/interior/balanca/balancamap.png', 'Balanca', 10, 1);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Balan√ßa', '/resources/img/objs/interior/balanca/balanca.png', '/resources/img/objs/interior/balanca/balancamap.png', 'Balanca', 10, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 4, 'Banheira', '/resources/img/objs/interior/banheiro/banheira.png', '/resources/img/objs/interior/banheiro/banheiramap.png', 'Banheira', 11, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 4, 'Box', '/resources/img/objs/interior/banheiro/box.png', '/resources/img/objs/interior/banheiro/boxmap.png', 'Box', 11, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 4, 'Chuveiro', '/resources/img/objs/interior/banheiro/chuveiro.png', '/resources/img/objs/interior/banheiro/chuveiromap.png', 'Chuveiro', 11, 1);
@@ -89,8 +89,8 @@ INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Torradeira', '/resource
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 4, 'Maquina de lavar', '/resources/img/objs/interior/eletrodomestico/washingmachine.png', '/resources/img/objs/interior/eletrodomestico/washingmachinemap.png', 'Maquina de lavar', 15, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 2, 'Notebook', '/resources/img/objs/interior/eletronico/note.png', '/resources/img/objs/interior/eletronico/notemap.png', 'Notebook', 16, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 2, 'Computador', '/resources/img/objs/interior/eletronico/pc.png', '/resources/img/objs/interior/eletronico/pcmap.png', 'Computador', 16, 1);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 3, 'Televis„o', '/resources/img/objs/interior/eletronico/tv.png', '/resources/img/objs/interior/eletronico/tvmap.png', 'Televis„o', 16, 1);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 3, 'Televis„o', '/resources/img/objs/interior/eletronico/tv2.png', '/resources/img/objs/interior/eletronico/tv2map.png', 'Televis„o', 16, 1);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 3, 'Televis√£o', '/resources/img/objs/interior/eletronico/tv.png', '/resources/img/objs/interior/eletronico/tvmap.png', 'Televis√£o', 16, 1);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 3, 'Televis√£o', '/resources/img/objs/interior/eletronico/tv2.png', '/resources/img/objs/interior/eletronico/tv2map.png', 'Televis√£o', 16, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Telefone', '/resources/img/objs/interior/eletronico/tel.png', '/resources/img/objs/interior/eletronico/telmap.png', 'Telefone', 16, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Lixeira', '/resources/img/objs/interior/lixeira/cesto.png', '/resources/img/objs/interior/lixeira/cestomap.png', 'Lixeira', 17, 1);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 1, 'Lixeira', '/resources/img/objs/interior/lixeira/trash.png', '/resources/img/objs/interior/lixeira/trashmap.png', 'Lixeira', 17, 1);
@@ -117,12 +117,12 @@ INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 2, 'Ponto Inicio', '/resour
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 2, 1, 'Rota', '/resources/img/objs/desafio/rotas/rota.png', '/resources/img/objs/desafio/rotas/rotamap.png', 'Rota', 30, 0);
 
 --Objetos Espaco
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch„o', '/resources/img/objs/espaco/chao/grass.png', '/resources/img/objs/espaco/chao/grassmap.png', 'Ch„o', 22, 0);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch„o', '/resources/img/objs/espaco/chao/grayfloor.png', '/resources/img/objs/espaco/chao/grayfloormap.png', 'Ch„o', 22, 0);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch„o', '/resources/img/objs/espaco/chao/stonefloor.png', '/resources/img/objs/espaco/chao/stonefloormap.png', 'Ch„o', 22, 0);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch„o', '/resources/img/objs/espaco/chao/water.png', '/resources/img/objs/espaco/chao/watermap.png', 'Ch„o', 22, 0);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch„o', '/resources/img/objs/espaco/chao/whitefloor.png', '/resources/img/objs/espaco/chao/whitefloormap.png', 'Ch„o', 22, 0);
-INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch„o', '/resources/img/objs/espaco/chao/woodenfloor.png', '/resources/img/objs/espaco/chao/woodenfloormap.png', 'Ch„o', 22, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch√£o', '/resources/img/objs/espaco/chao/grass.png', '/resources/img/objs/espaco/chao/grassmap.png', 'Ch√£o', 22, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch√£o', '/resources/img/objs/espaco/chao/grayfloor.png', '/resources/img/objs/espaco/chao/grayfloormap.png', 'Ch√£o', 22, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch√£o', '/resources/img/objs/espaco/chao/stonefloor.png', '/resources/img/objs/espaco/chao/stonefloormap.png', 'Ch√£o', 22, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch√£o', '/resources/img/objs/espaco/chao/water.png', '/resources/img/objs/espaco/chao/watermap.png', 'Ch√£o', 22, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch√£o', '/resources/img/objs/espaco/chao/whitefloor.png', '/resources/img/objs/espaco/chao/whitefloormap.png', 'Ch√£o', 22, 0);
+INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 3, 3, 'Ch√£o', '/resources/img/objs/espaco/chao/woodenfloor.png', '/resources/img/objs/espaco/chao/woodenfloormap.png', 'Ch√£o', 22, 0);
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 4, 1, 'Parede', '/resources/img/objs/espaco/parede/parede.png', '/resources/img/objs/espaco/parede/paredemap.png', 'Parede', 23, 1);
 
 --Objetos Construcao
@@ -142,13 +142,14 @@ INSERT INTO TIPO_MAPA VALUES (NEXTVAL('TIPO_MAPA_SEQ'),'Desafio');
 
 /*
 
-ALTERA«’ES FEITAS PARA O M”DULO DE NAVEGA«√O
+ALTERA√á√ïES FEITAS PARA O M√ìDULO DE NAVEGA√á√ÉO
 
 */
 
-UPDATE CATEGORIA SET TITULO = 'LocalizaÁ„o do usu·rio' WHERE ID_CATEGORIA = 5;
+UPDATE CATEGORIA SET TITULO = 'Localiza√ß√£o do usu√°rio' WHERE ID_CATEGORIA = 5;
 UPDATE OBJETO SET ALTURA = 1, LARGURA = 1 WHERE DESCRICAO LIKE 'Ponto Fim';
 UPDATE OBJETO SET ALTURA = 1, LARGURA = 1 WHERE DESCRICAO LIKE 'Ponto Inicio';
 INSERT INTO OBJETO VALUES (NEXTVAL('OBJETO_SEQ'), 1, 4, 'Parede Horizontal', '/resources/img/objs/espaco/parede/paredehorizontal.png', '/resources/img/objs/espaco/parede/paredehorizontalmap.png', 'Parede', 23, 1);
 UPDATE objeto SET nivel = 1 WHERE descricao LIKE 'Parede%';
+
 

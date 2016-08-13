@@ -386,3 +386,4 @@ CREATE SEQUENCE HISTORICO_NAVEGACAO_SEQ
 ALTER TABLE mapa ALTER COLUMN objetivo TYPE VARCHAR(500);
 ALTER TABLE mapa ALTER COLUMN descricao TYPE VARCHAR(500);
 
+Query returned successfully with no result in 458 msec.
